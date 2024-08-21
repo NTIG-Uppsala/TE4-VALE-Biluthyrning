@@ -29,5 +29,4 @@ jobs:
                       echo "Validating $file"
                       response=$(curl -s -F "out=json" -F "content=@$file" https://validator.w3.org/nu/?parser=html5)
                       echo "$response"
-                    fi
                   done
