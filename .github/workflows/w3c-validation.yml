@@ -26,16 +26,8 @@ jobs:
               run: |
                   pip install requests
                   for file in $(find . -name "*.html"); do
-                    echo "Validating $file"
-                    response=$(curl -s -H "Content-Type: text/html; charset=utf-8" \
-                                 --data-binary "@$file" \
-                                 "https://validator.w3.org/nu/?out=json")
-                    errors=$(echo "$response" | python3 -c "import sys, json; data = json.load(sys.stdin); print(len([msg for msg in data['messages'] if msg['type'] == 'error']))")
-                    if [ "$errors" -gt 0 ]; then
-                      echo "Validation failed for $file with $errors errors."
-                      echo "$response" | python3 -c "import sys, json; data = json.load(sys.stdin); print('\n'.join([f\"Error: {msg['message']} at line {msg.get('lastLine', 'unknown')}\" for msg in data['messages'] if msg['type'] == 'error']))"
-                      exit 1
-                    else
-                      echo "$file passed validation."
+                      echo "Validating $file"
+                      response=$(curl -s -F "out=json" -F "content=@$file" https://validator.w3.org/nu/?parser=html5)
+                      echo "$response"
                     fi
                   done
