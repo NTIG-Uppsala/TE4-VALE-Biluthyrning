@@ -29,6 +29,9 @@ jobs:
                   # Create a directory to store validation results
                   mkdir -p validation_results
 
+                  # Initialize a flag to track if any errors or warnings are found
+                  validation_failed=0
+
                   # Loop through each HTML file and validate it
                   for file in $(find . -name "*.html"); do
                       echo "Validating $file"
@@ -41,7 +44,22 @@ jobs:
                       echo "$response" > "$output_file"
                       
                       echo "Validation results saved to $output_file"
+
+                      # Check for errors or warnings in the response
+                      errors=$(echo "$response" | python3 -c "import sys, json; data = json.load(sys.stdin); print(len([msg for msg in data['messages'] if msg['type'] in ['error', 'warning']]))")
+                      if [ "$errors" -gt 0 ]; then
+                          echo "Validation issues found in $file"
+                          validation_failed=1
+                      fi
                   done
+
+                  # Fail the workflow if any errors or warnings were found
+                  if [ "$validation_failed" -eq 1 ]; then
+                      echo "Validation failed due to errors or warnings."
+                      exit 1
+                  else
+                      echo "All files passed validation."
+                  fi
 
             - name: Upload validation results
               uses: actions/upload-artifact@v3
