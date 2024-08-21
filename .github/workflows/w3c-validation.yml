@@ -1,5 +1,8 @@
+# Automatically validate HTML files in a repository using the W3C Validator API
+
 name: W3C Validation
 
+# Trigger the workflow on push to the main branch or pull requests to the main branch
 on:
     push:
         branches:
@@ -22,7 +25,9 @@ jobs:
               with:
                   python-version: "3.x"
 
+                  # Validate HTML with W3C Validator API
             - name: Validate HTML with W3C Validator API
+
               run: |
                   pip install requests
 
@@ -62,6 +67,7 @@ jobs:
                   name: w3c-validation-results
                   path: validation_results/
 
+                  # Fail the workflow if there were validation issues
             - name: Fail if there were validation issues
               run: |
                   validation_failed=$(cat validation_results/validation_failed_flag.txt)
