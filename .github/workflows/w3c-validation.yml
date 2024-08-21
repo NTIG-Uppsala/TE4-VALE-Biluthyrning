@@ -53,16 +53,21 @@ jobs:
                       fi
                   done
 
-                  # Fail the workflow if any errors or warnings were found
-                  if [ "$validation_failed" -eq 1 ]; then
-                      echo "Validation failed due to errors or warnings."
-                      exit 1
-                  else
-                      echo "All files passed validation."
-                  fi
+                  # Save the validation result flag to a file
+                  echo "$validation_failed" > validation_results/validation_failed_flag.txt
 
             - name: Upload validation results
               uses: actions/upload-artifact@v3
               with:
                   name: w3c-validation-results
                   path: validation_results/
+
+            - name: Fail if there were validation issues
+              run: |
+                  validation_failed=$(cat validation_results/validation_failed_flag.txt)
+                  if [ "$validation_failed" -eq 1 ]; then
+                      echo "Validation failed due to errors or warnings."
+                      exit 1
+                  else
+                      echo "All files passed validation."
+                  fi
