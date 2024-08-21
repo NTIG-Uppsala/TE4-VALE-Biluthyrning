@@ -1,4 +1,4 @@
-# Automatically validate HTML files in a repository using the W3C Validator API
+# Automatically validate HTML and CSS files in a repository using the W3C Validator API
 
 name: W3C Validation
 
@@ -25,9 +25,7 @@ jobs:
               with:
                   python-version: "3.x"
 
-                  # Validate HTML with W3C Validator API
             - name: Validate HTML with W3C Validator API
-
               run: |
                   pip install requests
 
@@ -58,6 +56,31 @@ jobs:
                       fi
                   done
 
+            - name: Validate CSS with W3C Validator API
+              run: |
+                  pip install requests
+
+                  # Loop through each CSS file and validate it
+                  for file in $(find . -name "*.css"); do
+                      echo "Validating $file"
+                      
+                      # Send the CSS content to the W3C Validator API
+                      response=$(curl -s -F "out=json" -F "content=@$file" https://jigsaw.w3.org/css-validator/validator?profile=css3&output=json)
+                      
+                      # Write the API response to a JSON file
+                      output_file="validation_results/w3c-validation-$(basename $file .css).json"
+                      echo "$response" > "$output_file"
+                      
+                      echo "Validation results saved to $output_file"
+
+                      # Check for errors or warnings in the response
+                      errors=$(echo "$response" | python3 -c "import sys, json; data = json.load(sys.stdin); print(len([msg for msg in data['cssvalidation']['errors'], data['cssvalidation']['warnings']]))")
+                      if [ "$errors" -gt 0 ]; then
+                          echo "Validation issues found in $file"
+                          validation_failed=1
+                      fi
+                  done
+
                   # Save the validation result flag to a file
                   echo "$validation_failed" > validation_results/validation_failed_flag.txt
 
@@ -67,7 +90,6 @@ jobs:
                   name: w3c-validation-results
                   path: validation_results/
 
-                  # Fail the workflow if there were validation issues
             - name: Fail if there were validation issues
               run: |
                   validation_failed=$(cat validation_results/validation_failed_flag.txt)
