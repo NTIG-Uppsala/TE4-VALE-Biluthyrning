@@ -25,9 +25,26 @@ jobs:
             - name: Validate HTML with W3C Validator API
               run: |
                   pip install requests
+
+                  # Create a directory to store validation results
+                  mkdir -p validation_results
+
+                  # Loop through each HTML file and validate it
                   for file in $(find . -name "*.html"); do
                       echo "Validating $file"
+                      
+                      # Send the HTML content to the W3C Validator API
                       response=$(curl -s -F "out=json" -F "content=@$file" https://validator.w3.org/nu/?parser=html5)
-                      echo "$response"
-                      echo "$response" > "w3c-validation-$(basename $file).json"
+                      
+                      # Write the API response to a JSON file
+                      output_file="validation_results/w3c-validation-$(basename $file .html).json"
+                      echo "$response" > "$output_file"
+                      
+                      echo "Validation results saved to $output_file"
                   done
+
+            - name: Upload validation results
+              uses: actions/upload-artifact@v3
+              with:
+                  name: w3c-validation-results
+                  path: validation_results/
