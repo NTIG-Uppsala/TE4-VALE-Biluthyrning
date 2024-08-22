@@ -15,19 +15,19 @@ class TestHemsida(TestCase):
     # setUpClass runs BEFORE FIRST test
     @classmethod
     def setUpClass(cls):
-        chr_options = Options()
+        chrome_options = Options()
 
-        chr_options.add_argument("--disable-search-engine-choice-screen")
+        chrome_options.add_argument("--disable-search-engine-choice-screen")
 
         if cls.keepBrowserAlive:
 
-            chr_options.add_experimental_option("detach", True)
+            chrome_options.add_experimental_option("detach", True)
 
         if cls.hiddenWindow:
 
-            chr_options.add_argument("--headless")
+            chrome_options.add_argument("--headless")
 
-        cls.browser = webdriver.Chrome(options=chr_options)
+        cls.browser = webdriver.Chrome(options=chrome_options)
 
     # tearDownClass runs AFTER LAST test
     @classmethod
