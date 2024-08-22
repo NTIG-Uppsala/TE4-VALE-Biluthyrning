@@ -27,5 +27,13 @@ jobs:
 
             - name: Run tests
               run: |
-                  # Fail deployment if any tests fail
-                  pytest tests.py
+                  # Fail deployment if any tests fail and output the test results to a file in artifacts
+                  pytest --junitxml=results.xml
+                  test_exit_code=$?
+                  echo "$test_exit_code" > test_exit_code.txt
+                  if [ "$test_exit_code" -ne 0 ]; then
+                      echo "Tests failed"
+                      exit 1
+                  fi
+                  echo "Tests passed"
+                  exit 0
