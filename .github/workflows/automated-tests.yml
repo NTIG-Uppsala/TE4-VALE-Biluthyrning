@@ -35,6 +35,8 @@ jobs:
                   python -m xmlrunner discover -s tests/ -o test_results
                   test_result=$?
 
+                  echo "Test result: $test_result"
+
                   # Save test result status to a file
                   echo "$test_result" > test_results/test_passed_flag.txt
 
