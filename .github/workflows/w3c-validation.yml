@@ -62,19 +62,23 @@ jobs:
                           validation_failed=1
                       else
                           # Attempt to parse the response as JSON
-                          echo "$response" | python3 -c "
+                          error_count=$(echo "$response" | python3 -c "
                             import sys, json
                             try:
                                 data = json.load(sys.stdin)
-                                # Check if there are errors or warnings in the JSON response
                                 errors = len(data.get('cssvalidation', {}).get('errors', []))
                                 warnings = len(data.get('cssvalidation', {}).get('warnings', []))
-                                if errors > 0 or warnings > 0:
-                                    sys.exit(1)
+                                # Output error count (errors + warnings) for debugging
+                                print(errors + warnings)
                             except json.JSONDecodeError:
                                 # Exit with error if JSON is malformed
                                 sys.exit(1)
-                            " || validation_failed=1
+                            ")
+                          
+                          if [ "$error_count" -gt 0 ]; then
+                              validation_failed=1
+                              echo "Validation failed with $error_count issues in $file"
+                          fi
                       fi
                   done
 
