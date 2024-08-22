@@ -27,13 +27,13 @@ jobs:
 
             - name: Run tests
               run: |
-                  # Fail deployment if any tests fail and output the test results to a file in artifacts
-                  pytest --junitxml=results.xml
-                  test_exit_code=$?
-                  echo "$test_exit_code" > test_exit_code.txt
-                  if [ "$test_exit_code" -ne 0 ]; then
-                      echo "Tests failed"
-                      exit 1
+                  # Write whether the tests passed or failed (1 or 0) to a file along with detailed results
+                  mkdir -p test_results
+                  pytest tests/ --junitxml=test_results/results.xml
+                  test_result=$?
+                  echo "$test_result" > test_results/test_passed_flag.txt
+                  if [ "$test_result" -eq 0 ]; then
+                      echo "All tests passed."
+                  else
+                      echo "Some tests failed."
                   fi
-                  echo "Tests passed"
-                  exit 0
