@@ -42,7 +42,15 @@ body {
         max-width: 100%;
         min-height: 100dvh;
 
-        padding-top: 1rem;
+        padding-top: 1.5rem;
+
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+
+        &>#copyright-info {
+            justify-self: end;
+        }
 
         &>address {
 
