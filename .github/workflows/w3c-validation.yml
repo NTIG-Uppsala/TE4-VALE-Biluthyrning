@@ -6,9 +6,6 @@ on:
             - main
             - gh-pages
             - validation-testing
-    pull_request:
-        branches:
-            - main
 
 jobs:
     validate:
