@@ -4,7 +4,8 @@ on:
     workflow_run:
         workflows: ["Automated Tests", "W3C HTML & CSS Validation"]
         types:
-            - completed
+            completed: null
+            completed_with_conclusions: null
 
 jobs:
     cancel_deployment:
