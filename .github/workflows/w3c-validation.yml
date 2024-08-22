@@ -48,10 +48,11 @@ jobs:
                   for file in $(find . -name '*.css'); do
                     echo "Validating $file"
                     output_file="validation_results/w3c-validation-$(basename "$file" .css).json"
-                    response=$(curl -s -X POST "https://jigsaw.w3.org/css-validator/validator" \
-                      -F "file=@$file" \
-                      -F "output=json" \
-                      -F "profile=css3")
+                    # Read the CSS content and URL-encode it
+                    css_content=$(cat "$file" | jq -sRr @uri)
+
+                    # Update the curl command to send the content as a URL parameter
+                    response=$(curl -s "https://jigsaw.w3.org/css-validator/validator?text=$css_content&output=json")
                     echo "$response" > "$output_file"
                     error_count=$(echo "$response" | python3 scripts/validate-css.py)
                     if [ "$error_count" -gt 0 ]; then
