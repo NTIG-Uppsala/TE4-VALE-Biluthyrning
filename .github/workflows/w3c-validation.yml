@@ -5,6 +5,7 @@ on:
         branches:
             - main
             - gh-pages
+            - validation-testing
     pull_request:
         branches:
             - main
@@ -44,8 +45,8 @@ jobs:
                       # Define the output file for the validation results
                       output_file="validation_results/w3c-validation-$(basename $file .css).json"
 
-                      # Read the CSS file content
-                      css_content=$(cat "$file")
+                      # Read and URL-encode the CSS file content
+                      css_content=$(cat "$file" | jq -sRr @uri)
 
                       # Send the CSS content to the W3C Validator API requesting JSON format
                       response=$(curl -s -X POST "https://jigsaw.w3.org/css-validator/validator" \
