@@ -4,7 +4,7 @@ from selenium import webdriver
 
 from selenium.webdriver.chrome.options import Options
 
-from os import path, getcwd
+from os import path
 
 
 class TestHemsida(TestCase):
@@ -15,7 +15,6 @@ class TestHemsida(TestCase):
     # setUpClass runs BEFORE FIRST test
     @classmethod
     def setUpClass(cls):
-
         chr_options = Options()
 
         chr_options.add_argument("--disable-search-engine-choice-screen")
@@ -38,49 +37,35 @@ class TestHemsida(TestCase):
 
     # setUp runs BEFORE EACH test
     def setUp(self):
-
+        self.browser.get(path.join(path.dirname(__file__), '../index.html'))
         pass
 
     # tearDown runs AFTER EACH test
     def tearDown(self):
 
         # go to about:blank to clear the page
-
         self.browser.get('about:blank')
 
     # tests:
     def testName(self):
-        self.browser.get(path.join(path.dirname(__file__), '../index.html'))
-
         self.assertIn("======Missing======", self.browser.page_source)
 
     def testPhoneNumber(self):
-        self.browser.get(path.join(path.dirname(__file__), '../index.html'))
-
         self.assertIn("======Missing======", self.browser.page_source)
 
     def testEmail(self):
-        self.browser.get(path.join(path.dirname(__file__), '../index.html'))
-
         self.assertIn("======Missing======", self.browser.page_source)
 
     def testAddress(self):
-        self.browser.get(path.join(path.dirname(__file__), '../index.html'))
-
         self.assertIn("======Missing======", self.browser.page_source)
 
     def testSocialMedia(self):
-        self.browser.get(path.join(path.dirname(__file__), '../index.html'))
-
         self.assertIn("======Missing======", self.browser.page_source)
 
     def testOpeningHours(self):
-        self.browser.get(path.join(path.dirname(__file__), '../index.html'))
-
         self.assertIn("======Missing======", self.browser.page_source)
 
 
 # in case this file is run directly this runs the tests
 if __name__ == '__main__':
-
     main(verbosity=2)
