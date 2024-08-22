@@ -14,82 +14,51 @@ jobs:
         steps:
             - name: Checkout code
               uses: actions/checkout@v3
-              # Checkout the repository code to the runner
 
             - name: Set up Python
               uses: actions/setup-python@v4
               with:
                   python-version: "3.x"
-              # Set up Python environment for running validation scripts
 
             - name: Install dependencies
               run: |
-                  pip install requests  # Ensure requests library is available
-              # Install the required Python libraries
+                  pip install requests
 
             - name: Validate HTML with W3C Validator API
               run: |
-                  # Create a directory to store validation results
                   mkdir -p validation_results
-                  # Initialize a flag to track if any errors or warnings are found
                   validation_failed=0
-                  # Loop through each HTML file and validate it
                   for file in $(find . -name "*.html"); do
                       echo "Validating $file"
-                      
-                      # Send the HTML content to the W3C Validator API
                       response=$(curl -s -F "out=json" -F "content=@$file" https://validator.w3.org/nu/?parser=html5)
-                      
-                      # Write the API response to a JSON file
                       output_file="validation_results/w3c-validation-$(basename $file .html).json"
                       echo "$response" > "$output_file"
-                      
-                      echo "Validation results saved to $output_file"
-                      # Check for errors or warnings in the response
                       errors=$(echo "$response" | python3 -c "import sys, json; data = json.load(sys.stdin); print(len([msg for msg in data['messages'] if msg['type'] in ['error', 'warning']]))")
                       if [ "$errors" -gt 0 ]; then
                           echo "Validation issues found in $file"
                           validation_failed=1
                       fi
                   done
-                  # Save the validation result flag to a file
                   echo "$validation_failed" > validation_results/validation_failed_flag.txt
 
             - name: Validate CSS files
               run: |
-                  # Create a directory to store validation results
                   mkdir -p validation_results
-
-                  # Initialize a flag to track if validation fails
                   validation_failed=0
-
-                  # Loop through each CSS file in the repository
                   for file in $(find . -name '*.css'); do
                     echo "Validating $file"
-
-                    # Define the output file for the validation results
                     output_file="validation_results/w3c-validation-$(basename "$file" .css).json"
-
-                    # Send the CSS content to the W3C Validator API requesting JSON format
                     response=$(curl -s -X POST "https://jigsaw.w3.org/css-validator/validator" \
                       -F "file=@$file" \
                       -F "output=json" \
                       -F "profile=css3")
-
-                    # Save the raw response to a file for debugging purposes
                     echo "$response" > "$output_file"
-                    echo "Validation results saved to $output_file"
-
-                    # Attempt to parse the response as JSON using external script
                     error_count=$(echo "$response" | python3 scripts/validate-css.py)
-
                     if [ "$error_count" -gt 0 ]; then
                       validation_failed=1
                       echo "Validation failed with $error_count issues in $file"
                     fi
                   done
-
-                  # Save the validation result status to a file
                   echo "$validation_failed" > validation_results/validation_failed_flag.txt
 
             - name: Upload validation results
@@ -97,17 +66,13 @@ jobs:
               with:
                   name: w3c-validation-results
                   path: validation_results/
-              # Upload the validation results as an artifact
 
             - name: Fail if there were validation issues
               run: |
-                  # Read the validation status from the flag file
                   validation_failed=$(cat validation_results/validation_failed_flag.txt)
-                  # Exit with code 1 if validation failed
                   if [ "$validation_failed" -eq 1 ]; then
                     echo "Validation failed due to errors or warnings."
                     exit 1
                   else
                     echo "All files passed validation."
                   fi
-              # Fail the job if validation encountered issues
