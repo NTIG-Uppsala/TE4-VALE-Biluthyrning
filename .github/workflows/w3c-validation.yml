@@ -67,7 +67,7 @@ jobs:
                       # Send the CSS content to the W3C Validator API
                       response=$(curl -s -F "file=@$file" https://jigsaw.w3.org/css-validator/validator?profile=css3&output=json)
                       
-                      # Write the API response to a JSON file
+                      # Write the raw API response to a JSON file for debugging purposes
                       output_file="validation_results/w3c-validation-$(basename $file .css).json"
                       echo "$response" > "$output_file"
                       
@@ -78,7 +78,12 @@ jobs:
                           echo "Error: Received empty response from the CSS Validator API for $file"
                           validation_failed=1
                       else
+                          # Debugging: Print the raw response to understand what is being returned
+                          echo "Raw API response: $response"
+
+                          # Attempt to parse the response as JSON
                           errors=$(echo "$response" | python3 -c "import sys, json; data = json.load(sys.stdin); errors = len(data.get('cssvalidation', {}).get('errors', [])); warnings = len(data.get('cssvalidation', {}).get('warnings', [])); print(errors + warnings)")
+                          
                           if [ "$errors" -gt 0 ]; then
                               echo "Validation issues found in $file"
                               validation_failed=1
