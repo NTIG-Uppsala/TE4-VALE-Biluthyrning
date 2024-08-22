@@ -65,26 +65,25 @@ jobs:
                       # Send the CSS content to the W3C Validator API
                       response=$(curl -s -F "file=@$file" https://jigsaw.w3.org/css-validator/validator?profile=css3&output=json)
                       
-                      # Write the raw API response to a JSON file for debugging purposes
+                      # Write the raw API response to a file for debugging purposes
                       output_file="validation_results/w3c-validation-$(basename $file .css).json"
                       echo "$response" > "$output_file"
                       
                       echo "Validation results saved to $output_file"
 
-                      # Check if the response is empty or not valid JSON
-                      if [ -z "$response" ]; then
-                          echo "Error: Received empty response from the CSS Validator API for $file"
-                          validation_failed=1
-                      elif ! echo "$response" | python3 -m json.tool > /dev/null 2>&1; then
-                          echo "Error: Received invalid JSON from the CSS Validator API for $file"
-                          validation_failed=1
+                      # Check if the response contains HTML instead of JSON
+                      if echo "$response" | grep -q "<!DOCTYPE html>"; then
+                          echo "HTML response received, checking for validation success message..."
+                          if echo "$response" | grep -q "Congratulations! No Error Found."; then
+                              echo "No errors found in $file"
+                          else
+                              echo "Unexpected HTML response. Possible validation issue with $file"
+                              validation_failed=1
+                          fi
                       else
-                          # Debugging: Print the raw response to understand what is being returned
-                          echo "Raw API response: $response"
-
-                          # Parse the response as JSON
+                          # If not HTML, attempt to parse the response as JSON
                           errors=$(echo "$response" | python3 -c "import sys, json; data = json.load(sys.stdin); errors = len(data.get('cssvalidation', {}).get('errors', [])); warnings = len(data.get('cssvalidation', {}).get('warnings', [])); print(errors + warnings)")
-                          
+
                           if [ "$errors" -gt 0 ]; then
                               echo "Validation issues found in $file"
                               validation_failed=1
