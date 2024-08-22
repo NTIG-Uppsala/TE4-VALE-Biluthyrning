@@ -43,32 +43,31 @@ jobs:
                       
                       # Send the CSS file to the W3C Validator API requesting JSON format
                       response=$(curl -s -F "file=@$file" "https://jigsaw.w3.org/css-validator/validator?profile=css3&output=json")
-                      
+
                       # Define the output file for the validation results
                       output_file="validation_results/w3c-validation-$(basename $file .css).json"
-                      
+
                       # Save the raw response to a file for debugging purposes
                       echo "$response" > "$output_file"
                       echo "Validation results saved to $output_file"
 
-                      # Check if the response is empty or contains HTML instead of JSON
-                      if [ -z "$response" ]; then
-                          echo "Error: Received empty response from the CSS Validator API for $file"
-                          validation_failed=1
-                      elif echo "$response" | grep -q "<!DOCTYPE html>"; then
+                      # Check if the response contains HTML (likely an error page)
+                      if echo "$response" | grep -q "<!DOCTYPE html>"; then
                           echo "Error: Received HTML response instead of JSON for $file"
                           validation_failed=1
                       else
-                          # Attempt to parse the response as JSON and check for errors or warnings
+                          # Attempt to parse the response as JSON
                           echo "$response" | python3 -c "
                             import sys, json
                             try:
                                 data = json.load(sys.stdin)
+                                # Check if there are errors or warnings in the JSON response
                                 errors = len(data.get('cssvalidation', {}).get('errors', []))
                                 warnings = len(data.get('cssvalidation', {}).get('warnings', []))
                                 if errors > 0 or warnings > 0:
                                     sys.exit(1)
                             except json.JSONDecodeError:
+                                # Exit with error if JSON is malformed
                                 sys.exit(1)
                             " || validation_failed=1
                       fi
