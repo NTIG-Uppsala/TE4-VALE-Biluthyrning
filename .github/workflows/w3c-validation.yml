@@ -63,7 +63,8 @@ jobs:
                       else
                           # Attempt to parse the response as JSON
                           error_count=$(echo "$response" | python3 -c "
-                            import sys, json
+                            import sys
+                            import json
                             try:
                                 data = json.load(sys.stdin)
                                 errors = len(data.get('cssvalidation', {}).get('errors', []))
@@ -74,7 +75,7 @@ jobs:
                                 # Exit with error if JSON is malformed
                                 sys.exit(1)
                             ")
-                          
+
                           if [ "$error_count" -gt 0 ]; then
                               validation_failed=1
                               echo "Validation failed with $error_count issues in $file"
