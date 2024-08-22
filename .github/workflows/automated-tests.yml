@@ -1,0 +1,44 @@
+# Automated Tests
+#
+# This workflow is triggered on push events to the 'main', 'gh-pages', and 'validation-testing' branches.
+# It runs a series of steps to set up the environment, install dependencies, and run tests using unittest.
+#
+# Jobs:
+#   - test:
+#       - Checkout code: Checks out the code from the repository.
+#       - Set up Python: Sets up the Python environment using the specified version.
+#       - Install dependencies: Installs the required dependencies using pip.
+#       - Run tests with unittest: Runs the tests using unittest and generates XML test results.
+name: Automated Tests
+
+on:
+    push:
+        branches:
+            - main
+            - gh-pages
+            - validation-testing
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Set up Python
+              uses: actions/setup-python@v2
+              with:
+                  python-version: "3.x"
+
+            - name: Install dependencies
+              run: |
+                  pip install requests
+                  pip install selenium
+                  pip install unittest-xml-reporting
+
+            - name: Run tests with unittest
+              run: |
+                  python -m xmlrunner discover -s tests/ -o test_results
+
+              shell: bash
