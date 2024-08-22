@@ -1,0 +1,31 @@
+name: Automated Tests
+
+on:
+    push:
+        branches:
+            - main
+            - gh-pages
+            - validation-testing
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Set up Python
+              uses: actions/setup-python@v2
+              with:
+                  python-version: "3.x"
+
+            - name: Install dependencies
+              run: |
+                  pip install requests
+                  pip install pytest
+
+            - name: Run tests
+              run: |
+                  # Fail deployment if any tests fail
+                  pytest tests.py
