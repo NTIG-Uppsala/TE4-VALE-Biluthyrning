@@ -41,8 +41,15 @@ jobs:
                   for file in $(find . -name "*.css"); do
                       echo "Validating $file"
                       
-                      # Send the CSS file to the W3C Validator API requesting JSON format
-                      response=$(curl -s -F "file=@$file" "https://jigsaw.w3.org/css-validator/validator?profile=css3&output=json")
+                      # Upload the file to a temporary URL or server
+                      # This step is optional, depending on whether you have a file hosting setup
+                      # For the purpose of this example, we'll assume the file is already hosted
+                      # Adjust this URL to point to the location where your CSS file is hosted
+                      # You can use GitHub Pages or another file hosting service
+                      file_url="https://example.com/$(basename $file)"
+                      
+                      # Send the CSS file URL to the W3C Validator API requesting JSON format
+                      response=$(curl -s "https://jigsaw.w3.org/css-validator/validator?uri=$file_url&profile=css3&output=json")
 
                       # Define the output file for the validation results
                       output_file="validation_results/w3c-validation-$(basename $file .css).json"
