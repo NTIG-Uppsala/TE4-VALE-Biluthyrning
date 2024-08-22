@@ -57,42 +57,45 @@ jobs:
                   done
 
             - name: Validate CSS with W3C Validator API
-              run: |
-                  pip install requests
+            run: |
+                pip install requests
 
-                  # Loop through each CSS file and validate it
-                  for file in $(find . -name "*.css"); do
-                      echo "Validating $file"
-                      
-                      # Send the CSS content to the W3C Validator API
-                      response=$(curl -s -F "file=@$file" https://jigsaw.w3.org/css-validator/validator?profile=css3&output=json)
-                      
-                      # Write the raw API response to a JSON file for debugging purposes
-                      output_file="validation_results/w3c-validation-$(basename $file .css).json"
-                      echo "$response" > "$output_file"
-                      
-                      echo "Validation results saved to $output_file"
+                # Loop through each CSS file and validate it
+                for file in $(find . -name "*.css"); do
+                    echo "Validating $file"
+                    
+                    # Send the CSS content to the W3C Validator API
+                    response=$(curl -s -F "file=@$file" https://jigsaw.w3.org/css-validator/validator?profile=css3&output=json)
+                    
+                    # Write the raw API response to a JSON file for debugging purposes
+                    output_file="validation_results/w3c-validation-$(basename $file .css).json"
+                    echo "$response" > "$output_file"
+                    
+                    echo "Validation results saved to $output_file"
 
-                      # Check if the response is empty or not valid JSON
-                      if [ -z "$response" ]; then
-                          echo "Error: Received empty response from the CSS Validator API for $file"
-                          validation_failed=1
-                      else
-                          # Debugging: Print the raw response to understand what is being returned
-                          echo "Raw API response: $response"
+                    # Check if the response is empty or not valid JSON
+                    if [ -z "$response" ]; then
+                        echo "Error: Received empty response from the CSS Validator API for $file"
+                        validation_failed=1
+                    elif ! echo "$response" | python3 -m json.tool > /dev/null 2>&1; then
+                        echo "Error: Received invalid JSON from the CSS Validator API for $file"
+                        validation_failed=1
+                    else
+                        # Debugging: Print the raw response to understand what is being returned
+                        echo "Raw API response: $response"
 
-                          # Attempt to parse the response as JSON
-                          errors=$(echo "$response" | python3 -c "import sys, json; data = json.load(sys.stdin); errors = len(data.get('cssvalidation', {}).get('errors', [])); warnings = len(data.get('cssvalidation', {}).get('warnings', [])); print(errors + warnings)")
-                          
-                          if [ "$errors" -gt 0 ]; then
-                              echo "Validation issues found in $file"
-                              validation_failed=1
-                          fi
-                      fi
-                  done
+                        # Parse the response as JSON
+                        errors=$(echo "$response" | python3 -c "import sys, json; data = json.load(sys.stdin); errors = len(data.get('cssvalidation', {}).get('errors', [])); warnings = len(data.get('cssvalidation', {}).get('warnings', [])); print(errors + warnings)")
+                        
+                        if [ "$errors" -gt 0 ]; then
+                            echo "Validation issues found in $file"
+                            validation_failed=1
+                        fi
+                    fi
+                done
 
-                  # Save the validation result flag to a file
-                  echo "$validation_failed" > validation_results/validation_failed_flag.txt
+                # Save the validation result flag to a file
+                echo "$validation_failed" > validation_results/validation_failed_flag.txt
 
             - name: Upload validation results
               uses: actions/upload-artifact@v3
