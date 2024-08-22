@@ -1,6 +1,5 @@
 name: W3C Validation
 
-# Trigger the workflow on push to the main branch or pull requests to the main branch
 on:
     push:
         branches:
@@ -27,26 +26,16 @@ jobs:
               run: |
                   pip install requests
 
-                  # Create a directory to store validation results
                   mkdir -p validation_results
-
-                  # Initialize a flag to track if any errors or warnings are found
                   validation_failed=0
 
-                  # Loop through each HTML file and validate it
                   for file in $(find . -name "*.html"); do
                       echo "Validating $file"
-                      
-                      # Send the HTML content to the W3C Validator API
                       response=$(curl -s -F "out=json" -F "content=@$file" https://validator.w3.org/nu/?parser=html5)
-                      
-                      # Write the API response to a JSON file
                       output_file="validation_results/w3c-validation-$(basename $file .html).json"
                       echo "$response" > "$output_file"
-                      
                       echo "Validation results saved to $output_file"
 
-                      # Check for errors or warnings in the response
                       errors=$(echo "$response" | python3 -c "import sys, json; data = json.load(sys.stdin); print(len([msg for msg in data['messages'] if msg['type'] in ['error', 'warning']]))")
                       if [ "$errors" -gt 0 ]; then
                           echo "Validation issues found in $file"
@@ -58,35 +47,21 @@ jobs:
               run: |
                   pip install requests
 
-                  # Loop through each CSS file and validate it
                   for file in $(find . -name "*.css"); do
                       echo "Validating $file"
-                      
-                      # Send the CSS content to the W3C Validator API
                       response=$(curl -s -F "file=@$file" https://jigsaw.w3.org/css-validator/validator?profile=css3&output=json)
-                      
-                      # Write the raw API response to a file for debugging purposes
                       output_file="validation_results/w3c-validation-$(basename $file .css).json"
                       echo "$response" > "$output_file"
-                      
                       echo "Validation results saved to $output_file"
 
-                      # Check if the response is empty
                       if [ -z "$response" ]; then
                           echo "Error: Received empty response from the CSS Validator API for $file"
                           validation_failed=1
                       elif echo "$response" | grep -q "<!DOCTYPE html>"; then
-                          # If the response is HTML, check for the success message
-                          if echo "$response" | grep -q "Congratulations! No Error Found."; then
-                              echo "No errors found in $file"
-                          else:
-                              echo "Unexpected HTML response. Possible validation issue with $file"
-                              validation_failed=1
-                          fi
+                          echo "Error: Received an HTML response instead of JSON for $file"
+                          validation_failed=1
                       else
-                          # Attempt to parse the response as JSON
                           errors=$(echo "$response" | python3 -c "import sys, json; data = json.load(sys.stdin); errors = len(data.get('cssvalidation', {}).get('errors', [])); warnings = len(data.get('cssvalidation', {}).get('warnings', [])); print(errors + warnings)")
-
                           if [ "$errors" -gt 0 ]; then
                               echo "Validation issues found in $file"
                               validation_failed=1
@@ -94,7 +69,6 @@ jobs:
                       fi
                   done
 
-                  # Save the validation result flag to a file
                   echo "$validation_failed" > validation_results/validation_failed_flag.txt
 
             - name: Upload validation results
@@ -109,5 +83,5 @@ jobs:
                   if [ "$validation_failed" -eq 1 ]; then
                       echo "Validation failed due to errors or warnings."
                       exit 1
-                  else:
+                  else
                       echo "All files passed validation."
