@@ -28,27 +28,6 @@ jobs:
 
             - name: Run tests with unittest
               run: |
-                  # Create directory for test results
-                  mkdir -p test_results
-
-                  # Run unittest and output to an XML file
                   python -m xmlrunner discover -s tests/ -o test_results
-                  test_result=$?
 
-                  echo "Test result: $test_result"
-
-                  # Save test result status to a file
-                  echo "$test_result" > test_results/test_passed_flag.txt
-
-                  # Fail deployment if tests fail
-                  # if [ "$test_result" -ne 0 ]; then
-                  #     echo "Tests failed"
-                  #     exit 1
-                  # fi
               shell: bash
-
-            - name: Upload test results
-              uses: actions/upload-artifact@v2
-              with:
-                  name: test-results
-                  path: test_results
