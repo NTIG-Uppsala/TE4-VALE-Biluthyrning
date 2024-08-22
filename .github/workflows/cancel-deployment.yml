@@ -5,6 +5,10 @@ on:
         workflows: ["Automated Tests", "W3C HTML & CSS Validation"]
         types:
             - completed
+        branches:
+            - main
+            - gh-pages
+            - validation-testing
             
 
 jobs:
