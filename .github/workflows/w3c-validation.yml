@@ -1,4 +1,4 @@
-name: W3C CSS Validation
+name: W3C HTML & CSS Validation
 
 on:
     push:
@@ -81,7 +81,7 @@ jobs:
                     echo "Validation results saved to $output_file"
 
                     # Attempt to parse the response as JSON using external script
-                    error_count=$(echo "$response" | python3 scripts/validate_css.py)
+                    error_count=$(echo "$response" | python3 scripts/validate-css.py)
 
                     if [ "$error_count" -gt 0 ]; then
                       validation_failed=1
