@@ -1,3 +1,17 @@
+# Name: W3C HTML & CSS Validation
+#
+# Description: This GitHub Actions workflow performs HTML and CSS validation using the W3C Validator API and the W3C CSS Validator. It runs on the 'main', 'gh-pages', and 'validation-testing' branches whenever a push event occurs.
+#
+# Jobs:
+#   - validate:
+#       - Description: This job runs on the latest version of Ubuntu and performs the following steps:
+#           1. Checkout code from the repository.
+#           2. Set up Python environment.
+#           3. Install dependencies (requests library).
+#           4. Validate HTML files using the W3C Validator API.
+#           5. Validate CSS files using the W3C CSS Validator.
+#           6. Upload validation results as artifacts.
+#           7. Fail the workflow if there were validation issues.
 name: W3C HTML & CSS Validation
 
 on:
