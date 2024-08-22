@@ -38,10 +38,15 @@ jobs:
                   # Save test result status to a file
                   echo "$test_result" > test_results/test_passed_flag.txt
 
-                  # Print result based on test status
-                  if [ "$test_result" -eq 0 ]; then
-                      echo "All tests passed."
-                  else
-                      echo "Some tests failed."
-                  fi
+                  # Fail deployment if tests fail
+                  # if [ "$test_result" -ne 0 ]; then
+                  #     echo "Tests failed"
+                  #     exit 1
+                  # fi
               shell: bash
+
+            - name: Upload test results
+              uses: actions/upload-artifact@v2
+              with:
+                  name: test-results
+                  path: test_results
