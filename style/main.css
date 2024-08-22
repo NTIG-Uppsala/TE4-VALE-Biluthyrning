@@ -43,5 +43,18 @@ body {
         min-height: 100dvh;
 
         padding-top: 1rem;
+
+        &>address {
+
+            &>strong {
+                font-size: 1.1rem;
+            }
+
+            &>#dates-closed {
+                font-size: 0.8rem;
+                font-weight: lighter;
+            }
+        }
+
     }
 }
