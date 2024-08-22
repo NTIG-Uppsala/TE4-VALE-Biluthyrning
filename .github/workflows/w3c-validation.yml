@@ -44,8 +44,14 @@ jobs:
                       # Define the output file for the validation results
                       output_file="validation_results/w3c-validation-$(basename $file .css).json"
 
-                      # Send the CSS file to the W3C Validator API requesting JSON format
-                      response=$(curl -s -F "file=@$file" "https://jigsaw.w3.org/css-validator/validator?profile=css3&output=json")
+                      # Read the CSS file content
+                      css_content=$(cat "$file")
+
+                      # Send the CSS content to the W3C Validator API requesting JSON format
+                      response=$(curl -s -X POST "https://jigsaw.w3.org/css-validator/validator" \
+                        -d "text=$css_content" \
+                        -d "output=json" \
+                        -d "profile=css3")
 
                       # Save the raw response to a file for debugging purposes
                       echo "$response" > "$output_file"
