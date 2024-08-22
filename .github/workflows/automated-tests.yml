@@ -1,3 +1,14 @@
+# Automated Tests
+#
+# This workflow is triggered on push events to the 'main', 'gh-pages', and 'validation-testing' branches.
+# It runs a series of steps to set up the environment, install dependencies, and run tests using unittest.
+#
+# Jobs:
+#   - test:
+#       - Checkout code: Checks out the code from the repository.
+#       - Set up Python: Sets up the Python environment using the specified version.
+#       - Install dependencies: Installs the required dependencies using pip.
+#       - Run tests with unittest: Runs the tests using unittest and generates XML test results.
 name: Automated Tests
 
 on:
