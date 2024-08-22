@@ -29,14 +29,14 @@ jobs:
               run: |
                   # Create directory for test results
                   mkdir -p test_results
-                  
+
                   # Run pytest and save the result status
-                  pytest tests/ --junitxml=test_results/results.xml
+                  pytest tests/ --junitxml=test_results/results.xml -v
                   test_result=$?
-                  
+
                   # Save test result status to a file
                   echo "$test_result" > test_results/test_passed_flag.txt
-                  
+
                   # Print result based on test status
                   if [ "$test_result" -eq 0 ]; then
                       echo "All tests passed."
