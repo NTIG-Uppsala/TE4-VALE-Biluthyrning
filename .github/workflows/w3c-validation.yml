@@ -71,17 +71,20 @@ jobs:
                       
                       echo "Validation results saved to $output_file"
 
-                      # Check if the response contains HTML instead of JSON
-                      if echo "$response" | grep -q "<!DOCTYPE html>"; then
-                          echo "HTML response received, checking for validation success message..."
+                      # Check if the response is empty
+                      if [ -z "$response" ]; then
+                          echo "Error: Received empty response from the CSS Validator API for $file"
+                          validation_failed=1
+                      elif echo "$response" | grep -q "<!DOCTYPE html>"; then
+                          # If the response is HTML, check for the success message
                           if echo "$response" | grep -q "Congratulations! No Error Found."; then
                               echo "No errors found in $file"
-                          else
+                          else:
                               echo "Unexpected HTML response. Possible validation issue with $file"
                               validation_failed=1
                           fi
                       else
-                          # If not HTML, attempt to parse the response as JSON
+                          # Attempt to parse the response as JSON
                           errors=$(echo "$response" | python3 -c "import sys, json; data = json.load(sys.stdin); errors = len(data.get('cssvalidation', {}).get('errors', [])); warnings = len(data.get('cssvalidation', {}).get('warnings', [])); print(errors + warnings)")
 
                           if [ "$errors" -gt 0 ]; then
