@@ -1,6 +1,5 @@
-name: W3C Validation
+name: W3C CSS Validation
 
-# Trigger the workflow on push to the main branch or pull requests to the main branch
 on:
     push:
         branches:
@@ -15,101 +14,85 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            # Step 1: Checkout code from the repository
             - name: Checkout code
               uses: actions/checkout@v3
+              # Checkout the repository code to the runner
 
-            # Step 2: Install Python
-            - name: Install Python
+            - name: Set up Python
               uses: actions/setup-python@v4
               with:
-                  python-version: "3.x" # Specify Python version to use
+                  python-version: "3.x"
+              # Set up Python environment for running validation scripts
 
-            # Step 3: Validate HTML files with W3C Validator API
-            - name: Validate HTML with W3C Validator API
+            - name: Install dependencies
               run: |
-                  pip install requests  # Install the requests library to make HTTP requests
+                  pip install requests  # Ensure requests library is available
+              # Install the required Python libraries
 
+            - name: Validate CSS files
+              run: |
                   # Create a directory to store validation results
                   mkdir -p validation_results
 
-                  # Initialize a flag to track if any errors or warnings are found
+                  # Initialize a flag to track if validation fails
                   validation_failed=0
 
-                  # Loop through each HTML file and validate it
-                  for file in $(find . -name "*.html"); do
-                      echo "Validating $file"
-                      
-                      # Send the HTML content to the W3C Validator API
-                      response=$(curl -s -F "out=json" -F "content=@$file" https://validator.w3.org/nu/?parser=html5)
-                      
-                      # Write the API response to a JSON file
-                      output_file="validation_results/w3c-validation-$(basename $file .html).json"
-                      echo "$response" > "$output_file"
-                      
-                      echo "Validation results saved to $output_file"
-
-                      # Check for errors or warnings in the response
-                      errors=$(echo "$response" | python3 -c "import sys, json; data = json.load(sys.stdin); print(len([msg for msg in data['messages'] if msg['type'] in ['error', 'warning']]))")
-                      if [ "$errors" -gt 0 ]; then
-                          echo "Validation issues found in $file"
-                          validation_failed=1
-                      fi
-                  done
-
-            # Step 4: Validate CSS files with W3C Validator API
-            - name: Validate CSS with W3C Validator API
-              run: |
-                  pip install requests  # Ensure requests library is available
-
-                  # Loop through each CSS file and validate it
+                  # Loop through each CSS file in the repository
                   for file in $(find . -name "*.css"); do
                       echo "Validating $file"
                       
-                      # Send the CSS content to the W3C Validator API
-                      response=$(curl -s -F "file=@$file" https://jigsaw.w3.org/css-validator/validator?profile=css3&output=json)
+                      # Send the CSS file to the W3C Validator API requesting JSON format
+                      response=$(curl -s -F "file=@$file" "https://jigsaw.w3.org/css-validator/validator?profile=css3&output=json")
                       
-                      # Write the raw API response to a JSON file for debugging purposes
+                      # Define the output file for the validation results
                       output_file="validation_results/w3c-validation-$(basename $file .css).json"
-                      echo "$response" > "$output_file"
                       
+                      # Save the raw response to a file for debugging purposes
+                      echo "$response" > "$output_file"
                       echo "Validation results saved to $output_file"
 
-                      # Check if the response is empty or contains unexpected HTML content
+                      # Check if the response is empty or contains HTML instead of JSON
                       if [ -z "$response" ]; then
                           echo "Error: Received empty response from the CSS Validator API for $file"
                           validation_failed=1
                       elif echo "$response" | grep -q "<!DOCTYPE html>"; then
-                          echo "Error: Received an HTML response instead of JSON for $file"
+                          echo "Error: Received HTML response instead of JSON for $file"
                           validation_failed=1
                       else
-                          # Attempt to parse the response as JSON
-                          errors=$(echo "$response" | python3 -c "import sys, json; data = json.load(sys.stdin); errors = len(data.get('cssvalidation', {}).get('errors', [])); warnings = len(data.get('cssvalidation', {}).get('warnings', [])); print(errors + warnings)")
-
-                          if [ "$errors" -gt 0 ]; then
-                              echo "Validation issues found in $file"
-                              validation_failed=1
-                          fi
+                          # Attempt to parse the response as JSON and check for errors or warnings
+                          echo "$response" | python3 -c "
+                            import sys, json
+                            try:
+                                data = json.load(sys.stdin)
+                                errors = len(data.get('cssvalidation', {}).get('errors', []))
+                                warnings = len(data.get('cssvalidation', {}).get('warnings', []))
+                                if errors > 0 or warnings > 0:
+                                    sys.exit(1)
+                            except json.JSONDecodeError:
+                                sys.exit(1)
+                            " || validation_failed=1
                       fi
                   done
 
-                  # Save the validation result flag to a file
+                  # Save the validation result status to a file
                   echo "$validation_failed" > validation_results/validation_failed_flag.txt
 
-            # Step 5: Upload validation results as artifacts
             - name: Upload validation results
               uses: actions/upload-artifact@v3
               with:
                   name: w3c-validation-results
-                  path: validation_results/ # Upload the directory containing validation results
+                  path: validation_results/
+              # Upload the validation results as an artifact
 
-            # Step 6: Fail the workflow if there were validation issues
             - name: Fail if there were validation issues
               run: |
+                  # Read the validation status from the flag file
                   validation_failed=$(cat validation_results/validation_failed_flag.txt)
+                  # Exit with code 1 if validation failed
                   if [ "$validation_failed" -eq 1 ]; then
                       echo "Validation failed due to errors or warnings."
                       exit 1
                   else
                       echo "All files passed validation."
                   fi
+              # Fail the job if validation encountered issues
