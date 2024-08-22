@@ -65,7 +65,7 @@ jobs:
                       echo "Validating $file"
                       
                       # Send the CSS content to the W3C Validator API
-                      response=$(curl -s -F "out=json" -F "file=@$file" https://jigsaw.w3.org/css-validator/validator?profile=css3&output=json)
+                      response=$(curl -s -F "file=@$file" https://jigsaw.w3.org/css-validator/validator?profile=css3&output=json)
                       
                       # Write the API response to a JSON file
                       output_file="validation_results/w3c-validation-$(basename $file .css).json"
@@ -73,11 +73,16 @@ jobs:
                       
                       echo "Validation results saved to $output_file"
 
-                      # Check for errors or warnings in the response
-                      errors=$(echo "$response" | python3 -c "import sys, json; data = json.load(sys.stdin); errors = len(data['cssvalidation']['errors']); warnings = len(data['cssvalidation']['warnings']); print(errors + warnings)")
-                      if [ "$errors" -gt 0 ]; then
-                          echo "Validation issues found in $file"
+                      # Check if the response is empty or not valid JSON
+                      if [ -z "$response" ]; then
+                          echo "Error: Received empty response from the CSS Validator API for $file"
                           validation_failed=1
+                      else
+                          errors=$(echo "$response" | python3 -c "import sys, json; data = json.load(sys.stdin); errors = len(data.get('cssvalidation', {}).get('errors', [])); warnings = len(data.get('cssvalidation', {}).get('warnings', [])); print(errors + warnings)")
+                          if [ "$errors" -gt 0 ]; then
+                              echo "Validation issues found in $file"
+                              validation_failed=1
+                          fi
                       fi
                   done
 
