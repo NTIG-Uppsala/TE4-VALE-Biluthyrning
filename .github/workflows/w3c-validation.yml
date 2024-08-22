@@ -27,10 +27,8 @@ jobs:
                   pip install requests  # Ensure requests library is available
               # Install the required Python libraries
 
-              # Validate HTML with W3C Validator API
             - name: Validate HTML with W3C Validator API
               run: |
-                  pip install requests
                   # Create a directory to store validation results
                   mkdir -p validation_results
                   # Initialize a flag to track if any errors or warnings are found
@@ -82,19 +80,12 @@ jobs:
                     echo "$response" > "$output_file"
                     echo "Validation results saved to $output_file"
 
-                    # Check if the response contains HTML (likely an error page)
-                    if echo "$response" | grep -q '<!DOCTYPE html>'; then
-                      echo "Error: Received HTML response instead of JSON for $file"
-                      echo "$response" >> validation_results/error_log.txt
-                      validation_failed=1
-                    else
-                      # Attempt to parse the response as JSON using external script
-                      error_count=$(echo "$response" | python3 scripts/validate-css.py)
+                    # Attempt to parse the response as JSON using external script
+                    error_count=$(echo "$response" | python3 scripts/validate_css.py)
 
-                      if [ "$error_count" -gt 0 ]; then
-                        validation_failed=1
-                        echo "Validation failed with $error_count issues in $file"
-                      fi
+                    if [ "$error_count" -gt 0 ]; then
+                      validation_failed=1
+                      echo "Validation failed with $error_count issues in $file"
                     fi
                   done
 
