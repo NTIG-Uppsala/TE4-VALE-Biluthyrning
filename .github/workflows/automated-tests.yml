@@ -33,7 +33,7 @@ jobs:
             - name: Run tests with pytest-playwright
               run: |
                   echo "Running tests in $(pwd)/tests with pattern test*.py"
-                  pytest tests --maxfail=1 --disable-warnings -q > result.log || true
+                  pytest tests --maxfail=1 --disable-warnings -q --tb=short > result.log || true
                   tail -n 10 result.log
               shell: bash
 
