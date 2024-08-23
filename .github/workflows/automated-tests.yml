@@ -9,7 +9,7 @@
 #       - Set up Python: Sets up the Python environment using the specified version.
 #       - Install dependencies: Installs the required dependencies using pip.
 #       - Run tests with unittest: Runs the tests using unittest and generates XML test results.
-name: Automated Tests
+name: Index Page Automated Content Tests
 
 on:
     push:
