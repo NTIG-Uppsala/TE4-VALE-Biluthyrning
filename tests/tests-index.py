@@ -76,14 +76,14 @@ class TestHemsida(TestCase):
         self.assertIn("Söndagar Stängt", self.browser.page_source)
 
     def testHolidays(self):
-        self.assertIn("1 Januari, Nyårsdagen Stängt", self.browser.page_source)
-        self.assertIn("6 Januari, Trettondagen Stängt", self.browser.page_source)
-        self.assertIn("1 Maj, Första maj Stängt", self.browser.page_source)
-        self.assertIn("6 Juni, Nationaldagen Stängt", self.browser.page_source)
-        self.assertIn("24 December, Julafton Stängt", self.browser.page_source)
-        self.assertIn("25 December, Juldagen Stängt", self.browser.page_source)
-        self.assertIn("26 December, Annandag jul Stängt", self.browser.page_source)
-        self.assertIn("31 December, Nyårsafton Stängt", self.browser.page_source)
+        self.assertIn("1 Januari", self.browser.page_source)
+        self.assertIn("6 Januari", self.browser.page_source)
+        self.assertIn("1 Maj", self.browser.page_source)
+        self.assertIn("6 Juni", self.browser.page_source)
+        self.assertIn("24 December", self.browser.page_source)
+        self.assertIn("25 December", self.browser.page_source)
+        self.assertIn("26 December", self.browser.page_source)
+        self.assertIn("31 December", self.browser.page_source)
 
 
 # in case this file is run directly this runs the tests

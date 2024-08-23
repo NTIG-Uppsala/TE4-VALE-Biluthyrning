@@ -9,7 +9,6 @@
 #           2. Set up Python environment.
 #           3. Install dependencies (requests library).
 #           4. Validate HTML files using the W3C Validator API.
-#           5. Validate CSS files using the W3C CSS Validator.
 #           6. Upload validation results as artifacts.
 #           7. Fail the workflow if there were validation issues.
 name: W3C HTML Validation
