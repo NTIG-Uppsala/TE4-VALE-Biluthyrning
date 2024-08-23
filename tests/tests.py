@@ -20,11 +20,9 @@ class TestHemsida(TestCase):
         chrome_options.add_argument("--disable-search-engine-choice-screen")
 
         if cls.keepBrowserAlive:
-
             chrome_options.add_experimental_option("detach", True)
 
         if cls.hiddenWindow:
-
             chrome_options.add_argument("--headless")
 
         cls.browser = webdriver.Chrome(options=chrome_options)
