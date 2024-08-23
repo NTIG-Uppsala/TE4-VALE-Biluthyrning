@@ -1,7 +1,7 @@
 from unittest import TestCase, main
 from selenium import webdriver
-from selenium.webdriver.firefox.options import Options
-from os import path
+from selenium.webdriver.chrome.options import Options
+from os import path, getcwd
 
 
 class TestHemsida(TestCase):
@@ -11,10 +11,14 @@ class TestHemsida(TestCase):
 
     @classmethod
     def setUpClass(cls):
-        firefox_options = Options()
+        options = Options()
+        options.add_argument("--disable-search-engine-choice-screen")
         if cls.hiddenWindow:
-            firefox_options.add_argument("--headless")
-        cls.browser = webdriver.Firefox(options=firefox_options)
+            options.add_argument("--headless")
+        if cls.keepBrowserAlive:
+            options.add_experimental_option("detach", True)
+
+        cls.browser = webdriver.Chrome(options=options)
 
     @classmethod
     def tearDownClass(cls):
@@ -22,7 +26,7 @@ class TestHemsida(TestCase):
 
     def setUp(self):
         # Adjust path to index.html if necessary
-        self.browser.get(path.join(path.dirname(__file__), "../index.html"))
+        self.browser.get(path.join(getcwd(), "index.html"))
 
     def tearDown(self):
         self.browser.get("about:blank")

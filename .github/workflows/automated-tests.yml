@@ -28,15 +28,19 @@ jobs:
                   pip install selenium
                   pip install unittest-xml-reporting
 
-            - name: Install Firefox and Geckodriver
+            - name: Install Google Chrome
               run: |
-                  sudo apt-get remove --purge firefox
                   sudo apt-get update
-                  sudo apt-get upgrade -y
-                  sudo apt-get install -y firefox
-                  wget https://github.com/mozilla/geckodriver/releases/download/v0.33.0/geckodriver-v0.33.0-linux64.tar.gz
-                  tar -xzf geckodriver-v0.33.0-linux64.tar.gz
-                  sudo mv geckodriver /usr/local/bin/
+                  sudo apt-get install -y wget
+                  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+                  sudo apt-get install -y ./google-chrome-stable_current_amd64.deb
+
+            - name: Install ChromeDriver
+              run: |
+                  LATEST=$(wget -qO- https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+                  wget https://chromedriver.storage.googleapis.com/$LATEST/chromedriver_linux64.zip
+                  unzip chromedriver_linux64.zip
+                  sudo mv chromedriver /usr/local/bin/
 
             - name: Run tests with unittest
               run: |
