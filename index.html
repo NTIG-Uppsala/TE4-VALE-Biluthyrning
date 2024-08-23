@@ -8,6 +8,9 @@
 
     <link rel="stylesheet" href="style/variables.css">
     <link rel="stylesheet" href="style/main.css">
+
+    <script src="js/openHours.js"></script>
+    <script defer src="js/checkOpeningHours.js"></script>
 </head>
 
 <body>
@@ -42,17 +45,12 @@
         <section class="open-hours-section">
             <h2>Öppettider</h2>
 
-            <p>Vi har öppet idag <span id="dropdown-arrow">v</span></p>
+            <p class="open-status">Vi har öppet idag, ===Missing===</p>
+            
+            <p class="opening-hours-dropdown insert-open-hours-in"></p>
 
-            <p id="opening-hours-dropdown">
-                Måndagar 10-16 <br>
-                Tisdagar 10-16 <br>
-                Onsdagar 10-16 <br>
-                Torsdagar 10-16 <br>
-                Fredagar 10-16 <br>
-                Lördagar 12-15 <br>
-                Söndagar Stängt <br>
-            </p>
+            <img src="assets/icons/icons8-expand-arrow-48.png" id="dropdown-arrow">
+
         </section>
 
 
@@ -127,14 +125,14 @@
             </a> <br>
             <br>
 
-            <strong>Öppettider</strong> <br>
-            Måndagar 10-16 <br>
+            <strong>Öppettider</strong> <br class="insert-open-hours-after">
+            <!-- Måndagar 10-16 <br>
             Tisdagar 10-16 <br>
             Onsdagar 10-16 <br>
             Torsdagar 10-16 <br>
             Fredagar 10-16 <br>
             Lördagar 12-15 <br>
-            Söndagar Stängt <br>
+            Söndagar Stängt <br> -->
             <br>
             <br>
             <br>
