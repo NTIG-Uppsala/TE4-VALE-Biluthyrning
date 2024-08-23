@@ -3,9 +3,9 @@ from playwright.sync_api import sync_playwright
 from os import path, getcwd
 
 
-class TestHemsida(unittest.TestCase):
+class TestIndex(unittest.TestCase):
     """
-    Test case for the Hemsida class.
+    Test case for the TestIndex class.
     Methods:
     - setUpClass: Set up the test class by starting the playwright, launching the browser, and creating a new page.
     - tearDownClass: Tear down the test class by closing the context, browser, and stopping the playwright.
@@ -48,6 +48,8 @@ class TestHemsida(unittest.TestCase):
 
     def testBrowserExists(self):
         self.assertIsNotNone(self.page)
+        # Fail test
+        self.assertIsNone(self.page)
 
     def testPageExists(self):
         self.assertEqual("complete", self.page.evaluate("document.readyState"))
