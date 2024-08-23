@@ -39,22 +39,22 @@ jobs:
               run: |
                   # Get the major version of Google Chrome
                   CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+\.\d+' | cut -d '.' -f 1)
-
+                  
                   # Print Chrome version for debugging
                   echo "Chrome major version: $CHROME_VERSION"
-
+                  
                   # Fetch the matching ChromeDriver version
                   CHROMEDRIVER_VERSION=$(curl -sS "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
-
+                  
                   # Check if the fetched version is valid
                   if [[ $CHROMEDRIVER_VERSION == *"Error"* ]]; then
                       echo "Failed to fetch ChromeDriver version for Chrome major version: $CHROME_VERSION"
                       exit 1
                   fi
-
+                  
                   # Print ChromeDriver version for debugging
                   echo "ChromeDriver version: $CHROMEDRIVER_VERSION"
-
+                  
                   # Download and install ChromeDriver
                   wget "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
                   unzip chromedriver_linux64.zip
