@@ -28,7 +28,7 @@ jobs:
                   pip install selenium
                   pip install unittest-xml-reporting
 
-            - name: Remove old Firefox configurations
+            - name: Install Firefox and Geckodriver
               run: |
                   sudo apt-get remove --purge firefox
                   sudo rm -rf /etc/firefox /etc/apport/native-origins.d
@@ -41,7 +41,9 @@ jobs:
 
             - name: Run tests with unittest
               run: |
-                  python -m xmlrunner discover -s tests/ -p "tests-index.py" -o test_results
+                  echo "Running tests in $(pwd)/tests with pattern *.py"
+                  python -m xmlrunner discover -s tests/ -p "*.py" -o test_results
+              shell: bash
 
             - name: Upload test results
               uses: actions/upload-artifact@v2
