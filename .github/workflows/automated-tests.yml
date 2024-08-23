@@ -28,20 +28,20 @@ jobs:
                   pip install selenium
                   pip install unittest-xml-reporting
 
-            - name: Install Firefox and Geckodriver
+            - name: Remove old Firefox configurations
               run: |
+                  sudo apt-get remove --purge firefox
+                  sudo rm -rf /etc/firefox /etc/apport/native-origins.d
                   sudo apt-get update
+                  sudo apt-get upgrade -y
                   sudo apt-get install -y firefox
-                  sudo apt-get install -y wget
-                  wget -q -O /tmp/geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/latest/download/geckodriver-v0.33.0-linux64.tar.gz
-                  sudo tar -xvf /tmp/geckodriver.tar.gz -C /usr/local/bin/
-                  sudo chmod +x /usr/local/bin/geckodriver
-                  geckodriver --version
+                  wget https://github.com/mozilla/geckodriver/releases/download/v0.33.0/geckodriver-v0.33.0-linux64.tar.gz
+                  tar -xzf geckodriver-v0.33.0-linux64.tar.gz
+                  sudo mv geckodriver /usr/local/bin/
 
             - name: Run tests with unittest
               run: |
                   python -m xmlrunner discover -s tests/ -p "tests-index.py" -o test_results
-              shell: bash
 
             - name: Upload test results
               uses: actions/upload-artifact@v2
