@@ -47,6 +47,12 @@ class TestHemsida(TestCase):
         self.browser.get("about:blank")
 
     # tests:
+    def testBrowserExists(self):
+        self.assertIsNotNone(self.browser)
+
+    def testPageExists(self):
+        self.assertEqual(200, self.browser.execute_script("return document.readyState"))
+
     def testName(self):
         self.assertIn("NTB Biluthyrning", self.browser.page_source)
 
