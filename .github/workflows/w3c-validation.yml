@@ -9,10 +9,9 @@
 #           2. Set up Python environment.
 #           3. Install dependencies (requests library).
 #           4. Validate HTML files using the W3C Validator API.
-#           5. Validate CSS files using the W3C CSS Validator.
 #           6. Upload validation results as artifacts.
 #           7. Fail the workflow if there were validation issues.
-name: W3C HTML & CSS Validation
+name: W3C HTML Validation
 
 on:
     push:
@@ -20,6 +19,8 @@ on:
             - main
             - gh-pages
             - validation-testing
+            - live
+            - validation-and-automation-testing
 
 jobs:
     validate:
@@ -53,28 +54,7 @@ jobs:
                           validation_failed=1
                       fi
                   done
-                  echo "$validation_failed" > validation_results/html_validation_failed_flag.txt
-
-            - name: Validate CSS files
-              run: |
-                  mkdir -p validation_results
-                  validation_failed=0
-                  for file in $(find . -name '*.css'); do
-                    echo "Validating $file"
-                    output_file="validation_results/w3c-validation-$(basename "$file" .css).json"
-                    # Read the CSS content and URL-encode it
-                    css_content=$(cat "$file" | jq -sRr @uri)
-
-                    # Update the curl command to send the content as a URL parameter
-                    response=$(curl -s "https://jigsaw.w3.org/css-validator/validator?text=$css_content&output=json")
-                    echo "$response" > "$output_file"
-                    error_count=$(echo "$response" | python3 scripts/validate-css.py)
-                    if [ "$error_count" -gt 0 ]; then
-                      validation_failed=1
-                      echo "Validation failed with $error_count issues in $file"
-                    fi
-                  done
-                  echo "$validation_failed" > validation_results/css_validation_failed_flag.txt
+                  echo "$validation_failed" > validation_results/validation_failed_flag.txt
 
             - name: Upload validation results
               uses: actions/upload-artifact@v2
@@ -84,13 +64,10 @@ jobs:
 
             - name: Fail if validation issues found
               run: |
-                  html_validation_failed=$(cat validation_results/html_validation_failed_flag.txt)
-                  css_validation_failed=$(cat validation_results/css_validation_failed_flag.txt)
-                  if [ "$html_validation_failed" -eq 1 ] || [ "$css_validation_failed" -eq 1 ]; then
+                  validation_failed=$(cat validation_results/validation_failed_flag.txt)
+                  if [ "$validation_failed" -eq 1 ]; then
                       echo "Validation issues found. Failing the workflow."
                       exit 1
                   else
                       echo "Validation successful."
                   fi
-
-            

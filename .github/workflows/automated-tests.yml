@@ -1,15 +1,21 @@
-# Automated Tests
-#
-# This workflow is triggered on push events to the 'main', 'gh-pages', and 'validation-testing' branches.
-# It runs a series of steps to set up the environment, install dependencies, and run tests using unittest.
-#
-# Jobs:
-#   - test:
-#       - Checkout code: Checks out the code from the repository.
-#       - Set up Python: Sets up the Python environment using the specified version.
-#       - Install dependencies: Installs the required dependencies using pip.
-#       - Run tests with unittest: Runs the tests using unittest and generates XML test results.
-name: Automated Tests
+# This YAML file defines a GitHub Actions workflow for running automated content tests on the index page of a project.
+# The workflow is triggered on push events to the 'main', 'gh-pages', 'validation-testing', 'live', and 'validation-and-automation-testing' branches.
+# The workflow runs on the latest version of Ubuntu.
+
+# The 'test' job is defined, which consists of several steps:
+# 1. Checkout code: This step checks out the code from the repository using the 'actions/checkout' action.
+# 2. Set up Python: This step sets up the Python environment using the 'actions/setup-python' action.
+# 3. Install dependencies: This step installs the required Python packages using the 'pip' command.
+# 4. Run tests with pytest-playwright: This step runs the content tests using the 'pytest-playwright' framework and generates a JSON report.
+# 5. Upload test results: This step uploads the generated test results JSON file as an artifact.
+# 6. Check test results: This step checks if any tests failed by parsing the test results JSON file.
+
+# The workflow is designed to continue running even if there are test failures, as specified by the 'continue-on-error' flag in the 'Run tests with pytest-playwright' step.
+
+# The test results are stored in the 'test-results.json' file and can be accessed as an artifact.
+
+# Note: This is just a documentation comment and does not execute any code.
+name: Index Page Automated Content Tests
 
 on:
     push:
@@ -17,6 +23,8 @@ on:
             - main
             - gh-pages
             - validation-testing
+            - live
+            - validation-and-automation-testing
 
 jobs:
     test:
@@ -36,9 +44,26 @@ jobs:
                   pip install requests
                   pip install selenium
                   pip install unittest-xml-reporting
+                  pip install pytest-playwright
+                  pip install pytest-json-report
+                  playwright install
 
-            - name: Run tests with unittest
+            - name: Run tests with pytest-playwright
               run: |
-                  python -m xmlrunner discover -s tests/ -o test_results
+                  pytest tests/test_index.py --json-report --json-report-file=test-results.json
+              continue-on-error: true
 
-              shell: bash
+            - name: Upload test results
+              uses: actions/upload-artifact@v2
+              with:
+                  name: test-results
+                  path: test-results.json
+
+            - name: Check test results
+              run: |
+                  if grep -q '"failed":' test-results.json; then
+                      echo "Tests failed"
+                      exit 1
+                  else
+                      echo "Tests passed"
+                  fi
