@@ -1,3 +1,21 @@
+# This YAML file defines a GitHub Actions workflow for running automated content tests on the index page of a project.
+# The workflow is triggered on push events to the 'main', 'gh-pages', 'validation-testing', 'live', and 'validation-and-automation-testing' branches.
+# The workflow runs on the 'ubuntu-latest' runner.
+
+# The 'test' job is defined, which consists of several steps:
+# 1. 'Checkout code' step: Checks out the code from the repository using the 'actions/checkout' action.
+# 2. 'Set up Python' step: Sets up the Python environment using the 'actions/setup-python' action, specifying Python version 3.x.
+# 3. 'Install dependencies' step: Installs the required Python dependencies using the 'pip' package manager.
+#    The dependencies include 'requests', 'selenium', 'unittest-xml-reporting', and 'pytest-playwright'.
+#    Additionally, the 'playwright' CLI tool is installed using the 'playwright install' command.
+# 4. 'Run tests with pytest-playwright' step: Executes the tests using the 'pytest' test runner with the 'pytest-playwright' plugin.
+#    The tests are run in the 'tests' directory, matching the pattern 'test*.py'.
+#    The command also includes some additional options like '--maxfail=1' to stop the test run after the first failure,
+#    '--disable-warnings' to suppress warnings, '-q' for quiet mode, and '--tb=short' to display short tracebacks.
+#    The test results are redirected to a 'result.log' file, and the last 10 lines of the log are printed to the console.
+# 5. 'Upload test results' step: Uploads the 'result.log' file as an artifact using the 'actions/upload-artifact' action.
+
+# The workflow can be used to automate the execution of content tests on the index page of the project.
 name: Index Page Automated Content Tests
 
 on:

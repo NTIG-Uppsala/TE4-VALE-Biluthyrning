@@ -4,6 +4,23 @@ from os import path, getcwd
 
 
 class TestHemsida(unittest.TestCase):
+    """
+    Test case for the Hemsida class.
+    Methods:
+    - setUpClass: Set up the test class by starting the playwright, launching the browser, and creating a new page.
+    - tearDownClass: Tear down the test class by closing the context, browser, and stopping the playwright.
+    - setUp: Set up the test method by navigating to the index.html file.
+    - tearDown: Tear down the test method by navigating to about:blank.
+    - testBrowserExists: Test if the page object is not None.
+    - testPageExists: Test if the document.readyState is "complete".
+    - testName: Test if "NTB Biluthyrning" is in the page content.
+    - testPhoneNumber: Test if "0630-55 55 55" is in the page content.
+    - testEmail: Test if "info@ntbhyr.se" is in the page content.
+    - testAddress: Test if "Fjällgatan 32H", "98139", and "Kiruna" are in the page content.
+    - testSocialMedia: Test if "https://facebook.com/ntiuppsala", "https://instagram.com/ntiuppsala", and "https://x.com/ntiuppsala" are in the page content.
+    - testOpeningHours: Test if the opening hours are in the page content.
+    - testHolidays: Test if the holidays are in the page content.
+    """
 
     keepBrowserAlive = False
     hiddenWindow = True
@@ -24,7 +41,6 @@ class TestHemsida(unittest.TestCase):
         cls.playwright.stop()
 
     def setUp(self):
-        # Adjust path to index.html if necessary
         self.page.goto(f"file://{path.join(getcwd(), 'index.html')}")
 
     def tearDown(self):
