@@ -28,17 +28,15 @@ jobs:
                   pip install selenium
                   pip install unittest-xml-reporting
 
-            - name: Install Chrome and ChromeDriver
+            - name: Install Firefox and Geckodriver
               run: |
                   sudo apt-get update
-                  sudo apt-get install -y chromium-chromedriver
-
-                  # Only create symlink if it does not exist or points to the wrong file
-                  if [ "$(readlink -f /usr/bin/chromedriver)" != "/usr/lib/chromium-browser/chromedriver" ]; then
-                      sudo ln -sf /usr/lib/chromium-browser/chromedriver /usr/bin/chromedriver
-                  else
-                      echo "Chromedriver symlink is already correctly set up."
-                  fi
+                  sudo apt-get install -y firefox
+                  sudo apt-get install -y wget
+                  wget -q -O /tmp/geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/latest/download/geckodriver-v0.33.0-linux64.tar.gz
+                  sudo tar -xvf /tmp/geckodriver.tar.gz -C /usr/local/bin/
+                  sudo chmod +x /usr/local/bin/geckodriver
+                  geckodriver --version
 
             - name: Run tests with unittest
               run: |

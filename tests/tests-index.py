@@ -1,9 +1,6 @@
 from unittest import TestCase, main
-
 from selenium import webdriver
-
-from selenium.webdriver.chrome.options import Options
-
+from selenium.webdriver.firefox.options import Options
 from os import path
 
 
@@ -15,35 +12,29 @@ class TestHemsida(TestCase):
     # setUpClass runs BEFORE FIRST test
     @classmethod
     def setUpClass(cls):
-        chrome_options = Options()
-
-        chrome_options.add_argument("--disable-search-engine-choice-screen")
+        firefox_options = Options()
 
         if cls.keepBrowserAlive:
-
-            chrome_options.add_experimental_option("detach", True)
+            # Firefox automatically keeps the browser alive
+            pass
 
         if cls.hiddenWindow:
+            firefox_options.add_argument("--headless")
 
-            chrome_options.add_argument("--headless")
-
-        cls.browser = webdriver.Chrome(options=chrome_options)
+        cls.browser = webdriver.Firefox(options=firefox_options)
 
     # tearDownClass runs AFTER LAST test
     @classmethod
     def tearDownClass(cls):
-
-        pass
+        cls.browser.quit()  # Properly close the browser at the end of all tests
 
     # setUp runs BEFORE EACH test
     def setUp(self):
         self.browser.get(path.join(path.dirname(__file__), "../index.html"))
-        pass
 
     # tearDown runs AFTER EACH test
     def tearDown(self):
-
-        # go to about:blank to clear the page
+        # Go to about:blank to clear the page
         self.browser.get("about:blank")
 
     # tests:
@@ -51,7 +42,9 @@ class TestHemsida(TestCase):
         self.assertIsNotNone(self.browser)
 
     def testPageExists(self):
-        self.assertEqual(200, self.browser.execute_script("return document.readyState"))
+        self.assertEqual(
+            "complete", self.browser.execute_script("return document.readyState")
+        )
 
     def testName(self):
         self.assertIn("NTB Biluthyrning", self.browser.page_source)
