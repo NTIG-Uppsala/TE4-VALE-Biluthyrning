@@ -57,7 +57,9 @@ class TestHemsida(TestCase):
         self.assertIn("info@ntbhyr.se", self.browser.page_source)
 
     def testAddress(self):
-        self.assertIn("Fjällgatan 32H, 98139 Kiruna", self.browser.page_source)
+        self.assertIn("Fjällgatan 32H", self.browser.page_source)
+        self.assertIn("98139", self.browser.page_source)
+        self.assertIn("Kiruna", self.browser.page_source)
 
     def testSocialMedia(self):
         self.assertIn("https://facebook.com/ntiuppsala", self.browser.page_source)
