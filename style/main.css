@@ -35,6 +35,8 @@ body {
         padding-left: 2ch;
         padding-right: 2ch;
 
+        background-color: var(--secondary-dark);
+
         &>.logo-name-wrapper {
             display: flex;
             flex-flow: row nowrap;
@@ -44,12 +46,12 @@ body {
             &>a>img {
                 /* TEMP */
                 display: none;
-                
+
                 width: 2rem;
                 height: 2rem;
             }
         }
-        
+
         &>nav {
             display: flex;
             flex-flow: row nowrap;
@@ -82,6 +84,7 @@ body {
             &>#background-img {
                 width: 100dvw;
                 max-width: 100%;
+                height: 100%;
             }
         }
 
@@ -92,9 +95,10 @@ body {
 
             padding-top: 1.5rem;
 
+
             width: 100vw;
             max-width: 100%;
-            height: 50dvh;
+            height: 20dvh;
 
             &>h1 {
                 margin-bottom: 0.8rem;
@@ -104,6 +108,19 @@ body {
 
             &>p {
                 max-width: 50dvw;
+            }
+        }
+
+        &>.open-hours-section {
+            padding-bottom: 5rem;
+
+            &>p>#dropdown-arrow {
+                transform: scaleX(2);
+            }
+
+            &>#opening-hours-dropdown {
+                height: 0;
+                overflow-y: auto;
             }
         }
     }
