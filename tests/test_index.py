@@ -48,8 +48,6 @@ class TestIndex(unittest.TestCase):
 
     def testBrowserExists(self):
         self.assertIsNotNone(self.page)
-        # Fail test
-        self.assertEqual(1, 2)
 
     def testPageExists(self):
         self.assertEqual("complete", self.page.evaluate("document.readyState"))
