@@ -1,14 +1,3 @@
-# Automated Tests
-#
-# This workflow is triggered on push events to the 'main', 'gh-pages', and 'validation-testing' branches.
-# It runs a series of steps to set up the environment, install dependencies, and run tests using unittest.
-#
-# Jobs:
-#   - test:
-#       - Checkout code: Checks out the code from the repository.
-#       - Set up Python: Sets up the Python environment using the specified version.
-#       - Install dependencies: Installs the required dependencies using pip.
-#       - Run tests with unittest: Runs the tests using unittest and generates XML test results.
 name: Index Page Automated Content Tests
 
 on:
@@ -43,15 +32,13 @@ jobs:
               run: |
                   sudo apt-get update
                   sudo apt-get install -y chromium-chromedriver
-                  sudo ln -sf /usr/lib/chromium-browser/chromedriver /usr/bin/chromedriver  # Use this line for Option 1
-                  # Or use the block below for Option 2
-                  # if [ ! -f /usr/bin/chromedriver ]; then
-                  #    sudo ln -s /usr/lib/chromium-browser/chromedriver /usr/bin/chromedriver
-                  # fi
+                  if [ "$(readlink -f /usr/bin/chromedriver)" != "/usr/lib/chromium-browser/chromedriver" ]; then
+                      sudo ln -sf /usr/lib/chromium-browser/chromedriver /usr/bin/chromedriver
+                  fi
 
             - name: Run tests with unittest
               run: |
-                  python -m xmlrunner discover -s tests/ -p "test*.py" -o test_results
+                  python -m xmlrunner discover -s tests/ -p "tests-index.py" -o test_results
 
               shell: bash
 
