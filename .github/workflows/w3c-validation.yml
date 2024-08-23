@@ -66,7 +66,7 @@ jobs:
             - name: Fail if validation issues found
               run: |
                   validation_failed=$(cat validation_results/validation_failed_flag.txt)
-                  if [ "$html_validation_failed" -eq 1 ]; then
+                  if [ "$validation_failed" -eq 1 ]; then
                       echo "Validation issues found. Failing the workflow."
                       exit 1
                   else
