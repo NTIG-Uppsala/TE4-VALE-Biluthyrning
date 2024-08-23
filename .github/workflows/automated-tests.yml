@@ -39,9 +39,15 @@ jobs:
                   pip install selenium
                   pip install unittest-xml-reporting
 
+            - name: Install Chrome and ChromeDriver
+              run: |
+                  sudo apt-get update
+                  sudo apt-get install -y chromium-chromedriver
+                  sudo ln -s /usr/lib/chromium-browser/chromedriver /usr/bin/chromedriver
+
             - name: Run tests with unittest
               run: |
-                  python -m xmlrunner discover -s tests/ -o test_results
+                  python -m xmlrunner discover -s tests/ -p "tests-index.py" -o test_results
 
               shell: bash
 
@@ -50,3 +56,4 @@ jobs:
               with:
                   name: test-results
                   path: test_results
+
