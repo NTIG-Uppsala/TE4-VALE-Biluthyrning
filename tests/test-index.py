@@ -21,6 +21,7 @@ class TestHemsida(TestCase):
         cls.browser.quit()
 
     def setUp(self):
+        # Adjust path to index.html if necessary
         self.browser.get(path.join(path.dirname(__file__), "../index.html"))
 
     def tearDown(self):
