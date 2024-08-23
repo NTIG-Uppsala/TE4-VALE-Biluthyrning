@@ -90,6 +90,9 @@ class TestIndex(unittest.TestCase):
         self.assertIn("26 December", self.page.content())
         self.assertIn("31 December", self.page.content())
 
+    def testNoMissing(self):
+        self.assertNotIn("Missing", self.page.content())
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
