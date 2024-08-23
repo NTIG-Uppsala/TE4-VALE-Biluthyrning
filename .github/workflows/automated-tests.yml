@@ -32,16 +32,11 @@ jobs:
 
             - name: Run tests with pytest-playwright
               run: |
-                  # Run all tests even if some fail, and redirect output to a log file and exit with 1 or 0
-                  pytest --playwright-server-args="--headless" --junitxml=result.xml --html=result.html --self-contained-html --capture=no tests/test_index_page.py > result.log || true
-
-            - name: Print test results
-              run: cat result.log
-
-              shell: bash
+                  pytest tests/test_index.py --junitxml=test-results.xml
+              continue-on-error: true
 
             - name: Upload test results
               uses: actions/upload-artifact@v2
               with:
                   name: test-results
-                  path: result.log
+                  path: test-results.xml
