@@ -37,35 +37,53 @@ class TestHemsida(TestCase):
 
     # setUp runs BEFORE EACH test
     def setUp(self):
-        self.browser.get(path.join(path.dirname(__file__), '../index.html'))
+        self.browser.get(path.join(path.dirname(__file__), "../index.html"))
         pass
 
     # tearDown runs AFTER EACH test
     def tearDown(self):
 
         # go to about:blank to clear the page
-        self.browser.get('about:blank')
+        self.browser.get("about:blank")
 
     # tests:
     def testName(self):
-        self.assertIn("======Missing======", self.browser.page_source)
+        self.assertIn("NTB Biluthyrning", self.browser.page_source)
 
     def testPhoneNumber(self):
-        self.assertIn("======Missing======", self.browser.page_source)
+        self.assertIn("0630-55 55 55", self.browser.page_source)
 
     def testEmail(self):
-        self.assertIn("======Missing======", self.browser.page_source)
+        self.assertIn("info@ntbhyr.se", self.browser.page_source)
 
     def testAddress(self):
-        self.assertIn("======Missing======", self.browser.page_source)
+        self.assertIn("Fjällgatan 32H, 98139 Kiruna", self.browser.page_source)
 
     def testSocialMedia(self):
-        self.assertIn("======Missing======", self.browser.page_source)
+        self.assertIn("https://facebook.com/ntiuppsala", self.browser.page_source)
+        self.assertIn("https://instagram.com/ntiuppsala", self.browser.page_source)
+        self.assertIn("https://x.com/ntiuppsala", self.browser.page_source)
 
     def testOpeningHours(self):
-        self.assertIn("======Missing======", self.browser.page_source)
+        self.assertIn("Måndagar 10-16", self.browser.page_source)
+        self.assertIn("Tisdagar 10-16", self.browser.page_source)
+        self.assertIn("Onsdagar 10-16", self.browser.page_source)
+        self.assertIn("Torsdagar 10-16", self.browser.page_source)
+        self.assertIn("Fredagar 10-16", self.browser.page_source)
+        self.assertIn("Lördagar 12-15", self.browser.page_source)
+        self.assertIn("Söndagar Stängt", self.browser.page_source)
+
+    def testHolidays(self):
+        self.assertIn("1 Januari, Nyårsdagen Stängt", self.browser.page_source)
+        self.assertIn("6 Januari, Trettondagen Stängt", self.browser.page_source)
+        self.assertIn("1 Maj, Första maj Stängt", self.browser.page_source)
+        self.assertIn("6 Juni, Nationaldagen Stängt", self.browser.page_source)
+        self.assertIn("24 December, Julafton Stängt", self.browser.page_source)
+        self.assertIn("25 December, Juldagen Stängt", self.browser.page_source)
+        self.assertIn("26 December, Annandag jul Stängt", self.browser.page_source)
+        self.assertIn("31 December, Nyårsafton Stängt", self.browser.page_source)
 
 
 # in case this file is run directly this runs the tests
-if __name__ == '__main__':
+if __name__ == "__main__":
     main(verbosity=2)
