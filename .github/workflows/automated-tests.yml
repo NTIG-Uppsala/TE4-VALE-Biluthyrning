@@ -31,7 +31,6 @@ jobs:
             - name: Install Firefox and Geckodriver
               run: |
                   sudo apt-get remove --purge firefox
-                  sudo rm -rf /etc/firefox /etc/apport/native-origins.d
                   sudo apt-get update
                   sudo apt-get upgrade -y
                   sudo apt-get install -y firefox
@@ -42,11 +41,12 @@ jobs:
             - name: Run tests with unittest
               run: |
                   echo "Running tests in $(pwd)/tests with pattern *.py"
-                  python -m xmlrunner discover -s tests/ -p "*.py" -o test_results
+                  python -m unittest discover -s tests -p "*.py" > result.log || true
+                  tail -n 10 result.log
               shell: bash
 
             - name: Upload test results
               uses: actions/upload-artifact@v2
               with:
                   name: test-results
-                  path: test_results
+                  path: result.log

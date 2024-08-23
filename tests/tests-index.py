@@ -9,35 +9,23 @@ class TestHemsida(TestCase):
     keepBrowserAlive = False
     hiddenWindow = True
 
-    # setUpClass runs BEFORE FIRST test
     @classmethod
     def setUpClass(cls):
         firefox_options = Options()
-
-        if cls.keepBrowserAlive:
-            # Firefox automatically keeps the browser alive
-            pass
-
         if cls.hiddenWindow:
             firefox_options.add_argument("--headless")
-
         cls.browser = webdriver.Firefox(options=firefox_options)
 
-    # tearDownClass runs AFTER LAST test
     @classmethod
     def tearDownClass(cls):
-        cls.browser.quit()  # Properly close the browser at the end of all tests
+        cls.browser.quit()
 
-    # setUp runs BEFORE EACH test
     def setUp(self):
         self.browser.get(path.join(path.dirname(__file__), "../index.html"))
 
-    # tearDown runs AFTER EACH test
     def tearDown(self):
-        # Go to about:blank to clear the page
         self.browser.get("about:blank")
 
-    # tests:
     def testBrowserExists(self):
         self.assertIsNotNone(self.browser)
 
@@ -85,6 +73,5 @@ class TestHemsida(TestCase):
         self.assertIn("31 December", self.browser.page_source)
 
 
-# in case this file is run directly this runs the tests
 if __name__ == "__main__":
     main(verbosity=2)
