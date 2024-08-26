@@ -1,12 +1,12 @@
 
 // Dropdown code
 
-const dropdown = document.querySelector(".opening-hours-dropdown");
+const dropdownContent = document.querySelector(".opening-hours-dropdown");
 const dropdownArrow = document.getElementById("dropdown-arrow");
 dropdownArrow.setAttribute("data-state", "closed");
 
 dropdownArrow.addEventListener("click", () => {
-    dropdown.classList.toggle("open-dropdown");
+    dropdownContent.classList.toggle("open-dropdown");
 
     if (dropdownArrow.getAttribute("data-state") === "closed") {
         dropdownArrow.setAttribute("data-state", "open");
@@ -20,123 +20,123 @@ dropdownArrow.addEventListener("click", () => {
 
 // Format and insert opening hours into the page
 
-let openHoursString = ""
+let blockOfOpenHours = ""
 
-const sortedOpenHours = []
+const openHoursMondayFirst = []
 Object.keys(openHours).forEach(key => {
-    sortedOpenHours.push(openHours[key]);
+    openHoursMondayFirst.push(openHours[key]);
 });
-sortedOpenHours.sort((a, b) => a.order - b.order);
+openHoursMondayFirst.sort((a, b) => a.order - b.order);
 
-sortedOpenHours.forEach(day => {
-    let dayString = ""
+openHoursMondayFirst.forEach(day => {
+    let dayOpenHours = ""
 
-    dayString += day.name + " "
+    dayOpenHours += day.name + " "
     if (day.from || day.to) {
-        dayString += day.from.slice(0, 2) + ":" + day.from.slice(2);
-        dayString += " - ";
-        dayString += day.to.slice(0, 2) + ":" + day.to.slice(2);
+        dayOpenHours += day.from.slice(0, 2) + ":" + day.from.slice(2);
+        dayOpenHours += " - ";
+        dayOpenHours += day.to.slice(0, 2) + ":" + day.to.slice(2);
     } else {
-        dayString += "Stängt";
+        dayOpenHours += "Stängt";
     }
 
-    openHoursString += dayString + "<br>";
+    blockOfOpenHours += dayOpenHours + "<br>";
 });
 
 document.querySelectorAll(".insert-open-hours-in").forEach(element => {
-    element.innerHTML += openHoursString;
+    element.innerHTML += blockOfOpenHours;
 });
 document.querySelectorAll(".insert-open-hours-after").forEach(element => {
-    element.insertAdjacentHTML("afterend", openHoursString);
+    element.insertAdjacentHTML("afterend", blockOfOpenHours);
 });
 
 
-// Dynamic open status
+// Dynamically update if we are open or closed
 
-const formatTime = (time) => {
+// Helper function
+const formatTimeString = (time) => {
     const hour = time.slice(0, 2).padStart(2, "0");
     const minute = time.slice(2).padStart(2, "0");
     return hour + ":" + minute;
 }
-
 const now = new Date();
-// now.setDate(now.getDate() + 6);
-// now.setDate(23
-// now.setMonth(11)
-// now.setHours(17);
-
-const sortedOpenHoursWithTodayFirst = sortedOpenHours
-.slice(now.getDay() - 1)
-.concat(sortedOpenHours.slice(0, now.getDay() - 1));
-
-const nextWeek = [];
-sortedOpenHoursWithTodayFirst.forEach((dayObject, index) => {
-
-    const date = new Date(now);
-    date.setDate(now.getDate() + index);
-
-    let toDate = false;
-    if (dayObject.to) {
-        toDate = new Date(date);
-        toDate.setHours(dayObject.to.slice(0, 2));
-        toDate.setMinutes(dayObject.to.slice(2));
-    }
-
-    let fromDate = false;
-    if (dayObject.from) {
-        fromDate = new Date(date);
-        fromDate.setHours(dayObject.from.slice(0, 2));
-        fromDate.setMinutes(dayObject.from.slice(2));
-    }
-
-    const day = {
-        name: {
-            plural: dayObject.name,
-            singular: dayObject.nameSingular,
-        },
-        from: {
-            date: fromDate,
-            string: dayObject.from,
-        },
-        to: {
-            date: toDate,
-            string: dayObject.to,
-        },
-    };
-
-    if (closedDates[date.getMonth()] && closedDates[date.getMonth()][date.getDate()]) {
-        day.reason = closedDates[date.getMonth()][date.getDate()];
-        day.from = false;
-        day.to = false;
-    }
-
-    nextWeek.push(day);
-});
-
 
 const refreshDynamicOpenStatus = () => {
+    const openHoursMondayFirst = []
+    Object.keys(openHours).forEach(key => {
+        openHoursMondayFirst.push(openHours[key]);
+    });
+    openHoursMondayFirst.sort((a, b) => a.order - b.order);
+
+
+    // Slice of the start of the week and re-add it to the end
+    const openHoursTodayFirst = openHoursMondayFirst
+        .slice(now.getDay() - 1)
+        .concat(openHoursMondayFirst.slice(0, now.getDay() - 1));
+
+    const followingDays = [];
+    openHoursTodayFirst.forEach((dayNoDates, index) => {
+
+        const date = new Date(now);
+        date.setDate(now.getDate() + index);
+
+        let toDate = false;
+        if (dayNoDates.to) {
+            toDate = new Date(date);
+            toDate.setHours(dayNoDates.to.slice(0, 2));
+            toDate.setMinutes(dayNoDates.to.slice(2));
+        }
+
+        let fromDate = false;
+        if (dayNoDates.from) {
+            fromDate = new Date(date);
+            fromDate.setHours(dayNoDates.from.slice(0, 2));
+            fromDate.setMinutes(dayNoDates.from.slice(2));
+        }
+
+        const dayWithDates = {
+            name: {
+                plural: dayNoDates.name,
+                singular: dayNoDates.nameSingular,
+            },
+            opening: {
+                date: fromDate,
+                string: dayNoDates.from,
+            },
+            closing: {
+                date: toDate,
+                string: dayNoDates.to,
+            },
+        };
+
+        if (closedDates[date.getMonth()] && closedDates[date.getMonth()][date.getDate()]) {
+            dayWithDates.holiday = closedDates[date.getMonth()][date.getDate()];
+            dayWithDates.opening = false;
+            dayWithDates.closing = false;
+        }
+
+        followingDays.push(dayWithDates);
+    });
 
     let openStatusString = "Kolla våra öppettider för att se när vi har öppet.";
 
-    if (now < nextWeek[0].from.date) {
-        openStatusString = `Vi öppnar kl. ${formatTime(nextWeek[0].from.string)} idag.`;
-    } else if (now < nextWeek[0].to.date) {
-        openStatusString = `Vi har öppet nu och stänger kl. ${formatTime(nextWeek[0].to.string)}.`;
+    if (now < followingDays[0].opening.date) {
+        openStatusString = `Vi öppnar kl. ${formatTimeString(followingDays[0].opening.string)} idag.`;
+    } else if (now < followingDays[0].closing.date) {
+        openStatusString = `Vi har öppet nu och stänger kl. ${formatTimeString(followingDays[0].closing.string)}.`;
     } else {
-        const nextOpenDay = nextWeek.slice(1).filter(day => day.to.date && day.from.date)[0]
+        const nextOpenDay = followingDays.slice(1).filter(day => day.closing.date && day.opening.date)[0]
 
-        if (nextWeek[0].reason) {
-            openStatusString = `Vi har stängt på ${nextWeek[0].reason}.`;
-        } else if (nextWeek[0].to.string && !nextWeek[0].reason) {
+        if (followingDays[0].holiday) {
+            openStatusString = `Vi har stängt på ${followingDays[0].holiday}.`;
+        } else if (followingDays[0].closing.string && !followingDays[0].holiday) {
             openStatusString = `Vi har stängt för dagen.`;
         } else {
             openStatusString = `Vi har stängt idag.`;
         }
 
-        openStatusString += `<br> Vi öppnar igen på ${nextOpenDay.name.singular} kl. ${formatTime(nextOpenDay.from.string)}`
-
+        openStatusString += `<br> Vi öppnar igen på ${nextOpenDay.name.singular} kl. ${formatTimeString(nextOpenDay.opening.string)}`
     }
-
 
     const openStatusTag = document.querySelector("p.open-status");
     openStatusTag.innerHTML = openStatusString;
