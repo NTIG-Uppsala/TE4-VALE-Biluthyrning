@@ -143,3 +143,10 @@ const refreshDynamicOpenStatus = () => {
 }
 
 refreshDynamicOpenStatus();
+
+// Add a hidden element to mark that the js file has beeen completed
+
+const checkDiv = document.createElement("div");
+checkDiv.setAttribute("hidden", "true");
+checkDiv.setAttribute("id", "checkOpeningHoursJsCompleted");
+document.body.appendChild(checkDiv);

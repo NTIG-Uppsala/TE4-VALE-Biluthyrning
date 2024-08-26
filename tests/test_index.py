@@ -1,47 +1,49 @@
 import unittest
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright, expect
 from os import path, getcwd
 
 
 class TestIndex(unittest.TestCase):
     """
-    Test case for the TestIndex class.
+    TestIndex class for testing the index.html page.
     Methods:
-    - setUpClass: Set up the test class by starting the playwright, launching the browser, and creating a new page.
-    - tearDownClass: Tear down the test class by closing the context, browser, and stopping the playwright.
-    - setUp: Set up the test method by navigating to the index.html file.
-    - tearDown: Tear down the test method by navigating to about:blank.
+    - setUpClass: Set up the test class by launching the browser and creating a new page.
+    - tearDownClass: Tear down the test class by closing the browser and stopping the playwright.
+    - setUp: Set up the test case by navigating to the index.html page and waiting for certain elements to load.
+    - tearDown: Tear down the test case by navigating to a blank page.
     - testBrowserExists: Test if the page object is not None.
-    - testPageExists: Test if the document.readyState is "complete".
-    - testName: Test if "NTB Biluthyrning" is in the page content.
-    - testPhoneNumber: Test if "0630-55 55 55" is in the page content.
-    - testEmail: Test if "info@ntbhyr.se" is in the page content.
-    - testAddress: Test if "Fjällgatan 32H", "98139", and "Kiruna" are in the page content.
-    - testSocialMedia: Test if "https://facebook.com/ntiuppsala", "https://instagram.com/ntiuppsala", and "https://x.com/ntiuppsala" are in the page content.
-    - testOpeningHours: Test if the opening hours are in the page content.
-    - testHolidays: Test if the holidays are in the page content.
+    - testPageExists: Test if the document is in a complete state.
+    - testName: Test if the page content contains the name "NTB Biluthyrning".
+    - testPhoneNumber: Test if the page content contains the phone number "0630-55 55 55".
+    - testEmail: Test if the page content contains the email address "info@ntbhyr.se".
+    - testAddress: Test if the page content contains the address "Fjällgatan 32H", postal code "98139", and city "Kiruna".
+    - testSocialMedia: Test if the page content contains the social media links for Facebook, Instagram, and X.
+    - testOpeningHours: Test if the page content contains the opening hours for each day of the week.
+    - testHolidays: Test if the page content contains the holidays.
+    - testNoMissing: Test if the page content does not contain the word "Missing".
     """
 
     keepBrowserAlive = False
     hiddenWindow = True
 
     @classmethod
-    def setUpClass(cls):
-        cls.playwright = sync_playwright().start()
-        browser_type = cls.playwright.chromium
-        launch_options = {"headless": cls.hiddenWindow}
-        cls.browser = browser_type.launch(**launch_options)
-        cls.context = cls.browser.new_context()
-        cls.page = cls.context.new_page()
+    def setUpClass(self):
+        self.playwright = sync_playwright().start()
+        browser_type = self.playwright.chromium
+        launch_options = {"headless": self.hiddenWindow}
+        self.browser = browser_type.launch(**launch_options)
+        self.context = self.browser.new_context()
+        self.page = self.context.new_page()
 
     @classmethod
-    def tearDownClass(cls):
-        cls.context.close()
-        cls.browser.close()
-        cls.playwright.stop()
+    def tearDownClass(self):
+        self.context.close()
+        self.browser.close()
+        self.playwright.stop()
 
     def setUp(self):
         self.page.goto(f"file://{path.join(getcwd(), 'index.html')}")
+        self.page.wait_for_selector("#checkOpeningHoursJsCompleted", state="attached")
 
     def tearDown(self):
         self.page.goto("about:blank")
@@ -72,13 +74,13 @@ class TestIndex(unittest.TestCase):
         self.assertIn("https://x.com/ntiuppsala", self.page.content())
 
     def testOpeningHours(self):
-        self.assertIn("Måndagar 10-16", self.page.content())
-        self.assertIn("Tisdagar 10-16", self.page.content())
-        self.assertIn("Onsdagar 10-16", self.page.content())
-        self.assertIn("Torsdagar 10-16", self.page.content())
-        self.assertIn("Fredagar 10-16", self.page.content())
-        self.assertIn("Lördagar 12-15", self.page.content())
         self.assertIn("Söndagar Stängt", self.page.content())
+        self.assertIn("Måndagar 10:00 - 16:00", self.page.content())
+        self.assertIn("Tisdagar 10:00 - 16:00", self.page.content())
+        self.assertIn("Onsdagar 10:00 - 16:00", self.page.content())
+        self.assertIn("Torsdagar 10:00 - 16:00", self.page.content())
+        self.assertIn("Fredagar 10:00 - 16:00", self.page.content())
+        self.assertIn("Lördagar 12:00 - 15:00", self.page.content())
 
     def testHolidays(self):
         self.assertIn("1 Januari", self.page.content())
@@ -89,6 +91,9 @@ class TestIndex(unittest.TestCase):
         self.assertIn("25 December", self.page.content())
         self.assertIn("26 December", self.page.content())
         self.assertIn("31 December", self.page.content())
+
+    def testJsCompleted(self):
+        self.assertIsNotNone(self.page.query_selector("#checkOpeningHoursJsCompleted"))
 
     def testNoMissing(self):
         self.assertNotIn("Missing", self.page.content())
