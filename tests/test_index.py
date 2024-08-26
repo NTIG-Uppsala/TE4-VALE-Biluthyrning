@@ -92,6 +92,9 @@ class TestIndex(unittest.TestCase):
         self.assertIn("26 December", self.page.content())
         self.assertIn("31 December", self.page.content())
 
+    def testJsCompleted(self):
+        self.assertIsNotNone(self.page.query_selector("#checkOpeningHoursJsCompleted"))
+
     def testNoMissing(self):
         self.assertNotIn("Missing", self.page.content())
 
