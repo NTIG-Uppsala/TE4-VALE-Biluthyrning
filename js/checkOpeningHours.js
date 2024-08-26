@@ -59,14 +59,15 @@ const formatTime = (time) => {
     return hour + ":" + minute;
 }
 
-
 const now = new Date();
 // now.setDate(now.getDate() + 6);
-now.setDate(23)
-now.setMonth(11)
-now.setHours(17);
+// now.setDate(23
+// now.setMonth(11)
+// now.setHours(17);
 
-const sortedOpenHoursWithTodayFirst = sortedOpenHours.slice(now.getDay() - 1).concat(sortedOpenHours.slice(0, now.getDay() - 1));
+const sortedOpenHoursWithTodayFirst = sortedOpenHours
+.slice(now.getDay() - 1)
+.concat(sortedOpenHours.slice(0, now.getDay() - 1));
 
 const nextWeek = [];
 sortedOpenHoursWithTodayFirst.forEach((dayObject, index) => {
@@ -121,14 +122,13 @@ const refreshDynamicOpenStatus = () => {
         openStatusString = `Vi öppnar kl. ${formatTime(nextWeek[0].from.string)} idag.`;
     } else if (now < nextWeek[0].to.date) {
         openStatusString = `Vi har öppet nu och stänger kl. ${formatTime(nextWeek[0].to.string)}.`;
-    } else if () {
-
     } else {
         const nextOpenDay = nextWeek.slice(1).filter(day => day.to.date && day.from.date)[0]
 
-
         if (nextWeek[0].reason) {
             openStatusString = `Vi har stängt på ${nextWeek[0].reason}.`;
+        } else if (nextWeek[0].to.string && !nextWeek[0].reason) {
+            openStatusString = `Vi har stängt för dagen.`;
         } else {
             openStatusString = `Vi har stängt idag.`;
         }
@@ -136,8 +136,6 @@ const refreshDynamicOpenStatus = () => {
         openStatusString += `<br> Vi öppnar igen på ${nextOpenDay.name.singular} kl. ${formatTime(nextOpenDay.from.string)}`
 
     }
-
-
 
 
     const openStatusTag = document.querySelector("p.open-status");
