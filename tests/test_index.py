@@ -43,7 +43,7 @@ class TestIndex(unittest.TestCase):
 
     def setUp(self):
         self.page.goto(f"file://{path.join(getcwd(), 'index.html')}")
-        expect(self.page.content()).to_have_id("checkOpeningHoursJsCompleted")
+        self.page.wait_for_selector("#checkOpeningHoursJsCompleted")
 
     def tearDown(self):
         self.page.goto("about:blank")
