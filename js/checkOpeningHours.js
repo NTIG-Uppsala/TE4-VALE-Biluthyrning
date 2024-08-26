@@ -1,4 +1,6 @@
 
+// Dropdown code
+
 const dropdown = document.querySelector(".opening-hours-dropdown");
 const dropdownArrow = document.getElementById("dropdown-arrow");
 dropdownArrow.setAttribute("data-state", "closed");
@@ -15,11 +17,18 @@ dropdownArrow.addEventListener("click", () => {
     }
 });
 
+
+// Format and insert opening hours into the page
+
 let openHoursString = ""
 
+const sortedOpenHours = []
 Object.keys(openHours).forEach(key => {
-    const day = openHours[key];
+    sortedOpenHours.push(openHours[key]);
+});
+sortedOpenHours.sort((a, b) => a.order - b.order);
 
+sortedOpenHours.forEach(day => {
     let dayString = ""
 
     dayString += day.name + " "
@@ -42,21 +51,97 @@ document.querySelectorAll(".insert-open-hours-after").forEach(element => {
 });
 
 
-const openStatusTag = document.querySelector("p.open-status");
+// Dynamic open status
+
+const formatTime = (time) => {
+    const hour = time.slice(0, 2).padStart(2, "0");
+    const minute = time.slice(2).padStart(2, "0");
+    return hour + ":" + minute;
+}
+
 
 const now = new Date();
+// now.setDate(now.getDate() + 6);
+now.setDate(23)
+now.setMonth(11)
+now.setHours(17);
 
-Object.keys(openHours).forEach(key => {
-    if (key == now.getDay()) {
-        if (closedDates[now.getMonth()] && closedDates[now.getMonth()][now.getDate()]) {
-            openStatusTag.innerHTML = "Vi har tyvärr stängt idag på grund av: " + closedDates[now.getMonth()][now.getDate()] + ".";
-        }
-        else if (!openHours[key].from || !openHours[key].to) {
-            openStatusTag.innerHTML = "Vi har tyvärr stängt idag.";
-        } else {
-            openStatusTag.innerHTML = `Vi har öppet idag, ${openHours[key].nameSingular} ${openHours[key].from.slice(0, 2) + ":" + openHours[key].from.slice(2)} - ${openHours[key].to.slice(0, 2) + ":" + openHours[key].to.slice(2)}.`;
-        }
+const sortedOpenHoursWithTodayFirst = sortedOpenHours.slice(now.getDay() - 1).concat(sortedOpenHours.slice(0, now.getDay() - 1));
+
+const nextWeek = [];
+sortedOpenHoursWithTodayFirst.forEach((dayObject, index) => {
+
+    const date = new Date(now);
+    date.setDate(now.getDate() + index);
+
+    let toDate = false;
+    if (dayObject.to) {
+        toDate = new Date(date);
+        toDate.setHours(dayObject.to.slice(0, 2));
+        toDate.setMinutes(dayObject.to.slice(2));
     }
+
+    let fromDate = false;
+    if (dayObject.from) {
+        fromDate = new Date(date);
+        fromDate.setHours(dayObject.from.slice(0, 2));
+        fromDate.setMinutes(dayObject.from.slice(2));
+    }
+
+    const day = {
+        name: {
+            plural: dayObject.name,
+            singular: dayObject.nameSingular,
+        },
+        from: {
+            date: fromDate,
+            string: dayObject.from,
+        },
+        to: {
+            date: toDate,
+            string: dayObject.to,
+        },
+    };
+
+    if (closedDates[date.getMonth()] && closedDates[date.getMonth()][date.getDate()]) {
+        day.reason = closedDates[date.getMonth()][date.getDate()];
+        day.from = false;
+        day.to = false;
+    }
+
+    nextWeek.push(day);
 });
 
-// tell people next time they open if they're closed
+
+const refreshDynamicOpenStatus = () => {
+
+    let openStatusString = "Kolla våra öppettider för att se när vi har öppet.";
+
+    if (now < nextWeek[0].from.date) {
+        openStatusString = `Vi öppnar kl. ${formatTime(nextWeek[0].from.string)} idag.`;
+    } else if (now < nextWeek[0].to.date) {
+        openStatusString = `Vi har öppet nu och stänger kl. ${formatTime(nextWeek[0].to.string)}.`;
+    } else if () {
+
+    } else {
+        const nextOpenDay = nextWeek.slice(1).filter(day => day.to.date && day.from.date)[0]
+
+
+        if (nextWeek[0].reason) {
+            openStatusString = `Vi har stängt på ${nextWeek[0].reason}.`;
+        } else {
+            openStatusString = `Vi har stängt idag.`;
+        }
+
+        openStatusString += `<br> Vi öppnar igen på ${nextOpenDay.name.singular} kl. ${formatTime(nextOpenDay.from.string)}`
+
+    }
+
+
+
+
+    const openStatusTag = document.querySelector("p.open-status");
+    openStatusTag.innerHTML = openStatusString;
+}
+
+refreshDynamicOpenStatus();
