@@ -117,6 +117,10 @@ body {
         }
 
         &>.open-hours-section {
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+
             padding-bottom: 5rem;
 
             &>h2 {
@@ -126,6 +130,8 @@ body {
             &>p:first-of-type {
                 font-size: 1.1rem;
                 margin-bottom: 0.5rem;
+
+                max-width: 70%;
             }
 
             &>p:last-of-type {
