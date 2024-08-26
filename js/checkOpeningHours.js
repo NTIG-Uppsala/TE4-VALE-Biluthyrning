@@ -144,7 +144,8 @@ const refreshDynamicOpenStatus = () => {
 
 refreshDynamicOpenStatus();
 
-// Add a hidden element to mark that the js file has beeen completed
+
+// Add a hidden element to mark that the js file has been completed
 
 const checkDiv = document.createElement("div");
 checkDiv.setAttribute("hidden", "true");
