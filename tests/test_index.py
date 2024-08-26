@@ -27,6 +27,7 @@ class TestIndex(unittest.TestCase):
     - testSpecificDates: Test specific dates and check if the page content reflects the expected information.
     - testSpecificTimes: Test specific times and check if the page content reflects the expected information.
     """
+
     keepBrowserAlive = False
     hiddenWindow = True
 
@@ -136,10 +137,6 @@ class TestIndex(unittest.TestCase):
         self.assertIn("stängt för dagen", self.page.content())
         self.assertIn("öppnar igen", self.page.content())
         self.assertIn("tisdag kl. 10:00", self.page.content())
-
-    def testTemporaryRedTest(self):
-        self.set_custom_date(2024, 12, 24)
-        self.assertIn("öppet nu", self.page.content())
 
 
 if __name__ == "__main__":
