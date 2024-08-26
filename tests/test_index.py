@@ -1,5 +1,5 @@
 import unittest
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright, expect
 from os import path, getcwd
 
 
@@ -43,10 +43,7 @@ class TestIndex(unittest.TestCase):
 
     def setUp(self):
         self.page.goto(f"file://{path.join(getcwd(), 'index.html')}")
-        self.page.add_init_script(path=path.join(getcwd(), "js/index.js"))
-        # self.page.wait_for_function(
-        #     "document.querySelector('.insert-open-hours-in').innerHTML.trim().length > 0"
-        # )
+        expect(self.page.content()).to_have_id("checkOpeningHoursJsCompleted")
 
     def tearDown(self):
         self.page.goto("about:blank")

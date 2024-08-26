@@ -60,3 +60,7 @@ Object.keys(openHours).forEach(key => {
 });
 
 // tell people next time they open if they're closed
+
+// Add a hidden element to mark that the js file has beeen completed
+
+document.createElement("div").setAttribute("hidden", "true").setAttribute("id", "checkOpeningHoursJsCompleted");
