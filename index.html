@@ -46,11 +46,12 @@
             <h2>Öppettider</h2>
 
             <p class="open-status">Kolla våra öppettider på botten av sidan.</p>
-            
+
             <p class="opening-hours-dropdown insert-open-hours-in"></p>
 
-            <img alt="v" src="assets/icons/icons8-expand-arrow-48.png" id="dropdown-arrow">
-
+            <script>
+                document.querySelector("main>.open-hours-section>.opening-hours-dropdown").insertAdjacentHTML("afterend", '<img alt="v" src="assets/icons/icons8-expand-arrow-48.png" id="dropdown-arrow">')
+            </script>
         </section>
 
 
@@ -126,6 +127,15 @@
             <br>
 
             <strong>Öppettider</strong> <br class="insert-open-hours-after">
+            <noscript>
+                Måndagar 10-16 <br>
+                Tisdagar 10-16 <br>
+                Onsdagar 10-16 <br>
+                Torsdagar 10-16 <br>
+                Fredagar 10-16 <br>
+                Lördagar 12-15 <br>
+                Söndagar Stängt <br>
+            </noscript>
             <br>
             <br>
             <br>
