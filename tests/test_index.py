@@ -23,30 +23,30 @@ class TestIndex(unittest.TestCase):
     - testNoMissing: Test if the page content does not contain the word "Missing".
     """
 
-
     keepBrowserAlive = False
     hiddenWindow = True
 
     @classmethod
-    def setUpClass(cls):
-        cls.playwright = sync_playwright().start()
-        browser_type = cls.playwright.chromium
-        launch_options = {"headless": cls.hiddenWindow}
-        cls.browser = browser_type.launch(**launch_options)
-        cls.context = cls.browser.new_context()
-        cls.page = cls.context.new_page()
+    def setUpClass(self):
+        self.playwright = sync_playwright().start()
+        browser_type = self.playwright.chromium
+        launch_options = {"headless": self.hiddenWindow}
+        self.browser = browser_type.launch(**launch_options)
+        self.context = self.browser.new_context()
+        self.page = self.context.new_page()
 
     @classmethod
-    def tearDownClass(cls):
-        cls.context.close()
-        cls.browser.close()
-        cls.playwright.stop()
+    def tearDownClass(self):
+        self.context.close()
+        self.browser.close()
+        self.playwright.stop()
 
     def setUp(self):
         self.page.goto(f"file://{path.join(getcwd(), 'index.html')}")
-        self.page.wait_for_function(
-            "document.querySelector('.insert-open-hours-in').innerHTML.trim().length > 0"
-        )
+        self.page.add_init_script(path=path.join(getcwd(), "js/index.js"))
+        # self.page.wait_for_function(
+        #     "document.querySelector('.insert-open-hours-in').innerHTML.trim().length > 0"
+        # )
 
     def tearDown(self):
         self.page.goto("about:blank")
@@ -77,13 +77,13 @@ class TestIndex(unittest.TestCase):
         self.assertIn("https://x.com/ntiuppsala", self.page.content())
 
     def testOpeningHours(self):
-        self.assertIn("Måndagar 10-16", self.page.content())
-        self.assertIn("Tisdagar 10-16", self.page.content())
-        self.assertIn("Onsdagar 10-16", self.page.content())
-        self.assertIn("Torsdagar 10-16", self.page.content())
-        self.assertIn("Fredagar 10-16", self.page.content())
-        self.assertIn("Lördagar 12-15", self.page.content())
         self.assertIn("Söndagar Stängt", self.page.content())
+        self.assertIn("Måndagar 10:00 - 16:00", self.page.content())
+        self.assertIn("Tisdagar 10:00 - 16:00", self.page.content())
+        self.assertIn("Onsdagar 10:00 - 16:00", self.page.content())
+        self.assertIn("Torsdagar 10:00 - 16:00", self.page.content())
+        self.assertIn("Fredagar 10:00 - 16:00", self.page.content())
+        self.assertIn("Lördagar 12:00 - 15:00", self.page.content())
 
     def testHolidays(self):
         self.assertIn("1 Januari", self.page.content())
