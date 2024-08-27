@@ -53,7 +53,7 @@ class TestIndex(unittest.TestCase):
         self.page.wait_for_selector("#checkOpeningHoursJsCompleted", state="attached")
 
     def tearDown(self):
-        self.page.goto("abouQt:blank")
+        self.page.goto("about:blank")
 
     def set_custom_date(self, year, month, day):
         self.page.evaluate(
