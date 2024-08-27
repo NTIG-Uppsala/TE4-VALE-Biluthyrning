@@ -47,8 +47,11 @@ class TestIndex(unittest.TestCase):
         self.playwright.stop()
 
     def setUp(self):
-        self.page.goto(f"file://{path.join(getcwd(), 'index.html')}")
+        self.page.goto(f"file://{path.join(getcwd(), "index.html")}")
         self.page.wait_for_selector("#checkOpeningHoursJsCompleted", state="attached")
+        self.page.evaluate(
+            "document.querySelectorAll('*').forEach(node => node.nodeType === 8 && node.remove())"
+        )
 
     def tearDown(self):
         self.page.goto("about:blank")
@@ -142,6 +145,26 @@ class TestIndex(unittest.TestCase):
         self.assertIn("öppnar", self.page.content())
         self.assertIn("tisdag", self.page.content())
         self.assertIn("10:00", self.page.content())
+
+    def testDropdownMenu(self):
+        self.assertEqual(
+            0,
+            self.page.evaluate(
+                "document.querySelector('.opening-hours-dropdown').offsetHeight"
+            ),
+        )
+        self.page.click("#dropdown-arrow img")
+        self.assertGreater(
+            self.page.evaluate(
+                "document.querySelector('.opening-hours-dropdown').offsetHeight"
+            ),
+            0,
+        )
+        self.assertTrue(
+            self.page.evaluate(
+                "document.querySelector('.opening-hours-dropdown').classList.contains('open-dropdown')"
+            )
+        )
 
 
 if __name__ == "__main__":

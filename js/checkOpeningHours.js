@@ -5,17 +5,17 @@ const dropdownContent = document.querySelector(".opening-hours-dropdown");
 const dropdownArrow = document.getElementById("dropdown-arrow");
 dropdownArrow.setAttribute("data-state", "closed");
 
-dropdownArrow.addEventListener("click", () => {
-    dropdownContent.classList.toggle("open-dropdown");
+// dropdownArrow.addEventListener("click", () => {
+//     dropdownContent.classList.toggle("open-dropdown");
 
-    if (dropdownArrow.getAttribute("data-state") === "closed") {
-        dropdownArrow.setAttribute("data-state", "open");
-        dropdownArrow.style.transform = "rotate(180deg)";
-    } else {
-        dropdownArrow.setAttribute("data-state", "closed");
-        dropdownArrow.style.transform = "rotate(0deg)";
-    }
-});
+//     if (dropdownArrow.getAttribute("data-state") === "closed") {
+//         dropdownArrow.setAttribute("data-state", "open");
+//         dropdownArrow.style.transform = "rotate(180deg)";
+//     } else {
+//         dropdownArrow.setAttribute("data-state", "closed");
+//         dropdownArrow.style.transform = "rotate(0deg)";
+//     }
+// });
 
 
 // Format and insert opening hours into the page
