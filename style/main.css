@@ -171,6 +171,28 @@ body {
                 height: max-content;
             }
         }
+        & .input-wrapper{
+            display: flex;
+            height: 20px;
+            margin: 0;
+
+            &>#zip-input{
+                height: 100%;
+                border: none;
+                margin: 0;
+
+            }
+
+            &>.button{
+                background-color: var(--primary-accent);
+                border: none;
+                color: var(--primary-light);
+                padding: 0 3px;
+                height: 100%;
+                margin: 0;
+                
+            }
+        }
     }
 
 
