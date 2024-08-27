@@ -111,6 +111,10 @@ body {
                 max-width: 50dvw;
             }
 
+            &>h2 {
+                margin-bottom: 0.8rem;
+            }
+
             &>p {
                 max-width: 50dvw;
             }
@@ -122,10 +126,7 @@ body {
             align-items: center;
 
             padding-bottom: 5rem;
-
-            &>h2 {
-                margin-bottom: 0.8rem;
-            }
+           
 
             &>p:first-of-type {
                 font-size: 1.1rem;
