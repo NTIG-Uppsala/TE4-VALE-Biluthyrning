@@ -178,6 +178,7 @@ body {
                     height: 100%;
                     border: none;
                     margin: 0;
+                    font: inherit;
                     -moz-appearance: textfield;
                     &::-webkit-outer-spin-button {
                         -webkit-appearance: none;
@@ -190,6 +191,7 @@ body {
                 }
 
                 & > .button {
+                    font: inherit;
                     background-color: var(--primary-accent);
                     border: none;
                     color: var(--primary-light);

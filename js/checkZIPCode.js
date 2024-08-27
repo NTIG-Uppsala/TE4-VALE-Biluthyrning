@@ -16,8 +16,12 @@ const zipOutput = document.querySelector("#zip-response");
 /**
  * Checks if the ZIP code is valid and if it is in the list of ZIP codes.
  */
-zipSubmitButton.addEventListener("click", function () {
+function checkZIPCode() {
     const zip = zipInputField.value;
+    if (zip === "") {
+        zipOutput.textContent = "Du måste ange ett postnummer i rutan.";
+        return;
+    }
     // Remove all non-digit characters from the ZIP code.
     zip.replace(/\D/g, "");
     if (zip.length !== 5) {
@@ -30,4 +34,19 @@ zipSubmitButton.addEventListener("click", function () {
         return;
     }
     zipOutput.textContent = "Vi levererar till detta postnummer.";
+}
+// Event listeners for the submit button and the input field.
+zipSubmitButton.addEventListener("click", function () {
+    checkZIPCode();
+});
+
+zipInputField.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        checkZIPCode();
+    }
+});
+
+zipInputField.addEventListener("blur", function () {
+    checkZIPCode();
 });
