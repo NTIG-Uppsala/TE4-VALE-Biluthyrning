@@ -61,6 +61,10 @@ const formatTimeString = (time) => {
 }
 const now = new Date();
 
+/**
+ * Refreshes the dynamic open status based on the current date and opening hours.
+ * Updates the HTML content of the element with class "open-status" to display the open status message.
+ */
 const refreshDynamicOpenStatus = () => {
     const openHoursMondayFirst = []
     Object.keys(openHours).forEach(key => {
