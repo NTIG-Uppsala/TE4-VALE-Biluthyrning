@@ -27,7 +27,6 @@ class TestIndex(unittest.TestCase):
     - testSpecificDates: Test specific dates and check if the page content contains the expected information.
     - testSpecificTimes: Test specific times and check if the page content contains the expected information.
     - testDropdownMenu: Test the dropdown menu functionality.
-    - testZIPCode: Test the ZIP code input and output functionality.
     """
 
     keepBrowserAlive = False
@@ -165,36 +164,6 @@ class TestIndex(unittest.TestCase):
                 "document.querySelector('.opening-hours-dropdown').classList.contains('open-dropdown')"
             )
         )
-
-    def testZIPCode(self):
-        zip_input = self.page.query_selector("#zip-input")
-        zip_button = self.page.query_selector("#zip-button")
-        zip_output = self.page.query_selector("#zip-response")
-        available_zips = [
-            "98138",
-            "98140",
-            "98141",
-            "98144",
-            "98146",
-            "98145",
-            "98147",
-        ]
-        self.assertIsNotNone(zip_input)
-        self.assertIsNotNone(zip_button)
-        self.assertIsNotNone(zip_output)
-        self.assertEqual("", zip_input.input_value())
-        self.assertEqual("", zip_output.text_content())
-        zip_input.fill("74431")
-        zip_button.click()
-        self.assertIn("levererar inte", zip_output.text_content())
-        zip_input.fill("9814")
-        zip_button.click()
-        self.assertIn("5", zip_output.text_content())
-        for zip_code in available_zips:
-            zip_input.fill(zip_code)
-            zip_button.click()
-            self.assertIn("levererar till", zip_output.text_content())
-
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

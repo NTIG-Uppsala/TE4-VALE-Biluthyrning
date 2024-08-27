@@ -26,7 +26,7 @@ body {
     flex-flow: column nowrap;
     align-items: center;
 
-    & > header {
+    &>header {
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-between;
@@ -41,13 +41,13 @@ body {
 
         background-color: var(--secondary-dark);
 
-        & > .logo-name-wrapper {
+        &>.logo-name-wrapper {
             display: flex;
             flex-flow: row nowrap;
             align-items: center;
             gap: 0.5rem;
 
-            & > a > img {
+            &>a>img {
                 /* TEMP */
                 display: none;
 
@@ -56,7 +56,7 @@ body {
             }
         }
 
-        & > nav {
+        &>nav {
             display: flex;
             flex-flow: row nowrap;
             justify-content: space-between;
@@ -66,38 +66,32 @@ body {
             /* TEMP */
             display: none;
 
-            & > a {
+            &>a {
                 font-size: 1.1rem;
                 font-weight: bold;
             }
         }
     }
 
-    & > main {
+    &>main {
         width: 100vw;
         max-width: 100%;
 
-        & > .background-img-wrapper {
+        &>.background-img-wrapper {
             width: 100dvw;
             max-width: 100%;
             max-height: 70vh;
 
             overflow-y: hidden;
 
-            & > .background-img {
+            &>.background-img {
                 width: 100dvw;
                 max-width: 100%;
                 height: 100%;
             }
-
-            & > #map-img {
-                width: auto;
-                max-height: 50vh;
-                padding: 1rem;
-            }
         }
 
-        & > .paragraph-section {
+        &>.paragraph-section {
             display: flex;
             flex-flow: column nowrap;
             align-items: center;
@@ -109,45 +103,45 @@ body {
             height: max-content;
             margin-bottom: 5rem;
 
-            & > h1 {
+            &>h1 {
                 margin-bottom: 0.8rem;
 
                 max-width: 50dvw;
             }
 
-            & > h2 {
+            &>h2 {
                 margin-bottom: 0.8rem;
             }
 
-            & > p {
+            &>p {
                 max-width: 50dvw;
             }
         }
 
-        & > .open-hours-section {
+        &>.open-hours-section {
             display: flex;
             flex-flow: column nowrap;
             align-items: center;
 
             padding-bottom: 5rem;
 
-            & > p:first-of-type {
+            &>p:first-of-type {
                 font-size: 1.1rem;
                 margin-bottom: 0.5rem;
 
                 max-width: 70%;
             }
 
-            & > p:last-of-type {
+            &>p:last-of-type {
                 font-size: 0.8rem;
                 font-weight: lighter;
             }
 
-            & > #dropdown-arrow {
+            &>#dropdown-arrow {
                 cursor: pointer;
             }
 
-            & > .opening-hours-dropdown {
+            &>.opening-hours-dropdown {
                 height: 0;
                 overflow-y: auto;
             }
@@ -168,46 +162,9 @@ body {
                 height: max-content;
             }
         }
-        & > .home-delivery-section {
-            & > .input-wrapper {
-                display: flex;
-                height: 20px;
-                margin: 0;
-
-                & > #zip-input {
-                    height: 100%;
-                    border: none;
-                    margin: 0;
-                    -moz-appearance: textfield;
-                    &::-webkit-outer-spin-button {
-                        -webkit-appearance: none;
-                        margin: 0;
-                    }
-                    &::-webkit-inner-spin-button {
-                        -webkit-appearance: none;
-                        margin: 0;
-                    }
-                }
-
-                & > .button {
-                    background-color: var(--primary-accent);
-                    border: none;
-                    color: var(--primary-light);
-                    padding: 0 3px;
-                    height: 100%;
-                    margin: 0;
-                }
-            }
-            & > p {
-                height: 2rem;
-                margin: 0.5rem;
-                font-size: 0.8rem;
-                font-weight: lighter;
-            }
-        }
     }
 
-    & > footer {
+    &>footer {
         background-color: var(--secondary-dark);
 
         width: 100dvw;
@@ -220,36 +177,36 @@ body {
         flex-flow: column nowrap;
         justify-content: space-between;
 
-        & > #copyright-info {
+        &>#copyright-info {
             justify-self: end;
         }
 
-        & > address {
-            & > .social-media-container {
+        &>address {
+            &>.social-media-container {
                 display: flex;
                 flex-flow: row nowrap;
                 justify-content: center;
                 align-items: center;
                 gap: 1ch;
 
-                & > a {
+                &>a {
                     font-style: none;
 
                     aspect-ratio: 1/1;
                     height: 3rem;
 
-                    & > img {
+                    &>img {
                         width: 100%;
                         height: 100%;
                     }
                 }
             }
 
-            & > strong {
+            &>strong {
                 font-size: 1.1rem;
             }
 
-            & > #dates-closed {
+            &>#dates-closed {
                 font-size: 0.8rem;
                 font-weight: lighter;
             }
