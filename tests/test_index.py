@@ -36,7 +36,7 @@ class TestIndex(unittest.TestCase):
     @classmethod
     def setUpClass(self):
         self.playwright = sync_playwright().start()
-        browser_type = self.playwright.chromiumW
+        browser_type = self.playwright.chromium
         launch_options = {"headless": self.hiddenWindow}
         self.browser = browser_type.launch(**launch_options)
         self.context = self.browser.new_context()
