@@ -47,10 +47,18 @@ class TestIndex(unittest.TestCase):
         self.playwright.stop()
 
     def setUp(self):
-        self.page.goto(f"file://{path.join(getcwd(), "index.html")}")
+        self.page.goto(f"file://{path.join(getcwd(), 'index.html')}")
         self.page.wait_for_selector("#checkOpeningHoursJsCompleted", state="attached")
         self.page.evaluate(
-            "document.querySelectorAll('*').forEach(node => node.nodeType === 8 && node.remove())"
+            """
+            const comments = [];
+            document.querySelectorAll('*').forEach(node => {
+                if (node.nodeType === 8) {
+                    comments.push(node);
+                }
+            });
+            comments.forEach(comment => comment.remove());
+            """
         )
 
     def tearDown(self):
