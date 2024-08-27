@@ -181,7 +181,9 @@ class TestIndex(unittest.TestCase):
         ]
         self.assertIsNotNone(zip_input)
         self.assertIsNotNone(zip_button)
-        self.assertEqual("", zip_input.get_attribute("value"))
+        self.assertIsNotNone(zip_output)
+        self.assertIsNone(zip_input.value())
+        self.assertIsNone(zip_output.text())
         zip_input.fill("74431")
         zip_button.click()
         self.assertIn("levererar inte", zip_output.text())
