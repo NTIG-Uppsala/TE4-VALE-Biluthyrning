@@ -5,27 +5,28 @@ from os import path, getcwd
 
 class TestIndex(unittest.TestCase):
     """
-    TestIndex class contains unit tests for the index.html page of the NTB Biluthyrning website.
+    TestIndex class contains unit tests for the index page of a website.
     Methods:
     - setUpClass: Set up the test class by launching the browser and creating a new page.
-    - tearDownClass: Tear down the test class by closing the context, browser, and playwright.
-    - setUp: Set up each individual test by navigating to the index.html page and waiting for a specific selector.
-    - tearDown: Tear down each individual test by navigating to a blank page.
-    - set_custom_date: Set a custom date in the page's JavaScript environment.
-    - set_custom_time: Set a custom time in the page's JavaScript environment.
+    - tearDownClass: Tear down the test class by closing the browser and stopping the playwright.
+    - setUp: Set up each test case by navigating to the index.html page and waiting for a specific selector.
+    - tearDown: Tear down each test case by navigating to a blank page.
+    - set_custom_date: Set a custom date in the page's JavaScript context.
+    - set_custom_time: Set a custom time in the page's JavaScript context.
     - testBrowserExists: Test if the page object is not None.
-    - testPageExists: Test if the document's readyState is "complete".
-    - testName: Test if the page content contains the name "NTB Biluthyrning".
-    - testPhoneNumber: Test if the page content contains the phone number "0630-55 55 55".
-    - testEmail: Test if the page content contains the email address "info@ntbhyr.se".
-    - testAddress: Test if the page content contains the address "Fjällgatan 32H", postal code "98139", and city "Kiruna".
-    - testSocialMedia: Test if the page content contains the social media links for Facebook, Instagram, and X.
-    - testOpeningHours: Test if the page content contains the opening hours for each day of the week.
+    - testPageExists: Test if the document's readyState is 'complete'.
+    - testName: Test if the page content contains the name of the company.
+    - testPhoneNumber: Test if the page content contains the phone number.
+    - testEmail: Test if the page content contains the email address.
+    - testAddress: Test if the page content contains the address.
+    - testSocialMedia: Test if the page content contains the social media links.
+    - testOpeningHours: Test if the page content contains the opening hours.
     - testHolidays: Test if the page content contains the holidays.
-    - testJsCompleted: Test if the page contains an element with the id "checkOpeningHoursJsCompleted".
-    - testNoMissing: Test if the page content does not contain the word "Missing".
-    - testSpecificDates: Test specific dates and check if the page content reflects the expected information.
-    - testSpecificTimes: Test specific times and check if the page content reflects the expected information.
+    - testJsCompleted: Test if the page contains an element with the id 'checkOpeningHoursJsCompleted'.
+    - testNoMissing: Test if the page content does not contain the word 'Missing'.
+    - testSpecificDates: Test specific dates and check if the page content contains the expected information.
+    - testSpecificTimes: Test specific times and check if the page content contains the expected information.
+    - testDropdownMenu: Test the dropdown menu functionality.
     """
 
     keepBrowserAlive = False
@@ -142,6 +143,27 @@ class TestIndex(unittest.TestCase):
         self.assertIn("öppnar", self.page.content())
         self.assertIn("tisdag", self.page.content())
         self.assertIn("10:00", self.page.content())
+
+    def testDropdownMenu(self):
+        self.page.wait_for_selector("#dropdown-arrow", state="visible")
+        self.assertEqual(
+            0,
+            self.page.evaluate(
+                "document.querySelector('.opening-hours-dropdown').offsetHeight"
+            ),
+        )
+        self.page.click("#dropdown-arrow")
+        self.assertGreater(
+            self.page.evaluate(
+                "document.querySelector('.opening-hours-dropdown').offsetHeight"
+            ),
+            0,
+        )
+        self.assertTrue(
+            self.page.evaluate(
+                "document.querySelector('.opening-hours-dropdown').classList.contains('open-dropdown')"
+            )
+        )
 
 
 if __name__ == "__main__":
