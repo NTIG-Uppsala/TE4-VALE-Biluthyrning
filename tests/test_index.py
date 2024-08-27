@@ -155,13 +155,14 @@ class TestIndex(unittest.TestCase):
         self.assertIn("10:00", self.page.content())
 
     def testDropdownMenu(self):
+        self.page.wait_for_selector("#dropdown-arrow", state="visible")
         self.assertEqual(
             0,
             self.page.evaluate(
                 "document.querySelector('.opening-hours-dropdown').offsetHeight"
             ),
         )
-        self.page.click("#dropdown-arrow img")
+        self.page.click("#dropdown-arrow")
         self.assertGreater(
             self.page.evaluate(
                 "document.querySelector('.opening-hours-dropdown').offsetHeight"
