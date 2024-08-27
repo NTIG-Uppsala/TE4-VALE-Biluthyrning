@@ -182,18 +182,18 @@ class TestIndex(unittest.TestCase):
         self.assertIsNotNone(zip_input)
         self.assertIsNotNone(zip_button)
         self.assertIsNotNone(zip_output)
-        self.assertIsNone(zip_input.value())
-        self.assertIsNone(zip_output.text())
+        self.assertEqual("", zip_input.input_value())
+        self.assertEqual("", zip_output.text_content())
         zip_input.fill("74431")
         zip_button.click()
-        self.assertIn("levererar inte", zip_output.text())
+        self.assertIn("levererar inte", zip_output.text_content())
         zip_input.fill("9814")
         zip_button.click()
-        self.assertIn("5", zip_output.text())
+        self.assertIn("5", zip_output.text_content())
         for zip_code in available_zips:
             zip_input.fill(zip_code)
             zip_button.click()
-            self.assertIn("levererar till", zip_output.text())
+            self.assertIn("levererar till", zip_output.text_content())
 
 
 if __name__ == "__main__":
