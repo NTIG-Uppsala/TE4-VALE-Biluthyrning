@@ -258,6 +258,9 @@ class TestIndex(unittest.TestCase):
         zip_input.fill("9814")
         zip_button.click()
         self.assertIn("5", zip_output.text_content())
+        zip_input.fill("")
+        zip_button.click()
+        self.assertIn("ange ett postnummer", zip_output.text_content())
         for zip_code in available_zips:
             zip_input.fill(zip_code)
             zip_button.click()
