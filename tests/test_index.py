@@ -128,27 +128,27 @@ class TestIndex(unittest.TestCase):
     def testOpeningHours(self: "TestIndex") -> None:
         self.helpTestMultiple(
             [
-                "Söndagar Stängt",
-                "Måndagar 10:00 - 16:00",
-                "Tisdagar 10:00 - 16:00",
-                "Onsdagar 10:00 - 16:00",
-                "Torsdagar 10:00 - 16:00",
-                "Fredagar 10:00 - 16:00",
-                "Lördagar 12:00 - 15:00",
+                "Måndag 10:00 - 16:00",
+                "Tisdag 10:00 - 16:00",
+                "Onsdag 10:00 - 16:00",
+                "Torsdag 10:00 - 16:00",
+                "Fredag 10:00 - 16:00",
+                "Lördag 12:00 - 15:00",
+                "Söndag Stängt",
             ]
         )
 
     def testHolidays(self: "TestIndex") -> None:
         self.helpTestMultiple(
             [
-                "1 Januari",
-                "6 Januari",
-                "1 Maj",
-                "6 Juni",
-                "24 December",
-                "25 December",
-                "26 December",
-                "31 December",
+                "1 januari",
+                "6 januari",
+                "1 maj",
+                "6 juni",
+                "24 december",
+                "25 december",
+                "26 december",
+                "31 december",
             ]
         )
 
