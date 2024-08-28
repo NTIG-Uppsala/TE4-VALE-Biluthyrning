@@ -115,7 +115,7 @@ const refreshDynamicOpenStatus = () => {
 
         if (followingDays[0].holiday) {
             openStatusString = `Vi har stängt på ${followingDays[0].holiday}`;
-        } else if (followingDays[0].closing.string && !followingDays[0].holiday) {
+        } else if (followingDays[0].closing.string) {
             openStatusString = `Vi har stängt för dagen`;
         } else {
             openStatusString = `Vi har stängt idag`;
