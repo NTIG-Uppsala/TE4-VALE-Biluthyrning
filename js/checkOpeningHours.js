@@ -1,23 +1,4 @@
 
-// Dropdown code
-
-const dropdownContent = document.querySelector(".opening-hours-dropdown");
-const dropdownArrow = document.getElementById("dropdown-arrow");
-dropdownArrow.setAttribute("data-state", "closed");
-
-dropdownArrow.addEventListener("click", () => {
-    dropdownContent.classList.toggle("open-dropdown");
-
-    if (dropdownArrow.getAttribute("data-state") === "closed") {
-        dropdownArrow.setAttribute("data-state", "open");
-        dropdownArrow.style.transform = "rotate(180deg)";
-    } else {
-        dropdownArrow.setAttribute("data-state", "closed");
-        dropdownArrow.style.transform = "rotate(0deg)";
-    }
-});
-
-
 // Format and insert opening hours into the page
 
 let blockOfOpenHours = ""
@@ -51,7 +32,11 @@ document.querySelectorAll(".insert-open-hours-after").forEach(element => {
 });
 
 
-// Dynamically update if we are open or closed
+
+/**
+ * Refreshes the dynamic open status based on the current date and opening hours.
+ * Updates the HTML content of the element with class "open-status" to display the open status message.
+*/
 
 // Helper function
 const formatTimeString = (time) => {
@@ -59,12 +44,9 @@ const formatTimeString = (time) => {
     const minute = time.slice(2).padStart(2, "0");
     return hour + ":" + minute;
 }
+
 const now = new Date();
 
-/**
- * Refreshes the dynamic open status based on the current date and opening hours.
- * Updates the HTML content of the element with class "open-status" to display the open status message.
- */
 const refreshDynamicOpenStatus = () => {
     const openHoursMondayFirst = []
     Object.keys(openHours).forEach(key => {
@@ -143,7 +125,7 @@ const refreshDynamicOpenStatus = () => {
     }
 
     const openStatusTag = document.querySelector("p.open-status");
-    openStatusTag.innerHTML = openStatusString;
+    openStatusTag.textContent = openStatusString;
 }
 
 refreshDynamicOpenStatus();
