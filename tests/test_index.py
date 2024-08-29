@@ -128,7 +128,7 @@ class TestIndex(unittest.TestCase):
     def testOpeningHours(self: "TestIndex") -> None:
         self.helpTestMultiple(
             [
-                "Måndag - fredag ",
+                "Måndag - fredag",
                 "10:00 - 16:00",
                 "Lördag",
                 "12:00 - 15:00",
