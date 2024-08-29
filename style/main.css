@@ -43,7 +43,7 @@ body {
     flex-flow: column nowrap;
     align-items: center;
 
-    & > header {
+    &>header {
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-between;
@@ -58,7 +58,7 @@ body {
 
         background-color: var(--secondary-dark);
 
-        & > .logo-name-wrapper {
+        &>.logo-name-wrapper {
             display: flex;
             flex-flow: row nowrap;
             align-items: center;
@@ -67,7 +67,7 @@ body {
             font-family: var(--header-font);
         }
 
-        & > nav {
+        &>nav {
             display: flex;
             flex-flow: row nowrap;
             justify-content: space-between;
@@ -77,38 +77,38 @@ body {
             /* TEMP */
             display: none;
 
-            & > a {
+            &>a {
                 font-size: 1.1rem;
                 font-weight: bold;
             }
         }
     }
 
-    & > main {
+    &>main {
         width: 100vw;
         max-width: 100%;
 
-        & > .background-img-wrapper {
+        &>.background-img-wrapper {
             width: 100dvw;
             max-width: 100%;
             max-height: 70vh;
 
             overflow-y: hidden;
 
-            & > .background-img {
+            &>.background-img {
                 width: 100dvw;
                 max-width: 100%;
                 height: 100%;
             }
 
-            & > #map-img {
+            &>#map-img {
                 width: auto;
                 max-height: 50vh;
                 padding: 1rem;
             }
         }
 
-        & > .paragraph-section {
+        &>.paragraph-section {
             display: flex;
             flex-flow: column nowrap;
             align-items: center;
@@ -120,37 +120,27 @@ body {
             height: max-content;
             margin-bottom: 5rem;
 
-<<<<<<< Updated upstream
             &>h1 {
                 margin-bottom: 0.3rem;
-=======
-            & > h1 {
-                margin-bottom: 0.8rem;
->>>>>>> Stashed changes
 
                 max-width: 50dvw;
             }
 
-<<<<<<< Updated upstream
             &>h2 {
                 margin-bottom: 0.3rem;
-=======
-            & > h2 {
-                margin-bottom: 0.8rem;
->>>>>>> Stashed changes
             }
 
-            & > p {
+            &>p {
                 max-width: 50dvw;
             }
         }
 
-        & > .open-hours-section {
+        &>.open-hours-section {
             display: flex;
             flex-flow: column nowrap;
             align-items: center;
 
-            & > p:first-of-type {
+            &>p:first-of-type {
                 font-size: 1.1rem;
                 margin-bottom: 0.5rem;
                 font-weight: 400;
@@ -158,29 +148,23 @@ body {
                 max-width: 70%;
             }
 
-            /* & > p:last-of-type {
+            &>p:last-of-type {
                 font-size: 0.8rem;
-<<<<<<< Updated upstream
                 font-weight: 300;
             }
-=======
-                font-weight: lighter;
-            } */
->>>>>>> Stashed changes
         }
 
-        & > .home-delivery-section {
-            & > .input-wrapper {
+        &>.home-delivery-section {
+            &>.input-wrapper {
                 display: flex;
                 height: 20px;
                 margin: 0;
 
-                & > #zip-input {
+                &>#zip-input {
                     height: 100%;
                     border: none;
                     margin: 0;
                     -moz-appearance: textfield;
-                    appearance: textfield;
 
                     &::-webkit-outer-spin-button {
                         -webkit-appearance: none;
@@ -193,12 +177,7 @@ body {
                     }
                 }
 
-<<<<<<< Updated upstream
                 &>.button {
-=======
-                & > .button {
-                    font: inherit;
->>>>>>> Stashed changes
                     background-color: var(--primary-accent);
                     border: none;
                     color: var(--primary-light);
@@ -207,20 +186,10 @@ body {
                     margin: 0;
                 }
             }
-<<<<<<< Updated upstream
-=======
-
-            & > p {
-                height: 2rem;
-                margin: 0.5rem;
-                font-size: 0.8rem;
-                font-weight: lighter;
-            }
->>>>>>> Stashed changes
         }
     }
 
-    & > footer {
+    &>footer {
         background-color: var(--secondary-dark);
 
         width: 100dvw;
@@ -233,7 +202,6 @@ body {
         flex-flow: column nowrap;
         justify-content: space-between;
 
-<<<<<<< Updated upstream
         &>#copyright-info {
             margin-top: 5rem;
 
@@ -250,63 +218,22 @@ body {
             }
 
             &>.social-media-container {
-=======
-        & > #copyright-info {
-            justify-self: end;
-        }
-
-        & > address {
-            & > .social-media-container {
->>>>>>> Stashed changes
                 display: flex;
                 flex-flow: row nowrap;
                 justify-content: center;
                 align-items: center;
                 gap: 1ch;
 
-                & > a {
+                &>a {
                     font-style: none;
 
                     aspect-ratio: 1/1;
                     height: 3rem;
 
-                    & > img {
+                    &>img {
                         width: 100%;
                         height: 100%;
                     }
-                }
-            }
-<<<<<<< Updated upstream
-=======
-
-            & > strong {
-                font-size: 1.1rem;
-            }
-
-            & > #dates-closed {
-                font-size: 0.8rem;
-                font-weight: lighter;
-            }
->>>>>>> Stashed changes
-        }
-    }
-    & table {
-        width: 15dvw;
-        min-width: 20ch;
-        border-collapse: collapse;
-        & > tbody > tr {
-            &:not(:last-of-type) {
-                border-bottom: 1px solid var(--primary-light);
-            }
-            & > td {
-                padding: 0.4rem 0.2rem;
-                font-size: 0.9rem;
-                font-weight: lighter;
-                &:first-of-type {
-                    text-align: left;
-                }
-                &:last-of-type {
-                    text-align: right;
                 }
             }
         }
