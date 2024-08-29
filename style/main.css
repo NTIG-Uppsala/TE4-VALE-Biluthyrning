@@ -10,16 +10,60 @@ a {
     &:hover {
         color: var(--primary-accent);
     }
+
+    word-break: keep-all;
+
+}
+
+button,
+input {
+    font-family: inherit;
 }
 
 img {
     -webkit-user-drag: none;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--header-font);
+    font-weight: bold;
+}
+
+table.open-hours-table {
+    width: 15dvw;
+    min-width: 20ch;
+    border-collapse: collapse;
+    align-self: center;
+
+    &>tbody>tr {
+        &:not(:last-of-type) {
+            border-bottom: 1px solid var(--primary-light);
+        }
+
+        &>td {
+            padding: 0.4rem 0.2rem;
+            font-size: 0.9rem;
+
+            &:first-of-type {
+                text-align: left;
+            }
+
+            &:last-of-type {
+                text-align: right;
+            }
+        }
+    }
+}
+
 body {
     background-color: var(--primary-dark);
     color: var(--primary-light);
-    font-family: sans-serif;
+    font-family: var(--body-font);
     text-align: center;
 
     display: flex;
@@ -46,87 +90,108 @@ body {
             flex-flow: row nowrap;
             align-items: center;
             gap: 0.5rem;
+
+            font-family: var(--header-font);
         }
     }
 
     &>main {
-        width: 100vw;
+        width: 100svw;
         max-width: 100%;
 
-        &>.background-img-wrapper {
-            width: 100dvw;
-            max-width: 100%;
-            max-height: 70vh;
+        &>section {
+            width: 100%;
 
-            overflow-y: hidden;
-
-            &>.background-img {
-                width: 100dvw;
-                max-width: 100%;
-                height: 100%;
-            }
-        }
-
-        &>.paragraph-section {
             display: flex;
             flex-flow: column nowrap;
             align-items: center;
 
-            padding-top: 1.5rem;
+            margin-bottom: 6rem;
 
-            width: 100vw;
-            max-width: 100%;
-            height: max-content;
-            margin-bottom: 5rem;
+            &>.background-image {
+                width: 100%;
+                max-width: 100%;
+                height: 100%;
+                max-height: 70svh;
+                overflow-y: hidden;
+
+                &>img {
+                    width: 100%;
+                }
+            }
 
             &>h1 {
-                margin-bottom: 0.8rem;
-
-                max-width: 50dvw;
+                margin-top: 1rem;
             }
 
             &>h2 {
-                margin-bottom: 0.8rem;
+                margin-bottom: 0.3rem;
             }
 
             &>p {
-                max-width: 50dvw;
+                margin-top: 0.3rem;
+                margin-bottom: 0.5rem;
+            }
+
+            &>h1,
+            &>h2,
+            &>p {
+                max-width: 65dvw;
             }
         }
 
-        &>.open-hours-section {
-            display: flex;
-            flex-flow: column nowrap;
-            align-items: center;
+        &>.opening-hours-section>table {
+            margin: 1rem;
+        }
 
-            padding-bottom: 5rem;
+        &>.delivery-section {
 
-            &>p:first-of-type {
-                font-size: 1.1rem;
-                margin-bottom: 0.5rem;
+            &>.background-image {
+                max-width: 100%;
+                max-height: 60svh;
+                display: flex;
 
-                max-width: 70%;
+                &>img {
+                    align-self: center;
+                    justify-self: center;
+                }
             }
 
-            &>p:last-of-type {
-                font-size: 0.8rem;
-                font-weight: lighter;
-            }
+            &>.input-container {
+                margin: 0.3rem;
+                margin-top: 0.6rem;
 
-            &>#dropdown-arrow {
-                cursor: pointer;
-            }
+                display: flex;
 
-            &>.opening-hours-dropdown {
-                height: 0;
-                overflow-y: auto;
-            }
+                &>input[type="number"] {
+                    height: 100%;
+                    border: none;
+                    margin: 0;
+                    -moz-appearance: textfield;
+                    appearance: textfield;
 
-            .open-dropdown {
-                height: max-content;
+                    &::-webkit-outer-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                    }
+
+                    &::-webkit-inner-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                    }
+                }
+
+                &>button {
+                    background-color: var(--primary-accent);
+                    border: none;
+                    color: var(--primary-light);
+                    padding: 0 3px;
+                    height: 100%;
+                }
             }
         }
     }
+
 
     &>footer {
         background-color: var(--secondary-dark);
@@ -134,46 +199,61 @@ body {
         width: 100dvw;
         max-width: 100%;
         min-height: 100dvh;
+        height: auto;
 
         padding-top: 1.8rem;
 
         display: flex;
         flex-flow: column nowrap;
-        justify-content: space-between;
 
-        &>#copyright-info {
-            justify-self: end;
+        & strong {
+            font-size: 1.1rem;
         }
 
+        &>div {
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+
+            gap: 0.5rem;
+        }
+        
+        &>div,
         &>address {
-            &>.social-media-container {
-                display: flex;
-                flex-flow: row nowrap;
-                justify-content: center;
-                align-items: center;
-                gap: 1ch;
+            margin-bottom: 3rem;
+        }
 
-                &>a {
-                    font-style: none;
+        &>#social-media-container {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1ch;
 
-                    aspect-ratio: 1/1;
-                    height: 3rem;
+            &>a {
+                font-style: none;
 
-                    &>img {
-                        width: 100%;
-                        height: 100%;
-                    }
+                aspect-ratio: 1/1;
+                height: 3rem;
+
+                &>img {
+                    width: 100%;
+                    height: 100%;
                 }
             }
+        }
 
-            &>strong {
-                font-size: 1.1rem;
-            }
+        &>#closed-dates-container>p {
+            font-weight: 300;
+        }
 
-            &>#dates-closed {
-                font-size: 0.8rem;
-                font-weight: lighter;
-            }
+        &>#copyright-info {
+            font-weight: 300;
+
+            justify-self: end;
+
+            margin-top: 10vh;
+            margin-bottom: 70vh;
         }
     }
 }
