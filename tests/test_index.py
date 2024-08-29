@@ -265,6 +265,8 @@ class TestIndex(unittest.TestCase):
             zip_button.click()
             self.assertIn("levererar till", zip_output.text_content())
 
+    def testRed(self: "TestIndex") -> None:
+        self.assertEqual(1, 2)
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
