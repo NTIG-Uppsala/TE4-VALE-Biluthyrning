@@ -1,7 +1,6 @@
 import unittest
 from playwright.sync_api import sync_playwright
-from os import path, getcwd
-
+from os import path
 
 class TestIndex(unittest.TestCase):
     """
@@ -60,7 +59,7 @@ class TestIndex(unittest.TestCase):
         self.playwright.stop()
 
     def setUp(self: "TestIndex") -> None:
-        self.page.goto(f"file://{path.join(getcwd(), 'index.html')}")
+        self.page.goto(f"file://{path.abspath(path.join(path.dirname(__file__), "..", "index.html"))}")
         self.page.wait_for_selector("#checkOpeningHoursJsCompleted", state="attached")
 
     def tearDown(self: "TestIndex") -> None:
