@@ -5,43 +5,43 @@ from os import path, getcwd
 
 class TestIndex(unittest.TestCase):
     """
-    A test case class for testing the functionality of the index page.
+    TestIndex class contains unit tests for the index page of the NTB Biluthyrning website.
     Methods:
-    - setUpClass(self: "TestIndex") -> None: Set up the test class.
-    - tearDownClass(self: "TestIndex") -> None: Tear down the test class.
-    - setUp(self: "TestIndex") -> None: Set up the test method.
-    - tearDown(self: "TestIndex") -> None: Tear down the test method.
-    - helpSetCustomTime(self: "TestIndex", year: int, month: int, day: int, hour: int) -> None: Helper method to set a custom time.
-    - helpTestMultiple(self: "TestIndex", matches: list[str]) -> None: Helper method to test multiple matches.
-    - helpTestCustomTime(self: "TestIndex", year: int, month: int, day: int, hour: int, matches: list[str]) -> None: Helper method to test custom time.
-    - testBrowserExists(self: "TestIndex") -> None: Test if the browser exists.
-    - testPageExists(self: "TestIndex") -> None: Test if the page exists.
-    - testName(self: "TestIndex") -> None: Test the name on the page.
-    - testPhoneNumber(self: "TestIndex") -> None: Test the phone number on the page.
-    - testEmail(self: "TestIndex") -> None: Test the email on the page.
-    - testAddress(self: "TestIndex") -> None: Test the address on the page.
-    - testSocialMedia(self: "TestIndex") -> None: Test the social media links on the page.
-    - testOpeningHours(self: "TestIndex") -> None: Test the opening hours on the page.
-    - testHolidays(self: "TestIndex") -> None: Test the holidays on the page.
-    - testJsCompleted(self: "TestIndex") -> None: Test if the JavaScript is completed on the page.
-    - testNoMissing(self: "TestIndex") -> None: Test if there are no missing elements on the page.
-    - testChristmasEve(self: "TestIndex") -> None: Test the behavior on Christmas Eve.
-    - testChristmasDay(self: "TestIndex") -> None: Test the behavior on Christmas Day.
-    - testBoxingDay(self: "TestIndex") -> None: Test the behavior on Boxing Day.
-    - testAfternoonBeforeNewYear(self: "TestIndex") -> None: Test the behavior on the afternoon before New Year.
-    - testNewYear(self: "TestIndex") -> None: Test the behavior on New Year's Eve.
-    - testNewYearDay(self: "TestIndex") -> None: Test the behavior on New Year's Day.
-    - testEpiphany(self: "TestIndex") -> None: Test the behavior on Epiphany.
-    - testFirstOfMay(self: "TestIndex") -> None: Test the behavior on the first of May.
-    - testNationalDay(self: "TestIndex") -> None: Test the behavior on National Day.
-    - testMonday(self: "TestIndex") -> None: Test the behavior on a Monday.
-    - testTuesday(self: "TestIndex") -> None: Test the behavior on a Tuesday.
-    - testWednesday(self: "TestIndex") -> None: Test the behavior on a Wednesday.
-    - testThursday(self: "TestIndex") -> None: Test the behavior on a Thursday.
-    - testFriday(self: "TestIndex") -> None: Test the behavior on a Friday.
-    - testSaturday(self: "TestIndex") -> None: Test the behavior on a Saturday.
-    - testSunday(self: "TestIndex") -> None: Test the behavior on a Sunday.
-    - testZIPCode(self: "TestIndex") -> None: Test the ZIP code functionality on the page.
+    - setUpClass: Set up the test class by launching the browser and creating a new page.
+    - tearDownClass: Tear down the test class by closing the browser and stopping the playwright.
+    - setUp: Set up each individual test by navigating to the index.html page and waiting for a specific selector to be attached.
+    - tearDown: Tear down each individual test by navigating to about:blank.
+    - helpSetCustomTime: Helper method to set a custom time for testing purposes.
+    - helpTestMultiple: Helper method to test multiple matches in the page content.
+    - helpTestCustomTime: Helper method to test custom time matches in the page content.
+    - testBrowserExists: Test if the browser exists.
+    - testPageExists: Test if the page has completed loading.
+    - testName: Test if the page content contains the name "NTB Biluthyrning".
+    - testPhoneNumber: Test if the page content contains the phone number.
+    - testEmail: Test if the page content contains the email address.
+    - testAddress: Test if the page content contains the address.
+    - testSocialMedia: Test if the page content contains the social media links.
+    - testOpeningHours: Test if the page content contains the opening hours.
+    - testHolidays: Test if the page content contains the holidays.
+    - testJsCompleted: Test if the JavaScript for checking opening hours completion is present.
+    - testNoMissing: Test if the page content does not contain the word "Missing".
+    - testChristmasEve: Test the opening hours on Christmas Eve.
+    - testChristmasDay: Test the opening hours on Christmas Day.
+    - testBoxingDay: Test the opening hours on Boxing Day.
+    - testAfternoonBeforeNewYear: Test the opening hours on the afternoon before New Year's Day.
+    - testNewYear: Test the opening hours on New Year's Eve.
+    - testNewYearDay: Test the opening hours on New Year's Day.
+    - testEpiphany: Test the opening hours on Epiphany.
+    - testFirstOfMay: Test the opening hours on the first of May.
+    - testNationalDay: Test the opening hours on National Day.
+    - testMonday: Test the opening hours on a Monday.
+    - testTuesday: Test the opening hours on a Tuesday.
+    - testWednesday: Test the opening hours on a Wednesday.
+    - testThursday: Test the opening hours on a Thursday.
+    - testFriday: Test the opening hours on a Friday.
+    - testSaturday: Test the opening hours on a Saturday.
+    - testSunday: Test the opening hours on a Sunday.
+    - testZIPCode: Test the ZIP code input functionality.
     """
 
     @classmethod
@@ -264,9 +264,6 @@ class TestIndex(unittest.TestCase):
             zip_input.fill(zip_code)
             zip_button.click()
             self.assertIn("levererar till", zip_output.text_content())
-
-    def testRed(self: "TestIndex") -> None:
-        self.assertEqual(1, 2)
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
