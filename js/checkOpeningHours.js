@@ -1,59 +1,18 @@
-
-// Format and insert opening hours into the page
-
-let blockOfOpenHours = ""
-
-const openHoursMondayFirst = []
-Object.keys(openHours).forEach(key => {
-    openHoursMondayFirst.push(openHours[key]);
-});
-openHoursMondayFirst.sort((a, b) => a.order - b.order);
-
-openHoursMondayFirst.forEach(day => {
-    let dayOpenHours = ""
-
-    dayOpenHours += day.name + " "
-    if (day.from || day.to) {
-        dayOpenHours += day.from.slice(0, 2) + ":" + day.from.slice(2);
-        dayOpenHours += " - ";
-        dayOpenHours += day.to.slice(0, 2) + ":" + day.to.slice(2);
-    } else {
-        dayOpenHours += "Stängt";
-    }
-
-    blockOfOpenHours += dayOpenHours + "<br>";
-});
-
-document.querySelectorAll(".insert-open-hours-in").forEach(element => {
-    element.innerHTML += blockOfOpenHours;
-});
-document.querySelectorAll(".insert-open-hours-after").forEach(element => {
-    element.insertAdjacentHTML("afterend", blockOfOpenHours);
-});
-
-
-
-/**
- * Refreshes the dynamic open status based on the current date and opening hours.
- * Updates the HTML content of the element with class "open-status" to display the open status message.
-*/
-
 // Helper function
 const formatTimeString = (time) => {
     const hour = time.slice(0, 2).padStart(2, "0");
     const minute = time.slice(2).padStart(2, "0");
     return hour + ":" + minute;
-}
+};
 
 const now = new Date();
 
 const refreshDynamicOpenStatus = () => {
-    const openHoursMondayFirst = []
-    Object.keys(openHours).forEach(key => {
+    const openHoursMondayFirst = [];
+    Object.keys(openHours).forEach((key) => {
         openHoursMondayFirst.push(openHours[key]);
     });
     openHoursMondayFirst.sort((a, b) => a.order - b.order);
-
 
     // Slice of the start of the week and re-add it to the end
     const openHoursTodayFirst = openHoursMondayFirst
@@ -62,7 +21,6 @@ const refreshDynamicOpenStatus = () => {
 
     const followingDays = [];
     openHoursTodayFirst.forEach((dayNoDates, index) => {
-
         const date = new Date(now);
         date.setDate(now.getDate() + index);
 
@@ -95,7 +53,10 @@ const refreshDynamicOpenStatus = () => {
             },
         };
 
-        if (closedDates[date.getMonth()] && closedDates[date.getMonth()][date.getDate()]) {
+        if (
+            closedDates[date.getMonth()] &&
+            closedDates[date.getMonth()][date.getDate()]
+        ) {
             dayWithDates.holiday = closedDates[date.getMonth()][date.getDate()];
             dayWithDates.opening = false;
             dayWithDates.closing = false;
@@ -107,11 +68,17 @@ const refreshDynamicOpenStatus = () => {
     let openStatusString = "Kolla våra öppettider för att se när vi har öppet.";
 
     if (now < followingDays[0].opening.date) {
-        openStatusString = `Vi öppnar kl. ${formatTimeString(followingDays[0].opening.string)} idag`;
+        openStatusString = `Vi öppnar kl. ${formatTimeString(
+            followingDays[0].opening.string
+        )} idag`;
     } else if (now < followingDays[0].closing.date) {
-        openStatusString = `Vi har öppet nu och stänger kl. ${formatTimeString(followingDays[0].closing.string)}`;
+        openStatusString = `Vi har öppet nu och stänger kl. ${formatTimeString(
+            followingDays[0].closing.string
+        )}`;
     } else {
-        const nextOpenDay = followingDays.slice(1).filter(day => day.closing.date && day.opening.date)[0]
+        const nextOpenDay = followingDays
+            .slice(1)
+            .filter((day) => day.closing.date && day.opening.date)[0];
 
         if (followingDays[0].holiday) {
             openStatusString = `Vi har stängt på ${followingDays[0].holiday}`;
@@ -121,12 +88,13 @@ const refreshDynamicOpenStatus = () => {
             openStatusString = `Vi har stängt idag`;
         }
 
-        openStatusString += `<br> Vi öppnar igen på ${nextOpenDay.name.singular} kl. ${formatTimeString(nextOpenDay.opening.string)}`
+        openStatusString += `<br> Vi öppnar igen på ${
+            nextOpenDay.name.singular
+        } kl. ${formatTimeString(nextOpenDay.opening.string)}`;
     }
 
     const openStatusTag = document.querySelector("p.open-status");
     openStatusTag.innerHTML = openStatusString;
-}
+};
 
 refreshDynamicOpenStatus();
-
