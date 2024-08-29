@@ -33,6 +33,29 @@ h6 {
     font-weight: bold;
 }
 
+table {
+    width: 15dvw;
+    min-width: 20ch;
+    border-collapse: collapse;
+    align-self: center;
+    &>tbody>tr {
+        &:not(:last-of-type) {
+            border-bottom: 1px solid var(--primary-light);
+        }
+        &>td {
+            padding: 0.4rem 0.2rem;
+            font-size: 0.9rem;
+
+            &:first-of-type {
+                text-align: left;
+            }
+            &:last-of-type {
+                text-align: right;
+            }
+        }
+    }
+}
+
 body {
     background-color: var(--primary-dark);
     color: var(--primary-light);
@@ -147,11 +170,6 @@ body {
 
                 max-width: 70%;
             }
-
-            &>p:last-of-type {
-                font-size: 0.8rem;
-                font-weight: 300;
-            }
         }
 
         &>.home-delivery-section {
@@ -165,6 +183,7 @@ body {
                     border: none;
                     margin: 0;
                     -moz-appearance: textfield;
+                    appearance: textfield;
 
                     &::-webkit-outer-spin-button {
                         -webkit-appearance: none;
