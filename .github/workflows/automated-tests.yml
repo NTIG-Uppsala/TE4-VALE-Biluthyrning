@@ -37,15 +37,12 @@ jobs:
             - name: Set up Python
               uses: actions/setup-python@v2
               with:
-                  python-version: "3.x"
+                  python-version: "3.12.5"
 
             - name: Install dependencies
               run: |
-                  pip install requests
-                  pip install selenium
-                  pip install unittest-xml-reporting
                   pip install pytest-playwright
-                  pip install pytest-json-report
+                  pip install playwright
                   playwright install
 
             - name: Run tests with pytest-playwright
