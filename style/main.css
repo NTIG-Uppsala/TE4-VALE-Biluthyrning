@@ -14,14 +14,23 @@ a {
     word-break: keep-all;
 }
 
+button, input {
+    font-family: inherit;
+}
+
 img {
     -webkit-user-drag: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--header-font);
+    font-weight: bold;  
 }
 
 body {
     background-color: var(--primary-dark);
     color: var(--primary-light);
-    font-family: sans-serif;
+    font-family: var(--body-font);
     text-align: center;
 
     display: flex;
@@ -104,13 +113,13 @@ body {
             margin-bottom: 5rem;
 
             &>h1 {
-                margin-bottom: 0.8rem;
+                margin-bottom: 0.3rem;
 
                 max-width: 50dvw;
             }
 
             &>h2 {
-                margin-bottom: 0.8rem;
+                margin-bottom: 0.3rem;
             }
 
             &>p {
@@ -126,13 +135,14 @@ body {
             &>p:first-of-type {
                 font-size: 1.1rem;
                 margin-bottom: 0.5rem;
+                font-weight: 400;
 
                 max-width: 70%;
             }
 
             &>p:last-of-type {
                 font-size: 0.8rem;
-                font-weight: lighter;
+                font-weight: 300;
             }
         }
 
@@ -146,7 +156,6 @@ body {
                     height: 100%;
                     border: none;
                     margin: 0;
-                    font: inherit;
                     -moz-appearance: textfield;
 
                     &::-webkit-outer-spin-button {
@@ -161,7 +170,6 @@ body {
                 }
 
                 &>.button {
-                    font: inherit;
                     background-color: var(--primary-accent);
                     border: none;
                     color: var(--primary-light);
@@ -169,13 +177,6 @@ body {
                     height: 100%;
                     margin: 0;
                 }
-            }
-
-            &>p {
-                height: 2rem;
-                margin: 0.5rem;
-                font-size: 0.8rem;
-                font-weight: lighter;
             }
         }
     }
