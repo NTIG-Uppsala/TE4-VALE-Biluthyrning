@@ -107,25 +107,25 @@ const refreshDynamicOpenStatus = () => {
     let openStatusString = "Kolla våra öppettider för att se när vi har öppet.";
 
     if (now < followingDays[0].opening.date) {
-        openStatusString = `Vi öppnar kl. ${formatTimeString(followingDays[0].opening.string)} idag.`;
+        openStatusString = `Vi öppnar kl. ${formatTimeString(followingDays[0].opening.string)} idag`;
     } else if (now < followingDays[0].closing.date) {
-        openStatusString = `Vi har öppet nu och stänger kl. ${formatTimeString(followingDays[0].closing.string)}.`;
+        openStatusString = `Vi har öppet nu och stänger kl. ${formatTimeString(followingDays[0].closing.string)}`;
     } else {
         const nextOpenDay = followingDays.slice(1).filter(day => day.closing.date && day.opening.date)[0]
 
         if (followingDays[0].holiday) {
-            openStatusString = `Vi har stängt på ${followingDays[0].holiday}.`;
-        } else if (followingDays[0].closing.string && !followingDays[0].holiday) {
-            openStatusString = `Vi har stängt för dagen.`;
+            openStatusString = `Vi har stängt på ${followingDays[0].holiday}`;
+        } else if (followingDays[0].closing.string) {
+            openStatusString = `Vi har stängt för dagen`;
         } else {
-            openStatusString = `Vi har stängt idag.`;
+            openStatusString = `Vi har stängt idag`;
         }
 
         openStatusString += `<br> Vi öppnar igen på ${nextOpenDay.name.singular} kl. ${formatTimeString(nextOpenDay.opening.string)}`
     }
 
     const openStatusTag = document.querySelector("p.open-status");
-    openStatusTag.textContent = openStatusString;
+    openStatusTag.innerHTML = openStatusString;
 }
 
 refreshDynamicOpenStatus();
