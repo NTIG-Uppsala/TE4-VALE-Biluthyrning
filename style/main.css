@@ -14,7 +14,8 @@ a {
     word-break: keep-all;
 }
 
-button, input {
+button,
+input {
     font-family: inherit;
 }
 
@@ -22,9 +23,14 @@ img {
     -webkit-user-drag: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--header-font);
-    font-weight: bold;  
+    font-weight: bold;
 }
 
 body {
@@ -197,10 +203,20 @@ body {
         justify-content: space-between;
 
         &>#copyright-info {
+            margin-top: 5rem;
+
             justify-self: end;
         }
 
         &>address {
+            &>strong {
+                font-size: 1.1rem;
+            }
+
+            &>#dates-closed {
+                font-weight: 300;
+            }
+
             &>.social-media-container {
                 display: flex;
                 flex-flow: row nowrap;
@@ -219,15 +235,6 @@ body {
                         height: 100%;
                     }
                 }
-            }
-
-            &>strong {
-                font-size: 1.1rem;
-            }
-
-            &>#dates-closed {
-                font-size: 0.8rem;
-                font-weight: lighter;
             }
         }
     }
