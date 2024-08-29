@@ -32,27 +32,30 @@
 <body>
 
     <header>
-        <div class="logo-name-wrapper">
+        <div>
             <p><strong>NTB Hyr</strong></p>
         </div>
     </header>
 
     <main>
-        <div class="background-img-wrapper">
-            <img class="background-img" src="assets/pictures/row_of_cars_no_car_no_pillar1080.jpeg" alt="Bakgrundsbild">
-        </div>
 
-        <section class="paragraph-section">
+        <section class="welcome-section">
+            <div id="background-image">
+                <img src="assets/pictures/row_of_cars_no_car_no_pillar1080.jpeg" alt="Bakgrundsbild">
+            </div>
+
             <h1>Välkommen till NTB Biluthyrning</h1>
-            <p>Ring oss på <a href="tel:+46630555555">
-                    +46&nbsp;63&#8209;055&nbsp;55&nbsp;55</a> för att reservera din bil
+            <p>
+                Ring oss på
+                <a href="tel:+46630555555">+46&nbsp;63&#8209;055&nbsp;55&nbsp;55</a>
+                för att reservera din bil
             </p>
         </section>
 
-        <section class="paragraph-section open-hours-section">
+        <section>
             <h2>Öppettider</h2>
 
-            <p class="open-status paragraph">Kolla våra öppettider på botten av sidan</p>
+            <p id="dynamic-opening-hours-tag">Kolla våra öppettider på botten av sidan</p>
             <table>
                 <tbody>
                     <tr>
@@ -71,57 +74,64 @@
             </table>
         </section>
 
-        <section class="home-delivery-section background-img-wrapper paragraph-section">
+        <section class="delivery-section" style="display: none;">
+            <!-- Unhides this section if js is enabled, otherwise it will be hidden -->
+            <script>document.querySelector(".delivery-section").style.display = "flex"</script>
+
             <h2>Utkörning</h2>
 
             <p>Vi kör ut till vissa postnummer, kolla om vi kör ut till dig</p>
 
-            <img id="map-img" class="background-img" src="assets/pictures/car_on_map.jpg" alt="Bakgrundsbild">
-
-            <div class="input-wrapper">
-                <input type="number" id="zip-input" placeholder=" Postnummer">
-                <button class="button" id="zip-button">Sök</button>
+            <div id="background-image">
+                <img src="assets/pictures/car_on_map1080.jpg" alt="Bakgrundsbild">
             </div>
 
-            <p id="zip-response"></p>
+            <div class="input-container">
+                <input type="number" placeholder=" Postnummer">
+                <button>Sök</button>
+            </div>
+
+            <p id="delivery-status-tag">Skriv in ditt postnumret ovan för att se om vi levererar</p>
         </section>
     </main>
 
     <footer>
+        <div>
+            <a href="https://facebook.com/ntiuppsala">
+                <img src="assets/icons/icons8-facebook-material-outlined/icons8-facebook-192.png"
+                    data-source="https://icons8.com/icon/85330/facebook" alt="Facebook">
+            </a>
+            <a href="https://instagram.com/ntiuppsala">
+                <img src="assets/icons/icons8-instagram-material-outlined/icons8-instagram-192.png"
+                    data-source="https://icons8.com/icon/85342/instagram" alt="Instagram">
+            </a>
+            <a href="https://x.com/ntiuppsala">
+                <img src="assets/icons/icons8-twitterx-material-outlined/icons8-twitterx-192.png"
+                    data-source="https://icons8.com/icon/AsTsQrvtZVNv/twitterx" alt="X/Twitter">
+            </a>
+        </div>
+
         <address>
-            <div class="social-media-container">
-                <a href="https://facebook.com/ntiuppsala">
-                    <img src="assets/icons/icons8-facebook-material-outlined/icons8-facebook-192.png"
-                        data-source="https://icons8.com/icon/85330/facebook" alt="Facebook" />
-                </a>
-                <a href="https://instagram.com/ntiuppsala">
-                    <img src="assets/icons/icons8-instagram-material-outlined/icons8-instagram-192.png"
-                        data-source="https://icons8.com/icon/85342/instagram" alt="Instagram" />
-                </a>
-                <a href="https://x.com/ntiuppsala">
-                    <img src="assets/icons/icons8-twitterx-material-outlined/icons8-twitterx-192.png"
-                        data-source="https://icons8.com/icon/AsTsQrvtZVNv/twitterx" alt="X/Twitter" />
-                </a>
-            </div>
-            <br />
-            <strong>Telefon</strong> <br />
+            <strong>Telefon</strong>
+            <br>
             <a href="tel:+46630555555">+46&nbsp;63&#8209;055&nbsp;55&nbsp;55</a>
-            <br />
-            <br />
 
-            <strong>E-post</strong> <br />
-            <a href="mailto:info@ntbhyr.se">info@ntbhyr.se</a> <br />
-            <br />
+            <br><br>
 
-            <strong>Adress</strong> <br />
+            <strong>E-post</strong>
+            <br>
+            <a href="mailto:info@ntbhyr.se">info@ntbhyr.se</a> <br>
+
+            <br>
+
+            <strong>Adress</strong>
+            <br>
             <a href="https://maps.app.goo.gl/5c7N2tctTDWgJgYr7">
                 Fjällgatan 32H, 981 39 Kiruna
-                >>>>>>> Stashed changes
             </a>
-            <br />
-            <br />
         </address>
-        <p><strong>Öppettider</strong></p>
+
+        <strong>Öppettider</strong> <br class="insert-open-hours-after">
         <table>
             <tbody>
                 <tr>
@@ -139,18 +149,21 @@
             </tbody>
         </table>
 
-        <p><strong>Avvikande tider</strong></p>
-        <p id="dates-closed">
-            1 januari, Nyårsdagen Stängt <br />
-            6 januari, Trettondedagen jul Stängt <br />
-            1 maj, Första maj Stängt <br />
-            6 juni, Nationaldagen Stängt <br />
-            24 december, Julafton Stängt <br />
-            25 december, Juldagen Stängt <br />
-            26 december, Annandag jul Stängt <br />
-            31 december, Nyårsafton Stängt <br />
+        <p>Avvikande tider</p>
+        <p>
+            <span>
+                1 januari, Nyårsdagen Stängt <br>
+                6 januari, Trettondedagen jul Stängt <br>
+                1 maj, Första maj Stängt <br>
+                6 juni, Nationaldagen Stängt <br>
+                24 december, Julafton Stängt <br>
+                25 december, Juldagen Stängt <br>
+                26 december, Annandag jul Stängt <br>
+                31 december, Nyårsafton Stängt <br>
+            </span>
         </p>
-        <p id="copyright-info">© 2024 NTB Biluthyrning</p>
+
+        <p>© 2024 NTB Biluthyrning</p>
     </footer>
 </body>
 

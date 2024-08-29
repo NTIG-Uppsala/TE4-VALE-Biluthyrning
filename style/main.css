@@ -12,6 +12,7 @@ a {
     }
 
     word-break: keep-all;
+
 }
 
 button,
@@ -38,10 +39,12 @@ table {
     min-width: 20ch;
     border-collapse: collapse;
     align-self: center;
+
     &>tbody>tr {
         &:not(:last-of-type) {
             border-bottom: 1px solid var(--primary-light);
         }
+
         &>td {
             padding: 0.4rem 0.2rem;
             font-size: 0.9rem;
@@ -49,6 +52,7 @@ table {
             &:first-of-type {
                 text-align: left;
             }
+
             &:last-of-type {
                 text-align: right;
             }
@@ -89,25 +93,9 @@ body {
 
             font-family: var(--header-font);
         }
-
-        &>nav {
-            display: flex;
-            flex-flow: row nowrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-
-            /* TEMP */
-            display: none;
-
-            &>a {
-                font-size: 1.1rem;
-                font-weight: bold;
-            }
-        }
     }
 
-    &>main {
+    /* &>main {
         width: 100vw;
         max-width: 100%;
 
@@ -206,7 +194,99 @@ body {
                 }
             }
         }
+    } */
+
+    &>main {
+        width: 100svw;
+        max-width: 100%;
+
+
+        &>section {
+            width: 100%;
+
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+
+            margin-bottom: 6rem;
+
+            &>#background-image {
+                width: 100%;
+                height: 100%;
+                max-height: 70svh;
+                overflow-y: hidden;
+
+                &>img {
+                    width: 100%;
+                }
+            }
+
+            &>h1 {
+                margin-top: 1rem;
+            }
+
+            &>h2 {
+                margin-bottom: 0.3rem;
+            }
+
+            &>p {
+                margin-top: 0.3rem;
+                margin-bottom: 0.3rem;
+            }
+
+            &>h1,
+            &>h2,
+            &>p {
+                max-width: 65dvw;
+            }
+        }
+
+        &>.delivery-section {
+
+            &>#background-image {
+                max-height: 60svh;
+                display: flex;
+
+                &>img {
+                    align-self: center;
+                    justify-self: center;
+                }
+            }
+
+            &>.input-container {
+                margin: 0.3rem;
+                
+                display: flex;
+
+                &>input[type="number"] {
+                    height: 100%;
+                    border: none;
+                    margin: 0;
+                    -moz-appearance: textfield;
+                    appearance: textfield;
+
+                    &::-webkit-outer-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                    }
+
+                    &::-webkit-inner-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                    }
+                }
+
+                &>button {
+                    background-color: var(--primary-accent);
+                    border: none;
+                    color: var(--primary-light);
+                    padding: 0 3px;
+                    height: 100%;
+                }
+            }
+        }
     }
+
 
     &>footer {
         background-color: var(--secondary-dark);
