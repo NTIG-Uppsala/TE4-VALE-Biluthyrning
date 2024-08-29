@@ -234,9 +234,9 @@ class TestIndex(unittest.TestCase):
         self.helpTestCustomTime(2024, 9, 1, 17, ["stängt", "öppnar", "måndag", "10:00"])
 
     def testZIPCode(self: "TestIndex") -> None:
-        zip_input = self.page.query_selector("#zip-input")
-        zip_button = self.page.query_selector("#zip-button")
-        zip_output = self.page.query_selector("#zip-response")
+        zip_input = self.page.query_selector(".delivery-section>.input-container>input")
+        zip_button = self.page.query_selector(".delivery-section>.input-container>button")
+        zip_output = self.page.query_selector("#delivery-status-tag")
         available_zips = [
             "98138",
             "98140",
@@ -250,7 +250,7 @@ class TestIndex(unittest.TestCase):
         self.assertIsNotNone(zip_button)
         self.assertIsNotNone(zip_output)
         self.assertEqual("", zip_input.input_value())
-        self.assertEqual("", zip_output.text_content())
+        self.assertNotEqual("", zip_output.text_content())
         zip_input.fill("74431")
         zip_button.click()
         self.assertIn("levererar inte", zip_output.text_content())

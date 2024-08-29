@@ -12,6 +12,7 @@ a {
     }
 
     word-break: keep-all;
+
 }
 
 button,
@@ -33,15 +34,17 @@ h6 {
     font-weight: bold;
 }
 
-table {
+table.open-hours-table {
     width: 15dvw;
     min-width: 20ch;
     border-collapse: collapse;
     align-self: center;
+
     &>tbody>tr {
         &:not(:last-of-type) {
             border-bottom: 1px solid var(--primary-light);
         }
+
         &>td {
             padding: 0.4rem 0.2rem;
             font-size: 0.9rem;
@@ -49,6 +52,7 @@ table {
             &:first-of-type {
                 text-align: left;
             }
+
             &:last-of-type {
                 text-align: right;
             }
@@ -89,64 +93,35 @@ body {
 
             font-family: var(--header-font);
         }
-
-        &>nav {
-            display: flex;
-            flex-flow: row nowrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-
-            /* TEMP */
-            display: none;
-
-            &>a {
-                font-size: 1.1rem;
-                font-weight: bold;
-            }
-        }
     }
 
     &>main {
-        width: 100vw;
+        width: 100svw;
         max-width: 100%;
 
-        &>.background-img-wrapper {
-            width: 100dvw;
-            max-width: 100%;
-            max-height: 70vh;
+        &>section {
+            width: 100%;
 
-            overflow-y: hidden;
-
-            &>.background-img {
-                width: 100dvw;
-                max-width: 100%;
-                height: 100%;
-            }
-
-            &>#map-img {
-                width: auto;
-                max-height: 50vh;
-                padding: 1rem;
-            }
-        }
-
-        &>.paragraph-section {
             display: flex;
             flex-flow: column nowrap;
             align-items: center;
 
-            padding-top: 1.5rem;
+            margin-bottom: 6rem;
 
-            width: 100vw;
-            max-width: 100%;
-            height: max-content;
-            margin-bottom: 5rem;
+            &>.background-image {
+                width: 100%;
+                max-width: 100%;
+                height: 100%;
+                max-height: 70svh;
+                overflow-y: hidden;
+
+                &>img {
+                    width: 100%;
+                }
+            }
 
             &>h1 {
-                margin-bottom: 0.3rem;
-
-                max-width: 50dvw;
+                margin-top: 1rem;
             }
 
             &>h2 {
@@ -154,31 +129,41 @@ body {
             }
 
             &>p {
-                max-width: 50dvw;
-            }
-        }
-
-        &>.open-hours-section {
-            display: flex;
-            flex-flow: column nowrap;
-            align-items: center;
-
-            &>p:first-of-type {
-                font-size: 1.1rem;
+                margin-top: 0.3rem;
                 margin-bottom: 0.5rem;
-                font-weight: 400;
+            }
 
-                max-width: 70%;
+            &>h1,
+            &>h2,
+            &>p {
+                max-width: 65dvw;
             }
         }
 
-        &>.home-delivery-section {
-            &>.input-wrapper {
-                display: flex;
-                height: 20px;
-                margin: 0;
+        &>.opening-hours-section>table {
+            margin: 1rem;
+        }
 
-                &>#zip-input {
+        &>.delivery-section {
+
+            &>.background-image {
+                max-width: 100%;
+                max-height: 60svh;
+                display: flex;
+
+                &>img {
+                    align-self: center;
+                    justify-self: center;
+                }
+            }
+
+            &>.input-container {
+                margin: 0.3rem;
+                margin-top: 0.6rem;
+
+                display: flex;
+
+                &>input[type="number"] {
                     height: 100%;
                     border: none;
                     margin: 0;
@@ -196,17 +181,17 @@ body {
                     }
                 }
 
-                &>.button {
+                &>button {
                     background-color: var(--primary-accent);
                     border: none;
                     color: var(--primary-light);
                     padding: 0 3px;
                     height: 100%;
-                    margin: 0;
                 }
             }
         }
     }
+
 
     &>footer {
         background-color: var(--secondary-dark);
@@ -214,47 +199,61 @@ body {
         width: 100dvw;
         max-width: 100%;
         min-height: 100dvh;
+        height: auto;
 
         padding-top: 1.8rem;
 
         display: flex;
         flex-flow: column nowrap;
-        justify-content: space-between;
 
-        &>#copyright-info {
-            margin-top: 5rem;
-
-            justify-self: end;
+        & strong {
+            font-size: 1.1rem;
         }
 
+        &>div {
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+
+            gap: 0.5rem;
+        }
+        
+        &>div,
         &>address {
-            &>strong {
-                font-size: 1.1rem;
-            }
+            margin-bottom: 3rem;
+        }
 
-            &>#dates-closed {
-                font-weight: 300;
-            }
+        &>#social-media-container {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1ch;
 
-            &>.social-media-container {
-                display: flex;
-                flex-flow: row nowrap;
-                justify-content: center;
-                align-items: center;
-                gap: 1ch;
+            &>a {
+                font-style: none;
 
-                &>a {
-                    font-style: none;
+                aspect-ratio: 1/1;
+                height: 3rem;
 
-                    aspect-ratio: 1/1;
-                    height: 3rem;
-
-                    &>img {
-                        width: 100%;
-                        height: 100%;
-                    }
+                &>img {
+                    width: 100%;
+                    height: 100%;
                 }
             }
+        }
+
+        &>#closed-dates-container>p {
+            font-weight: 300;
+        }
+
+        &>#copyright-info {
+            font-weight: 300;
+
+            justify-self: end;
+
+            margin-top: 10vh;
+            margin-bottom: 70vh;
         }
     }
 }

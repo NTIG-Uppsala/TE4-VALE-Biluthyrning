@@ -1,7 +1,7 @@
-
-const zipInputField = document.querySelector("#zip-input");
-const zipSubmitButton = document.querySelector("#zip-button");
-const zipOutput = document.querySelector("#zip-response");
+const deliverySection = document.querySelector(".delivery-section")
+const zipInputField = deliverySection.querySelector(".input-container>input");
+const zipSubmitButton = deliverySection.querySelector(".input-container>button");
+const zipOutput = deliverySection.querySelector("#delivery-status-tag");
 /**
  * Checks if the ZIP code is valid and if it is in the list of ZIP codes.
  */
