@@ -40,7 +40,7 @@
     <main>
 
         <section class="welcome-section">
-            <div id="background-image">
+            <div class="background-image">
                 <img src="assets/pictures/row_of_cars_no_car_no_pillar1080.jpeg" alt="Bakgrundsbild">
             </div>
 
@@ -52,11 +52,11 @@
             </p>
         </section>
 
-        <section>
+        <section class="opening-hours-section">
             <h2>Öppettider</h2>
 
             <p id="dynamic-opening-hours-tag">Kolla våra öppettider på botten av sidan</p>
-            <table>
+            <table class="open-hours-table">
                 <tbody>
                     <tr>
                         <td>Måndag - fredag</td>
@@ -72,6 +72,8 @@
                     </tr>
                 </tbody>
             </table>
+
+            <a href="#closed-dates-container">Se våra avvikande öppettider</a>
         </section>
 
         <section class="delivery-section" style="display: none;">
@@ -82,7 +84,7 @@
 
             <p>Vi kör ut till vissa postnummer, kolla om vi kör ut till dig</p>
 
-            <div id="background-image">
+            <div class="background-image">
                 <img src="assets/pictures/car_on_map1080.jpg" alt="Bakgrundsbild">
             </div>
 
@@ -91,12 +93,12 @@
                 <button>Sök</button>
             </div>
 
-            <p id="delivery-status-tag">Skriv in ditt postnumret ovan för att se om vi levererar</p>
+            <p id="delivery-status-tag">Skriv in ditt postnumret ovan för att se om vi levererar dit</p>
         </section>
     </main>
 
     <footer>
-        <div>
+        <div id="social-media-container">
             <a href="https://facebook.com/ntiuppsala">
                 <img src="assets/icons/icons8-facebook-material-outlined/icons8-facebook-192.png"
                     data-source="https://icons8.com/icon/85330/facebook" alt="Facebook">
@@ -131,27 +133,29 @@
             </a>
         </address>
 
-        <strong>Öppettider</strong> <br class="insert-open-hours-after">
-        <table>
-            <tbody>
-                <tr>
-                    <td>Måndag - fredag</td>
-                    <td>10-16</td>
-                </tr>
-                <tr>
-                    <td>Lördag</td>
-                    <td>12-15</td>
-                </tr>
-                <tr>
-                    <td>Söndag</td>
-                    <td>Stängt</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="opening-hours-container">
+            <p><strong>Öppettider</strong></p>
+            <table class="open-hours-table">
+                <tbody>
+                    <tr>
+                        <td>Måndag - fredag</td>
+                        <td>10-16</td>
+                    </tr>
+                    <tr>
+                        <td>Lördag</td>
+                        <td>12-15</td>
+                    </tr>
+                    <tr>
+                        <td>Söndag</td>
+                        <td>Stängt</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-        <p>Avvikande tider</p>
-        <p>
-            <span>
+        <div id="closed-dates-container">
+            <p><strong>Avvikande tider</strong></p>
+            <p>
                 1 januari, Nyårsdagen Stängt <br>
                 6 januari, Trettondedagen jul Stängt <br>
                 1 maj, Första maj Stängt <br>
@@ -160,10 +164,10 @@
                 25 december, Juldagen Stängt <br>
                 26 december, Annandag jul Stängt <br>
                 31 december, Nyårsafton Stängt <br>
-            </span>
-        </p>
+            </p>
+        </div>
 
-        <p>© 2024 NTB Biluthyrning</p>
+        <p id="copyright-info">© 2024 NTB Biluthyrning</p>
     </footer>
 </body>
 
