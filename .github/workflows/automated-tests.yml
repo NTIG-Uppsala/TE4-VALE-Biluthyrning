@@ -43,6 +43,7 @@ jobs:
               run: |
                   pip install pytest-playwright
                   pip install playwright
+                  pip install pytest-json-report
                   playwright install
 
             - name: Run tests with pytest-playwright
