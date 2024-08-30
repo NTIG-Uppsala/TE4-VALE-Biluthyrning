@@ -95,6 +95,44 @@ const refreshDynamicOpenStatus = () => {
 
     const openStatusTag = document.getElementById("dynamic-opening-hours-tag");
     openStatusTag.innerHTML = openStatusString;
+
+    // Create a copy of the opening hours list where multiple consecutive days with the same opening hours are combined into a single entry (e.g. "Måndag - onsdag"). Start with monday.
+    // Example output:
+    // [
+    //     { name: "Måndag - fredag", from: "1000", to: "1600", indexes: [1, 2, 3, 4, 5] },
+    //     { name: "Lördag", from: "1200", to: "1500", indexes: [6] },
+    //     { name: "Söndag", from: false, to: false, indexes: [0] },
+    // ]
+    const combinedOpenHours = [];
+    let currentCombinedDay = {
+        name: openHoursTodayFirst[0].name,
+        from: openHoursTodayFirst[0].from,
+        to: openHoursTodayFirst[0].to,
+        indexes: [0],
+    };
+    for (let i = 1; i < openHoursTodayFirst.length; i++) {
+        if (
+            openHoursTodayFirst[i].from === currentCombinedDay.from &&
+            openHoursTodayFirst[i].to === currentCombinedDay.to
+        ) {
+            currentCombinedDay.name = `${currentCombinedDay.name} - ${
+                openHoursTodayFirst[i].name
+            }`;
+            currentCombinedDay.indexes.push(i);
+        } else {
+            combinedOpenHours.push(currentCombinedDay);
+            currentCombinedDay = {
+                name: openHoursTodayFirst[i].name,
+                from: openHoursTodayFirst[i].from,
+                to: openHoursTodayFirst[i].to,
+                indexes: [i],
+            };
+        }
+    }
+    combinedOpenHours.push(currentCombinedDay);
+
+    console.log(combinedOpenHours);
+    
 };
 
 refreshDynamicOpenStatus();
