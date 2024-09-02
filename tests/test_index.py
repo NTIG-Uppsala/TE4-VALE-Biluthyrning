@@ -130,9 +130,9 @@ class TestIndex(unittest.TestCase):
         self.helpTestMultiple(
             [
                 "Måndag - fredag",
-                "10-16",
+                "10:00 - 16:00",
                 "Lördag",
-                "12-15",
+                "12:00 - 15:00",
                 "Söndag",
                 "Stängt",
             ]
@@ -270,17 +270,22 @@ class TestIndex(unittest.TestCase):
 
     def testDateSorting(self: "TestIndex") -> None:
         open_hours_tables = self.page.query_selector_all(".open-hours-table")
+        self.assertGreater(len(open_hours_tables), 0)
         for table in open_hours_tables:
             self.helpSetCustomTime(2024, 8, 26, 9)
             trs = table.query_selector("tbody").query_selector_all("tr")
             self.assertEqual(
                 "Måndag - fredag", trs[0].query_selector_all("td")[0].text_content()
             )
-            self.assertEqual("10-16", trs[0].query_selector_all("td")[1].text_content())
+            self.assertEqual(
+                "10:00 - 16:00", trs[0].query_selector_all("td")[1].text_content()
+            )
             self.assertEqual(
                 "Lördag", trs[1].query_selector_all("td")[0].text_content()
             )
-            self.assertEqual("12-15", trs[1].query_selector_all("td")[1].text_content())
+            self.assertEqual(
+                "12:00 - 15:00", trs[1].query_selector_all("td")[1].text_content()
+            )
             self.assertEqual(
                 "Söndag", trs[2].query_selector_all("td")[0].text_content()
             )
@@ -292,11 +297,15 @@ class TestIndex(unittest.TestCase):
             self.assertEqual(
                 "Måndag - fredag", trs[0].query_selector_all("td")[0].text_content()
             )
-            self.assertEqual("10-16", trs[0].query_selector_all("td")[1].text_content())
+            self.assertEqual(
+                "10:00 - 16:00", trs[0].query_selector_all("td")[1].text_content()
+            )
             self.assertEqual(
                 "Lördag", trs[1].query_selector_all("td")[0].text_content()
             )
-            self.assertEqual("12-15", trs[1].query_selector_all("td")[1].text_content())
+            self.assertEqual(
+                "12:00 - 15:00", trs[1].query_selector_all("td")[1].text_content()
+            )
             self.assertEqual(
                 "Söndag", trs[2].query_selector_all("td")[0].text_content()
             )
@@ -308,11 +317,15 @@ class TestIndex(unittest.TestCase):
             self.assertEqual(
                 "Måndag - fredag", trs[0].query_selector_all("td")[0].text_content()
             )
-            self.assertEqual("10-16", trs[0].query_selector_all("td")[1].text_content())
+            self.assertEqual(
+                "10:00 - 16:00", trs[0].query_selector_all("td")[1].text_content()
+            )
             self.assertEqual(
                 "Lördag", trs[1].query_selector_all("td")[0].text_content()
             )
-            self.assertEqual("12-15", trs[1].query_selector_all("td")[1].text_content())
+            self.assertEqual(
+                "12:00 - 15:00", trs[1].query_selector_all("td")[1].text_content()
+            )
             self.assertEqual(
                 "Söndag", trs[2].query_selector_all("td")[0].text_content()
             )
@@ -324,11 +337,15 @@ class TestIndex(unittest.TestCase):
             self.assertEqual(
                 "Måndag - fredag", trs[0].query_selector_all("td")[0].text_content()
             )
-            self.assertEqual("10-16", trs[0].query_selector_all("td")[1].text_content())
+            self.assertEqual(
+                "10:00 - 16:00", trs[0].query_selector_all("td")[1].text_content()
+            )
             self.assertEqual(
                 "Lördag", trs[1].query_selector_all("td")[0].text_content()
             )
-            self.assertEqual("12-15", trs[1].query_selector_all("td")[1].text_content())
+            self.assertEqual(
+                "12:00 - 15:00", trs[1].query_selector_all("td")[1].text_content()
+            )
             self.assertEqual(
                 "Söndag", trs[2].query_selector_all("td")[0].text_content()
             )
@@ -340,11 +357,15 @@ class TestIndex(unittest.TestCase):
             self.assertEqual(
                 "Måndag - fredag", trs[0].query_selector_all("td")[0].text_content()
             )
-            self.assertEqual("10-16", trs[0].query_selector_all("td")[1].text_content())
+            self.assertEqual(
+                "10:00 - 16:00", trs[0].query_selector_all("td")[1].text_content()
+            )
             self.assertEqual(
                 "Lördag", trs[1].query_selector_all("td")[0].text_content()
             )
-            self.assertEqual("12-15", trs[1].query_selector_all("td")[1].text_content())
+            self.assertEqual(
+                "12:00 - 15:00", trs[1].query_selector_all("td")[1].text_content()
+            )
             self.assertEqual(
                 "Söndag", trs[2].query_selector_all("td")[0].text_content()
             )
@@ -356,7 +377,9 @@ class TestIndex(unittest.TestCase):
             self.assertEqual(
                 "Lördag", trs[0].query_selector_all("td")[0].text_content()
             )
-            self.assertEqual("12-15", trs[0].query_selector_all("td")[1].text_content())
+            self.assertEqual(
+                "12:00 - 15:00", trs[0].query_selector_all("td")[1].text_content()
+            )
             self.assertEqual(
                 "Söndag", trs[1].query_selector_all("td")[0].text_content()
             )
@@ -366,7 +389,9 @@ class TestIndex(unittest.TestCase):
             self.assertEqual(
                 "Måndag - fredag", trs[2].query_selector_all("td")[0].text_content()
             )
-            self.assertEqual("10-16", trs[2].query_selector_all("td")[1].text_content())
+            self.assertEqual(
+                "10:00 - 16:00", trs[2].query_selector_all("td")[1].text_content()
+            )
             self.helpSetCustomTime(2024, 9, 1, 9)
             trs = table.query_selector("tbody").query_selector_all("tr")
             self.assertEqual(
@@ -378,11 +403,15 @@ class TestIndex(unittest.TestCase):
             self.assertEqual(
                 "Måndag - fredag", trs[1].query_selector_all("td")[0].text_content()
             )
-            self.assertEqual("10-16", trs[1].query_selector_all("td")[1].text_content())
+            self.assertEqual(
+                "10:00 - 16:00", trs[1].query_selector_all("td")[1].text_content()
+            )
             self.assertEqual(
                 "Lördag", trs[2].query_selector_all("td")[0].text_content()
             )
-            self.assertEqual("12-15", trs[2].query_selector_all("td")[1].text_content())
+            self.assertEqual(
+                "12:00 - 15:00", trs[2].query_selector_all("td")[1].text_content()
+            )
 
 
 if __name__ == "__main__":

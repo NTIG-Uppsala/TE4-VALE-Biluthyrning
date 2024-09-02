@@ -95,44 +95,78 @@ const refreshDynamicOpenStatus = () => {
 
     const openStatusTag = document.getElementById("dynamic-opening-hours-tag");
     openStatusTag.innerHTML = openStatusString;
-
-    // Create a copy of the opening hours list where multiple consecutive days with the same opening hours are combined into a single entry (e.g. "Måndag - onsdag"). Start with monday.
-    // Example output:
-    // [
-    //     { name: "Måndag - fredag", from: "1000", to: "1600", indexes: [1, 2, 3, 4, 5] },
-    //     { name: "Lördag", from: "1200", to: "1500", indexes: [6] },
-    //     { name: "Söndag", from: false, to: false, indexes: [0] },
-    // ]
     const combinedOpenHours = [];
-    let currentCombinedDay = {
-        name: openHoursTodayFirst[0].name,
-        from: openHoursTodayFirst[0].from,
-        to: openHoursTodayFirst[0].to,
-        indexes: [0],
-    };
-    for (let i = 1; i < openHoursTodayFirst.length; i++) {
-        if (
-            openHoursTodayFirst[i].from === currentCombinedDay.from &&
-            openHoursTodayFirst[i].to === currentCombinedDay.to
-        ) {
-            currentCombinedDay.name = `${currentCombinedDay.name} - ${
-                openHoursTodayFirst[i].name
-            }`;
-            currentCombinedDay.indexes.push(i);
-        } else {
-            combinedOpenHours.push(currentCombinedDay);
-            currentCombinedDay = {
-                name: openHoursTodayFirst[i].name,
-                from: openHoursTodayFirst[i].from,
-                to: openHoursTodayFirst[i].to,
-                indexes: [i],
-            };
-        }
-    }
-    combinedOpenHours.push(currentCombinedDay);
+    let currentFrom;
+    let currentTo;
 
-    console.log(combinedOpenHours);
+    // Combine days with the same opening hours
+    openHoursMondayFirst.forEach((day, index) => {
+        if (day.from === currentFrom && day.to === currentTo) {
+            combinedOpenHours[combinedOpenHours.length - 1].indexes.push(
+                (index + 1) % 7
+            );
+            combinedOpenHours[combinedOpenHours.length - 1].name.push(day.name);
+        } else {
+            combinedOpenHours.push({
+                name: [day.name],
+                from: day.from,
+                to: day.to,
+                indexes: [(index + 1) % 7],
+            });
+            currentFrom = day.from;
+            currentTo = day.to;
+        }
+    });
+
+    // Format the day names
+    combinedOpenHours.forEach((day) => {
+        if (day.name.length > 1) {
+            day.name = `${day.name[0]} - ${day.name[
+                day.name.length - 1
+            ].toLowerCase()}`;
+        } else {
+            day.name = day.name[0];
+        }
+    });
+
+    const firstDay = combinedOpenHours.find((day) =>
+        day.indexes.includes(now.getDay())
+    );
+    console.log(firstDay);
+    for (let i = 0; i < combinedOpenHours.length; i++) {
+        if (combinedOpenHours[i] === firstDay) {
+            break;
+        }
+        combinedOpenHours.push(combinedOpenHours.shift());
+        console.log(combinedOpenHours);
+    }
+
+    // Order the days starting with today
+    // const orderedCombinedOpenHours = 
+
+    const tables = document.querySelectorAll(".open-hours-table");
     
+    // Update the tables
+    tables.forEach((table) => {
+        table.innerHTML = "<tbody></tbody>";
+        const tbody = table.querySelector("tbody");
+        combinedOpenHours.forEach((day) => {
+            const tr = document.createElement("tr");
+            const tdDay = document.createElement("td");
+            tdDay.textContent = day.name;
+            tr.appendChild(tdDay);
+            const tdTime = document.createElement("td");
+            if (day.from) {
+                tdTime.textContent = `${formatTimeString(
+                    day.from
+                )} - ${formatTimeString(day.to)}`;
+            } else {
+                tdTime.textContent = "Stängt";
+            }
+            tr.appendChild(tdTime);
+            tbody.appendChild(tr);
+        });
+    });
 };
 
 refreshDynamicOpenStatus();
