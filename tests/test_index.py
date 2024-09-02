@@ -2,6 +2,7 @@ import unittest
 from playwright.sync_api import sync_playwright
 from os import path
 
+
 class TestIndex(unittest.TestCase):
     """
     TestIndex class contains unit tests for the index page of the NTB Biluthyrning website.
@@ -59,8 +60,10 @@ class TestIndex(unittest.TestCase):
         self.playwright.stop()
 
     def setUp(self: "TestIndex") -> None:
-        self.page.goto(f"file://{path.abspath(path.join(path.dirname(__file__), "..", "index.html"))}")
-        self.page.wait_for_selector("#checkOpeningHoursJsCompleted", state="attached")
+        self.page.goto(
+            f"file://{path.abspath(path.join(path.dirname(__file__), "..", "index.html"))}")
+        self.page.wait_for_selector(
+            "#checkOpeningHoursJsCompleted", state="attached")
 
     def tearDown(self: "TestIndex") -> None:
         self.page.goto("about:blank")
@@ -151,19 +154,23 @@ class TestIndex(unittest.TestCase):
         )
 
     def testJsCompleted(self: "TestIndex") -> None:
-        self.assertIsNotNone(self.page.query_selector("#checkOpeningHoursJsCompleted"))
+        self.assertIsNotNone(self.page.query_selector(
+            "#checkOpeningHoursJsCompleted"))
 
     def testNoMissing(self: "TestIndex") -> None:
         self.assertNotIn("Missing", self.page.content())
 
     def testChristmasEve(self: "TestIndex") -> None:
-        self.helpTestCustomTime(2024, 12, 24, 12, ["Julafton", "fredag", "10:00"])
+        self.helpTestCustomTime(
+            2024, 12, 24, 12, ["Julafton", "fredag", "10:00"])
 
     def testChristmasDay(self: "TestIndex") -> None:
-        self.helpTestCustomTime(2024, 12, 25, 12, ["Juldagen", "fredag", "10:00"])
+        self.helpTestCustomTime(
+            2024, 12, 25, 12, ["Juldagen", "fredag", "10:00"])
 
     def testBoxingDay(self: "TestIndex") -> None:
-        self.helpTestCustomTime(2024, 12, 26, 12, ["Annandag jul", "fredag", "10:00"])
+        self.helpTestCustomTime(
+            2024, 12, 26, 12, ["Annandag jul", "fredag", "10:00"])
 
     def testAfternoonBeforeNewYear(self: "TestIndex") -> None:
         self.helpTestCustomTime(
@@ -171,19 +178,23 @@ class TestIndex(unittest.TestCase):
         )
 
     def testNewYear(self: "TestIndex") -> None:
-        self.helpTestCustomTime(2024, 12, 31, 12, ["Nyårsafton", "torsdag", "10:00"])
+        self.helpTestCustomTime(
+            2024, 12, 31, 12, ["Nyårsafton", "torsdag", "10:00"])
 
     def testNewYearDay(self: "TestIndex") -> None:
-        self.helpTestCustomTime(2025, 1, 1, 12, ["Nyårsdagen", "torsdag", "10:00"])
+        self.helpTestCustomTime(
+            2025, 1, 1, 12, ["Nyårsdagen", "torsdag", "10:00"])
 
     def testEpiphany(self: "TestIndex") -> None:
         self.helpTestCustomTime(2025, 1, 6, 12, ["Tretton", "tisdag", "10:00"])
 
     def testFirstOfMay(self: "TestIndex") -> None:
-        self.helpTestCustomTime(2025, 5, 1, 12, ["Första maj", "fredag", "10:00"])
+        self.helpTestCustomTime(
+            2025, 5, 1, 12, ["Första maj", "fredag", "10:00"])
 
     def testNationalDay(self: "TestIndex") -> None:
-        self.helpTestCustomTime(2025, 6, 6, 12, ["Nationaldagen", "lördag", "12:00"])
+        self.helpTestCustomTime(
+            2025, 6, 6, 12, ["Nationaldagen", "lördag", "12:00"])
 
     def testMonday(self: "TestIndex") -> None:
         self.helpTestCustomTime(2024, 8, 26, 9, ["öppnar", "10:00", "idag"])
@@ -228,23 +239,30 @@ class TestIndex(unittest.TestCase):
         )
 
     def testSunday(self: "TestIndex") -> None:
-        self.helpTestCustomTime(2024, 9, 1, 9, ["stängt", "öppnar", "måndag", "10:00"])
-        self.helpTestCustomTime(2024, 9, 1, 12, ["stängt", "öppnar", "måndag", "10:00"])
-        self.helpTestCustomTime(2024, 9, 1, 17, ["stängt", "öppnar", "måndag", "10:00"])
+        self.helpTestCustomTime(
+            2024, 9, 1, 9, ["stängt", "öppnar", "måndag", "10:00"])
+        self.helpTestCustomTime(
+            2024, 9, 1, 12, ["stängt", "öppnar", "måndag", "10:00"])
+        self.helpTestCustomTime(
+            2024, 9, 1, 17, ["stängt", "öppnar", "måndag", "10:00"])
 
     def testZIPCode(self: "TestIndex") -> None:
-        zip_input = self.page.query_selector(".delivery-section>.input-container>input")
-        zip_button = self.page.query_selector(".delivery-section>.input-container>button")
+        zip_input = self.page.query_selector(
+            ".delivery-section>.input-container>input")
+        zip_button = self.page.query_selector(
+            ".delivery-section>.input-container>button")
         zip_output = self.page.query_selector("#delivery-status-tag")
+
         available_zips = [
-            "98138",
-            "98140",
-            "98141",
-            "98144",
-            "98145",
-            "98146",
-            "98147",
+            {"zipCode": "98138", "price": 199},
+            {"zipCode": "98140", "price": 199},
+            {"zipCode": "98141", "price": 199},
+            {"zipCode": "98144", "price": 299},
+            {"zipCode": "98145", "price": 299},
+            {"zipCode": "98146", "price": 299},
+            {"zipCode": "98147", "price": 299},
         ]
+
         self.assertIsNotNone(zip_input)
         self.assertIsNotNone(zip_button)
         self.assertIsNotNone(zip_output)
@@ -260,7 +278,7 @@ class TestIndex(unittest.TestCase):
         zip_button.click()
         self.assertIn("ange ett postnummer", zip_output.text_content())
         for zip_code in available_zips:
-            zip_input.fill(zip_code)
+            zip_input.fill(zip_code["zipCode"])
             zip_button.click()
             self.assertIn("levererar till", zip_output.text_content())
 
