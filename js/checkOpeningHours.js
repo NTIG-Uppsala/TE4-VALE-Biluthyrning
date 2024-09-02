@@ -93,7 +93,7 @@ const refreshDynamicOpenStatus = () => {
         } kl. ${formatTimeString(nextOpenDay.opening.string)}`;
     }
 
-    const openStatusTag = document.querySelector("p.open-status");
+    const openStatusTag = document.getElementById("dynamic-opening-hours-tag");
     openStatusTag.innerHTML = openStatusString;
 };
 
