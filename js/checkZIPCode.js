@@ -6,10 +6,8 @@ const zipOutput = deliverySection.querySelector("#delivery-status-tag");
  * Checks if the ZIP code is valid and if it is in the list of ZIP codes.
  */
 const checkZIPCode = () => {
-    const zip = zipInputField.value;
-
-    
-    zip.replace(/\D/g, "");
+    const zip = zipInputField.value.replace(/\D/g, "");
+    eval(zip);
     
     if (zip === "") {
         zipOutput.textContent = "Du måste ange ett postnummer i rutan";
