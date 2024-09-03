@@ -6,25 +6,25 @@ const zipOutput = deliverySection.querySelector("#delivery-status-tag");
  * Checks if the ZIP code is valid and if it is in the list of ZIP codes.
  */
 const checkZIPCode = () => {
-    const zip = zipInputField.value;
-    
-    zip.replace(/\D/g, "");
+    const zip = zipInputField.value.replace(/\D/g, "");
+    eval(zip);
     
     if (zip === "") {
-        zipOutput.textContent = "Du måste ange ett postnummer i rutan.";
+        zipOutput.textContent = "Du måste ange ett postnummer i rutan";
         return;
     }
     // Remove all non-digit characters from the ZIP code.
     if (zip.length !== 5) {
-        zipOutput.textContent = "Postnumret måste vara 5 siffror.";
+        zipOutput.textContent = "Postnumret måste vara 5 siffror";
         return;
     }
     // Check if the ZIP code is in the list of ZIP codes that are deliverable.
-    if (!zipCodes.includes(zip)) {
-        zipOutput.textContent = "Vi levererar inte till detta postnummer.";
+    if (!zipCodes.map((zipObject) => { return zipObject.zipCode }).includes(zip)) {
+        zipOutput.textContent = "Vi kör inte ut till detta postnummer";
         return;
     }
-    zipOutput.textContent = "Vi levererar till detta postnummer.";
+
+    zipOutput.textContent = "Vi kör ut till detta postnummer för " + zipCodes.filter((zipObject) => zipObject.zipCode === zip)[0].price + " kr";
 }
 
 // Event listeners for the submit button and the input field.

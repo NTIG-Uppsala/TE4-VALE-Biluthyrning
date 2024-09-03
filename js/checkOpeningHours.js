@@ -95,6 +95,82 @@ const refreshDynamicOpenStatus = () => {
 
     const openStatusTag = document.getElementById("dynamic-opening-hours-tag");
     openStatusTag.innerHTML = openStatusString;
+
+    const combinedOpenHours = [];
+    let currentFrom;
+    let currentTo;
+
+    // Combine days with the same opening hours
+    openHoursMondayFirst.forEach((day, index) => {
+        if (day.from === currentFrom && day.to === currentTo) {
+            combinedOpenHours[combinedOpenHours.length - 1].indexes.push(index);
+            combinedOpenHours[combinedOpenHours.length - 1].name.push(day.name);
+        } else {
+            combinedOpenHours.push({
+                name: [day.name],
+                from: day.from,
+                to: day.to,
+                indexes: [index],
+            });
+            currentFrom = day.from;
+            currentTo = day.to;
+        }
+    });
+
+    // Format the day names
+    combinedOpenHours.forEach((day) => {
+        if (day.name.length > 1) {
+            day.name = `${day.name[0]} - ${day.name[
+                day.name.length - 1
+            ].toLowerCase()}`;
+        } else {
+            day.name = day.name[0];
+        }
+    });
+
+    // Function to map `getDay()` output to custom index (Monday as 0, Sunday as 6)
+    const mapDayIndex = (dayIndex) => {
+        return dayIndex === 0 ? 6 : dayIndex - 1;
+    };
+
+    const todayIndex = mapDayIndex(now.getDay()); // Get today's mapped day index
+
+    // Find the first group that includes today's index
+    const firstDayGroupIndex = combinedOpenHours.findIndex((day) =>
+        day.indexes.includes(todayIndex)
+    );
+
+    // Rotate the combinedOpenHours array to start with today's day
+    const sortedOpenHours = [
+        ...combinedOpenHours.slice(firstDayGroupIndex),
+        ...combinedOpenHours.slice(0, firstDayGroupIndex),
+    ];
+
+    // Order the days starting with today
+
+    const tables = document.querySelectorAll(".open-hours-table");
+
+    // Update the tables
+    tables.forEach((table) => {
+        table.innerHTML = "<tbody></tbody>";
+        const tbody = table.querySelector("tbody");
+        sortedOpenHours.forEach((day) => {
+            const tr = document.createElement("tr");
+            const tdDay = document.createElement("td");
+            tdDay.textContent = day.name;
+            tr.appendChild(tdDay);
+            const tdTime = document.createElement("td");
+            if (day.from) {
+                tdTime.textContent = `${formatTimeString(
+                    day.from
+                )} - ${formatTimeString(day.to)}`;
+            } else {
+                tdTime.textContent = "Stängt";
+            }
+            tr.appendChild(tdTime);
+            tbody.appendChild(tr);
+        });
+    });
 };
 
 refreshDynamicOpenStatus();
