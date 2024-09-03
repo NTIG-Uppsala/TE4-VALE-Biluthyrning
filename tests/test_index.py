@@ -144,13 +144,21 @@ class TestIndex(unittest.TestCase):
         self.helpTestMultiple(
             [
                 "1 januari",
+                "Nyårsdagen",
                 "6 januari",
+                "Tretton",
                 "1 maj",
+                "Första maj",
                 "6 juni",
+                "Nationaldagen",
                 "24 december",
+                "Julafton",
                 "25 december",
+                "Juldagen",
                 "26 december",
+                "Annandag",
                 "31 december",
+                "Nyårsafton",
             ]
         )
 
