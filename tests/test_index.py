@@ -459,7 +459,7 @@ class TestIndex(unittest.TestCase):
                     1].text_content()
             )
 
-    def testOurCars(self: "TestIndex") -> None:
+    def testOurCarsAndVat(self: "TestIndex") -> None:
         self.assertIn("Våra bilar", self.page.content())
         cars = [
             {"name": "Audi A6", "year": "2011", "price": "800 kr"},
