@@ -95,6 +95,7 @@ const refreshDynamicOpenStatus = () => {
 
     const openStatusTag = document.getElementById("dynamic-opening-hours-tag");
     openStatusTag.innerHTML = openStatusString;
+
     const combinedOpenHours = [];
     let currentFrom;
     let currentTo;
@@ -102,16 +103,14 @@ const refreshDynamicOpenStatus = () => {
     // Combine days with the same opening hours
     openHoursMondayFirst.forEach((day, index) => {
         if (day.from === currentFrom && day.to === currentTo) {
-            combinedOpenHours[combinedOpenHours.length - 1].indexes.push(
-                (index + 1) % 7
-            );
+            combinedOpenHours[combinedOpenHours.length - 1].indexes.push(index);
             combinedOpenHours[combinedOpenHours.length - 1].name.push(day.name);
         } else {
             combinedOpenHours.push({
                 name: [day.name],
                 from: day.from,
                 to: day.to,
-                indexes: [(index + 1) % 7],
+                indexes: [index],
             });
             currentFrom = day.from;
             currentTo = day.to;
@@ -129,28 +128,33 @@ const refreshDynamicOpenStatus = () => {
         }
     });
 
-    const firstDay = combinedOpenHours.find((day) =>
-        day.indexes.includes(now.getDay())
+    // Function to map `getDay()` output to custom index (Monday as 0, Sunday as 6)
+    const mapDayIndex = (dayIndex) => {
+        return dayIndex === 0 ? 6 : dayIndex - 1;
+    };
+
+    const todayIndex = mapDayIndex(now.getDay()); // Get today's mapped day index
+
+    // Find the first group that includes today's index
+    const firstDayGroupIndex = combinedOpenHours.findIndex((day) =>
+        day.indexes.includes(todayIndex)
     );
-    console.log(firstDay);
-    for (let i = 0; i < combinedOpenHours.length; i++) {
-        if (combinedOpenHours[i] === firstDay) {
-            break;
-        }
-        combinedOpenHours.push(combinedOpenHours.shift());
-        console.log(combinedOpenHours);
-    }
+
+    // Rotate the combinedOpenHours array to start with today's day
+    const sortedOpenHours = [
+        ...combinedOpenHours.slice(firstDayGroupIndex),
+        ...combinedOpenHours.slice(0, firstDayGroupIndex),
+    ];
 
     // Order the days starting with today
-    // const orderedCombinedOpenHours = 
 
     const tables = document.querySelectorAll(".open-hours-table");
-    
+
     // Update the tables
     tables.forEach((table) => {
         table.innerHTML = "<tbody></tbody>";
         const tbody = table.querySelector("tbody");
-        combinedOpenHours.forEach((day) => {
+        sortedOpenHours.forEach((day) => {
             const tr = document.createElement("tr");
             const tdDay = document.createElement("td");
             tdDay.textContent = day.name;
