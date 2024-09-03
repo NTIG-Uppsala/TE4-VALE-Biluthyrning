@@ -144,6 +144,68 @@ body {
             margin: 1rem;
         }
 
+        &>.our-cars-section {
+            &>.vat-container {
+                display: flex;
+                flex-flow: row nowrap;
+                margin: 1rem;
+
+                &>button {
+                    border: none;
+                    padding: 0.15rem;
+                    padding-right: 0.5rem;
+                    padding-left: 0.5rem;
+                    &.active {
+                        background-color: var(--primary-accent);
+                        color: var(--primary-light);
+                    }
+                }
+            }
+
+            &>table {
+                width: 15dvw;
+                min-width: 30ch;
+                border-collapse: collapse;
+                align-self: center;
+
+                &>thead>tr {
+                    border-bottom: 1px solid var(--primary-light);
+
+                    &>th {
+                        padding: 0.4rem 0.2rem;
+                        font-size: 0.9rem;
+
+                        &:first-of-type {
+                            text-align: left;
+                        }
+
+                        &:last-of-type {
+                            text-align: right;
+                        }
+                    }
+                }
+
+                &>tbody>tr {
+                    &:not(:last-of-type) {
+                        border-bottom: 1px solid var(--primary-light);
+                    }
+
+                    &>td {
+                        padding: 0.4rem 0.2rem;
+                        font-size: 0.9rem;
+
+                        &:first-of-type {
+                            text-align: left;
+                        }
+
+                        &:last-of-type {
+                            text-align: right;
+                        }
+                    }
+                }
+            }
+        }
+
         &>.delivery-section {
 
             &>.background-image {
@@ -185,7 +247,7 @@ body {
                     background-color: var(--primary-accent);
                     border: none;
                     color: var(--primary-light);
-                    padding: 0 3px;
+                    padding: 0 0.2rem;
                     height: 100%;
                 }
             }
@@ -217,7 +279,7 @@ body {
 
             gap: 0.5rem;
         }
-        
+
         &>div,
         &>address {
             margin-bottom: 3rem;

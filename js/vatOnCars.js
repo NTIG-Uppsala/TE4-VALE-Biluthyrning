@@ -1,29 +1,35 @@
-
-const buttonContainer = document.querySelector('.our-cars-section>.vat-container');
+const buttonContainer = document.querySelector(
+    ".our-cars-section>.vat-container"
+);
 
 const vat = 1.25;
 
-const prices = document.querySelectorAll('.our-cars-section>.price');
-const pricesVatIncluded = prices.map(price => price.textContent.toFixed(2));
-const pricesVatExcluded = prices.map(price => (price.textContent / vat).toFixed(2));
+const prices = Array.from(
+    document.querySelectorAll(".our-cars-section .price")
+);
+
+const pricesVatIncluded = prices.map(
+    (price) => parseInt(price.textContent).toFixed(0) + " kr"
+);
+const pricesVatExcluded = prices.map(
+    (price) => (parseInt(price.textContent) / vat).toFixed(0) + " kr"
+);
 
 
-
-buttonContainer.addEventListener("change", () => {
-    if (buttonContainer.children[1].classList.contains("active")) {
-        prices.forEach((price, index) => {
-            price.textContent = pricesVatIncluded[index];
-        });
-    } else {
-        prices.forEach((price, index) => {
-            price.textContent = pricesVatExcluded[index];
-        });
-    }
-});
-
-buttonContainer.children.forEach((button, index) => {
+Array.from(buttonContainer.children).forEach((button, index) => {
     button.addEventListener("click", () => {
-        buttonContainer.children.forEach(button => button.classList.remove("active"));
+        if (buttonContainer.children[1].classList.contains("active")) {
+            prices.forEach((price, index) => {
+                price.textContent = pricesVatIncluded[index];
+            });
+        } else {
+            prices.forEach((price, index) => {
+                price.textContent = pricesVatExcluded[index];
+            });
+        }
+        Array.from(buttonContainer.children).forEach((button) =>
+            button.classList.remove("active")
+        );
         button.classList.add("active");
     });
 });
