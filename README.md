@@ -22,7 +22,7 @@ To change which ZIP codes that are delivered to and their price change the [list
 
 To change the E-mail change the innerHTML and the value of the href-attribute of one element in the footer of the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/e0b33f2f1ffff5d1a3a0ac8d0b5031c1aa9de9b8/index.html) file.
 
-To change the Address change the innerHTML and the value of the href-attribute of one element in the footer of the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/e0b33f2f1ffff5d1a3a0ac8d0b5031c1aa9de9b8/index.html) file.
+To change the address change the innerHTML and the value of the href-attribute of one element in the footer of the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/e0b33f2f1ffff5d1a3a0ac8d0b5031c1aa9de9b8/index.html) file.
 
 ---
 
