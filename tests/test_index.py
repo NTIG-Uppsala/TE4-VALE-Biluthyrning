@@ -479,13 +479,16 @@ class TestIndex(unittest.TestCase):
         self.assertIsNotNone(our_cars_table)
 
         trs = our_cars_table.query_selector("tbody").query_selector_all("tr")
-        for tr in trs:
-            for car in cars:
-                self.assertEqual(car.name, tr.query_selector_all("td")[0].text_content())
-                self.assertEqual(car.year, tr.query_selector_all("td")[1].text_content())
-                self.assertEqual(car.price, tr.query_selector_all("td")[2].text_content())
+        for index, tr in enumerate(trs):
+            self.assertEqual(cars[index]["name"], tr.query_selector_all("td")[
+                0].text_content())
+            self.assertEqual(cars[index]["year"], tr.query_selector_all("td")[
+                1].text_content())
+            self.assertEqual(cars[index]["price"], tr.query_selector_all("td")[
+                2].text_content())
 
-        buttonContainer = self.page.query_selector(".our-cars-section>.vat-container")
+        buttonContainer = self.page.query_selector(
+            ".our-cars-section>.vat-container")
         self.assertIsNotNone(buttonContainer)
         self.assertIn("Moms", buttonContainer.text_content())
         self.assertIn("Exkl. moms", buttonContainer.text_content())
@@ -493,14 +496,17 @@ class TestIndex(unittest.TestCase):
         vatButton = buttonContainer.query_selector_all("button")[1]
         vatButton.click()
 
-        for tr in trs:
-            for car in cars:
-                self.assertEqual(car.name, tr.query_selector_all("td")[0].text_content())
-                self.assertEqual(car.year, tr.query_selector_all("td")[1].text_content())
-                self.assertNotEqual(car.price, tr.query_selector_all("td")[2].text_content())
-                priceInt = int(car.price.split(" ")[0]) / vat
-                self.assertEqual(str(priceInt) + " kr", tr.query_selector_all("td")[2].text_content())
-        
+        for index, tr in enumerate(trs):
+            self.assertEqual(cars[index]["name"], tr.query_selector_all("td")[
+                0].text_content())
+            self.assertEqual(cars[index]["year"], tr.query_selector_all("td")[
+                1].text_content())
+            self.assertNotEqual(
+                cars[index]["price"], tr.query_selector_all("td")[2].text_content())
+            priceInt = int(int(cars[index]["price"].split(" ")[0]) / vat)
+            self.assertEqual(str(priceInt) + " kr",
+                             tr.query_selector_all("td")[2].text_content())
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
