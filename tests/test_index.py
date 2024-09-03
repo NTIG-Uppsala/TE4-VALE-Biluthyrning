@@ -256,7 +256,8 @@ class TestIndex(unittest.TestCase):
             2024, 9, 1, 17, ["stängt", "öppnar", "måndag", "10:00"])
 
     def testZIPCode(self: "TestIndex") -> None:
-        zip_input = self.page.query_selector(".delivery-section>.input-container>input")
+        zip_input = self.page.query_selector(
+            ".delivery-section>.input-container>input")
         zip_button = self.page.query_selector(
             ".delivery-section>.input-container>button"
         )
@@ -299,16 +300,19 @@ class TestIndex(unittest.TestCase):
             self.helpSetCustomTime(2024, 8, 26, 9)
             trs = table.query_selector("tbody").query_selector_all("tr")
             self.assertEqual(
-                "Måndag - fredag", trs[0].query_selector_all("td")[0].text_content()
+                "Måndag - fredag", trs[0].query_selector_all("td")[
+                    0].text_content()
             )
             self.assertEqual(
-                "10:00 - 16:00", trs[0].query_selector_all("td")[1].text_content()
+                "10:00 - 16:00", trs[0].query_selector_all("td")[
+                    1].text_content()
             )
             self.assertEqual(
                 "Lördag", trs[1].query_selector_all("td")[0].text_content()
             )
             self.assertEqual(
-                "12:00 - 15:00", trs[1].query_selector_all("td")[1].text_content()
+                "12:00 - 15:00", trs[1].query_selector_all("td")[
+                    1].text_content()
             )
             self.assertEqual(
                 "Söndag", trs[2].query_selector_all("td")[0].text_content()
@@ -319,16 +323,19 @@ class TestIndex(unittest.TestCase):
             self.helpSetCustomTime(2024, 8, 27, 9)
             trs = table.query_selector("tbody").query_selector_all("tr")
             self.assertEqual(
-                "Måndag - fredag", trs[0].query_selector_all("td")[0].text_content()
+                "Måndag - fredag", trs[0].query_selector_all("td")[
+                    0].text_content()
             )
             self.assertEqual(
-                "10:00 - 16:00", trs[0].query_selector_all("td")[1].text_content()
+                "10:00 - 16:00", trs[0].query_selector_all("td")[
+                    1].text_content()
             )
             self.assertEqual(
                 "Lördag", trs[1].query_selector_all("td")[0].text_content()
             )
             self.assertEqual(
-                "12:00 - 15:00", trs[1].query_selector_all("td")[1].text_content()
+                "12:00 - 15:00", trs[1].query_selector_all("td")[
+                    1].text_content()
             )
             self.assertEqual(
                 "Söndag", trs[2].query_selector_all("td")[0].text_content()
@@ -339,16 +346,19 @@ class TestIndex(unittest.TestCase):
             self.helpSetCustomTime(2024, 8, 28, 9)
             trs = table.query_selector("tbody").query_selector_all("tr")
             self.assertEqual(
-                "Måndag - fredag", trs[0].query_selector_all("td")[0].text_content()
+                "Måndag - fredag", trs[0].query_selector_all("td")[
+                    0].text_content()
             )
             self.assertEqual(
-                "10:00 - 16:00", trs[0].query_selector_all("td")[1].text_content()
+                "10:00 - 16:00", trs[0].query_selector_all("td")[
+                    1].text_content()
             )
             self.assertEqual(
                 "Lördag", trs[1].query_selector_all("td")[0].text_content()
             )
             self.assertEqual(
-                "12:00 - 15:00", trs[1].query_selector_all("td")[1].text_content()
+                "12:00 - 15:00", trs[1].query_selector_all("td")[
+                    1].text_content()
             )
             self.assertEqual(
                 "Söndag", trs[2].query_selector_all("td")[0].text_content()
@@ -359,16 +369,19 @@ class TestIndex(unittest.TestCase):
             self.helpSetCustomTime(2024, 8, 29, 9)
             trs = table.query_selector("tbody").query_selector_all("tr")
             self.assertEqual(
-                "Måndag - fredag", trs[0].query_selector_all("td")[0].text_content()
+                "Måndag - fredag", trs[0].query_selector_all("td")[
+                    0].text_content()
             )
             self.assertEqual(
-                "10:00 - 16:00", trs[0].query_selector_all("td")[1].text_content()
+                "10:00 - 16:00", trs[0].query_selector_all("td")[
+                    1].text_content()
             )
             self.assertEqual(
                 "Lördag", trs[1].query_selector_all("td")[0].text_content()
             )
             self.assertEqual(
-                "12:00 - 15:00", trs[1].query_selector_all("td")[1].text_content()
+                "12:00 - 15:00", trs[1].query_selector_all("td")[
+                    1].text_content()
             )
             self.assertEqual(
                 "Söndag", trs[2].query_selector_all("td")[0].text_content()
@@ -379,16 +392,19 @@ class TestIndex(unittest.TestCase):
             self.helpSetCustomTime(2024, 8, 30, 9)
             trs = table.query_selector("tbody").query_selector_all("tr")
             self.assertEqual(
-                "Måndag - fredag", trs[0].query_selector_all("td")[0].text_content()
+                "Måndag - fredag", trs[0].query_selector_all("td")[
+                    0].text_content()
             )
             self.assertEqual(
-                "10:00 - 16:00", trs[0].query_selector_all("td")[1].text_content()
+                "10:00 - 16:00", trs[0].query_selector_all("td")[
+                    1].text_content()
             )
             self.assertEqual(
                 "Lördag", trs[1].query_selector_all("td")[0].text_content()
             )
             self.assertEqual(
-                "12:00 - 15:00", trs[1].query_selector_all("td")[1].text_content()
+                "12:00 - 15:00", trs[1].query_selector_all("td")[
+                    1].text_content()
             )
             self.assertEqual(
                 "Söndag", trs[2].query_selector_all("td")[0].text_content()
@@ -402,7 +418,8 @@ class TestIndex(unittest.TestCase):
                 "Lördag", trs[0].query_selector_all("td")[0].text_content()
             )
             self.assertEqual(
-                "12:00 - 15:00", trs[0].query_selector_all("td")[1].text_content()
+                "12:00 - 15:00", trs[0].query_selector_all("td")[
+                    1].text_content()
             )
             self.assertEqual(
                 "Söndag", trs[1].query_selector_all("td")[0].text_content()
@@ -411,10 +428,12 @@ class TestIndex(unittest.TestCase):
                 "Stängt", trs[1].query_selector_all("td")[1].text_content()
             )
             self.assertEqual(
-                "Måndag - fredag", trs[2].query_selector_all("td")[0].text_content()
+                "Måndag - fredag", trs[2].query_selector_all("td")[
+                    0].text_content()
             )
             self.assertEqual(
-                "10:00 - 16:00", trs[2].query_selector_all("td")[1].text_content()
+                "10:00 - 16:00", trs[2].query_selector_all("td")[
+                    1].text_content()
             )
             self.helpSetCustomTime(2024, 9, 1, 9)
             trs = table.query_selector("tbody").query_selector_all("tr")
@@ -425,18 +444,63 @@ class TestIndex(unittest.TestCase):
                 "Stängt", trs[0].query_selector_all("td")[1].text_content()
             )
             self.assertEqual(
-                "Måndag - fredag", trs[1].query_selector_all("td")[0].text_content()
+                "Måndag - fredag", trs[1].query_selector_all("td")[
+                    0].text_content()
             )
             self.assertEqual(
-                "10:00 - 16:00", trs[1].query_selector_all("td")[1].text_content()
+                "10:00 - 16:00", trs[1].query_selector_all("td")[
+                    1].text_content()
             )
             self.assertEqual(
                 "Lördag", trs[2].query_selector_all("td")[0].text_content()
             )
             self.assertEqual(
-                "12:00 - 15:00", trs[2].query_selector_all("td")[1].text_content()
+                "12:00 - 15:00", trs[2].query_selector_all("td")[
+                    1].text_content()
             )
 
+    def testOurCars(self: "TestIndex") -> None:
+        self.assertIn("Våra bilar", self.page.content())
+        cars = [
+            {"name": "Audi A6", "year": "2011", "price": "800 kr"},
+            {"name": "Audi S3", "year": "2015", "price": "450 kr"},
+            {"name": "Cadillac Escalade", "year": "1999", "price": "500 kr"},
+            {"name": "Kia Carens", "year": "2022", "price": "400 kr"},
+            {"name": "Kia Soul", "year": "2020", "price": "400 kr"},
+            {"name": "Mitsubishi Outlander", "year": "2018", "price": "450 kr"},
+            {"name": "Renault Kadjar", "year": "2020", "price": "250 kr"},
+            {"name": "Subaru Outback", "year": "2020", "price": "300 kr"},
+            {"name": "Volvo XC40", "year": "2018", "price": "800 kr"},
+            {"name": "VW Polo", "year": "2022", "price": "300 kr"},
+        ]
+        vat = 1.25
+
+        our_cars_table = self.page.query_selector(".our-cars-section>table")
+        self.assertIsNotNone(our_cars_table)
+
+        trs = our_cars_table.query_selector("tbody").query_selector_all("tr")
+        for tr in trs:
+            for car in cars:
+                self.assertEqual(car.name, tr.query_selector_all("td")[0].text_content())
+                self.assertEqual(car.year, tr.query_selector_all("td")[1].text_content())
+                self.assertEqual(car.price, tr.query_selector_all("td")[2].text_content())
+
+        buttonContainer = self.page.query_selector(".our-cars-section>.vat-container")
+        self.assertIsNotNone(buttonContainer)
+        self.assertIn("Moms", buttonContainer.text_content())
+        self.assertIn("Exkl. moms", buttonContainer.text_content())
+
+        vatButton = buttonContainer.query_selector_all("button")[1]
+        vatButton.click()
+
+        for tr in trs:
+            for car in cars:
+                self.assertEqual(car.name, tr.query_selector_all("td")[0].text_content())
+                self.assertEqual(car.year, tr.query_selector_all("td")[1].text_content())
+                self.assertNotEqual(car.price, tr.query_selector_all("td")[2].text_content())
+                priceInt = int(car.price.split(" ")[0]) / vat
+                self.assertEqual(str(priceInt) + " kr", tr.query_selector_all("td")[2].text_content())
+        
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
