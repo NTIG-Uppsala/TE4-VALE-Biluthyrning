@@ -44,24 +44,3 @@ buttons.forEach((button, index) => {
         };
     });
 });
-
-// Array.from(buttonContainer.children).forEach((button, index) => {
-//     button.addEventListener("click", () => {
-
-
-
-//         if (buttonContainer.children[1].classList.contains("active")) {
-//             prices.forEach((price, index) => {
-//                 price.textContent = pricesVatIncluded[index];
-//             });
-//         } else {
-//             prices.forEach((price, index) => {
-//                 price.textContent = pricesVatExcluded[index];
-//             });
-//         }
-//         Array.from(buttonContainer.children).forEach((button) =>
-//             button.classList.remove("active")
-//         );
-//         button.classList.add("active");
-//     });
-// });
