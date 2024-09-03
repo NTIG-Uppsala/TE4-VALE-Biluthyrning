@@ -6,23 +6,23 @@
 
 ### Changing Open Opening Hours
 
-To change the opening hours that appear on the site, you have to change it manually at three places. There are two tables in the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/e0b33f2f1ffff5d1a3a0ac8d0b5031c1aa9de9b8/index.html) file and one object in the [openHours.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/e0b33f2f1ffff5d1a3a0ac8d0b5031c1aa9de9b8/js/openHours.js) file that have to be changed.
+To change the opening hours that appear on the site, you have to change it manually at three places. There are two tables in the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/index.html) file and one object in the [openHours.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/js/openHours.js) file that have to be changed.
 
-To change closed days change the text content of an element in the footer and change the closedDates object in the [openHours.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/e0b33f2f1ffff5d1a3a0ac8d0b5031c1aa9de9b8/js/openHours.js) file.
+To change closed days change the text content of an element in the footer of in the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/index.html) file and change the closedDates object in the [openHours.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/js/openHours.js) file.
 
 ---
 
 ### Changing other essential information.
 
-There are two spots in the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/e0b33f2f1ffff5d1a3a0ac8d0b5031c1aa9de9b8/index.html) file that specify the phone number. Change both spots.
+There are two spots in the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/index.html) file that specify the phone number. Change both spots.
 
-To change which cars are available or their price edit the corresponding table in the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/e0b33f2f1ffff5d1a3a0ac8d0b5031c1aa9de9b8/index.html) file. To change the VAT tax simply change the value of the "vat" constant in [vatOnCars.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/a25ec9218f2a21eb42252369a7666f648f77296e/js/vatOnCars.js).
+To change which cars are available or their price edit the corresponding table in the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/index.html) file. To change the VAT tax simply change the value of the "vat" constant in [vatOnCars.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/js/vatOnCars.js).
 
-To change which ZIP codes that are delivered to and their price change the [listOfZIPCodes.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/a25ec9218f2a21eb42252369a7666f648f77296e/js/listOfZIPCodes.js) file.
+To change which ZIP codes that are delivered to and their price change the [listOfZIPCodes.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/js/listOfZIPCodes.js) file.
 
-To change the E-mail change the innerHTML and the value of the href-attribute of one element in the footer of the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/e0b33f2f1ffff5d1a3a0ac8d0b5031c1aa9de9b8/index.html) file.
+To change the E-mail change the innerHTML and the value of the href-attribute of one element in the footer of the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/index.html) file.
 
-To change the address change the innerHTML and the value of the href-attribute of one element in the footer of the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/e0b33f2f1ffff5d1a3a0ac8d0b5031c1aa9de9b8/index.html) file.
+To change the address change the innerHTML and the value of the href-attribute of one element in the footer of the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/index.html) file.
 
 ---
 
