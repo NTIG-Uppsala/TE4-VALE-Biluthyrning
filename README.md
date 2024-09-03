@@ -16,7 +16,7 @@ To change closed days change the text content of an element in the footer of in 
 
 There are two spots in the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/index.html) file that specify the phone number. Change both spots.
 
-To change which cars are available or their price edit the corresponding table in the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/index.html) file. To change the VAT tax simply change the value of the "vat" constant in [vatOnCars.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/js/vatOnCars.js).
+To change which cars are available or their price (which should include VAT) edit the corresponding table in the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/index.html) file. To change the VAT tax simply change the value of the "vat" constant in [vatOnCars.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/js/vatOnCars.js).
 
 To change which ZIP codes that are delivered to and their price change the [listOfZIPCodes.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/js/listOfZIPCodes.js) file.
 
