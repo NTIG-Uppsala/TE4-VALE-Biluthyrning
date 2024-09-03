@@ -42,6 +42,7 @@ class TestIndex(unittest.TestCase):
     - testSaturday: Test the opening hours on a Saturday.
     - testSunday: Test the opening hours on a Sunday.
     - testZIPCode: Test the ZIP code input functionality.
+    - testDateSorting: Test the date sorting of the opening hours tables.
     """
 
     @classmethod
@@ -131,9 +132,9 @@ class TestIndex(unittest.TestCase):
         self.helpTestMultiple(
             [
                 "Måndag - fredag",
-                "10-16",
+                "10:00 - 16:00",
                 "Lördag",
-                "12-15",
+                "12:00 - 15:00",
                 "Söndag",
                 "Stängt",
             ]
@@ -247,10 +248,10 @@ class TestIndex(unittest.TestCase):
             2024, 9, 1, 17, ["stängt", "öppnar", "måndag", "10:00"])
 
     def testZIPCode(self: "TestIndex") -> None:
-        zip_input = self.page.query_selector(
-            ".delivery-section>.input-container>input")
+        zip_input = self.page.query_selector(".delivery-section>.input-container>input")
         zip_button = self.page.query_selector(
-            ".delivery-section>.input-container>button")
+            ".delivery-section>.input-container>button"
+        )
         zip_output = self.page.query_selector("#delivery-status-tag")
 
         available_zips = [
@@ -282,6 +283,152 @@ class TestIndex(unittest.TestCase):
             zip_button.click()
             self.assertIn("kör ut till", zip_output.text_content())
             self.assertIn(zip_code["price"], zip_output.text_content())
+
+    def testDateSorting(self: "TestIndex") -> None:
+        open_hours_tables = self.page.query_selector_all(".open-hours-table")
+        self.assertGreater(len(open_hours_tables), 0)
+        for table in open_hours_tables:
+            self.helpSetCustomTime(2024, 8, 26, 9)
+            trs = table.query_selector("tbody").query_selector_all("tr")
+            self.assertEqual(
+                "Måndag - fredag", trs[0].query_selector_all("td")[0].text_content()
+            )
+            self.assertEqual(
+                "10:00 - 16:00", trs[0].query_selector_all("td")[1].text_content()
+            )
+            self.assertEqual(
+                "Lördag", trs[1].query_selector_all("td")[0].text_content()
+            )
+            self.assertEqual(
+                "12:00 - 15:00", trs[1].query_selector_all("td")[1].text_content()
+            )
+            self.assertEqual(
+                "Söndag", trs[2].query_selector_all("td")[0].text_content()
+            )
+            self.assertEqual(
+                "Stängt", trs[2].query_selector_all("td")[1].text_content()
+            )
+            self.helpSetCustomTime(2024, 8, 27, 9)
+            trs = table.query_selector("tbody").query_selector_all("tr")
+            self.assertEqual(
+                "Måndag - fredag", trs[0].query_selector_all("td")[0].text_content()
+            )
+            self.assertEqual(
+                "10:00 - 16:00", trs[0].query_selector_all("td")[1].text_content()
+            )
+            self.assertEqual(
+                "Lördag", trs[1].query_selector_all("td")[0].text_content()
+            )
+            self.assertEqual(
+                "12:00 - 15:00", trs[1].query_selector_all("td")[1].text_content()
+            )
+            self.assertEqual(
+                "Söndag", trs[2].query_selector_all("td")[0].text_content()
+            )
+            self.assertEqual(
+                "Stängt", trs[2].query_selector_all("td")[1].text_content()
+            )
+            self.helpSetCustomTime(2024, 8, 28, 9)
+            trs = table.query_selector("tbody").query_selector_all("tr")
+            self.assertEqual(
+                "Måndag - fredag", trs[0].query_selector_all("td")[0].text_content()
+            )
+            self.assertEqual(
+                "10:00 - 16:00", trs[0].query_selector_all("td")[1].text_content()
+            )
+            self.assertEqual(
+                "Lördag", trs[1].query_selector_all("td")[0].text_content()
+            )
+            self.assertEqual(
+                "12:00 - 15:00", trs[1].query_selector_all("td")[1].text_content()
+            )
+            self.assertEqual(
+                "Söndag", trs[2].query_selector_all("td")[0].text_content()
+            )
+            self.assertEqual(
+                "Stängt", trs[2].query_selector_all("td")[1].text_content()
+            )
+            self.helpSetCustomTime(2024, 8, 29, 9)
+            trs = table.query_selector("tbody").query_selector_all("tr")
+            self.assertEqual(
+                "Måndag - fredag", trs[0].query_selector_all("td")[0].text_content()
+            )
+            self.assertEqual(
+                "10:00 - 16:00", trs[0].query_selector_all("td")[1].text_content()
+            )
+            self.assertEqual(
+                "Lördag", trs[1].query_selector_all("td")[0].text_content()
+            )
+            self.assertEqual(
+                "12:00 - 15:00", trs[1].query_selector_all("td")[1].text_content()
+            )
+            self.assertEqual(
+                "Söndag", trs[2].query_selector_all("td")[0].text_content()
+            )
+            self.assertEqual(
+                "Stängt", trs[2].query_selector_all("td")[1].text_content()
+            )
+            self.helpSetCustomTime(2024, 8, 30, 9)
+            trs = table.query_selector("tbody").query_selector_all("tr")
+            self.assertEqual(
+                "Måndag - fredag", trs[0].query_selector_all("td")[0].text_content()
+            )
+            self.assertEqual(
+                "10:00 - 16:00", trs[0].query_selector_all("td")[1].text_content()
+            )
+            self.assertEqual(
+                "Lördag", trs[1].query_selector_all("td")[0].text_content()
+            )
+            self.assertEqual(
+                "12:00 - 15:00", trs[1].query_selector_all("td")[1].text_content()
+            )
+            self.assertEqual(
+                "Söndag", trs[2].query_selector_all("td")[0].text_content()
+            )
+            self.assertEqual(
+                "Stängt", trs[2].query_selector_all("td")[1].text_content()
+            )
+            self.helpSetCustomTime(2024, 8, 31, 9)
+            trs = table.query_selector("tbody").query_selector_all("tr")
+            self.assertEqual(
+                "Lördag", trs[0].query_selector_all("td")[0].text_content()
+            )
+            self.assertEqual(
+                "12:00 - 15:00", trs[0].query_selector_all("td")[1].text_content()
+            )
+            self.assertEqual(
+                "Söndag", trs[1].query_selector_all("td")[0].text_content()
+            )
+            self.assertEqual(
+                "Stängt", trs[1].query_selector_all("td")[1].text_content()
+            )
+            self.assertEqual(
+                "Måndag - fredag", trs[2].query_selector_all("td")[0].text_content()
+            )
+            self.assertEqual(
+                "10:00 - 16:00", trs[2].query_selector_all("td")[1].text_content()
+            )
+            self.helpSetCustomTime(2024, 9, 1, 9)
+            trs = table.query_selector("tbody").query_selector_all("tr")
+            self.assertEqual(
+                "Söndag", trs[0].query_selector_all("td")[0].text_content()
+            )
+            self.assertEqual(
+                "Stängt", trs[0].query_selector_all("td")[1].text_content()
+            )
+            self.assertEqual(
+                "Måndag - fredag", trs[1].query_selector_all("td")[0].text_content()
+            )
+            self.assertEqual(
+                "10:00 - 16:00", trs[1].query_selector_all("td")[1].text_content()
+            )
+            self.assertEqual(
+                "Lördag", trs[2].query_selector_all("td")[0].text_content()
+            )
+            self.assertEqual(
+                "12:00 - 15:00", trs[2].query_selector_all("td")[1].text_content()
+            )
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
