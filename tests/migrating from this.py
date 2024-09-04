@@ -3,6 +3,11 @@ from playwright.sync_api import sync_playwright
 from os import path
 
 
+#
+# I have started to migrate the tests to a new structure.
+# the methods of the testIndex class 
+#
+
 class TestIndex(unittest.TestCase):
 
     def testZIPCode(self: "TestIndex") -> None:

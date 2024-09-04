@@ -44,4 +44,3 @@ class TemplateTest(unittest.TestCase):
     def assertInAll(self, matches: list[str]) -> None:
         for match in matches:
             self.assertIn(match, self.page.content())
-        

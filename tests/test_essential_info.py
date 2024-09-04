@@ -12,6 +12,10 @@ class TestEssentialInfo(TemplateTest):
     def testPageExists(self) -> None:
         self.assertEqual("complete", self.page.evaluate("document.readyState"))
 
+    def testSelfName(self) -> None:
+        if (self.__class__.__name__ == "TestName"):
+            self.fail("Test class name is not correct")
+
     # tests
     def testName(self) -> None:
         self.assertIn("NTB Biluthyrning", self.page.content())
@@ -37,8 +41,8 @@ class TestEssentialInfo(TemplateTest):
             "https://x.com/ntiuppsala",
         ])
 
-    # testing of opening hours is also done in a separate file 
-    # but those tests test the dynamic opening hours feature, 
+    # testing of opening hours is also done in a separate file
+    # but those tests test the dynamic opening hours feature,
     # i.e. it tests the thing that says if they're currently open or not
     def testOpeningHours(self) -> None:
         self.assertInAll([

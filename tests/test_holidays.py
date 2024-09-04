@@ -12,6 +12,10 @@ class TestHolidays(TemplateTest):
     def testPageExists(self) -> None:
         self.assertEqual("complete", self.page.evaluate("document.readyState"))
 
+    def testSelfName(self) -> None:
+        if (self.__class__.__name__ == "TestName"):
+            self.fail("Test class name is not correct")
+
     # helpers
     def setPageTimeTo(self, year: int, month: int, day: int, hour: int, minute: int) -> None:
         self.page.evaluate(f"""
