@@ -34,11 +34,31 @@ h6 {
     font-weight: bold;
 }
 
-table.open-hours-table {
+table.open-hours-table,
+table.closed-dates-table,
+table.our-cars-table {
     width: 30ch;
     max-width: 90dvw;
     border-collapse: collapse;
     align-self: center;
+    margin: 1rem;
+
+    &>thead>tr {
+        border-bottom: 1px solid var(--primary-light);
+
+        &>th {
+            padding: 0.4rem 0.2rem;
+            font-size: 0.9rem;
+
+            &:first-of-type {
+                text-align: left;
+            }
+
+            &:last-of-type {
+                text-align: right;
+            }
+        }
+    }
 
     &>tbody>tr {
         &:not(:last-of-type) {
@@ -149,13 +169,15 @@ body {
             &>.vat-container {
                 display: flex;
                 flex-flow: row nowrap;
-                margin: 1rem;
+                margin-top: 0.3rem;
+                margin-bottom: 0.5rem;
 
                 &>button {
                     border: none;
                     padding: 0.15rem;
                     padding-right: 0.5rem;
                     padding-left: 0.5rem;
+
                     &.active {
                         background-color: var(--primary-accent);
                         color: var(--primary-light);
@@ -163,48 +185,7 @@ body {
                 }
             }
 
-            &>table {
-                width: 30ch;
-                max-width: 90dvw;
-                border-collapse: collapse;
-                align-self: center;
 
-                &>thead>tr {
-                    border-bottom: 1px solid var(--primary-light);
-
-                    &>th {
-                        padding: 0.4rem 0.2rem;
-                        font-size: 0.9rem;
-
-                        &:first-of-type {
-                            text-align: left;
-                        }
-
-                        &:last-of-type {
-                            text-align: right;
-                        }
-                    }
-                }
-
-                &>tbody>tr {
-                    &:not(:last-of-type) {
-                        border-bottom: 1px solid var(--primary-light);
-                    }
-
-                    &>td {
-                        padding: 0.4rem 0.2rem;
-                        font-size: 0.9rem;
-
-                        &:first-of-type {
-                            text-align: left;
-                        }
-
-                        &:last-of-type {
-                            text-align: right;
-                        }
-                    }
-                }
-            }
         }
 
         &>.delivery-section {
@@ -236,7 +217,7 @@ body {
                     appearance: textfield;
 
                     max-width: 80%;
-                    
+
                     &::-webkit-outer-spin-button {
                         -webkit-appearance: none;
                         margin: 0;
@@ -247,7 +228,7 @@ body {
                         margin: 0;
                     }
                 }
-                
+
                 &>button {
                     background-color: var(--primary-accent);
                     border: none;
@@ -259,6 +240,8 @@ body {
                 }
             }
         }
+
+        
     }
 
 
@@ -310,10 +293,6 @@ body {
                     height: 100%;
                 }
             }
-        }
-
-        &>#closed-dates-container>p {
-            font-weight: 300;
         }
 
         &>#copyright-info {
