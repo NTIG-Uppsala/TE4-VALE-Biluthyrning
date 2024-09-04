@@ -10,8 +10,25 @@ const openHours = {
 };
 
 const closedDates = {
-    0: { 1: "Nyårsdagen", 6: "Trettondedag Jul" },
-    4: { 1: "Första maj" },
-    5: { 6: "Nationaldagen" },
-    11: { 24: "Julafton", 25: "Juldagen", 26: "Annandag jul", 31: "Nyårsafton" }
-}
+    0: {
+        name: "januari",
+        days: { 1: "Nyårsdagen", 6: "Trettondedag Jul" },
+    },
+    4: {
+        name: "maj",
+        days: { 1: "Första maj" },
+    },
+    5: {
+        name: "juni",
+        days: { 6: "Nationaldagen" },
+    },
+    11: {
+        name: "december",
+        days: {
+            24: "Julafton",
+            25: "Juldagen",
+            26: "Annandag jul",
+            31: "Nyårsafton",
+        },
+    },
+};

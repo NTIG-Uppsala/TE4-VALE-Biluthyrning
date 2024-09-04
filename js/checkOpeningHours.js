@@ -6,6 +6,7 @@ const formatTimeString = (time) => {
 };
 
 const now = new Date();
+now.setFullYear(2024, 11, 24);
 
 const refreshDynamicOpenStatus = () => {
     const openHoursMondayFirst = [];
@@ -52,12 +53,12 @@ const refreshDynamicOpenStatus = () => {
                 string: dayNoDates.to,
             },
         };
-
         if (
             closedDates[date.getMonth()] &&
-            closedDates[date.getMonth()][date.getDate()]
+            closedDates[date.getMonth()]["days"][date.getDate()]
         ) {
-            dayWithDates.holiday = closedDates[date.getMonth()][date.getDate()];
+            dayWithDates.holiday =
+                closedDates[date.getMonth()]["days"][date.getDate()];
             dayWithDates.opening = false;
             dayWithDates.closing = false;
         }
@@ -96,78 +97,62 @@ const refreshDynamicOpenStatus = () => {
     const openStatusTag = document.getElementById("dynamic-opening-hours-tag");
     openStatusTag.innerHTML = openStatusString;
 
-    const combinedOpenHours = [];
-    let currentFrom;
-    let currentTo;
-
-    // Combine days with the same opening hours
-    openHoursMondayFirst.forEach((day, index) => {
-        if (day.from === currentFrom && day.to === currentTo) {
-            combinedOpenHours[combinedOpenHours.length - 1].indexes.push(index);
-            combinedOpenHours[combinedOpenHours.length - 1].name.push(day.name);
-        } else {
-            combinedOpenHours.push({
-                name: [day.name],
-                from: day.from,
-                to: day.to,
-                indexes: [index],
-            });
-            currentFrom = day.from;
-            currentTo = day.to;
-        }
-    });
-
-    // Format the day names
-    combinedOpenHours.forEach((day) => {
-        if (day.name.length > 1) {
-            day.name = `${day.name[0]} - ${day.name[
-                day.name.length - 1
-            ].toLowerCase()}`;
-        } else {
-            day.name = day.name[0];
-        }
-    });
-
-    // Function to map `getDay()` output to custom index (Monday as 0, Sunday as 6)
-    const mapDayIndex = (dayIndex) => {
-        return dayIndex === 0 ? 6 : dayIndex - 1;
-    };
-
-    const todayIndex = mapDayIndex(now.getDay()); // Get today's mapped day index
-
-    // Find the first group that includes today's index
-    const firstDayGroupIndex = combinedOpenHours.findIndex((day) =>
-        day.indexes.includes(todayIndex)
+    // Convert closedDates object to an array of objects with a month, day, name, and monthName
+    const holidays = Object.entries(closedDates).flatMap(
+        ([month, { name: monthName, days }]) =>
+            Object.entries(days).map(([day, name]) => ({
+                month: parseInt(month),
+                day: parseInt(day),
+                name,
+                monthName,
+            }))
     );
 
-    // Rotate the combinedOpenHours array to start with today's day
-    const sortedOpenHours = [
-        ...combinedOpenHours.slice(firstDayGroupIndex),
-        ...combinedOpenHours.slice(0, firstDayGroupIndex),
-    ];
+    // Get today's date
+    const todayMonth = now.getMonth();
+    const todayDate = now.getDate();
 
-    // Order the days starting with today
+    // Function to determine if a holiday is before or after today
+    const isAfterToday = (holiday) => {
+        return (
+            holiday.month > todayMonth ||
+            (holiday.month === todayMonth && holiday.day >= todayDate)
+        );
+    };
 
-    const tables = document.querySelectorAll(".open-hours-table");
+    // Separate holidays into those after today and before today
+    const holidaysAfterToday = holidays.filter(isAfterToday);
+    const holidaysBeforeToday = holidays.filter(
+        (holiday) => !isAfterToday(holiday)
+    );
+
+    // Combine them to have holidays after today come first, then those before today
+    const sortedHolidays = [...holidaysAfterToday, ...holidaysBeforeToday];
 
     // Update the tables
+    const tables = document.querySelectorAll(".closed-dates-table");
+
     tables.forEach((table) => {
         table.innerHTML = "<tbody></tbody>";
         const tbody = table.querySelector("tbody");
-        sortedOpenHours.forEach((day) => {
+        sortedHolidays.forEach((holiday) => {
             const tr = document.createElement("tr");
-            const tdDay = document.createElement("td");
-            tdDay.textContent = day.name;
-            tr.appendChild(tdDay);
-            const tdTime = document.createElement("td");
-            if (day.from) {
-                tdTime.textContent = `${formatTimeString(
-                    day.from
-                )} - ${formatTimeString(day.to)}`;
-            } else {
-                tdTime.textContent = "Stängt";
-            }
-            tr.appendChild(tdTime);
+
+            // Create a cell for the formatted date (e.g., "1 januari")
+            const tdDate = document.createElement("td");
+            tdDate.textContent = `${holiday.day} ${holiday.monthName}`;
+            tr.appendChild(tdDate);
+
+            // Create a cell for the holiday name
+            const tdName = document.createElement("td");
+            tdName.textContent = holiday.name;
+            tr.appendChild(tdName);
+
+            // Create a cell for the status (e.g., "Stängt")
+            const tdStatus = document.createElement("td");
+            tdStatus.textContent = "Stängt";
+            tr.appendChild(tdStatus);
+
             tbody.appendChild(tr);
         });
     });
