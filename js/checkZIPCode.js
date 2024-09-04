@@ -15,7 +15,7 @@ const checkZIPCode = () => {
     }
     // Remove all non-digit characters from the ZIP code.
     if (zip.length !== 5) {
-        zipOutput.textContent = "Postnumret måste vara 5 siffror";
+        zipOutput.textContent = "Postnumret måste vara fem siffror";
         return;
     }
     // Check if the ZIP code is in the list of ZIP codes that are deliverable.
