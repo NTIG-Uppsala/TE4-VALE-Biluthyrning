@@ -37,6 +37,9 @@ class TestEssentialInfo(TemplateTest):
             "https://x.com/ntiuppsala",
         ])
 
+    # testing of opening hours is also done in a separate file 
+    # but those tests test the dynamic opening hours feature, 
+    # i.e. it tests the thing that says if they're currently open or not
     def testOpeningHours(self) -> None:
         self.assertInAll([
             "Måndag - fredag",
