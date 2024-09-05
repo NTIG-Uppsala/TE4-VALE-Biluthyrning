@@ -6,7 +6,6 @@ const formatTimeString = (time) => {
 };
 
 const now = new Date();
-now.setFullYear(2024, 11, 24);
 
 const refreshDynamicOpenStatus = () => {
     const openHoursMondayFirst = [];

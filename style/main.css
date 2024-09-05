@@ -36,7 +36,8 @@ h6 {
 
 table.open-hours-table,
 table.closed-dates-table,
-table.our-cars-table {
+table.our-cars-table,
+table.delivery-table {
     width: 30ch;
     max-width: 90dvw;
     border-collapse: collapse;
@@ -120,7 +121,8 @@ body {
         width: 100svw;
         max-width: 100%;
 
-        &>section {
+        &>section,
+        &>span>section {
             width: 100%;
 
             display: flex;
@@ -183,7 +185,8 @@ body {
 
         }
 
-        &>.delivery-section {
+        &>.delivery-section,
+        &>span>.delivery-section-noscript {
 
             &>.background-image {
                 max-width: 100%;
