@@ -19,13 +19,13 @@ class TestMisc(TemplateTest):
     # tests
     def testNoMissing(self) -> None:
         # we have used missing as a placeholder before so this test checks that
-        self.assertNotIn("Missing", self.page.content())
+        self.assertNotInContent("Missing")
 
     def testNoMergeConflicts(self) -> None:
         # we have run into merge conflict elements remaining in our code somehow
-        self.assertNotIn("<<<<<<<", self.page.content())
-        self.assertNotIn("=======", self.page.content())
-        self.assertNotIn(">>>>>>>", self.page.content())
+        self.assertNotInContent("<<<<<<<")
+        self.assertNotInContent("=======")
+        self.assertNotInContent(">>>>>>>")
 
 
 if __name__ == "__main__":

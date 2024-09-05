@@ -18,15 +18,15 @@ class TestEssentialInfo(TemplateTest):
 
     # tests
     def testName(self) -> None:
-        self.assertText("NTB Biluthyrning")
+        self.assertInText("NTB Biluthyrning")
 
     def testPhoneNumber(self) -> None:
-        self.assertHtml("tel:+46630555555")
-        self.assertText("+46\xa063‑055\xa055\xa055")
+        self.assertInHtml("tel:+46630555555")
+        self.assertInText("+46\xa063‑055\xa055\xa055")
 
     def testEmail(self) -> None:
-        self.assertHtml("mailto:info@ntbhyr.se")
-        self.assertText("info@ntbhyr.se")
+        self.assertInHtml("mailto:info@ntbhyr.se")
+        self.assertInText("info@ntbhyr.se")
 
     def testAddress(self) -> None:
         self.assertTextInAll([
@@ -34,7 +34,7 @@ class TestEssentialInfo(TemplateTest):
             "981 39",
             "Kiruna",
         ])
-        self.assertHtml("https://maps.app.goo.gl/5c7N2tctTDWgJgYr7")
+        self.assertInHtml("https://maps.app.goo.gl/5c7N2tctTDWgJgYr7")
 
     def testSocialMedia(self) -> None:
         self.assertHtmlInAll([

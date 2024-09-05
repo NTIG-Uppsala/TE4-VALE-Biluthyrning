@@ -56,13 +56,17 @@ class TemplateTest(unittest.TestCase):
             self.assertIn(match, self.page.inner_html("body"))
 
     # run assertIn for the visible text
-    def assertText(self, match: str) -> None:
+    def assertInText(self, match: str) -> None:
         self.assertIn(match, self.page.text_content("body"))
 
     # run assertIn for the html elements
-    def assertHtml(self, match: str) -> None:
+    def assertInHtml(self, match: str) -> None:
         self.assertIn(match, self.page.inner_html("body"))
     
     # run assertIn for the content
-    def assertContent(self, match: str) -> None:
+    def assertInContent(self, match: str) -> None:
         self.assertIn(match, self.page.content())
+
+    # run assertNotIn for the content
+    def assertNotInContent(self, match: str) -> None:
+        self.assertNotIn(match, self.page.content())

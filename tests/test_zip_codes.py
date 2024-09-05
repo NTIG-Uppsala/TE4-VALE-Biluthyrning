@@ -18,35 +18,29 @@ class TestZIPCodes(TemplateTest):
             self.fail("Test class name is not correct")
 
     # Helper functions
-    def fillAndSubmit(self, zip_code: str) -> None:
+    def submitAndTestZIPCode(self, zip_code: str, match: str) -> None:
         zip_input = self.page.query_selector("#zip-input")
         zip_button = self.page.query_selector("#zip-button")
         zip_input.fill(zip_code)
         zip_button.click()
         time.sleep(0.2)
+        self.assertInText(match)
 
     # tests
     def testEmptyZIPCode(self) -> None:
-        self.fillAndSubmit("")
-        self.assertText("Du måste ange ett postnummer i rutan")
+        self.submitAndTestZIPCode("", "Du måste ange ett postnummer i rutan")
 
     def testInvalidZIPCode(self) -> None:
-        self.fillAndSubmit("1234")
-        self.assertText("Postnumret måste vara fem siffror")
+        self.submitAndTestZIPCode("1234", "Postnumret måste vara fem siffror")
 
     def testZIPCodeNotDeliveredTo(self) -> None:
-        self.fillAndSubmit("12345")
-        self.assertText("Vi kör inte ut till postnummer 12345")
-        self.fillAndSubmit("54321")
-        self.assertText("Vi kör inte ut till postnummer 54321")
+        self.submitAndTestZIPCode("12345", "Vi kör inte ut till postnummer 12345")
+        self.submitAndTestZIPCode("54321", "Vi kör inte ut till postnummer 54321")
 
     def testZIPCodeDeliveredTo(self) -> None:
-        self.fillAndSubmit("98138")
-        self.assertText("Vi kör ut till postnummer 98138 för 199 kr")
-        self.fillAndSubmit("98144")
-        self.assertText("Vi kör ut till postnummer 98144 för 299 kr")
-        self.fillAndSubmit("98147")
-        self.assertText("Vi kör ut till postnummer 98147 för 299 kr")
+        self.submitAndTestZIPCode("98138", "Vi kör ut till postnummer 98138 för 199 kr")
+        self.submitAndTestZIPCode("98144", "Vi kör ut till postnummer 98144 för 299 kr")
+        self.submitAndTestZIPCode("98147", "Vi kör ut till postnummer 98147 för 299 kr")
 
 
 if __name__ == "__main__":
