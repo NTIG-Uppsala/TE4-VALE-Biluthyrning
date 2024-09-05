@@ -12,7 +12,7 @@ const openHours = {
 const closedDates = {
     0: {
         name: "januari",
-        days: { 1: "Nyårsdagen", 6: "Trettondedag Jul" },
+        days: { 1: "Nyårsdagen", 6: "Trettondedag jul" },
     },
     4: {
         name: "maj",
