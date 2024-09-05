@@ -31,7 +31,7 @@ class TemplateTest(unittest.TestCase):
 
         # a certain js script loads last and makes this element
         # so we check for it to make sure other scripts have loaded
-        self.page.wait_for_selector("#checkOpeningHoursJsCompleted", state="attached")
+        self.page.wait_for_selector("#checkJsCompleted", state="attached")
 
     def tearDown(self) -> None:
         self.page.goto("about:blank")
