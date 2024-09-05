@@ -18,35 +18,32 @@ class TestOurCars(TemplateTest):
 
     # tests
 
-    def testCarsAndVAT(self) -> None:
-        vat_button = self.page.query_selector("#vat-button")
-        no_vat_button = self.page.query_selector("#no-vat-button")
-
+    def testSectionTitle(self) -> None:
         self.assertInText("Våra bilar")
 
-        # Checks the cars 
-
-        self.assertTextInAll(["Audi A6", "2011", "800 kr"])
-        self.assertTextInAll(["Mitsubishi Outlander", "2018", "450 kr"])
-        self.assertTextInAll(["VW Polo", "2022", "300 kr"])
-
-        # Checks the VAT button
+    def testVATButtons(self) -> None:
         self.assertTextInAll(["Moms", "Exkl. moms"])
 
-        # Disables VAT
+    def testCarsWithVAT(self) -> None:
+        vat_button = self.page.query_selector("#vat-button")
+
+        vat_button.click()
+
+        self.assertTextInAll(["Audi A6", "2011", "800 kr"])
+        self.assertTextInAll(["Mitsubishi Outlander", "2018", "450 kr"])
+        self.assertTextInAll(["VW Polo", "2022", "300 kr"])
+
+    def testCarsWithoutVAT(self) -> None:
+        no_vat_button = self.page.query_selector("#no-vat-button")
+
         no_vat_button.click()
 
         self.assertTextInAll(["Audi A6", "2011", "640 kr"])
         self.assertTextInAll(["Mitsubishi Outlander", "2018", "360 kr"])
         self.assertTextInAll(["VW Polo", "2022", "240 kr"])
 
-        no_vat_button.click()
-
-        self.assertTextInAll(["Audi A6", "2011", "640 kr"])
-        self.assertTextInAll(["Mitsubishi Outlander", "2018", "360 kr"])
-        self.assertTextInAll(["VW Polo", "2022", "240 kr"])
-
-        # Enables VAT
+    def testDoubleVATButtons(self) -> None:
+        vat_button = self.page.query_selector("#vat-button")
 
         vat_button.click()
 
@@ -60,9 +57,36 @@ class TestOurCars(TemplateTest):
         self.assertTextInAll(["Mitsubishi Outlander", "2018", "450 kr"])
         self.assertTextInAll(["VW Polo", "2022", "300 kr"])
 
-        # Disables VAT
+    def testDoubleNoVATButtons(self) -> None:
+        no_vat_button = self.page.query_selector("#no-vat-button")
 
         no_vat_button.click()
+
+        self.assertTextInAll(["Audi A6", "2011", "640 kr"])
+        self.assertTextInAll(["Mitsubishi Outlander", "2018", "360 kr"])
+        self.assertTextInAll(["VW Polo", "2022", "240 kr"])
+
+        no_vat_button.click()
+
+        self.assertTextInAll(["Audi A6", "2011", "640 kr"])
+        self.assertTextInAll(["Mitsubishi Outlander", "2018", "360 kr"])
+        self.assertTextInAll(["VW Polo", "2022", "240 kr"])
+
+    def testSpamVATButton(self) -> None:
+        vat_button = self.page.query_selector("#vat-button")
+
+        for _ in range(10):
+            vat_button.click()
+
+        self.assertTextInAll(["Audi A6", "2011", "800 kr"])
+        self.assertTextInAll(["Mitsubishi Outlander", "2018", "450 kr"])
+        self.assertTextInAll(["VW Polo", "2022", "300 kr"])
+
+    def testSpamNoVATButton(self) -> None:
+        no_vat_button = self.page.query_selector("#no-vat-button")
+
+        for _ in range(10):
+            no_vat_button.click()
 
         self.assertTextInAll(["Audi A6", "2011", "640 kr"])
         self.assertTextInAll(["Mitsubishi Outlander", "2018", "360 kr"])
