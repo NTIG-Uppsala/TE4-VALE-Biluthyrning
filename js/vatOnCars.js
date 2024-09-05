@@ -1,46 +1,60 @@
-const buttons = document.querySelectorAll(
-    ".our-cars-section>.vat-container>button"
+// Get the buttons
+const buttons = document.querySelectorAll("#vat-button, #no-vat-button");
+
+// VAT is 25%
+const VAT_RATE = 1.25;
+
+// Get all the prices from the table
+const prices = Array.from(document.querySelectorAll(".our-cars-table .price"));
+
+// Calculate prices with and without VAT
+
+// Gets the integer value of the price in each cell of the table
+const priceValues = prices.map((price) => parseInt(price.textContent));
+
+// Rounds the price to the nearest whole number and adds "kr" to the end
+const pricesWithVat = priceValues.map((price) => price.toFixed(0) + " kr");
+
+// Divides the price by the VAT rate and rounds to the nearest whole number and adds "kr" to the end
+const pricesWithoutVat = priceValues.map(
+    (price) => (price / VAT_RATE).toFixed(0) + " kr"
 );
 
-const vat = 1.25;
-
-const prices = Array.from(
-    document.querySelectorAll(".our-cars-section .price")
-);
-const pricesVatIncluded = prices.map(
-    (price) => parseInt(price.textContent).toFixed(0) + " kr"
-);
-const pricesVatExcluded = prices.map(
-    (price) => (parseInt(price.textContent) / vat).toFixed(0) + " kr"
-);
-
-const setVatIncluded = () => {
+// Function to set prices to either with VAT or without VAT
+const setPricesWithVat = () => {
     prices.forEach((price, index) => {
-        price.textContent = pricesVatIncluded[index];
+        price.textContent = pricesWithVat[index];
     });
-}
-const setVatExcluded = () => {
+};
+
+const setPricesWithoutVat = () => {
     prices.forEach((price, index) => {
-        price.textContent = pricesVatExcluded[index];
+        price.textContent = pricesWithoutVat[index];
     });
-}
+};
 
-buttons.forEach((button, index) => {
-    button.classList.add("button" + index);
+// Function to handle button clicks
+const handleButtonClick = (button) => {
+    // If the button is already active, do nothing
+    if (button.classList.contains("active")) {
+        return;
+    }
 
-    button.addEventListener("click", (event) => {
-        if (event.target.classList.contains("active")) {
-            return;
-        };
+    // Remove the active class from all buttons
+    buttons.forEach((btn) => btn.classList.remove("active"));
 
-        buttons.forEach((button) => button.classList.remove("active"));
+    // Add active class to the clicked button
+    button.classList.add("active");
 
-        event.target.classList.add("active");
+    // Set prices based on the button clicked
+    if (button.id === "vat-button") {
+        setPricesWithVat();
+    } else {
+        setPricesWithoutVat();
+    }
+};
 
-        if (button.classList.contains("button0")) {
-            setVatIncluded();
-        } else {
-            setVatExcluded();
-        };
-    });
+// Attach event listeners to buttons
+buttons.forEach((button) => {
+    button.addEventListener("click", () => handleButtonClick(button));
 });
