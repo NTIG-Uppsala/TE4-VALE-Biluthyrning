@@ -1,4 +1,5 @@
 import unittest
+import re
 from utils import *
 
 
@@ -13,21 +14,36 @@ class TestHolidays(TemplateTest):
         self.assertEqual("complete", self.page.evaluate("document.readyState"))
 
     def testSelfName(self) -> None:
-        if (self.__class__.__name__ == "TestName"):
+        if self.__class__.__name__ == "TestName":
             self.fail("Test class name is not correct")
 
     # helpers
     def setPageTimeTo(self, year: int, month: int, day: int, hour: int, minute: int) -> None:
-        self.page.evaluate(f"""
+        self.page.evaluate(
+            f"""
             now.setFullYear({year}, {month - 1}, {day});
             now.setHours({hour});
             now.setMinutes({minute});
             refreshDynamicOpenStatus();
-        """)
+        """
+        )
 
     def setAndTestTime(self, year: int, month: int, day: int, hour: int, minute: int, expected: list[str]) -> None:
         self.setPageTimeTo(year, month, day, hour, minute)
         self.assertTextInAll(expected)
+
+    def setTimeAndgetClosedDatesTable(self) -> list[list[str]]:
+        closed_dates_table = self.page.query_selector(".closed-dates-table").inner_html().split("</tr>")
+
+        # Use regex to remove all HTML tags and strip whitespace
+        closed_dates_table = [row.split("</td>") for row in closed_dates_table]
+        closed_dates_table = [[re.sub(r"<.*?>", "", cell).strip() for cell in row] for row in closed_dates_table]
+
+        # Remove empty cells and rows
+        closed_dates_table = [[cell for cell in row if cell] for row in closed_dates_table]
+        closed_dates_table = [row for row in closed_dates_table if row]
+
+        return closed_dates_table
 
     # tests
     def testHolidays(self) -> None:
@@ -41,6 +57,12 @@ class TestHolidays(TemplateTest):
         self.setAndTestTime(2025, 5, 1, 12, 37, ["Första maj", "fredag", "10:00"])
         self.setAndTestTime(2025, 6, 6, 12, 37, ["Nationaldagen", "lördag", "12:00"])
 
+    def testHolidaySorting(self) -> None:
+
+        self.setPageTimeTo(2024, 12, 24, 12, 37)
+        closed_dates_table = self.setTimeAndgetClosedDatesTable()
+
+        print(closed_dates_table)
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
