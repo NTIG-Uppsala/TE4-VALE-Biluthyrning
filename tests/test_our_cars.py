@@ -22,7 +22,7 @@ class TestOurCars(TemplateTest):
         vat_button = self.page.query_selector("#vat-button")
         no_vat_button = self.page.query_selector("#no-vat-button")
 
-        self.assertText("Våra bilar")
+        self.assertInText("Våra bilar")
 
         # Checks the cars 
 
