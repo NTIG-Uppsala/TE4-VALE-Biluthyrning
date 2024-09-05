@@ -10,44 +10,6 @@ from os import path
 
 class TestIndex(unittest.TestCase):
 
-    def testZIPCode(self: "TestIndex") -> None:
-        zip_input = self.page.query_selector(
-            ".delivery-section>.input-container>input")
-        zip_button = self.page.query_selector(
-            ".delivery-section>.input-container>button"
-        )
-        zip_output = self.page.query_selector("#delivery-status-tag")
-
-        available_zips = [
-            {"zipCode": "98138", "price": "199"},
-            {"zipCode": "98140", "price": "199"},
-            {"zipCode": "98141", "price": "199"},
-            {"zipCode": "98144", "price": "299"},
-            {"zipCode": "98145", "price": "299"},
-            {"zipCode": "98146", "price": "299"},
-            {"zipCode": "98147", "price": "299"},
-        ]
-
-        self.assertIsNotNone(zip_input)
-        self.assertIsNotNone(zip_button)
-        self.assertIsNotNone(zip_output)
-        self.assertEqual("", zip_input.input_value())
-        self.assertNotEqual("", zip_output.text_content())
-        zip_input.fill("74431")
-        zip_button.click()
-        self.assertIn("inte", zip_output.text_content())
-        zip_input.fill("9814")
-        zip_button.click()
-        self.assertIn("5", zip_output.text_content())
-        zip_input.fill("")
-        zip_button.click()
-        self.assertIn("ange", zip_output.text_content())
-        for zip_code in available_zips:
-            zip_input.fill(zip_code["zipCode"])
-            zip_button.click()
-            self.assertIn("kör ut till", zip_output.text_content())
-            self.assertIn(zip_code["price"], zip_output.text_content())
-
     def testDateSorting(self: "TestIndex") -> None:
         open_hours_tables = self.page.query_selector_all(".open-hours-table")
         self.assertGreater(len(open_hours_tables), 0)
