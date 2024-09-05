@@ -24,7 +24,7 @@ To change the E-mail change the innerHTML and the value of the href-attribute of
 
 To change the address change the innerHTML and the value of the href-attribute of one element in the footer of the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/index.html) file.
 
-When making changes to any of the above files also make sure to add that change to its coralating python  testing file.
+When making changes to any of the above files also make sure to add that change to its coralating python testing file.
 
 ---
 
