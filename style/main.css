@@ -115,6 +115,17 @@ body {
 
             font-family: var(--header-font);
         }
+        &>nav {
+            display: flex;
+            flex-flow: row nowrap;
+            gap: 1rem;
+
+            &>ul>a {
+                font-size: 1.1rem;
+                font-weight: 300;
+                margin: 0.5rem;
+            }
+        }
     }
 
     &>main {
