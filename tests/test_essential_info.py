@@ -18,14 +18,14 @@ class TestEssentialInfo(TemplateTest):
 
     # tests
     def testName(self) -> None:
-        self.assertIn("NTB Biluthyrning", self.page.content())
+        self.assertIn("NTB Biluthyrning", self.page.text_content("body"))
 
     def testPhoneNumber(self) -> None:
         print(self)
-        self.assertIn("+46&nbsp;63‑055&nbsp;55&nbsp;55", self.page.content())
+        self.assertIn("+46&nbsp;63‑055&nbsp;55&nbsp;55", self.page.text_content("body"))
 
     def testEmail(self) -> None:
-        self.assertIn("info@ntbhyr.se", self.page.content())
+        self.assertIn("info@ntbhyr.se", self.page.text_content("body"))
 
     def testAddress(self) -> None:
         self.assertInAll([

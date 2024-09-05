@@ -43,4 +43,4 @@ class TemplateTest(unittest.TestCase):
     # run assertIn for every string in the list
     def assertInAll(self, matches: list[str]) -> None:
         for match in matches:
-            self.assertIn(match, self.page.content())
+            self.assertIn(match, self.page.text_content("body"))
