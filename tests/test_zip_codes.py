@@ -42,6 +42,25 @@ class TestZIPCodes(TemplateTest):
         self.submitAndTestZIPCode("98144", "Vi kör ut till postnummer 98144 för 299 kr")
         self.submitAndTestZIPCode("98147", "Vi kör ut till postnummer 98147 för 299 kr")
 
+    def testOnEnterKey(self) -> None:
+        zip_input = self.page.query_selector("#zip-input")
+        zip_input.fill("98138")
+        zip_input.press("Enter")
+        time.sleep(0.2)
+        self.assertInText("Vi kör ut till postnummer 98138 för 199 kr")
+
+    def testOnBlur(self) -> None:
+        zip_input = self.page.query_selector("#zip-input")
+        zip_input.fill("98138")
+        self.page.evaluate(
+            """
+            (element) => element.blur();
+            """,
+            zip_input,
+        )
+        time.sleep(0.2)
+        self.assertInText("Vi kör ut till postnummer 98138 för 199 kr")
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
