@@ -27,7 +27,7 @@ class TestHolidays(TemplateTest):
 
     def setAndTestTime(self, year: int, month: int, day: int, hour: int, minute: int, expected: list[str]) -> None:
         self.setPageTimeTo(year, month, day, hour, minute)
-        self.assertInAll(expected)
+        self.assertTextInAll(expected)
 
     # tests
     def testHolidays(self) -> None:

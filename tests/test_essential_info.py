@@ -18,24 +18,26 @@ class TestEssentialInfo(TemplateTest):
 
     # tests
     def testName(self) -> None:
-        self.assertIn("NTB Biluthyrning", self.page.text_content("body"))
+        self.assertText("NTB Biluthyrning")
 
     def testPhoneNumber(self) -> None:
-        print(self)
-        self.assertIn("+46&nbsp;63‑055&nbsp;55&nbsp;55", self.page.text_content("body"))
+        self.assertHtml("tel:+46630555555")
+        self.assertText("+46\xa063‑055\xa055\xa055")
 
     def testEmail(self) -> None:
-        self.assertIn("info@ntbhyr.se", self.page.text_content("body"))
+        self.assertHtml("mailto:info@ntbhyr.se")
+        self.assertText("info@ntbhyr.se")
 
     def testAddress(self) -> None:
-        self.assertInAll([
+        self.assertTextInAll([
             "Fjällgatan 32H",
             "981 39",
             "Kiruna",
         ])
+        self.assertHtml("https://maps.app.goo.gl/5c7N2tctTDWgJgYr7")
 
     def testSocialMedia(self) -> None:
-        self.assertInAll([
+        self.assertHtmlInAll([
             "https://facebook.com/ntiuppsala",
             "https://instagram.com/ntiuppsala",
             "https://x.com/ntiuppsala",
@@ -45,7 +47,7 @@ class TestEssentialInfo(TemplateTest):
     # but those tests test the dynamic opening hours feature,
     # i.e. it tests the thing that says if they're currently open or not
     def testOpeningHours(self) -> None:
-        self.assertInAll([
+        self.assertTextInAll([
             "Måndag - fredag",
             "10:00 - 16:00",
             "Lördag",

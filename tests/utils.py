@@ -43,4 +43,26 @@ class TemplateTest(unittest.TestCase):
     # run assertIn for every string in the list
     def assertInAll(self, matches: list[str]) -> None:
         for match in matches:
+            self.assertIn(match, self.page.content())
+
+    # run assertIn for every string in the list for the visible text
+    def assertTextInAll(self, matches: list[str]) -> None:
+        for match in matches:
             self.assertIn(match, self.page.text_content("body"))
+
+    # run assertIn for every string in the list for the html elements
+    def assertHtmlInAll(self, matches: list[str]) -> None:
+        for match in matches:
+            self.assertIn(match, self.page.inner_html("body"))
+
+    # run assertIn for the visible text
+    def assertText(self, match: str) -> None:
+        self.assertIn(match, self.page.text_content("body"))
+
+    # run assertIn for the html elements
+    def assertHtml(self, match: str) -> None:
+        self.assertIn(match, self.page.inner_html("body"))
+    
+    # run assertIn for the content
+    def assertContent(self, match: str) -> None:
+        self.assertIn(match, self.page.content())
