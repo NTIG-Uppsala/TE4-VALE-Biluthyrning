@@ -34,6 +34,10 @@ h6 {
     font-weight: bold;
 }
 
+h4 {
+    font-size: 1.25rem;
+}
+
 #opening-hours-section,
 #our-cars-section,
 #delivery-section,
@@ -45,7 +49,7 @@ table.open-hours-table,
 table.closed-dates-table,
 table.our-cars-table,
 table.delivery-table {
-    width: 30ch;
+    width: 40ch;
     max-width: 90dvw;
     border-collapse: collapse;
     align-self: center;
@@ -56,7 +60,7 @@ table.delivery-table {
 
         &>th {
             padding: 0.4rem 0.2rem;
-            font-size: 0.9rem;
+            font-size: 1rem;
 
             &:first-of-type {
                 text-align: left;
@@ -75,7 +79,7 @@ table.delivery-table {
 
         &>td {
             padding: 0.4rem 0.2rem;
-            font-size: 0.9rem;
+            font-size: 1rem;
 
             &:first-of-type {
                 text-align: left;
@@ -133,7 +137,7 @@ body {
             gap: 1rem;
 
             &>a {
-                font-size: 1.1rem;
+                font-size: 1.125rem;
                 font-weight: 300;
                 margin: 0.5rem;
             }
@@ -300,6 +304,7 @@ body {
         &>div,
         &>address {
             margin-bottom: 3rem;
+            font-style: normal;
         }
 
         &>#social-media-container {
@@ -323,7 +328,6 @@ body {
         }
 
         &>#copyright-info {
-            font-weight: 300;
 
             justify-self: end;
 
