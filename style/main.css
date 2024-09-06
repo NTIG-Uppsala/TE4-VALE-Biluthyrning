@@ -261,7 +261,7 @@ body {
             &>.input-container {
                 display: flex;
 
-                width: min-content;
+                /* width: min-content; */
 
                 margin: 0.4rem;
 
@@ -272,8 +272,6 @@ body {
                     padding: 0.2rem;
                     appearance: textfield;
                     -moz-appearance: textfield;
-
-                    max-width: 80%;
 
                     &::-webkit-outer-spin-button {
                         -webkit-appearance: none;
@@ -292,10 +290,7 @@ body {
                     color: var(--primary-light);
                     padding: 0.2rem;
                     height: 100%;
-
-                    max-width: 20%;
                 }
-
             }
 
             &>#delivery-status-tag {
