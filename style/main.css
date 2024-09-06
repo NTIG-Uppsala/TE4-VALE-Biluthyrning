@@ -34,6 +34,13 @@ h6 {
     font-weight: bold;
 }
 
+#opening-hours-section,
+#our-cars-section,
+#delivery-section,
+#closed-dates-container {
+    scroll-margin-top: 5rem;
+}
+
 table.open-hours-table,
 table.closed-dates-table,
 table.our-cars-table,
@@ -100,10 +107,14 @@ body {
         width: 100dvw;
         max-width: 100%;
         height: 4rem;
-        max-height: 10dvh;
+        max-height: max-content;
 
         padding-left: 2ch;
         padding-right: 2ch;
+
+        top: 0;
+
+        position: sticky;
 
         background-color: var(--secondary-dark);
 
@@ -115,6 +126,7 @@ body {
 
             font-family: var(--header-font);
         }
+
         &>nav {
             display: flex;
             flex-flow: row nowrap;
