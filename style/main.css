@@ -301,10 +301,8 @@ body {
             gap: 0.5rem;
         }
 
-        &>div,
-        &>address {
+        &>div{
             margin-bottom: 3rem;
-            font-style: normal;
         }
 
         &>#social-media-container {
