@@ -1,8 +1,6 @@
 const deliverySection = document.querySelector(".delivery-section");
 const zipInputField = deliverySection.querySelector(".input-container>input");
-const zipSubmitButton = deliverySection.querySelector(
-    ".input-container>button"
-);
+const zipSubmitButton = deliverySection.querySelector(".input-container>button");
 const zipOutput = deliverySection.querySelector("#delivery-status-tag");
 /**
  * Checks if the ZIP code is valid and if it is in the list of ZIP codes.
@@ -26,19 +24,16 @@ const checkZIPCode = () => {
         }
         // Check if the ZIP code is in the list of ZIP codes that are deliverable.
         if (
-            !zipCodes
-                .map((zipObject) => {
-                    return zipObject.zipCode;
-                })
-                .includes(zip)
+            !zipCodes.map((zipObject) => {
+                return zipObject.zipCode;
+            }).includes(zip)
         ) {
             zipOutput.textContent = `Vi kör inte ut till postnummer ${zip}`;
             return;
         }
 
-        zipOutput.textContent = `Vi kör ut till postnummer ${zip} för ${
-            zipCodes.filter((zipObject) => zipObject.zipCode === zip)[0].price
-        } kr`;
+        zipOutput.textContent = `Vi kör ut till postnummer ${zip} för ${zipCodes.filter((zipObject) => zipObject.zipCode === zip)[0].price
+            } kr`;
     }, 100);
 };
 

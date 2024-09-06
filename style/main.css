@@ -62,10 +62,8 @@ table.delivery-table {
             padding: 0.4rem 0.2rem;
             font-size: 1rem;
 
-            text-align: left;
-
             &:first-of-type {
-                width: 45%;
+                text-align: left;
             }
 
             &:last-of-type {
@@ -85,10 +83,10 @@ table.delivery-table {
             padding: 0.4rem 0.2rem;
             font-size: 1rem;
 
-            text-align: left;
+            text-align: center;
 
             &:first-of-type {
-                width: 45%;
+                text-align: left;
             }
 
             &:last-of-type {
@@ -113,9 +111,11 @@ body {
         flex-flow: row nowrap;
         justify-content: space-between;
         align-items: center;
+
         width: 100%;
         max-width: 100%;
         height: 4rem;
+
         padding-left: 2ch;
         padding-right: 2ch;
 
@@ -137,41 +137,48 @@ body {
 
         &>.hamburger-menu {
             display: none;
-            background: none;
-            border: none;
+
             font-size: 2rem;
-            cursor: pointer;
             color: var(--primary-light);
+
+            background: none;
+
+            border: none;
+
+            cursor: pointer;
         }
 
         &>.dropdown-menu {
             display: none;
-            flex-direction: column;
-            position:fixed;
-            top: 4rem;
+            flex-flow: column nowrap;
+            position: fixed;
 
+            top: 4rem;
             right: 0;
+
             background-color: var(--secondary-dark);
-            width: 100%;
             z-index: 10;
+
+            width: 100%;
+            max-height: calc(100svh - 4rem);
+            overflow-y: scroll;
 
             &>a {
                 padding: 1rem;
                 text-decoration: none;
                 color: var(--primary-light);
-                border-bottom: 1px solid var(--primary-light);
+                border-bottom: 0.0625rem solid var(--primary-light);
             }
         }
 
+        /* If the device is narrow enough, switch to hamburger nav */
         @media (max-width: 768px) {
             &>.nav-bar {
                 display: none;
-                /* Hide regular nav bar */
             }
 
             &>.hamburger-menu {
                 display: block;
-                /* Show hamburger menu button */
             }
         }
     }
@@ -255,7 +262,6 @@ body {
                 display: flex;
 
                 width: min-content;
-                /* max-width: 90dvw; */
 
                 margin: 0.4rem;
 
