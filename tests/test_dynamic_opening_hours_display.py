@@ -29,7 +29,7 @@ class TestOpeningHours(TemplateTest):
 
     def setAndTestTime(self, year: int, month: int, day: int, hour: int, minute: int, expected: list[str]) -> None:
         self.setPageTimeTo(year, month, day, hour, minute)
-        self.assertTextInAll(expected)
+        self.assertInAllTextContent(expected)
 
     # tests
     def testWeekdays(self) -> None:

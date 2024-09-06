@@ -24,7 +24,7 @@ class TestZIPCodes(TemplateTest):
         zip_input.fill(zip_code)
         zip_button.click()
         time.sleep(0.2)
-        self.assertInText(match)
+        self.assertInTextContent(match)
 
     # tests
     def testEmptyZIPCode(self) -> None:
@@ -43,23 +43,23 @@ class TestZIPCodes(TemplateTest):
         self.submitAndTestZIPCode("98147", "Vi kör ut till postnummer 98147 för 299 kr")
 
     def testOnEnterKey(self) -> None:
-        zip_input = self.page.query_selector("#zip-input")
-        zip_input.fill("98138")
-        zip_input.press("Enter")
+        zipInput = self.page.query_selector("#zip-input")
+        zipInput.fill("98138")
+        zipInput.press("Enter")
         time.sleep(0.2)
-        self.assertInText("Vi kör ut till postnummer 98138 för 199 kr")
+        self.assertInTextContent("Vi kör ut till postnummer 98138 för 199 kr")
 
     def testOnBlur(self) -> None:
-        zip_input = self.page.query_selector("#zip-input")
-        zip_input.fill("98138")
+        zipInput = self.page.query_selector("#zip-input")
+        zipInput.fill("98138")
         self.page.evaluate(
             """
             (element) => element.blur();
             """,
-            zip_input,
+            zipInput,
         )
         time.sleep(0.2)
-        self.assertInText("Vi kör ut till postnummer 98138 för 199 kr")
+        self.assertInTextContent("Vi kör ut till postnummer 98138 för 199 kr")
 
 
 if __name__ == "__main__":
