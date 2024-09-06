@@ -1,46 +1,46 @@
 // Get the buttons
 const buttons = document.querySelectorAll("#vat-button, #no-vat-button");
 
-// VAT is 25%
-const VAT_RATE = 1.25;
+// The value added tax (swe: moms) is 25%
+const vat = 1.25;
 
 // Get all the prices from the table
-const prices = Array.from(document.querySelectorAll(".our-cars-table .price"));
-
-// Calculate prices with and without VAT
+const priceDOMs = Array.from(document.querySelectorAll(".our-cars-table .price"));
 
 // Gets the integer value of the price in each cell of the table
-const priceValues = prices.map((price) => parseInt(price.textContent));
+const pricesAsNumbers = priceDOMs.map((price) => parseInt(price.textContent));
 
-// Rounds the price to the nearest whole number and adds "kr" to the end
-const pricesWithVat = priceValues.map((price) => price.toFixed(0) + " kr");
-
-// Divides the price by the VAT rate and rounds to the nearest whole number and adds "kr" to the end
-const pricesWithoutVat = priceValues.map(
-    (price) => (price / VAT_RATE).toFixed(0) + " kr"
+// Takes all the prices and assume that they're already with VAT
+const pricesWithVat = pricesAsNumbers.map(
+    (price) => price.toFixed(0) + " kr"
 );
 
-// Function to set prices to either with VAT or without VAT
-const setPricesWithVat = () => {
-    prices.forEach((price, index) => {
+// Takes all the prices and divides them by the VAT rate to get the price without VAT
+const pricesWithoutVat = pricesAsNumbers.map(
+    (price) => (price / vat).toFixed(0) + " kr"
+);
+
+const displayPricesWithVat = () => {
+    // Sets all the price elements in the table to the prices with VAT
+    priceDOMs.forEach((price, index) => {
         price.textContent = pricesWithVat[index];
     });
 };
 
-const setPricesWithoutVat = () => {
-    prices.forEach((price, index) => {
+const displayPricesWithoutVat = () => {
+    // Sets all the price elements in the table to the prices without VAT
+    priceDOMs.forEach((price, index) => {
         price.textContent = pricesWithoutVat[index];
     });
 };
 
-// Function to handle button clicks
-const handleButtonClick = (button) => {
+const onButtonClick = (button) => {
     // If the button is already active, do nothing
     if (button.classList.contains("active")) {
         return;
     }
 
-    // Remove the active class from all buttons
+    // Remove the active class from all buttons to make sure both can't be active at the same time
     buttons.forEach((btn) => btn.classList.remove("active"));
 
     // Add active class to the clicked button
@@ -48,13 +48,13 @@ const handleButtonClick = (button) => {
 
     // Set prices based on the button clicked
     if (button.id === "vat-button") {
-        setPricesWithVat();
+        displayPricesWithVat();
     } else {
-        setPricesWithoutVat();
+        displayPricesWithoutVat();
     }
 };
 
 // Attach event listeners to buttons
 buttons.forEach((button) => {
-    button.addEventListener("click", () => handleButtonClick(button));
+    button.addEventListener("click", () => onButtonClick(button));
 });
