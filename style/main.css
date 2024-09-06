@@ -162,6 +162,10 @@ body {
             width: 100%;
             max-height: calc(100svh - 4rem);
             overflow-y: scroll;
+            
+            &::-webkit-scrollbar {
+                display: none;
+            }
 
             &>a {
                 padding: 1rem;
@@ -260,8 +264,6 @@ body {
 
             &>.input-container {
                 display: flex;
-
-                /* width: min-content; */
 
                 margin: 0.4rem;
 

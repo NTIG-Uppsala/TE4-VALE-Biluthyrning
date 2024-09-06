@@ -1,13 +1,14 @@
 document.querySelector(".hamburger-menu").addEventListener("click", () => {
-        // Get the dropdown menu
-        const dropdownMenu = document.querySelector(".dropdown-menu");
+    // Get the dropdown menu
+    const dropdownMenu = document.querySelector(".dropdown-menu");
 
-        // Toggle the display of the dropdown menu
-        dropdownMenu.style.display =
-            dropdownMenu.style.display === "flex" ? "none" : "flex";
-    });
+    // Toggle the display of the dropdown menu
+    dropdownMenu.style.display = dropdownMenu.style.display === "flex" ? "none" : "flex";
 
-document.addEventListener("click", (event) => {
+    document.addEventListener("click", onClickHamburgerClose);
+});
+
+const onClickHamburgerClose = (event) => {
     // Get the dropdown menu
     const dropdownMenu = document.querySelector(".dropdown-menu");
     const hamburgerMenu = document.querySelector(".hamburger-menu");
@@ -21,4 +22,6 @@ document.addEventListener("click", (event) => {
     // If the dropdown menu is not clicked
     // Hide the dropdown menu
     dropdownMenu.style.display = "none";
-});
+
+    document.removeEventListener("click", onClickHamburgerClose);
+};
