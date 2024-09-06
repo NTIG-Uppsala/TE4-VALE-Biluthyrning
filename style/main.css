@@ -105,6 +105,10 @@ body {
         padding-left: 2ch;
         padding-right: 2ch;
 
+        top: 0;
+
+        position: sticky;
+
         background-color: var(--secondary-dark);
 
         &>.logo-name-wrapper {
