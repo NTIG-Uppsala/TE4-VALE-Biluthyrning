@@ -302,7 +302,7 @@ body {
             }
 
             &>#delivery-status-tag {
-                height: 1rem;
+               height: 1rem;
             }
         }
     }
