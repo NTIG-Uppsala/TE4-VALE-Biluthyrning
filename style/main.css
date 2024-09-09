@@ -24,6 +24,10 @@ img {
     -webkit-user-drag: none;
 }
 
+p {
+    text-wrap: balance;
+}
+
 h1,
 h2,
 h3,
@@ -162,7 +166,7 @@ body {
             width: 100%;
             max-height: calc(100svh - 4rem);
             overflow-y: scroll;
-            
+
             &::-webkit-scrollbar {
                 display: none;
             }
