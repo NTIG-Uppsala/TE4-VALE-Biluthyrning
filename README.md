@@ -8,7 +8,7 @@
 
 To change the opening hours that appear on the site, you have to change it manually at three places. There are two tables in the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/index.html) file and one object in the [openHours.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/js/openHours.js) file that have to be changed.
 
-To change closed days change the text content of an element in the footer of in the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/index.html) file and change the closedDates object in the [openHours.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/js/openHours.js) file.
+To change closed days change the text content of a table in the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/index.html) file and change the closedDates object in the [openHours.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/js/openHours.js) file.
 
 ---
 
@@ -24,7 +24,7 @@ To change the E-mail change the innerHTML and the value of the href-attribute of
 
 To change the address change the innerHTML and the value of the href-attribute of one element in the footer of the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/index.html) file.
 
-When making changes to any of the above files also make sure to add that change to its coralating python testing file.
+When making changes to any of the above files also make sure to add that change to its correlating python testing file.
 
 ---
 
@@ -36,7 +36,7 @@ To manually conduct the w3c validation tests open [this page](https://validator.
 
 To manually conduct the automated content testing install Python 3.12.5 and run the following commands in the terminal: "pip install pytest-playwright", "pip install playwright", "pip install pytest-json-report", and "playwright install". After that run the tests/test_index.py file.
 
-To add more Python tests add another method in the TestIndex class whose name starts with "test" and use the assert methods to make the checks.
+To add more Python tests either add more methods (which start with test*) in the existing test*.py files or create a new file with the test*.py format using the template in template.py but with a changed class-name.
 
 ---
 
