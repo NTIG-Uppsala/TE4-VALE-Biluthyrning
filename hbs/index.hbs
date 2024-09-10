@@ -48,11 +48,11 @@
             <form action="get" id="redirectLocation">
                 <select name="redirect" id="location-select">
                     {{#if location.kiruna}}
-                    <option value={{location.folder}}>Kiruna</option>
-                    <option value={{location.redirect_locations.lulea}}>Luleå</option>
+                    <option value="{{location.folder}}">Kiruna</option>
+                    <option value="{{location.redirect_locations.lulea}}">Luleå</option>
                     {{else if location.lulea}}
                     <option value="#">Luleå</option>
-                    <option value={{location.redirect_locations.kiruna}}>Kiruna</option>
+                    <option value="{{location.redirect_locations.kiruna}}">Kiruna</option>
                     {{/if}}
                 </select>
                 <noscript>
