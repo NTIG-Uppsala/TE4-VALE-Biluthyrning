@@ -49,7 +49,7 @@ lang:
     current_status_fallback: "Tarkista aukioloaikamme nähdäksesi milloin olemme avoinna"
     not_open_yet: "Avaamme klo. ${time} tänään"
     open_now: "Olemme auki nyt ja suljemme klo. ${time}"
-    closed_now_holidau: "Olemme suljettu ${holiday} <br> Avaamme uudelleen ${next_opening_day} klo. ${time}"
+    closed_now_holiday: "Olemme suljettu ${holiday} <br> Avaamme uudelleen ${next_opening_day} klo. ${time}"
     after_hours: "Olemme suljettu tänään <br> Avaamme uudelleen ${next_opening_day} klo. ${time}"
     closed_now: "Olemme suljettu tänään <br> Avaamme uudelleen ${next_opening_day} klo. ${time}"
 

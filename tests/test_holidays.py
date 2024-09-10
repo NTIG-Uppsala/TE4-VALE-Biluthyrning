@@ -5,7 +5,7 @@ from utils import *
 
 class TestHolidays(TemplateTest):
     def setUp(self) -> None:
-        super().setUp(fileToTest="index.html")
+        super().setUp(fileToTest="public/se/kiruna/index.html")
 
     def testBrowserExists(self) -> None:
         self.assertIsNotNone(self.page)
@@ -32,7 +32,7 @@ class TestHolidays(TemplateTest):
         self.setPageTimeTo(year, month, day, hour, minute)
         self.assertInAllTextContent(expected)
 
-    def setTimeAndGetClosedDatesTable(self, year: int, month: int, day, hour: int, minute: int) -> list[list[str]]:
+    def setTimeAndGetClosedDatesTable(self, year: int, month: int, day: int, hour: int, minute: int) -> list[list[str]]:
         self.setPageTimeTo(year, month, day, hour, minute)
 
         closedDatesTable = self.page.query_selector(".closed-dates-table").inner_html().split("</tr>")
