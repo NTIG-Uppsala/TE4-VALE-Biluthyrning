@@ -4,8 +4,6 @@ const cityLocation = document.querySelector("#location").textContent;
 // Get the data for the current language and location
 const dataHours = localizationData[lang][cityLocation];
 
-console.log("Current Language Data (dataHours.lang):", dataHours.lang);
-
 // Helper function
 const formatTimeString = (time) => {
     const hour = time.slice(0, 2).padStart(2, "0");
@@ -99,23 +97,26 @@ const refreshDynamicOpenStatus = () => {
 
     const openStatusTag = document.getElementById("dynamic-opening-hours-tag");
     openStatusTag.innerHTML = openStatusString;
+    // ChatGPT really couldn't do this as seen in the commented code below. Let's see if copilot can do it.
 
-    // Convert closedDates object to an array of objects with a month, day, name, and monthName
-    const holidays = Object.entries(closedDates).flatMap(
-        ([month, { name: monthName, days }]) =>
-            Object.entries(days).map(([day, name]) => ({
-                month: parseInt(month),
-                day: parseInt(day),
-                name,
-                monthName,
-            }))
-    );
+    const table = document.querySelector(".closed-dates-table>tbody");
+    const rows = table.querySelectorAll("tr");
+
+    const holidays = Array.from(rows).map((row) => {
+        return {
+            month: parseInt(row.dataset.month),
+            day: parseInt(row.dataset.day),
+            date: row.querySelectorAll("td")[0].dataset.key,
+            name: row.querySelectorAll("td")[1].dataset.key,
+            state: row.querySelectorAll("td")[2].dataset.key
+        };
+    });
 
     // Get today's date
     const todayMonth = now.getMonth();
     const todayDate = now.getDate();
 
-    // Function to determine if a holiday is before or after today
+    // Function to determine if a holiday is after today
     const isAfterToday = (holiday) => {
         return (
             holiday.month > todayMonth ||
@@ -125,49 +126,30 @@ const refreshDynamicOpenStatus = () => {
 
     // Separate holidays into those after today and before today
     const holidaysAfterToday = holidays.filter(isAfterToday);
-    const holidaysBeforeToday = holidays.filter(
-        (holiday) => !isAfterToday(holiday)
-    );
+    const holidaysBeforeToday = holidays.filter(holiday => !isAfterToday(holiday));
+
+    console.log(holidaysAfterToday);
+    console.log(holidaysBeforeToday);
 
     // Combine them to have holidays after today come first, then those before today
     const sortedHolidays = [...holidaysAfterToday, ...holidaysBeforeToday];
 
-    // Update the tables
-    const tables = document.querySelectorAll(".closed-dates-table");
+    // Clear the existing table content
+    table.innerHTML = '';
 
-    tables.forEach((table) => {
-        table.innerHTML = "<tbody></tbody>";
-        const tbody = table.querySelector("tbody");
-        sortedHolidays.forEach((holiday) => {
-            const tr = document.createElement("tr");
+    // Append new rows to the table
+    sortedHolidays.forEach((holiday) => {
+        const row = document.createElement('tr');
+        row.dataset.month = holiday.month;
+        row.dataset.day = holiday.day;
 
-            // Create a cell for the formatted date
-            const tdDate = document.createElement("td");
-            tdDate.setAttribute("data-key", `${holiday.monthName}_${holiday.day}`);
-            tdDate.textContent = `${holiday.day} ${holiday.monthName}`; // Initial placeholder
-            tr.appendChild(tdDate);
+        row.innerHTML = `
+            <td data-key="${holiday.date}">${dataHours.lang[holiday.date] || holiday.date}</td>
+            <td data-key="${holiday.name}">${dataHours.lang[holiday.name] || holiday.name}</td>
+            <td data-key="${holiday.state}">${dataHours.lang[holiday.state] || holiday.state}</td>
+        `;
 
-            // Create a cell for the holiday name
-            const tdName = document.createElement("td");
-            tdName.setAttribute("data-key", holiday.name);
-            tdName.textContent = holiday.name; // Initial placeholder
-            tr.appendChild(tdName);
-
-            // Create a cell for the status
-            const tdStatus = document.createElement("td");
-            tdStatus.setAttribute("data-key", "closed");
-            tdStatus.textContent = "closed"; // Initial placeholder
-            tr.appendChild(tdStatus);
-
-            tbody.appendChild(tr);
-        });
-
-        // Update the table content with localized values
-        table.querySelectorAll("td[data-key]").forEach(td => {
-            const key = td.getAttribute("data-key");
-            const localizedText = dataHours.lang[key] || key; // Use the key if translation is not available
-            td.textContent = localizedText;
-        });
+        table.appendChild(row);
     });
 };
 
