@@ -1,0 +1,25 @@
+location:
+  zip_code: "961 93"
+  address: "Färjledsvägen 38"
+  city: "Luleå"
+  zip_codes: 
+    zip_code_1:
+      zip_code: "961 93"
+      price: "199 kr"
+    zip_code_2:
+      zip_code: "961 94"
+      price: "199 kr"
+    zip_code_3:
+      zip_code: "961 90"
+      price: "199 kr"
+    zip_code_4:
+      zip_code: "961 91"
+      price: "199 kr"
+  opening_hours:
+    monday: "10:00 - 17:00"
+    tuesday: "10:00 - 16:00"
+    wednesday: "10:00 - 15:00"
+    thursday: "10:00 - 16:00"
+    friday: "10:00 - 16:00"
+    saturday: "12:00 - 15:00"
+    sunday: "Closed"
