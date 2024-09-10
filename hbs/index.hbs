@@ -226,34 +226,12 @@
                             </tr>
                         </thead>
                         <tbody>
+                          {{#each location.zip_codes}}
                             <tr>
-                                <td>981 38</td>
-                                <td>199 kr</td>
+                                <td>{{this.zip_code}}</td>
+                                <td>{{this.price}}</td>
                             </tr>
-                            <tr>
-                                <td>981 40</td>
-                                <td>199 kr</td>
-                            </tr>
-                            <tr>
-                                <td>981 41</td>
-                                <td>199 kr</td>
-                            </tr>
-                            <tr>
-                                <td>981 44</td>
-                                <td>299 kr</td>
-                            </tr>
-                            <tr>
-                                <td>981 45</td>
-                                <td>299 kr</td>
-                            </tr>
-                            <tr>
-                                <td>981 46</td>
-                                <td>299 kr</td>
-                            </tr>
-                            <tr>
-                                <td>981 47</td>
-                                <td>299 kr</td>
-                            </tr>
+                          {{/each}}
                         </tbody>
                     </table>
 
@@ -331,8 +309,7 @@
 
             <div class="footer-container">
                 <h4>{{lang.address}}</h4>
-                <a href="https://maps.app.goo.gl/5c7N2tctTDWgJgYr7">Fjällgatan
-                    32H, 981 39 Kiruna</a>
+                <a href="https://maps.app.goo.gl/5c7N2tctTDWgJgYr7">{{location.address}}, {{location.zip_code}} {{location.city}}</a>
             </div>
 
             <div id="social-media-container">

@@ -2,6 +2,7 @@ location:
   zip_code: "981 39"
   address: "Fjällgatan 32H"
   city: "Kiruna"
+  phone_number: "+46630555555"
   zip_codes:
     zip_code_1:
       zip_code: "981 38"
