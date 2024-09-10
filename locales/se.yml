@@ -11,7 +11,11 @@ lang:
     phone_contact_pt1: "Ring oss på"
     phone_contact_pt2: "för att reservera din bil"
     current_status_default: "Kolla våra öppettider på botten av sidan"
-    monday_friday: "Måndag - fredag"
+    monday: "Måndag"
+    tuesday: "Tisdag"
+    wednesday: "Onsdag"
+    thursday: "Torsdag"
+    friday: "Fredag"
     saturday: "Lördag"
     sunday: "Söndag"
     closed: "Stängt"
@@ -45,17 +49,14 @@ lang:
     email: "E-post"
     address: "Adress"
     background_image: "Bakgrundsbild"
-
     current_status_fallback: "Kolla våra öppettider för att se när vi har öppet"
     not_open_yet: "Vi öppnar kl. ${time} idag"
     open_now: "Vi har öppet nu och stänger kl. ${time}"
     closed_now_holidau: "Vi har stängt på ${holiday} <br> Vi öppnar igen på ${next_opening_day} kl. ${time}"
     after_hours: "Vi har stängt för idag <br> Vi öppnar igen på ${next_opening_day} kl. ${time}"
     closed_now: "Vi har stängt idag <br> Vi öppnar igen på ${next_opening_day} kl. ${time}"
-
     no_zip_code: "Du måste ange ett postnummer i rutan"
     zip_code_not_correct_length: "Postnumret måste vara fem siffror långt"
     does_not_deliver: "Vi kör inte ut till postnummer ${zip_code}"
     delivers: "Vi kör ut till postnummer ${zip_code} för ${price} kr"
-
     se: true

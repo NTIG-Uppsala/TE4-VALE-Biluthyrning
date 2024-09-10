@@ -4,11 +4,60 @@ const cityLocation = document.querySelector("#location").textContent;
 // Get the data for the current language and location
 const dataHours = localizationData[lang][cityLocation];
 
-// Helper function
+// Helper functions
 const formatTimeString = (time) => {
     const hour = time.slice(0, 2).padStart(2, "0");
     const minute = time.slice(2).padStart(2, "0");
     return hour + ":" + minute;
+};
+
+const mergeRowsWithSameHours = (table) => {
+    const rows = table.querySelectorAll("tbody>tr");
+
+
+    // Merge rows with the same hours so that the first cell contains the string "first day - last day"
+
+    const mergedRows = [];
+    let previousDaySameHours = false;
+
+    rows.forEach((row, index) => {
+        const currentDay = row.querySelector("td[data-day]").dataset.day;
+        const currentHours = row.querySelector("td[data-hours]").dataset.hours;
+
+        // Remember to use the dataHours object to get the correct language for text content but use data to set the correct dataset values
+        const currentDayText = dataHours.lang[currentDay];
+
+        if (index === 0) {
+            mergedRows.push(row);
+            return;
+        }
+
+        const previousRow = mergedRows[mergedRows.length - 1];
+        const previousDay = previousRow.querySelector("td[data-day]").dataset.day;
+        const previousHours = previousRow.querySelector("td[data-hours]").dataset.hours;
+        
+        const previousDayText = dataHours.lang[previousDay];
+
+        if (currentHours === previousHours) {
+            if (previousDaySameHours) {
+                previousRow.querySelector("td[data-day]").textContent = `${previousDayText} - ${currentDayText.toLowerCase()}`;
+            } else {
+                previousRow.querySelector("td[data-day]").textContent = `${previousDayText} - ${currentDayText.toLowerCase()}`;
+                previousDaySameHours = true;
+            }
+        } else {
+            mergedRows.push(row);
+            previousDaySameHours = false;
+        }        
+    });
+    
+    // Clear the existing table content
+    table.innerHTML = '<tbody></tbody>';
+    
+    // Append the merged rows to the table
+    mergedRows.forEach((row) => {
+        table.querySelector("tbody").appendChild(row);
+    });
 };
 
 const now = new Date();
@@ -128,9 +177,6 @@ const refreshDynamicOpenStatus = () => {
     const holidaysAfterToday = holidays.filter(isAfterToday);
     const holidaysBeforeToday = holidays.filter(holiday => !isAfterToday(holiday));
 
-    console.log(holidaysAfterToday);
-    console.log(holidaysBeforeToday);
-
     // Combine them to have holidays after today come first, then those before today
     const sortedHolidays = [...holidaysAfterToday, ...holidaysBeforeToday];
 
@@ -150,6 +196,12 @@ const refreshDynamicOpenStatus = () => {
         `;
 
         table.appendChild(row);
+    });
+
+    const tables = document.querySelectorAll(".open-hours-table");
+    // Merge rows with the same hours in each table
+    tables.forEach((table) => {
+        mergeRowsWithSameHours(table);
     });
 };
 

@@ -11,7 +11,11 @@ lang:
     phone_contact_pt1: "Call us at"
     phone_contact_pt2: "to reserve your car"
     current_status_default: "Check our opening hours at the bottom of the page"
-    monday_friday: "Monday - Friday"
+    monday: "Monday"
+    tuesday: "Tuesday"
+    wednesday: "Wednesday"
+    thursday: "Thursday"
+    friday: "Friday"
     saturday: "Saturday"
     sunday: "Sunday"
     closed: "Closed"
@@ -45,17 +49,14 @@ lang:
     email: "Email"
     address: "Address"
     background_image: "Background image"
-
     current_status_fallback: "Check our opening hours to see when we are open"
     not_open_yet: "We open at ${time} today"
     open_now: "We are open now and close at ${time}"
     closed_now_holidau: "We are closed on ${holiday} <br> We open again on ${next_opening_day} at ${time}"
     after_hours: "We are closed for today <br> We open again on ${next_opening_day} at ${time}"
     closed_now: "We are closed today <br> We open again on ${next_opening_day} at ${time}"
-
     no_zip_code: "You must enter a zip code in the box"
     zip_code_not_correct_length: "The zip code must be five digits long"
     does_not_deliver: "We do not deliver to zip code ${zip_code}"
     delivers: "We deliver to zip code ${zip_code} for ${price} kr"
-
     en: true

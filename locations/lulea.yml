@@ -1,32 +1,47 @@
 location:
-  folder: "lulea"
-  zip_code: "961 93"
-  address: "Färjledsvägen 38"
-  location: "Luleå"
-  city: "Södra Sunderbyn, Luleå"
-  phone_number_html: "+46640555333"
-  phone_number_text: "+46 64-055 53 33"
-  zip_codes: 
-    zip_code_1:
-      zip_code: "961 93"
-      price: "199 kr"
-    zip_code_2:
-      zip_code: "961 94"
-      price: "199 kr"
-    zip_code_3:
-      zip_code: "961 90"
-      price: "199 kr"
-    zip_code_4:
-      zip_code: "961 91"
-      price: "199 kr"
-  opening_hours:
-    monday: "10:00 - 17:00"
-    tuesday: "10:00 - 16:00"
-    wednesday: "10:00 - 15:00"
-    thursday: "10:00 - 16:00"
-    friday: "10:00 - 16:00"
-    saturday: "12:00 - 15:00"
-    sunday: "Closed"
-  redirect_locations:
-    kiruna: "./kiruna"
-  lulea: true
+    redirect_locations:
+        kiruna: "./kiruna"
+    lulea: true
+    folder: "lulea"
+    zip_code: "961 93"
+    address: "Färjledsvägen 38"
+    location: "Luleå"
+    city: "Södra Sunderbyn, Luleå"
+    phone_number_html: "+46640555333"
+    phone_number_text: "+46 64-055 53 33"
+    mail: "lulea@ntbhyr.se"
+    zip_codes:
+        zip_code_1:
+            zip_code: "961 93"
+            price: "199 kr"
+        zip_code_2:
+            zip_code: "961 94"
+            price: "199 kr"
+        zip_code_3:
+            zip_code: "961 90"
+            price: "199 kr"
+        zip_code_4:
+            zip_code: "961 91"
+            price: "199 kr"
+    opening_hours:
+        monday:
+            day: "monday"
+            hours: "10:00 - 17:00"
+        tuesday:
+            day: "tuesday"
+            hours: "10:00 - 16:00"
+        wednesday:
+            day: "wednesday"
+            hours: "10:00 - 15:00"
+        thursday:
+            day: "thursday"
+            hours: "10:00 - 16:00"
+        friday:
+            day: "friday"
+            hours: "10:00 - 16:00"
+        saturday:
+            day: "saturday"
+            hours: "12:00 - 15:00"
+        sunday:
+            day: "sunday"
+            hours: "closed"

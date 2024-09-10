@@ -13,7 +13,11 @@ const localizationData = {
         phone_contact_pt1: "Call us at",
         phone_contact_pt2: "to reserve your car",
         current_status_default: "Check our opening hours at the bottom of the page",
-        monday_friday: "Monday - Friday",
+        monday: "Monday",
+        tuesday: "Tuesday",
+        wednesday: "Wednesday",
+        thursday: "Thursday",
+        friday: "Friday",
         saturday: "Saturday",
         sunday: "Sunday",
         closed: "Closed",
@@ -59,6 +63,10 @@ const localizationData = {
         en: true
       },
       location: {
+        redirect_locations: {
+          lulea: "./lulea"
+        },
+        kiruna: true,
         folder: "kiruna",
         zip_code: "981 39",
         address: "Fjällgatan 32H",
@@ -66,6 +74,7 @@ const localizationData = {
         city: "Kiruna",
         phone_number_html: "+46630555555",
         phone_number_text: "+46 63-055 55 55",
+        mail: "info@ntbhyr.se",
         zip_codes: {
           zip_code_1: {
             zip_code: "981 38",
@@ -97,18 +106,35 @@ const localizationData = {
           }
         },
         opening_hours: {
-          monday: "10:00 - 16:00",
-          tuesday: "10:00 - 16:00",
-          wednesday: "10:00 - 16:00",
-          thursday: "10:00 - 16:00",
-          friday: "10:00 - 16:00",
-          saturday: "12:00 - 15:00",
-          sunday: "Closed"
-        },
-        redirect_locations: {
-          lulea: "./lulea"
-        },
-        kiruna: true
+          monday: {
+            day: "monday",
+            hours: "10:00 - 16:00"
+          },
+          tuesday: {
+            day: "tuesday",
+            hours: "10:00 - 16:00"
+          },
+          wednesday: {
+            day: "wednesday",
+            hours: "10:00 - 16:00"
+          },
+          thursday: {
+            day: "thursday",
+            hours: "10:00 - 16:00"
+          },
+          friday: {
+            day: "friday",
+            hours: "10:00 - 16:00"
+          },
+          saturday: {
+            day: "saturday",
+            hours: "12:00 - 15:00"
+          },
+          sunday: {
+            day: "sunday",
+            hours: "closed"
+          }
+        }
       }
     },
     lulea: {
@@ -124,7 +150,11 @@ const localizationData = {
         phone_contact_pt1: "Call us at",
         phone_contact_pt2: "to reserve your car",
         current_status_default: "Check our opening hours at the bottom of the page",
-        monday_friday: "Monday - Friday",
+        monday: "Monday",
+        tuesday: "Tuesday",
+        wednesday: "Wednesday",
+        thursday: "Thursday",
+        friday: "Friday",
         saturday: "Saturday",
         sunday: "Sunday",
         closed: "Closed",
@@ -170,6 +200,10 @@ const localizationData = {
         en: true
       },
       location: {
+        redirect_locations: {
+          kiruna: "./kiruna"
+        },
+        lulea: true,
         folder: "lulea",
         zip_code: "961 93",
         address: "Färjledsvägen 38",
@@ -177,6 +211,7 @@ const localizationData = {
         city: "Södra Sunderbyn, Luleå",
         phone_number_html: "+46640555333",
         phone_number_text: "+46 64-055 53 33",
+        mail: "lulea@ntbhyr.se",
         zip_codes: {
           zip_code_1: {
             zip_code: "961 93",
@@ -196,18 +231,35 @@ const localizationData = {
           }
         },
         opening_hours: {
-          monday: "10:00 - 17:00",
-          tuesday: "10:00 - 16:00",
-          wednesday: "10:00 - 15:00",
-          thursday: "10:00 - 16:00",
-          friday: "10:00 - 16:00",
-          saturday: "12:00 - 15:00",
-          sunday: "Closed"
-        },
-        redirect_locations: {
-          kiruna: "./kiruna"
-        },
-        lulea: true
+          monday: {
+            day: "monday",
+            hours: "10:00 - 17:00"
+          },
+          tuesday: {
+            day: "tuesday",
+            hours: "10:00 - 16:00"
+          },
+          wednesday: {
+            day: "wednesday",
+            hours: "10:00 - 15:00"
+          },
+          thursday: {
+            day: "thursday",
+            hours: "10:00 - 16:00"
+          },
+          friday: {
+            day: "friday",
+            hours: "10:00 - 16:00"
+          },
+          saturday: {
+            day: "saturday",
+            hours: "12:00 - 15:00"
+          },
+          sunday: {
+            day: "sunday",
+            hours: "closed"
+          }
+        }
       }
     }
   },
@@ -225,7 +277,11 @@ const localizationData = {
         phone_contact_pt1: "Soita meille numeroon",
         phone_contact_pt2: "varataksesi autosi",
         current_status_default: "Tarkista aukioloaikamme sivun alalaidasta",
-        monday_friday: "Maanantai - perjantai",
+        monday: "Maanantai",
+        tuesday: "Tiistai",
+        wednesday: "Keskiviikko",
+        thursday: "Torstai",
+        friday: "Perjantai",
         saturday: "Lauantai",
         sunday: "Sunnuntai",
         closed: "Suljettu",
@@ -271,6 +327,10 @@ const localizationData = {
         fi: true
       },
       location: {
+        redirect_locations: {
+          lulea: "./lulea"
+        },
+        kiruna: true,
         folder: "kiruna",
         zip_code: "981 39",
         address: "Fjällgatan 32H",
@@ -278,6 +338,7 @@ const localizationData = {
         city: "Kiruna",
         phone_number_html: "+46630555555",
         phone_number_text: "+46 63-055 55 55",
+        mail: "info@ntbhyr.se",
         zip_codes: {
           zip_code_1: {
             zip_code: "981 38",
@@ -309,18 +370,35 @@ const localizationData = {
           }
         },
         opening_hours: {
-          monday: "10:00 - 16:00",
-          tuesday: "10:00 - 16:00",
-          wednesday: "10:00 - 16:00",
-          thursday: "10:00 - 16:00",
-          friday: "10:00 - 16:00",
-          saturday: "12:00 - 15:00",
-          sunday: "Closed"
-        },
-        redirect_locations: {
-          lulea: "./lulea"
-        },
-        kiruna: true
+          monday: {
+            day: "monday",
+            hours: "10:00 - 16:00"
+          },
+          tuesday: {
+            day: "tuesday",
+            hours: "10:00 - 16:00"
+          },
+          wednesday: {
+            day: "wednesday",
+            hours: "10:00 - 16:00"
+          },
+          thursday: {
+            day: "thursday",
+            hours: "10:00 - 16:00"
+          },
+          friday: {
+            day: "friday",
+            hours: "10:00 - 16:00"
+          },
+          saturday: {
+            day: "saturday",
+            hours: "12:00 - 15:00"
+          },
+          sunday: {
+            day: "sunday",
+            hours: "closed"
+          }
+        }
       }
     },
     lulea: {
@@ -336,7 +414,11 @@ const localizationData = {
         phone_contact_pt1: "Soita meille numeroon",
         phone_contact_pt2: "varataksesi autosi",
         current_status_default: "Tarkista aukioloaikamme sivun alalaidasta",
-        monday_friday: "Maanantai - perjantai",
+        monday: "Maanantai",
+        tuesday: "Tiistai",
+        wednesday: "Keskiviikko",
+        thursday: "Torstai",
+        friday: "Perjantai",
         saturday: "Lauantai",
         sunday: "Sunnuntai",
         closed: "Suljettu",
@@ -382,6 +464,10 @@ const localizationData = {
         fi: true
       },
       location: {
+        redirect_locations: {
+          kiruna: "./kiruna"
+        },
+        lulea: true,
         folder: "lulea",
         zip_code: "961 93",
         address: "Färjledsvägen 38",
@@ -389,6 +475,7 @@ const localizationData = {
         city: "Södra Sunderbyn, Luleå",
         phone_number_html: "+46640555333",
         phone_number_text: "+46 64-055 53 33",
+        mail: "lulea@ntbhyr.se",
         zip_codes: {
           zip_code_1: {
             zip_code: "961 93",
@@ -408,18 +495,35 @@ const localizationData = {
           }
         },
         opening_hours: {
-          monday: "10:00 - 17:00",
-          tuesday: "10:00 - 16:00",
-          wednesday: "10:00 - 15:00",
-          thursday: "10:00 - 16:00",
-          friday: "10:00 - 16:00",
-          saturday: "12:00 - 15:00",
-          sunday: "Closed"
-        },
-        redirect_locations: {
-          kiruna: "./kiruna"
-        },
-        lulea: true
+          monday: {
+            day: "monday",
+            hours: "10:00 - 17:00"
+          },
+          tuesday: {
+            day: "tuesday",
+            hours: "10:00 - 16:00"
+          },
+          wednesday: {
+            day: "wednesday",
+            hours: "10:00 - 15:00"
+          },
+          thursday: {
+            day: "thursday",
+            hours: "10:00 - 16:00"
+          },
+          friday: {
+            day: "friday",
+            hours: "10:00 - 16:00"
+          },
+          saturday: {
+            day: "saturday",
+            hours: "12:00 - 15:00"
+          },
+          sunday: {
+            day: "sunday",
+            hours: "closed"
+          }
+        }
       }
     }
   },
@@ -437,7 +541,11 @@ const localizationData = {
         phone_contact_pt1: "Ring oss på",
         phone_contact_pt2: "för att reservera din bil",
         current_status_default: "Kolla våra öppettider på botten av sidan",
-        monday_friday: "Måndag - fredag",
+        monday: "Måndag",
+        tuesday: "Tisdag",
+        wednesday: "Onsdag",
+        thursday: "Torsdag",
+        friday: "Fredag",
         saturday: "Lördag",
         sunday: "Söndag",
         closed: "Stängt",
@@ -483,6 +591,10 @@ const localizationData = {
         se: true
       },
       location: {
+        redirect_locations: {
+          lulea: "./lulea"
+        },
+        kiruna: true,
         folder: "kiruna",
         zip_code: "981 39",
         address: "Fjällgatan 32H",
@@ -490,6 +602,7 @@ const localizationData = {
         city: "Kiruna",
         phone_number_html: "+46630555555",
         phone_number_text: "+46 63-055 55 55",
+        mail: "info@ntbhyr.se",
         zip_codes: {
           zip_code_1: {
             zip_code: "981 38",
@@ -521,18 +634,35 @@ const localizationData = {
           }
         },
         opening_hours: {
-          monday: "10:00 - 16:00",
-          tuesday: "10:00 - 16:00",
-          wednesday: "10:00 - 16:00",
-          thursday: "10:00 - 16:00",
-          friday: "10:00 - 16:00",
-          saturday: "12:00 - 15:00",
-          sunday: "Closed"
-        },
-        redirect_locations: {
-          lulea: "./lulea"
-        },
-        kiruna: true
+          monday: {
+            day: "monday",
+            hours: "10:00 - 16:00"
+          },
+          tuesday: {
+            day: "tuesday",
+            hours: "10:00 - 16:00"
+          },
+          wednesday: {
+            day: "wednesday",
+            hours: "10:00 - 16:00"
+          },
+          thursday: {
+            day: "thursday",
+            hours: "10:00 - 16:00"
+          },
+          friday: {
+            day: "friday",
+            hours: "10:00 - 16:00"
+          },
+          saturday: {
+            day: "saturday",
+            hours: "12:00 - 15:00"
+          },
+          sunday: {
+            day: "sunday",
+            hours: "closed"
+          }
+        }
       }
     },
     lulea: {
@@ -548,7 +678,11 @@ const localizationData = {
         phone_contact_pt1: "Ring oss på",
         phone_contact_pt2: "för att reservera din bil",
         current_status_default: "Kolla våra öppettider på botten av sidan",
-        monday_friday: "Måndag - fredag",
+        monday: "Måndag",
+        tuesday: "Tisdag",
+        wednesday: "Onsdag",
+        thursday: "Torsdag",
+        friday: "Fredag",
         saturday: "Lördag",
         sunday: "Söndag",
         closed: "Stängt",
@@ -594,6 +728,10 @@ const localizationData = {
         se: true
       },
       location: {
+        redirect_locations: {
+          kiruna: "./kiruna"
+        },
+        lulea: true,
         folder: "lulea",
         zip_code: "961 93",
         address: "Färjledsvägen 38",
@@ -601,6 +739,7 @@ const localizationData = {
         city: "Södra Sunderbyn, Luleå",
         phone_number_html: "+46640555333",
         phone_number_text: "+46 64-055 53 33",
+        mail: "lulea@ntbhyr.se",
         zip_codes: {
           zip_code_1: {
             zip_code: "961 93",
@@ -620,18 +759,35 @@ const localizationData = {
           }
         },
         opening_hours: {
-          monday: "10:00 - 17:00",
-          tuesday: "10:00 - 16:00",
-          wednesday: "10:00 - 15:00",
-          thursday: "10:00 - 16:00",
-          friday: "10:00 - 16:00",
-          saturday: "12:00 - 15:00",
-          sunday: "Closed"
-        },
-        redirect_locations: {
-          kiruna: "./kiruna"
-        },
-        lulea: true
+          monday: {
+            day: "monday",
+            hours: "10:00 - 17:00"
+          },
+          tuesday: {
+            day: "tuesday",
+            hours: "10:00 - 16:00"
+          },
+          wednesday: {
+            day: "wednesday",
+            hours: "10:00 - 15:00"
+          },
+          thursday: {
+            day: "thursday",
+            hours: "10:00 - 16:00"
+          },
+          friday: {
+            day: "friday",
+            hours: "10:00 - 16:00"
+          },
+          saturday: {
+            day: "saturday",
+            hours: "12:00 - 15:00"
+          },
+          sunday: {
+            day: "sunday",
+            hours: "closed"
+          }
+        }
       }
     }
   }

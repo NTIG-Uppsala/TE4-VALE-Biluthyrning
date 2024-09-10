@@ -1,12 +1,20 @@
 const fs = require('fs');
-const handlebars = require('handlebars');
 const yaml = require('js-yaml');
+const Handlebars = require('handlebars');  // Use only one Handlebars import
 
 const inputFolder = 'locales/';  // Folder where localization files are stored
 const locationFolder = 'locations/';  // Folder where location-specific files are stored
 const templateFile = 'hbs/index.hbs';  // Template file to be used
 const outputFolder = 'public/';  // Root folder where output files will be stored
 const jsDataFolder = 'public/js/data/';  // Folder where the JavaScript object will be stored
+
+const translate = (key, options) => {
+  const langData = options.data.root.lang;  // Access the localization data from the root context
+  return langData[key] || key;  // Return the translated value or the key itself if not found
+};
+
+// Register the helper using the arrow function syntax
+Handlebars.registerHelper('translate', translate);
 
 // Create the output folders if they don't exist
 if (!fs.existsSync(outputFolder)) {
@@ -18,7 +26,7 @@ if (!fs.existsSync(jsDataFolder)) {
 
 // Read and compile the Handlebars template
 const templateContents = fs.readFileSync(templateFile, 'utf8');
-const template = handlebars.compile(templateContents);
+const template = Handlebars.compile(templateContents);  // Correctly use the Handlebars instance
 
 // Initialize an object to store all localization and location combinations data
 const allLocalizationData = {};
@@ -83,7 +91,7 @@ Object.keys(localizationData).forEach(locale => {
 });
 
 // Function to convert JS object to a string without quotes around keys
-function objectToString(obj) {
+const objectToString = (obj) => {
   return JSON.stringify(obj, null, 2).replace(/"([^"]+)":/g, '$1:');  // Remove quotes around object keys
 }
 

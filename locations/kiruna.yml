@@ -1,41 +1,56 @@
 location:
-  folder: "kiruna"
-  zip_code: "981 39"
-  address: "Fjällgatan 32H"
-  location: "Kiruna"
-  city: "Kiruna"
-  phone_number_html: "+46630555555"
-  phone_number_text: "+46 63-055 55 55"
-  zip_codes:
-    zip_code_1:
-      zip_code: "981 38"
-      price: "199 kr"
-    zip_code_2:
-      zip_code: "981 40"
-      price: "199 kr"
-    zip_code_3:
-      zip_code: "981 41"
-      price: "199 kr"
-    zip_code_4:
-      zip_code: "981 44"
-      price: "299 kr"
-    zip_code_5:
-      zip_code: "981 45"
-      price: "299 kr"
-    zip_code_6:
-      zip_code: "981 46"
-      price: "299 kr"
-    zip_code_7:
-      zip_code: "981 47"
-      price: "299 kr"
-  opening_hours:
-    monday: "10:00 - 16:00"
-    tuesday: "10:00 - 16:00"
-    wednesday: "10:00 - 16:00"
-    thursday: "10:00 - 16:00"
-    friday: "10:00 - 16:00"
-    saturday: "12:00 - 15:00"
-    sunday: "Closed"
-  redirect_locations:
-    lulea: "./lulea"
-  kiruna: true
+    redirect_locations:
+        lulea: "./lulea"
+    kiruna: true
+    folder: "kiruna"
+    zip_code: "981 39"
+    address: "Fjällgatan 32H"
+    location: "Kiruna"
+    city: "Kiruna"
+    phone_number_html: "+46630555555"
+    phone_number_text: "+46 63-055 55 55"
+    mail: "info@ntbhyr.se"
+    zip_codes:
+        zip_code_1:
+            zip_code: "981 38"
+            price: "199 kr"
+        zip_code_2:
+            zip_code: "981 40"
+            price: "199 kr"
+        zip_code_3:
+            zip_code: "981 41"
+            price: "199 kr"
+        zip_code_4:
+            zip_code: "981 44"
+            price: "299 kr"
+        zip_code_5:
+            zip_code: "981 45"
+            price: "299 kr"
+        zip_code_6:
+            zip_code: "981 46"
+            price: "299 kr"
+        zip_code_7:
+            zip_code: "981 47"
+            price: "299 kr"
+    opening_hours:
+        monday:
+            day: "monday"
+            hours: "10:00 - 16:00"
+        tuesday:
+            day: "tuesday"
+            hours: "10:00 - 16:00"
+        wednesday:
+            day: "wednesday"
+            hours: "10:00 - 16:00"
+        thursday:
+            day: "thursday"
+            hours: "10:00 - 16:00"
+        friday:
+            day: "friday"
+            hours: "10:00 - 16:00"
+        saturday:
+            day: "saturday"
+            hours: "12:00 - 15:00"
+        sunday:
+            day: "sunday"
+            hours: "closed"
