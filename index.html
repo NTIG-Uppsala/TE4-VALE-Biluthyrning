@@ -33,13 +33,7 @@
 
 <body>
     <header>
-        <div>
-            <h3>NTB Biluthyrning</h3>
-        </div>
-
-        <button class="hamburger-menu" aria-label="Toggle menu">
-            &#9776;
-        </button>
+        <h3>NTB Biluthyrning</h3>
 
         <nav class="nav-bar">
             <a href="#opening-hours-section">Öppettider</a>
@@ -48,18 +42,35 @@
             <a href="#closed-dates-container">Avvikande tider</a>
         </nav>
 
+        <div class="select-container">
+            <select name="location-select" id="location-select">
+                <option value="kirnua">Kiruna</option>
+                <option value="lulea">Luleå</option>
+            </select>
+            
+            <select name="language-select" id="language-select">
+                <option value="se">Svenska <span style="font-family: 'Times New Roman', Times, serif;">🇸🇪</span></option>
+                <option value="fi">Suomi <span style="font-family: 'Times New Roman', Times, serif;">🇫🇮</span></option>
+                <option value="en">English <span style="font-family: 'Times New Roman', Times, serif;">🇬🇧</span></option>
+            </select>
+        </div>
+
         <div class="dropdown-menu">
             <a href="#opening-hours-section">Öppettider</a>
             <a href="#our-cars-section">Våra bilar</a>
             <a href="#delivery-section">Utkörning</a>
             <a href="#closed-dates-container">Avvikande tider</a>
         </div>
+
+        <button class="hamburger-menu" aria-label="Toggle menu">
+            &#9776;
+        </button>
     </header>
 
     <main>
         <section class="welcome-section">
             <div class="background-image">
-                <img src="assets/pictures/row_of_cars_no_car_no_pillar1080.jpeg" alt="Bakgrundsbild">
+                <img src="assets/images/row_of_cars_no_car_no_pillar1080.jpeg" alt="Bakgrundsbild">
             </div>
 
             <h1>Välkommen till NTB Biluthyrning</h1>
@@ -183,7 +194,7 @@
             <p id="delivery-status-tag"></p>
 
             <div class="background-image">
-                <img src="assets/pictures/car_on_map1080.jpg" alt="Bakgrundsbild">
+                <img src="assets/images/car_on_map1080.jpg" alt="Bakgrundsbild">
             </div>
         </section>
 
@@ -233,7 +244,7 @@
                 </table>
 
                 <div class="background-image">
-                    <img src="assets/pictures/car_on_map1080.jpg" alt="Bakgrundsbild">
+                    <img src="assets/images/car_on_map1080.jpg" alt="Bakgrundsbild">
                 </div>
             </section>
         </noscript>
@@ -316,7 +327,7 @@
             </a>
         </div>
 
-        <div class="footer-container"> 
+        <div class="footer-container">
             <h4 class="footer-header">Öppettider</h4>
             <table class="open-hours-table">
                 <tbody>
