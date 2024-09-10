@@ -134,7 +134,34 @@ body {
             flex: 1;
             text-align: left;
         }
-        
+
+        &>.select-container {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: flex-end;
+            column-gap: 1ch;
+            
+            @media screen and (max-width: 768px) {
+                max-width: min-content;
+            }
+
+            & select {
+                background-color: var(--secondary-dark);
+                color: var(--primary-light);
+                border: none;
+                padding: 0.2rem;
+
+                width: max-content;
+
+                font-size: 1rem;
+                font-weight: 300;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+
         &>.nav-bar {
             display: flex;
             flex-flow: row nowrap;
@@ -204,6 +231,7 @@ body {
         max-width: 100%;
 
         &>section,
+        &>noscript>section,
         &>span>section {
             width: 100%;
 

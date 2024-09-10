@@ -4,7 +4,7 @@ from utils import *
 
 class TestEssentialInfo(TemplateTest):
     def setUp(self) -> None:
-        super().setUp(fileToTest="index.html")
+        super().setUp(fileToTest="public/se/kiruna/index.html")
 
     def testBrowserExists(self) -> None:
         self.assertIsNotNone(self.page)
@@ -22,7 +22,7 @@ class TestEssentialInfo(TemplateTest):
 
     def testPhoneNumber(self) -> None:
         self.assertIn("tel:+46630555555", self.page.content())
-        self.assertInTextContent("+46\xa063‑055\xa055\xa055")
+        self.assertInTextContent("+46 63-055 55 55")
 
     def testEmail(self) -> None:
         self.assertIn("mailto:info@ntbhyr.se", self.page.content())

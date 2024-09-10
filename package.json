@@ -1,0 +1,26 @@
+{
+  "name": "te4-vale-biluthyrning",
+  "version": "1.0.0",
+  "description": "---",
+  "main": "index.html",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning.git"
+  },
+  "author": "Axel Thornberg, Viggo Ström, Eskil Tornberg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/issues"
+  },
+  "homepage": "https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning#readme",
+  "dependencies": {
+    "handlebars": "^4.7.8",
+    "js-yaml": "^4.1.0"
+  }
+}

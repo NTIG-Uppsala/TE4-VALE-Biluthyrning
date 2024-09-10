@@ -1,0 +1,357 @@
+<html lang="{{lang.lang}}">
+
+<head>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="googlebot" content="noindex, nofollow" />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{lang.ntb_car_rental}}</title>
+
+    <!-- Google fonts import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&display=swap" rel="stylesheet" />
+
+    <!-- Adobe font import -->
+    <link rel="stylesheet" href="https://use.typekit.net/juf0kst.css" />
+
+    <link rel="stylesheet" href="../../style/variables.css" />
+    <link rel="stylesheet" href="../../style/main.css" />
+
+    <script defer src="../../js/switchLocationAndLocale.js"></script>
+    <script src="../../js/openHours.js"></script>
+    <script src="../../js/listOfZIPCodes.js"></script>
+    <script src="../../js/data/localizationData.js"></script>
+    <script defer src="../../js/checkOpeningHours.js"></script>
+    <script defer src="../../js/checkZIPCode.js"></script>
+    <script defer src="../../js/vatOnCars.js"></script>
+    <script defer src="../../js/hamburgerMenu.js"></script>
+
+    <!-- Make sure this script is loaded last for testing purposes -->
+    <script defer src="../../js/loadsLastForTests.js"></script>
+</head>
+
+<body>
+    <header>
+        <h3>{{lang.ntb_car_rental}} - {{location.location}}</h3>
+
+        <nav class="nav-bar">
+            <a href="#opening-hours-section">{{lang.opening_hours}}</a>
+            <a href="#our-cars-section">{{lang.our_cars}}</a>
+            <a href="#delivery-section">{{lang.delivery}}</a>
+            <a href="#closed-dates-container">{{lang.closed_dates}}</a>
+        </nav>
+
+        <div class="select-container">
+            <form action="get" id="redirectLocation">
+                <select name="redirect" id="location-select">
+                    {{#if location.kiruna}}
+                    <option value="{{location.folder}}">Kiruna</option>
+                    <option value="{{location.redirect_locations.lulea}}">Luleå</option>
+                    {{else if location.lulea}}
+                    <option value="#">Luleå</option>
+                    <option value="{{location.redirect_locations.kiruna}}">Kiruna</option>
+                    {{/if}}
+                </select>
+                <noscript>
+                    <button type="submit">Go</button>
+                </noscript>
+            </form>
+
+            <form action="get" id="redirectLocale">
+                <select name="redirect" id="language-select">
+                    {{#if lang.se}}
+                    <option value="se">Svenska 🇸🇪</option>
+                    <option value="fi">Suomi 🇫🇮</option>
+                    <option value="en">English 🇬🇧</option>
+                    {{else if lang.fi}}
+                    <option value="fi">Suomi 🇫🇮</option>
+                    <option value="en">English 🇬🇧</option>
+                    <option value="se">Svenska 🇸🇪</option>
+                    {{else if lang.en}}
+                    <option value="en">English 🇬🇧</option>
+                    <option value="se">Svenska 🇸🇪</option>
+                    <option value="fi">Suomi 🇫🇮</option>
+                    {{/if}}
+                </select>
+                <noscript>
+                    <button type="submit">Go</button>
+                </noscript>
+            </form>
+        </div>
+
+        <button class="hamburger-menu" aria-label="Toggle menu">
+            &#9776;
+        </button>
+
+        <div class="dropdown-menu">
+            <a href="#opening-hours-section">{{lang.opening_hours}}</a>
+            <a href="#our-cars-section">{{lang.our_cars}}</a>
+            <a href="#delivery-section">{{lang.delivery}}</a>
+            <a href="#closed-dates-container">{{lang.closed_dates}}</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="welcome-section">
+            <div class="background-image">
+                <img src="../../assets/images/row_of_cars_no_car_no_pillar1080.jpeg" alt="{{lang.background_image}}" />
+            </div>
+
+            <h1>{{lang.welcome}}, {{location.location}}</h1>
+
+            <p>
+                {{lang.phone_contact_pt1}}
+                <a href="tel:{{location.phone_number_html}}">{{location.phone_number_text}}</a>
+                {{lang.phone_contact_pt2}}
+            </p>
+        </section>
+
+        <section class="opening-hours-section" id="opening-hours-section">
+            <h2>{{lang.opening_hours}}</h2>
+
+            <p id="dynamic-opening-hours-tag">{{lang.current_status_default}}</p>
+
+            <table class="open-hours-table">
+                <tbody>
+                    {{#each location.opening_hours}}
+                    <tr>
+                        <td data-day="{{this.day}}">{{translate
+                            this.day
+                            }}</td>
+                        <td data-hours="{{this.hours}}">{{translate
+                            this.hours
+                            }}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+
+            <a href="#closed-dates-container">{{lang.see_closed_dates}}</a>
+        </section>
+
+        <section class="our-cars-section" id="our-cars-section">
+            <h2>{{lang.our_cars}}</h2>
+
+            <div class="vat-container">
+                <button id="vat-button" class="active">{{lang.vat_included}}</button>
+                <button id="no-vat-button">{{lang.vat_excluded}}</button>
+            </div>
+
+            <table class="our-cars-table">
+                <thead>
+                    <tr>
+                        <th>{{lang.car}}</th>
+                        <th>{{lang.year_model}}</th>
+                        <th>{{lang.price}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Audi A6</td>
+                        <td>2011</td>
+                        <td class="price">800 kr</td>
+                    </tr>
+                    <tr>
+                        <td>Audi S3</td>
+                        <td>2015</td>
+                        <td class="price">450 kr</td>
+                    </tr>
+                    <tr>
+                        <td>Cadillac Escalade</td>
+                        <td>1999</td>
+                        <td class="price">500 kr</td>
+                    </tr>
+                    <tr>
+                        <td>Kia Carens</td>
+                        <td>2022</td>
+                        <td class="price">400 kr</td>
+                    </tr>
+                    <tr>
+                        <td>Kia Soul</td>
+                        <td>2020</td>
+                        <td class="price">400 kr</td>
+                    </tr>
+                    <tr>
+                        <td>Mitsubishi Outlander</td>
+                        <td>2018</td>
+                        <td class="price">450 kr</td>
+                    </tr>
+                    <tr>
+                        <td>Renault Kadjar</td>
+                        <td>2020</td>
+                        <td class="price">250 kr</td>
+                    </tr>
+                    <tr>
+                        <td>Subaru Outback</td>
+                        <td>2020</td>
+                        <td class="price">300 kr</td>
+                    </tr>
+                    <tr>
+                        <td>Volvo XC40</td>
+                        <td>2018</td>
+                        <td class="price">800 kr</td>
+                    </tr>
+                    <tr>
+                        <td>VW Polo</td>
+                        <td>2022</td>
+                        <td class="price">300 kr</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="delivery-section" style="display: none;" id="delivery-section">
+            <!-- Unhides this section if js is enabled, otherwise it will be hidden -->
+            <script>document.querySelector(".delivery-section").style.display =
+                    "flex"</script>
+
+            <h2>{{lang.delivery}}</h2>
+
+            <p>{{lang.delivery_description}}</p>
+
+            <div class="input-container">
+                <input type="number" placeholder="{{lang.zip_code}}" id="zip-input" />
+                <button id="zip-button">{{lang.search}}</button>
+            </div>
+
+            <p id="delivery-status-tag"></p>
+
+            <div class="background-image">
+                <img src="../../assets/images/car_on_map1080.jpg" alt="{{lang.background_image}}" />
+            </div>
+        </section>
+
+        <noscript>
+            <section class="delivery-section-noscript">
+                <h2>{{lang.delivery}}</h2>
+
+                <p>{{lang.delivery_description}}</p>
+
+                <table class="delivery-table">
+                    <thead>
+                        <tr>
+                            <th>{{lang.zip_code}}</th>
+                            <th>{{lang.price}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each location.zip_codes}}
+                        <tr>
+                            <td>{{this.zip_code}}</td>
+                            <td>{{this.price}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+
+                <div class="background-image">
+                    <img src="../../assets/images/car_on_map1080.jpg" alt="{{lang.background_image}}" />
+                </div>
+            </section>
+        </noscript>
+        <section class="closed-dates-section" id="closed-dates-container">
+            <h2>{{lang.closed_dates}}</h2>
+
+            <table class="closed-dates-table">
+                <tbody>
+                    <tr data-month="0" data-day="1">
+                        <td data-key="january_1">{{lang.january_1}}</td>
+                        <td data-key="new_years_day">{{lang.new_years_day}}</td>
+                        <td data-key="closed">{{lang.closed}}</td>
+                    </tr>
+                    <tr data-month="0" data-day="6">
+                        <td data-key="january_6">{{lang.january_6}}</td>
+                        <td data-key="epiphany">{{lang.epiphany}}</td>
+                        <td data-key="closed">{{lang.closed}}</td>
+                    </tr>
+                    <tr data-month="4" data-day="1">
+                        <td data-key="may_1">{{lang.may_1}}</td>
+                        <td data-key="labour_day">{{lang.labour_day}}</td>
+                        <td data-key="closed">{{lang.closed}}</td>
+                    </tr>
+                    <tr data-month="5" data-day="6">
+                        <td data-key="june_6">{{lang.june_6}}</td>
+                        <td data-key="national_day">{{lang.national_day}}</td>
+                        <td data-key="closed">{{lang.closed}}</td>
+                    </tr>
+                    <tr data-month="11" data-day="24">
+                        <td data-key="december_24">{{lang.december_24}}</td>
+                        <td data-key="christmas_eve">{{lang.christmas_eve}}</td>
+                        <td data-key="closed">{{lang.closed}}</td>
+                    </tr>
+                    <tr data-month="11" data-day="25">
+                        <td data-key="december_25">{{lang.december_25}}</td>
+                        <td data-key="christmas_day">{{lang.christmas_day}}</td>
+                        <td data-key="closed">{{lang.closed}}</td>
+                    </tr>
+                    <tr data-month="11" data-day="26">
+                        <td data-key="december_26">{{lang.december_26}}</td>
+                        <td data-key="boxing_day">{{lang.boxing_day}}</td>
+                        <td data-key="closed">{{lang.closed}}</td>
+                    </tr>
+                    <tr data-month="11" data-day="31">
+                        <td data-key="december_31">{{lang.december_31}}</td>
+                        <td data-key="new_years_eve">{{lang.new_years_eve}}</td>
+                        <td data-key="closed">{{lang.closed}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-container">
+            <h4>{{lang.phone}}</h4>
+            <a href="tel:{{location.phone_number_html}}">{{location.phone_number_text}}</a>
+        </div>
+
+        <div class="footer-container">
+            <h4>{{lang.email}}</h4>
+            <a href="mailto:info@ntbhyr.se">info@ntbhyr.se</a>
+        </div>
+
+        <div class="footer-container">
+            <h4>{{lang.address}}</h4>
+            <a href="https://maps.app.goo.gl/5c7N2tctTDWgJgYr7">{{location.address}},
+                {{location.zip_code}}
+                {{location.city}}</a>
+        </div>
+
+        <div id="social-media-container">
+            <a href="https://facebook.com/ntiuppsala">
+                <img src="../../assets/icons/icons8-facebook-material-outlined/icons8-facebook-192.png" data-source="https://icons8.com/icon/85330/facebook" alt="Facebook" />
+            </a>
+            <a href="https://instagram.com/ntiuppsala">
+                <img src="../../assets/icons/icons8-instagram-material-outlined/icons8-instagram-192.png" data-source="https://icons8.com/icon/85342/instagram" alt="Instagram" />
+            </a>
+            <a href="https://x.com/ntiuppsala">
+                <img src="../../assets/icons/icons8-twitterx-material-outlined/icons8-twitterx-192.png" data-source="https://icons8.com/icon/AsTsQrvtZVNv/twitterx" alt="X/Twitter" />
+            </a>
+        </div>
+
+        <div class="footer-container">
+            <h4 class="footer-header">{{lang.opening_hours}}</h4>
+            <table class="open-hours-table">
+                <tbody>
+                    {{#each location.opening_hours}}
+                    <tr>
+                        <td data-day="{{this.day}}">{{translate
+                            this.day
+                            }}</td>
+                        <td data-hours="{{this.hours}}">{{translate
+                            this.hours
+                            }}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+
+        <p id="copyright-info">© 2024 NTB Biluthyrning</p>
+    </footer>
+    <div id="lang" style="display: none;">{{lang.folder}}</div>
+    <div id="location" style="display: none;">{{location.folder}}</div>
+</body>
+
+</html>
