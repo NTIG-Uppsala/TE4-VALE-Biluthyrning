@@ -57,3 +57,5 @@ lang:
     zip_code_not_correct_length: "Postinumeron täytyy olla viisi numeroa pitkä"
     does_not_deliver: "Emme toimita postinumeroon ${zip_code}"
     delivers: "Toimitamme postinumeroon ${zip_code} hintaan ${price} kr"
+
+    fi: true

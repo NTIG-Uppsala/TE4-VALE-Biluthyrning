@@ -55,7 +55,8 @@ const localizationData = {
         no_zip_code: "You must enter a zip code in the box",
         zip_code_not_correct_length: "The zip code must be five digits long",
         does_not_deliver: "We do not deliver to zip code ${zip_code}",
-        delivers: "We deliver to zip code ${zip_code} for ${price} kr"
+        delivers: "We deliver to zip code ${zip_code} for ${price} kr",
+        en: true
       },
       location: {
         folder: "kiruna",
@@ -104,7 +105,10 @@ const localizationData = {
           saturday: "12:00 - 15:00",
           sunday: "Closed"
         },
-        redirect_address: "./kiruna"
+        redirect_locations: {
+          lulea: "./lulea"
+        },
+        kiruna: true
       }
     },
     lulea: {
@@ -162,7 +166,8 @@ const localizationData = {
         no_zip_code: "You must enter a zip code in the box",
         zip_code_not_correct_length: "The zip code must be five digits long",
         does_not_deliver: "We do not deliver to zip code ${zip_code}",
-        delivers: "We deliver to zip code ${zip_code} for ${price} kr"
+        delivers: "We deliver to zip code ${zip_code} for ${price} kr",
+        en: true
       },
       location: {
         folder: "lulea",
@@ -199,7 +204,10 @@ const localizationData = {
           saturday: "12:00 - 15:00",
           sunday: "Closed"
         },
-        redirect_address: "./lulea"
+        redirect_locations: {
+          kiruna: "./kiruna"
+        },
+        lulea: true
       }
     }
   },
@@ -259,7 +267,8 @@ const localizationData = {
         no_zip_code: "Sinun täytyy syöttää postinumero laatikkoon",
         zip_code_not_correct_length: "Postinumeron täytyy olla viisi numeroa pitkä",
         does_not_deliver: "Emme toimita postinumeroon ${zip_code}",
-        delivers: "Toimitamme postinumeroon ${zip_code} hintaan ${price} kr"
+        delivers: "Toimitamme postinumeroon ${zip_code} hintaan ${price} kr",
+        fi: true
       },
       location: {
         folder: "kiruna",
@@ -308,7 +317,10 @@ const localizationData = {
           saturday: "12:00 - 15:00",
           sunday: "Closed"
         },
-        redirect_address: "./kiruna"
+        redirect_locations: {
+          lulea: "./lulea"
+        },
+        kiruna: true
       }
     },
     lulea: {
@@ -366,7 +378,8 @@ const localizationData = {
         no_zip_code: "Sinun täytyy syöttää postinumero laatikkoon",
         zip_code_not_correct_length: "Postinumeron täytyy olla viisi numeroa pitkä",
         does_not_deliver: "Emme toimita postinumeroon ${zip_code}",
-        delivers: "Toimitamme postinumeroon ${zip_code} hintaan ${price} kr"
+        delivers: "Toimitamme postinumeroon ${zip_code} hintaan ${price} kr",
+        fi: true
       },
       location: {
         folder: "lulea",
@@ -403,7 +416,10 @@ const localizationData = {
           saturday: "12:00 - 15:00",
           sunday: "Closed"
         },
-        redirect_address: "./lulea"
+        redirect_locations: {
+          kiruna: "./kiruna"
+        },
+        lulea: true
       }
     }
   },
@@ -463,7 +479,8 @@ const localizationData = {
         no_zip_code: "Du måste ange ett postnummer i rutan",
         zip_code_not_correct_length: "Postnumret måste vara fem siffror långt",
         does_not_deliver: "Vi kör inte ut till postnummer ${zip_code}",
-        delivers: "Vi kör ut till postnummer ${zip_code} för ${price} kr"
+        delivers: "Vi kör ut till postnummer ${zip_code} för ${price} kr",
+        se: true
       },
       location: {
         folder: "kiruna",
@@ -512,7 +529,10 @@ const localizationData = {
           saturday: "12:00 - 15:00",
           sunday: "Closed"
         },
-        redirect_address: "./kiruna"
+        redirect_locations: {
+          lulea: "./lulea"
+        },
+        kiruna: true
       }
     },
     lulea: {
@@ -570,7 +590,8 @@ const localizationData = {
         no_zip_code: "Du måste ange ett postnummer i rutan",
         zip_code_not_correct_length: "Postnumret måste vara fem siffror långt",
         does_not_deliver: "Vi kör inte ut till postnummer ${zip_code}",
-        delivers: "Vi kör ut till postnummer ${zip_code} för ${price} kr"
+        delivers: "Vi kör ut till postnummer ${zip_code} för ${price} kr",
+        se: true
       },
       location: {
         folder: "lulea",
@@ -607,7 +628,10 @@ const localizationData = {
           saturday: "12:00 - 15:00",
           sunday: "Closed"
         },
-        redirect_address: "./lulea"
+        redirect_locations: {
+          kiruna: "./kiruna"
+        },
+        lulea: true
       }
     }
   }

@@ -57,3 +57,5 @@ lang:
     zip_code_not_correct_length: "The zip code must be five digits long"
     does_not_deliver: "We do not deliver to zip code ${zip_code}"
     delivers: "We deliver to zip code ${zip_code} for ${price} kr"
+
+    en: true

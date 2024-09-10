@@ -57,3 +57,5 @@ lang:
     zip_code_not_correct_length: "Postnumret måste vara fem siffror långt"
     does_not_deliver: "Vi kör inte ut till postnummer ${zip_code}"
     delivers: "Vi kör ut till postnummer ${zip_code} för ${price} kr"
+
+    se: true

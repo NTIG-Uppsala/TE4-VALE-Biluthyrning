@@ -50,8 +50,13 @@
         <div class="select-container">
             <form action="get" id="redirectLocation">
                 <select name="redirect" id="location-select">
-                    <option value={{location.redirect_address}}>Kiruna</option>
-                    <option value={{location.redirect_address}}>Luleå</option>
+                    {{#if location.kiruna}}
+                    <option value={{location.folder}}>Kiruna</option>
+                    <option value={{location.redirect_locations.lulea}}>Luleå</option>
+                    {{else if location.lulea}}
+                    <option value="#">Luleå</option>
+                    <option value={{location.redirect_locations.kiruna}}>Kiruna</option>
+                    {{/if}}
                 </select>
                 <noscript>
                     <button type="submit">Go</button>
@@ -60,9 +65,19 @@
 
             <form action="get" id="redirectLocale">
                 <select name="redirect" id="language-select">
+                    {{#if lang.se}}
                     <option value="se">Svenska 🇸🇪</option>
                     <option value="fi">Suomi 🇫🇮</option>
                     <option value="en">English 🇬🇧</option>
+                    {{else if lang.fi}}
+                    <option value="fi">Suomi 🇫🇮</option>
+                    <option value="en">English 🇬🇧</option>
+                    <option value="se">Svenska 🇸🇪</option>
+                    {{else if lang.en}}
+                    <option value="en">English 🇬🇧</option>
+                    <option value="se">Svenska 🇸🇪</option>
+                    <option value="fi">Suomi 🇫🇮</option>
+                    {{/if}}
                 </select>
                 <noscript>
                     <button type="submit">Go</button>
