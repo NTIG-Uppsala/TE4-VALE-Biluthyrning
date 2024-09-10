@@ -1,6 +1,7 @@
 # English localisation file for the index page
-index:
+lang:
     lang: "en"
+    folder: "en"
     ntb_car_rental: "NTB Car Rental"
     opening_hours: "Opening hours"
     our_cars: "Our cars"
@@ -24,14 +25,14 @@ index:
     zip_code: "Zip code"
     search: "Search"
     # Add translations for zip code output here
-    24_december: "24th of December"
-    25_december: "25th of December"
-    26_december: "26th of December"
-    31_december: "31st of December"
-    1_january: "1st of January"
-    6_january: "6th of January"
-    1_may: "1st of May"
-    6_june: "6th of June"
+    december_24: "24th of December"
+    december_25: "25th of December"
+    december_26: "26th of December"
+    december_31: "31st of December"
+    january_1: "1st of January"
+    january_6: "6th of January"
+    may_1: "1st of May"
+    june_6: "6th of June"
     christmas_eve: "Christmas Eve"
     christmas_day: "Christmas Day"
     boxing_day: "Boxing Day"
@@ -44,3 +45,15 @@ index:
     email: "Email"
     address: "Address"
     background_image: "Background image"
+
+    current_status_fallback: "Check our opening hours to see when we are open"
+    not_open_yet: "We open at ${time} today"
+    open_now: "We are open now and close at ${time}"
+    closed_now_holidau: "We are closed on ${holiday} <br> We open again on ${next_opening_day} at ${time}"
+    after_hours: "We are closed for today <br> We open again on ${next_opening_day} at ${time}"
+    closed_now: "We are closed today <br> We open again on ${next_opening_day} at ${time}"
+
+    no_zip_code: "You must enter a zip code in the box"
+    zip_code_not_correct_length: "The zip code must be five digits long"
+    does_not_deliver: "We do not deliver to zip code ${zip_code}"
+    delivers: "We deliver to zip code ${zip_code} for ${price} kr"

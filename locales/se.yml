@@ -1,6 +1,7 @@
 # Swedish localisation file for the index page
-index:
+lang:
     lang: "sv"
+    folder: "se"
     ntb_car_rental: "NTB Biluthyrning"
     opening_hours: "Öppettider"
     our_cars: "Våra bilar"
@@ -24,14 +25,14 @@ index:
     zip_code: "Postnummer"
     search: "Sök"
     # Add translations for zip code output here
-    24_december: "24 december"
-    25_december: "25 december"
-    26_december: "26 december"
-    31_december: "31 december"
-    1_january: "1 januari"
-    6_january: "6 januari"
-    1_may: "1 maj"
-    6_june: "6 juni"
+    december_24: "24 december"
+    december_25: "25 december"
+    december_26: "26 december"
+    december_31: "31 december"
+    january_1: "1 januari"
+    january_6: "6 januari"
+    may_1: "1 maj"
+    june_6: "6 juni"
     christmas_eve: "Julafton"
     christmas_day: "Juldagen"
     boxing_day: "Annandag jul"
@@ -44,3 +45,15 @@ index:
     email: "E-post"
     address: "Adress"
     background_image: "Bakgrundsbild"
+
+    current_status_fallback: "Kolla våra öppettider för att se när vi har öppet"
+    not_open_yet: "Vi öppnar kl. ${time} idag"
+    open_now: "Vi har öppet nu och stänger kl. ${time}"
+    closed_now_holidau: "Vi har stängt på ${holiday} <br> Vi öppnar igen på ${next_opening_day} kl. ${time}"
+    after_hours: "Vi har stängt för idag <br> Vi öppnar igen på ${next_opening_day} kl. ${time}"
+    closed_now: "Vi har stängt idag <br> Vi öppnar igen på ${next_opening_day} kl. ${time}"
+
+    no_zip_code: "Du måste ange ett postnummer i rutan"
+    zip_code_not_correct_length: "Postnumret måste vara fem siffror långt"
+    does_not_deliver: "Vi kör inte ut till postnummer ${zip_code}"
+    delivers: "Vi kör ut till postnummer ${zip_code} för ${price} kr"

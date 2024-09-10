@@ -1,11 +1,11 @@
-<html lang="{{lang.lang}}">
+<html lang="sv">
     <head>
         <meta name="robots" content="noindex, nofollow" />
         <meta name="googlebot" content="noindex, nofollow" />
 
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{{lang.ntb_car_rental}}</title>
+        <title>NTB Biluthyrning</title>
 
         <!-- Google fonts import -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -36,7 +36,7 @@
     <body>
         <header>
             <div>
-                <h3>{{lang.ntb_car_rental}} - {{location.location}}</h3>
+                <h3>NTB Biluthyrning - Luleå</h3>
             </div>
 
             <button class="hamburger-menu" aria-label="Toggle menu">
@@ -44,17 +44,17 @@
             </button>
 
             <nav class="nav-bar">
-                <a href="#opening-hours-section">{{lang.opening_hours}}</a>
-                <a href="#our-cars-section">{{lang.our_cars}}</a>
-                <a href="#delivery-section">{{lang.delivery}}</a>
-                <a href="#closed-dates-container">{{lang.closed_dates}}</a>
+                <a href="#opening-hours-section">Öppettider</a>
+                <a href="#our-cars-section">Våra bilar</a>
+                <a href="#delivery-section">Utkörning</a>
+                <a href="#closed-dates-container">Avvikande tider</a>
             </nav>
 
             <div class="dropdown-menu">
-                <a href="#opening-hours-section">{{lang.opening_hours}}</a>
-                <a href="#our-cars-section">{{lang.our_cars}}</a>
-                <a href="#delivery-section">{{lang.delivery}}</a>
-                <a href="#closed-dates-container">{{lang.closed_dates}}</a>
+                <a href="#opening-hours-section">Öppettider</a>
+                <a href="#our-cars-section">Våra bilar</a>
+                <a href="#delivery-section">Utkörning</a>
+                <a href="#closed-dates-container">Avvikande tider</a>
             </div>
         </header>
 
@@ -63,65 +63,65 @@
                 <div class="background-image">
                     <img
                         src="../../assets/images/row_of_cars_no_car_no_pillar1080.jpeg"
-                        alt="{{lang.background_image}}"
+                        alt="Bakgrundsbild"
                     />
                 </div>
 
-                <h1>{{lang.welcome}}, {{location.location}}</h1>
+                <h1>Välkommen till NTB Biluthyrning, Luleå</h1>
 
                 <p>
-                    {{lang.phone_contact_pt1}}
+                    Ring oss på
                     <a
-                        href="tel:{{location.phone_number_html}}"
-                    >{{location.phone_number_text}}</a>
-                    {{lang.phone_contact_pt2}}
+                        href="tel:+46640555333"
+                    >+46 64-055 53 33</a>
+                    för att reservera din bil
                 </p>
             </section>
 
             <section class="opening-hours-section" id="opening-hours-section">
-                <h2>{{lang.opening_hours}}</h2>
+                <h2>Öppettider</h2>
 
                 <p
                     id="dynamic-opening-hours-tag"
-                >{{lang.current_status_default}}</p>
+                >Kolla våra öppettider på botten av sidan</p>
 
                 <table class="open-hours-table">
                     <tbody>
                         <tr>
-                            <td>{{lang.monday_friday}}</td>
+                            <td>Måndag - fredag</td>
                             <td>10:00 - 16:00</td>
                         </tr>
                         <tr>
-                            <td>{{lang.saturday}}</td>
+                            <td>Lördag</td>
                             <td>12:00 - 15:00</td>
                         </tr>
                         <tr>
-                            <td>{{lang.sunday}}</td>
-                            <td>{{lang.closed}}</td>
+                            <td>Söndag</td>
+                            <td>Stängt</td>
                         </tr>
                     </tbody>
                 </table>
 
-                <a href="#closed-dates-container">{{lang.see_closed_dates}}</a>
+                <a href="#closed-dates-container">Se våra avvikande öppettider</a>
             </section>
 
             <section class="our-cars-section" id="our-cars-section">
-                <h2>{{lang.our_cars}}</h2>
+                <h2>Våra bilar</h2>
 
                 <div class="vat-container">
                     <button
                         id="vat-button"
                         class="active"
-                    >{{lang.vat_included}}</button>
-                    <button id="no-vat-button">{{lang.vat_excluded}}</button>
+                    >Moms</button>
+                    <button id="no-vat-button">Exkl. moms</button>
                 </div>
 
                 <table class="our-cars-table">
                     <thead>
                         <tr>
-                            <th>{{lang.car}}</th>
-                            <th>{{lang.year_model}}</th>
-                            <th>{{lang.price}}</th>
+                            <th>Bil</th>
+                            <th>Årsmodell</th>
+                            <th>Pris</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -189,17 +189,17 @@
                 >document.querySelector(".delivery-section").style.display =
                     "flex"</script>
 
-                <h2>{{lang.delivery}}</h2>
+                <h2>Utkörning</h2>
 
-                <p>{{lang.delivery_description}}</p>
+                <p>Vi kör ut till vissa postnummer, kolla om vi kör ut till dig</p>
 
                 <div class="input-container">
                     <input
                         type="number"
-                        placeholder="{{lang.zip_code}}"
+                        placeholder="Postnummer"
                         id="zip-input"
                     />
-                    <button id="zip-button">{{lang.search}}</button>
+                    <button id="zip-button">Sök</button>
                 </div>
 
                 <p id="delivery-status-tag"></p>
@@ -207,97 +207,107 @@
                 <div class="background-image">
                     <img
                         src="../../assets/images/car_on_map1080.jpg"
-                        alt="{{lang.background_image}}"
+                        alt="Bakgrundsbild"
                     />
                 </div>
             </section>
 
             <noscript>
                 <section class="delivery-section-noscript">
-                    <h2>{{lang.delivery}}</h2>
+                    <h2>Utkörning</h2>
 
-                    <p>{{lang.delivery_description}}</p>
+                    <p>Vi kör ut till vissa postnummer, kolla om vi kör ut till dig</p>
 
                     <table class="delivery-table">
                         <thead>
                             <tr>
-                                <th>{{lang.zip_code}}</th>
-                                <th>{{lang.price}}</th>
+                                <th>Postnummer</th>
+                                <th>Pris</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{#each location.zip_codes}}
                                 <tr>
-                                    <td>{{this.zip_code}}</td>
-                                    <td>{{this.price}}</td>
+                                    <td>961 93</td>
+                                    <td>199 kr</td>
                                 </tr>
-                            {{/each}}
+                                <tr>
+                                    <td>961 94</td>
+                                    <td>199 kr</td>
+                                </tr>
+                                <tr>
+                                    <td>961 90</td>
+                                    <td>199 kr</td>
+                                </tr>
+                                <tr>
+                                    <td>961 91</td>
+                                    <td>199 kr</td>
+                                </tr>
                         </tbody>
                     </table>
 
                     <div class="background-image">
                         <img
                             src="../../assets/images/car_on_map1080.jpg"
-                            alt="{{lang.background_image}}"
+                            alt="Bakgrundsbild"
                         />
                     </div>
                 </section>
             </noscript>
 
             <section class="closed-dates-section" id="closed-dates-container">
-                <h2>{{lang.closed_dates}}</h2>
+                <h2>Avvikande tider</h2>
 
                 <table class="closed-dates-table">
                     <tbody>
                         <tr>
-                            <td data-key="january_1">{{lang.january_1}}</td>
+                            <td data-key="january_1">1 januari</td>
                             <td
                                 data-key="new_years_day"
-                            >{{lang.new_years_day}}</td>
-                            <td data-key="closed">{{lang.closed}}</td>
+                            >Nyårsdagen</td>
+                            <td data-key="closed">Stängt</td>
                         </tr>
                         <tr>
-                            <td data-key="january_6">{{lang.january_6}}</td>
-                            <td data-key="epiphany">{{lang.epiphany}}</td>
-                            <td data-key="closed">{{lang.closed}}</td>
+                            <td data-key="january_6">6 januari</td>
+                            <td data-key="epiphany">Trettondedag jul</td>
+                            <td data-key="closed">Stängt</td>
                         </tr>
                         <tr>
-                            <td data-key="may_1">{{lang.may_1}}</td>
-                            <td data-key="labour_day">{{lang.labour_day}}</td>
-                            <td data-key="closed">{{lang.closed}}</td>
+                            <td data-key="may_1">1 maj</td>
+                            <td data-key="labour_day">Första maj</td>
+                            <td data-key="closed">Stängt</td>
                         </tr>
                         <tr>
-                            <td data-key="june_6">{{lang.june_6}}</td>
+                            <td data-key="june_6">6 juni</td>
                             <td
                                 data-key="national_day"
-                            >{{lang.national_day}}</td>
-                            <td data-key="closed">{{lang.closed}}</td>
+                            >Nationaldagen</td>
+                            <td data-key="closed">Stängt</td>
                         </tr>
                         <tr>
-                            <td data-key="december_24">{{lang.december_24}}</td>
+                            <td data-key="december_24">24 december</td>
                             <td
                                 data-key="christmas_eve"
-                            >{{lang.christmas_eve}}</td>
-                            <td data-key="closed">{{lang.closed}}</td>
+                            >Julafton</td>
+                            <td data-key="closed">Stängt</td>
                         </tr>
                         <tr>
-                            <td data-key="december_25">{{lang.december_25}}</td>
+                            <td data-key="december_25">25 december</td>
                             <td
                                 data-key="christmas_day"
-                            >{{lang.christmas_day}}</td>
-                            <td data-key="closed">{{lang.closed}}</td>
+                            >Juldagen</td>
+                            <td data-key="closed">Stängt</td>
                         </tr>
                         <tr>
-                            <td data-key="december_26">{{lang.december_26}}</td>
-                            <td data-key="boxing_day">{{lang.boxing_day}}</td>
-                            <td data-key="closed">{{lang.closed}}</td>
+                            <td data-key="december_26">26 december</td>
+                            <td data-key="boxing_day">Annandag jul</td>
+                            <td data-key="closed">Stängt</td>
                         </tr>
                         <tr>
-                            <td data-key="december_31">{{lang.december_31}}</td>
+                            <td data-key="december_31">31 december</td>
                             <td
                                 data-key="new_years_eve"
-                            >{{lang.new_years_eve}}</td>
-                            <td data-key="closed">{{lang.closed}}</td>
+                            >Nyårsafton</td>
+                            <td data-key="closed">Stängt</td>
                         </tr>
                     </tbody>
                 </table>
@@ -307,24 +317,24 @@
 
         <footer>
             <div class="footer-container">
-                <h4>{{lang.phone}}</h4>
+                <h4>Telefon</h4>
                 <a
-                    href="tel:{{location.phone_number_html}}"
-                >{{location.phone_number_text}}</a>
+                    href="tel:+46640555333"
+                >+46 64-055 53 33</a>
             </div>
 
             <div class="footer-container">
-                <h4>{{lang.email}}</h4>
+                <h4>E-post</h4>
                 <a href="mailto:info@ntbhyr.se">info@ntbhyr.se</a>
             </div>
 
             <div class="footer-container">
-                <h4>{{lang.address}}</h4>
+                <h4>Adress</h4>
                 <a
                     href="https://maps.app.goo.gl/5c7N2tctTDWgJgYr7"
-                >{{location.address}},
-                    {{location.zip_code}}
-                    {{location.city}}</a>
+                >Färjledsvägen 38,
+                    961 93
+                    Södra Sunderbyn, Luleå</a>
             </div>
 
             <div id="social-media-container">
@@ -352,20 +362,20 @@
             </div>
 
             <div class="footer-container">
-                <h4 class="footer-header">{{lang.opening_hours}}</h4>
+                <h4 class="footer-header">Öppettider</h4>
                 <table class="open-hours-table">
                     <tbody>
                         <tr>
-                            <td>{{lang.monday_friday}}</td>
+                            <td>Måndag - fredag</td>
                             <td>10:00 - 16:00</td>
                         </tr>
                         <tr>
-                            <td>{{lang.saturday}}</td>
+                            <td>Lördag</td>
                             <td>12:00 - 15:00</td>
                         </tr>
                         <tr>
-                            <td>{{lang.sunday}}</td>
-                            <td>{{lang.closed}}</td>
+                            <td>Söndag</td>
+                            <td>Stängt</td>
                         </tr>
                     </tbody>
                 </table>
@@ -373,8 +383,8 @@
 
             <p id="copyright-info">© 2024 NTB Biluthyrning</p>
         </footer>
-        <div id="lang" style="display: none;">{{lang.folder}}</div>
-        <div id="location" style="display: none;">{{location.folder}}</div>
+        <div id="lang" style="display: none;">se</div>
+        <div id="location" style="display: none;">lulea</div>
     </body>
 
 </html>

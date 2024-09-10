@@ -1,8 +1,11 @@
 location:
+  folder: "lulea"
   zip_code: "961 93"
   address: "Färjledsvägen 38"
+  location: "Luleå"
   city: "Södra Sunderbyn, Luleå"
-  phone_number: "+46640555333"
+  phone_number_html: "+46640555333"
+  phone_number_text: "+46 64-055 53 33"
   zip_codes: 
     zip_code_1:
       zip_code: "961 93"

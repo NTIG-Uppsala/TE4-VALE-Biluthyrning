@@ -1,8 +1,11 @@
 location:
+  folder: "kiruna"
   zip_code: "981 39"
   address: "Fjällgatan 32H"
+  location: "Kiruna"
   city: "Kiruna"
-  phone_number: "+46630555555"
+  phone_number_html: "+46630555555"
+  phone_number_text: "+46 63-055 55 55"
   zip_codes:
     zip_code_1:
       zip_code: "981 38"

@@ -244,6 +244,10 @@ body {
                     padding-right: 0.5rem;
                     padding-left: 0.5rem;
 
+                    &:hover {
+                            cursor: pointer;
+                        }
+
                     &.active {
                         background-color: var(--primary-accent);
                         color: var(--primary-light);
@@ -298,6 +302,9 @@ body {
                     color: var(--primary-light);
                     padding: 0.2rem;
                     height: 100%;
+                    &:hover {
+                        cursor: pointer;
+                    }
                 }
             }
 

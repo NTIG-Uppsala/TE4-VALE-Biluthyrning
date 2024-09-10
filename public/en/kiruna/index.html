@@ -1,11 +1,11 @@
-<html lang="{{lang.lang}}">
+<html lang="en">
     <head>
         <meta name="robots" content="noindex, nofollow" />
         <meta name="googlebot" content="noindex, nofollow" />
 
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{{lang.ntb_car_rental}}</title>
+        <title>NTB Car Rental</title>
 
         <!-- Google fonts import -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -36,7 +36,7 @@
     <body>
         <header>
             <div>
-                <h3>{{lang.ntb_car_rental}} - {{location.location}}</h3>
+                <h3>NTB Car Rental - Kiruna</h3>
             </div>
 
             <button class="hamburger-menu" aria-label="Toggle menu">
@@ -44,17 +44,17 @@
             </button>
 
             <nav class="nav-bar">
-                <a href="#opening-hours-section">{{lang.opening_hours}}</a>
-                <a href="#our-cars-section">{{lang.our_cars}}</a>
-                <a href="#delivery-section">{{lang.delivery}}</a>
-                <a href="#closed-dates-container">{{lang.closed_dates}}</a>
+                <a href="#opening-hours-section">Opening hours</a>
+                <a href="#our-cars-section">Our cars</a>
+                <a href="#delivery-section">Delivery</a>
+                <a href="#closed-dates-container">Closed dates</a>
             </nav>
 
             <div class="dropdown-menu">
-                <a href="#opening-hours-section">{{lang.opening_hours}}</a>
-                <a href="#our-cars-section">{{lang.our_cars}}</a>
-                <a href="#delivery-section">{{lang.delivery}}</a>
-                <a href="#closed-dates-container">{{lang.closed_dates}}</a>
+                <a href="#opening-hours-section">Opening hours</a>
+                <a href="#our-cars-section">Our cars</a>
+                <a href="#delivery-section">Delivery</a>
+                <a href="#closed-dates-container">Closed dates</a>
             </div>
         </header>
 
@@ -63,65 +63,65 @@
                 <div class="background-image">
                     <img
                         src="../../assets/images/row_of_cars_no_car_no_pillar1080.jpeg"
-                        alt="{{lang.background_image}}"
+                        alt="Background image"
                     />
                 </div>
 
-                <h1>{{lang.welcome}}, {{location.location}}</h1>
+                <h1>Welcome to NTB Car Rental, Kiruna</h1>
 
                 <p>
-                    {{lang.phone_contact_pt1}}
+                    Call us at
                     <a
-                        href="tel:{{location.phone_number_html}}"
-                    >{{location.phone_number_text}}</a>
-                    {{lang.phone_contact_pt2}}
+                        href="tel:+46630555555"
+                    >+46 63-055 55 55</a>
+                    to reserve your car
                 </p>
             </section>
 
             <section class="opening-hours-section" id="opening-hours-section">
-                <h2>{{lang.opening_hours}}</h2>
+                <h2>Opening hours</h2>
 
                 <p
                     id="dynamic-opening-hours-tag"
-                >{{lang.current_status_default}}</p>
+                >Check our opening hours at the bottom of the page</p>
 
                 <table class="open-hours-table">
                     <tbody>
                         <tr>
-                            <td>{{lang.monday_friday}}</td>
+                            <td>Monday - Friday</td>
                             <td>10:00 - 16:00</td>
                         </tr>
                         <tr>
-                            <td>{{lang.saturday}}</td>
+                            <td>Saturday</td>
                             <td>12:00 - 15:00</td>
                         </tr>
                         <tr>
-                            <td>{{lang.sunday}}</td>
-                            <td>{{lang.closed}}</td>
+                            <td>Sunday</td>
+                            <td>Closed</td>
                         </tr>
                     </tbody>
                 </table>
 
-                <a href="#closed-dates-container">{{lang.see_closed_dates}}</a>
+                <a href="#closed-dates-container">See our closed dates</a>
             </section>
 
             <section class="our-cars-section" id="our-cars-section">
-                <h2>{{lang.our_cars}}</h2>
+                <h2>Our cars</h2>
 
                 <div class="vat-container">
                     <button
                         id="vat-button"
                         class="active"
-                    >{{lang.vat_included}}</button>
-                    <button id="no-vat-button">{{lang.vat_excluded}}</button>
+                    >VAT included</button>
+                    <button id="no-vat-button">VAT excluded</button>
                 </div>
 
                 <table class="our-cars-table">
                     <thead>
                         <tr>
-                            <th>{{lang.car}}</th>
-                            <th>{{lang.year_model}}</th>
-                            <th>{{lang.price}}</th>
+                            <th>Car</th>
+                            <th>Year model</th>
+                            <th>Price</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -189,17 +189,17 @@
                 >document.querySelector(".delivery-section").style.display =
                     "flex"</script>
 
-                <h2>{{lang.delivery}}</h2>
+                <h2>Delivery</h2>
 
-                <p>{{lang.delivery_description}}</p>
+                <p>We deliver to certain zip codes, check if we deliver to you</p>
 
                 <div class="input-container">
                     <input
                         type="number"
-                        placeholder="{{lang.zip_code}}"
+                        placeholder="Zip code"
                         id="zip-input"
                     />
-                    <button id="zip-button">{{lang.search}}</button>
+                    <button id="zip-button">Search</button>
                 </div>
 
                 <p id="delivery-status-tag"></p>
@@ -207,97 +207,119 @@
                 <div class="background-image">
                     <img
                         src="../../assets/images/car_on_map1080.jpg"
-                        alt="{{lang.background_image}}"
+                        alt="Background image"
                     />
                 </div>
             </section>
 
             <noscript>
                 <section class="delivery-section-noscript">
-                    <h2>{{lang.delivery}}</h2>
+                    <h2>Delivery</h2>
 
-                    <p>{{lang.delivery_description}}</p>
+                    <p>We deliver to certain zip codes, check if we deliver to you</p>
 
                     <table class="delivery-table">
                         <thead>
                             <tr>
-                                <th>{{lang.zip_code}}</th>
-                                <th>{{lang.price}}</th>
+                                <th>Zip code</th>
+                                <th>Price</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{#each location.zip_codes}}
                                 <tr>
-                                    <td>{{this.zip_code}}</td>
-                                    <td>{{this.price}}</td>
+                                    <td>981 38</td>
+                                    <td>199 kr</td>
                                 </tr>
-                            {{/each}}
+                                <tr>
+                                    <td>981 40</td>
+                                    <td>199 kr</td>
+                                </tr>
+                                <tr>
+                                    <td>981 41</td>
+                                    <td>199 kr</td>
+                                </tr>
+                                <tr>
+                                    <td>981 44</td>
+                                    <td>299 kr</td>
+                                </tr>
+                                <tr>
+                                    <td>981 45</td>
+                                    <td>299 kr</td>
+                                </tr>
+                                <tr>
+                                    <td>981 46</td>
+                                    <td>299 kr</td>
+                                </tr>
+                                <tr>
+                                    <td>981 47</td>
+                                    <td>299 kr</td>
+                                </tr>
                         </tbody>
                     </table>
 
                     <div class="background-image">
                         <img
                             src="../../assets/images/car_on_map1080.jpg"
-                            alt="{{lang.background_image}}"
+                            alt="Background image"
                         />
                     </div>
                 </section>
             </noscript>
 
             <section class="closed-dates-section" id="closed-dates-container">
-                <h2>{{lang.closed_dates}}</h2>
+                <h2>Closed dates</h2>
 
                 <table class="closed-dates-table">
                     <tbody>
                         <tr>
-                            <td data-key="january_1">{{lang.january_1}}</td>
+                            <td data-key="january_1">1st of January</td>
                             <td
                                 data-key="new_years_day"
-                            >{{lang.new_years_day}}</td>
-                            <td data-key="closed">{{lang.closed}}</td>
+                            >New Year&#x27;s Day</td>
+                            <td data-key="closed">Closed</td>
                         </tr>
                         <tr>
-                            <td data-key="january_6">{{lang.january_6}}</td>
-                            <td data-key="epiphany">{{lang.epiphany}}</td>
-                            <td data-key="closed">{{lang.closed}}</td>
+                            <td data-key="january_6">6th of January</td>
+                            <td data-key="epiphany">Epiphany</td>
+                            <td data-key="closed">Closed</td>
                         </tr>
                         <tr>
-                            <td data-key="may_1">{{lang.may_1}}</td>
-                            <td data-key="labour_day">{{lang.labour_day}}</td>
-                            <td data-key="closed">{{lang.closed}}</td>
+                            <td data-key="may_1">1st of May</td>
+                            <td data-key="labour_day">Labour Day</td>
+                            <td data-key="closed">Closed</td>
                         </tr>
                         <tr>
-                            <td data-key="june_6">{{lang.june_6}}</td>
+                            <td data-key="june_6">6th of June</td>
                             <td
                                 data-key="national_day"
-                            >{{lang.national_day}}</td>
-                            <td data-key="closed">{{lang.closed}}</td>
+                            >National Day of Sweden</td>
+                            <td data-key="closed">Closed</td>
                         </tr>
                         <tr>
-                            <td data-key="december_24">{{lang.december_24}}</td>
+                            <td data-key="december_24">24th of December</td>
                             <td
                                 data-key="christmas_eve"
-                            >{{lang.christmas_eve}}</td>
-                            <td data-key="closed">{{lang.closed}}</td>
+                            >Christmas Eve</td>
+                            <td data-key="closed">Closed</td>
                         </tr>
                         <tr>
-                            <td data-key="december_25">{{lang.december_25}}</td>
+                            <td data-key="december_25">25th of December</td>
                             <td
                                 data-key="christmas_day"
-                            >{{lang.christmas_day}}</td>
-                            <td data-key="closed">{{lang.closed}}</td>
+                            >Christmas Day</td>
+                            <td data-key="closed">Closed</td>
                         </tr>
                         <tr>
-                            <td data-key="december_26">{{lang.december_26}}</td>
-                            <td data-key="boxing_day">{{lang.boxing_day}}</td>
-                            <td data-key="closed">{{lang.closed}}</td>
+                            <td data-key="december_26">26th of December</td>
+                            <td data-key="boxing_day">Boxing Day</td>
+                            <td data-key="closed">Closed</td>
                         </tr>
                         <tr>
-                            <td data-key="december_31">{{lang.december_31}}</td>
+                            <td data-key="december_31">31st of December</td>
                             <td
                                 data-key="new_years_eve"
-                            >{{lang.new_years_eve}}</td>
-                            <td data-key="closed">{{lang.closed}}</td>
+                            >New Year&#x27;s Eve</td>
+                            <td data-key="closed">Closed</td>
                         </tr>
                     </tbody>
                 </table>
@@ -307,24 +329,24 @@
 
         <footer>
             <div class="footer-container">
-                <h4>{{lang.phone}}</h4>
+                <h4>Phone</h4>
                 <a
-                    href="tel:{{location.phone_number_html}}"
-                >{{location.phone_number_text}}</a>
+                    href="tel:+46630555555"
+                >+46 63-055 55 55</a>
             </div>
 
             <div class="footer-container">
-                <h4>{{lang.email}}</h4>
+                <h4>Email</h4>
                 <a href="mailto:info@ntbhyr.se">info@ntbhyr.se</a>
             </div>
 
             <div class="footer-container">
-                <h4>{{lang.address}}</h4>
+                <h4>Address</h4>
                 <a
                     href="https://maps.app.goo.gl/5c7N2tctTDWgJgYr7"
-                >{{location.address}},
-                    {{location.zip_code}}
-                    {{location.city}}</a>
+                >Fjällgatan 32H,
+                    981 39
+                    Kiruna</a>
             </div>
 
             <div id="social-media-container">
@@ -352,20 +374,20 @@
             </div>
 
             <div class="footer-container">
-                <h4 class="footer-header">{{lang.opening_hours}}</h4>
+                <h4 class="footer-header">Opening hours</h4>
                 <table class="open-hours-table">
                     <tbody>
                         <tr>
-                            <td>{{lang.monday_friday}}</td>
+                            <td>Monday - Friday</td>
                             <td>10:00 - 16:00</td>
                         </tr>
                         <tr>
-                            <td>{{lang.saturday}}</td>
+                            <td>Saturday</td>
                             <td>12:00 - 15:00</td>
                         </tr>
                         <tr>
-                            <td>{{lang.sunday}}</td>
-                            <td>{{lang.closed}}</td>
+                            <td>Sunday</td>
+                            <td>Closed</td>
                         </tr>
                     </tbody>
                 </table>
@@ -373,8 +395,8 @@
 
             <p id="copyright-info">© 2024 NTB Biluthyrning</p>
         </footer>
-        <div id="lang" style="display: none;">{{lang.folder}}</div>
-        <div id="location" style="display: none;">{{location.folder}}</div>
+        <div id="lang" style="display: none;">en</div>
+        <div id="location" style="display: none;">kiruna</div>
     </body>
 
 </html>
