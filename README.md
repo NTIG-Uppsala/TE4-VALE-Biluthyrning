@@ -4,9 +4,15 @@
 
 ---
 
+### Compiling
+
+To compile simply run the [hbs-compile.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/scripts/hbs-compile.js) file. Most information can be found in the locations and locales files situated in [the locations folder](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/locations/) and [the locales folder](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/locales/).
+
+---
+
 ### Changing Open Opening Hours
 
-To change the opening hours that appear on the site, you have to change it manually at three places. There are two tables in the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/index.html) file and one object in the [openHours.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/js/openHours.js) file that have to be changed.
+To change the opening hours that appear on the site, you have to change the object in the [openHours.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/js/openHours.js) file.
 
 To change closed days change the text content of a table in the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/index.html) file and change the closedDates object in the [openHours.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/js/openHours.js) file.
 
