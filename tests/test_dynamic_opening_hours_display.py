@@ -4,7 +4,7 @@ from utils import *
 
 class TestOpeningHours(TemplateTest):
     def setUp(self) -> None:
-        super().setUp(fileToTest="index.html")
+        super().setUp(fileToTest="public/se/kiruna/index.html")
 
     def testBrowserExists(self) -> None:
         self.assertIsNotNone(self.page)

@@ -46,25 +46,21 @@
                 <a href="#closed-dates-container">{{lang.closed_dates}}</a>
             </nav>
 
-            <div class="select-container">
-                <form action="get" id="redirectLocation">
-                    <select name="redirect" id="location-select">
-                        {{#if location.kiruna}}
-                            <option value={{location.folder}}>Kiruna</option>
-                            <option
-                                value={{location.redirect_locations.lulea}}
-                            >Luleå</option>
-                        {{else if location.lulea}}
-                            <option value="#">Luleå</option>
-                            <option
-                                value={{location.redirect_locations.kiruna}}
-                            >Kiruna</option>
-                        {{/if}}
-                    </select>
-                    <noscript>
-                        <button type="submit">Go</button>
-                    </noscript>
-                </form>
+        <div class="select-container">
+            <form action="get" id="redirectLocation">
+                <select name="redirect" id="location-select">
+                    {{#if location.kiruna}}
+                    <option value="{{location.folder}}">Kiruna</option>
+                    <option value="{{location.redirect_locations.lulea}}">Luleå</option>
+                    {{else if location.lulea}}
+                    <option value="#">Luleå</option>
+                    <option value="{{location.redirect_locations.kiruna}}">Kiruna</option>
+                    {{/if}}
+                </select>
+                <noscript>
+                    <button type="submit">Go</button>
+                </noscript>
+            </form>
 
                 <form action="get" id="redirectLocale">
                     <select name="redirect" id="language-select">

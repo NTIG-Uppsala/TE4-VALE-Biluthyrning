@@ -52,7 +52,7 @@ lang:
     current_status_fallback: "Kolla våra öppettider för att se när vi har öppet"
     not_open_yet: "Vi öppnar kl. ${time} idag"
     open_now: "Vi har öppet nu och stänger kl. ${time}"
-    closed_now_holidau: "Vi har stängt på ${holiday} <br> Vi öppnar igen på ${next_opening_day} kl. ${time}"
+    closed_now_holiday: "Vi har stängt på ${holiday} <br> Vi öppnar igen på ${next_opening_day} kl. ${time}"
     after_hours: "Vi har stängt för idag <br> Vi öppnar igen på ${next_opening_day} kl. ${time}"
     closed_now: "Vi har stängt idag <br> Vi öppnar igen på ${next_opening_day} kl. ${time}"
     no_zip_code: "Du måste ange ett postnummer i rutan"
