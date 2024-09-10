@@ -103,7 +103,8 @@ const localizationData = {
           friday: "10:00 - 16:00",
           saturday: "12:00 - 15:00",
           sunday: "Closed"
-        }
+        },
+        redirect_address: "./kiruna"
       }
     },
     lulea: {
@@ -197,7 +198,8 @@ const localizationData = {
           friday: "10:00 - 16:00",
           saturday: "12:00 - 15:00",
           sunday: "Closed"
-        }
+        },
+        redirect_address: "./lulea"
       }
     }
   },
@@ -305,7 +307,8 @@ const localizationData = {
           friday: "10:00 - 16:00",
           saturday: "12:00 - 15:00",
           sunday: "Closed"
-        }
+        },
+        redirect_address: "./kiruna"
       }
     },
     lulea: {
@@ -399,7 +402,8 @@ const localizationData = {
           friday: "10:00 - 16:00",
           saturday: "12:00 - 15:00",
           sunday: "Closed"
-        }
+        },
+        redirect_address: "./lulea"
       }
     }
   },
@@ -507,7 +511,8 @@ const localizationData = {
           friday: "10:00 - 16:00",
           saturday: "12:00 - 15:00",
           sunday: "Closed"
-        }
+        },
+        redirect_address: "./kiruna"
       }
     },
     lulea: {
@@ -601,7 +606,8 @@ const localizationData = {
           friday: "10:00 - 16:00",
           saturday: "12:00 - 15:00",
           sunday: "Closed"
-        }
+        },
+        redirect_address: "./lulea"
       }
     }
   }
