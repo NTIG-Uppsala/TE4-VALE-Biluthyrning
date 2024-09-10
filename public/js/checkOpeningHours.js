@@ -146,7 +146,6 @@ const refreshDynamicOpenStatus = () => {
 
     const openStatusTag = document.getElementById("dynamic-opening-hours-tag");
     openStatusTag.innerHTML = openStatusString;
-    // ChatGPT really couldn't do this as seen in the commented code below. Let's see if copilot can do it.
 
     const table = document.querySelector(".closed-dates-table>tbody");
     const rows = table.querySelectorAll("tr");
