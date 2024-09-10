@@ -140,6 +140,10 @@ body {
             flex-flow: row wrap;
             justify-content: flex-end;
             column-gap: 1ch;
+            
+            @media screen and (max-width: 768px) {
+                max-width: min-content;
+            }
 
             & select {
                 background-color: var(--secondary-dark);

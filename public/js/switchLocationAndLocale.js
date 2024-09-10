@@ -11,5 +11,5 @@ localeSelect.addEventListener("change", () => {
     const windowPath = window.location.pathname.split("/");
     const location = windowPath[windowPath.length - 2] || "kiruna";
     const locale = localeSelect.value;
-    window.location = window.location + "../../" + locale + "/" + location;
+    window.location = window.location.pathname.replace("index.html", "") + "../../" + locale + "/" + location;
 }); 
