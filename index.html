@@ -33,13 +33,9 @@
 
 <body>
     <header>
-        <div>
-            <h3>NTB Biluthyrning</h3>
-        </div>
+        <h3>NTB Biluthyrning</h3>
 
-        <button class="hamburger-menu" aria-label="Toggle menu">
-            &#9776;
-        </button>
+
 
         <nav class="nav-bar">
             <a href="#opening-hours-section">Öppettider</a>
@@ -48,12 +44,30 @@
             <a href="#closed-dates-container">Avvikande tider</a>
         </nav>
 
+
+        <div class="select-container">
+            <select name="location-select" id="location-select">
+                <option value="kirnua">Kiruna</option>
+                <option value="lulea">Luleå</option>
+            </select>
+            
+            <select name="language-select" id="language-select">
+                <option value="sv">Svenska <span style="font-family: 'Times New Roman', Times, serif;">🇸🇪</span></option>
+                <option value="fi">Suomi <span style="font-family: 'Times New Roman', Times, serif;">🇫🇮</span></option>
+                <option value="en">English <span style="font-family: 'Times New Roman', Times, serif;">🇬🇧</span></option>
+            </select>
+        </div>
+
         <div class="dropdown-menu">
             <a href="#opening-hours-section">Öppettider</a>
             <a href="#our-cars-section">Våra bilar</a>
             <a href="#delivery-section">Utkörning</a>
             <a href="#closed-dates-container">Avvikande tider</a>
         </div>
+
+        <button class="hamburger-menu" aria-label="Toggle menu">
+            &#9776;
+        </button>
     </header>
 
     <main>
@@ -316,7 +330,7 @@
             </a>
         </div>
 
-        <div class="footer-container"> 
+        <div class="footer-container">
             <h4 class="footer-header">Öppettider</h4>
             <table class="open-hours-table">
                 <tbody>
