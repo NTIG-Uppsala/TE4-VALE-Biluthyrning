@@ -6,29 +6,29 @@
 
 ### Compiling
 
-To compile simply run the [hbs-compile.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/scripts/hbs-compile.js) file. Most information can be found in the locations and locales files situated in [the locations folder](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/locations/) and [the locales folder](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/locales/).
+To compile simply run the [hbs-compile.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/scripts/hbs-compilor.js) file. Most information can be found in the locations and locales files situated in [the locations folder](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/tree/main/locations) and [the locales folder](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/tree/main/locales).
 
 ---
 
 ### Changing Open Opening Hours
 
-To change the opening hours that appear on the site, you have to change the object in the [openHours.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/js/openHours.js) file.
+To change the opening hours that appear on the site, you have to change the object in the [openHours.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/public/js/openHours.js) file.
 
-To change closed days change the text content of a table in the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/index.html) file and change the closedDates object in the [openHours.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/js/openHours.js) file.
+To change closed days change the text content of a table in the [index.hbs](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/hbs/index.hbs) file and change the closedDates object in the [openHours.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/public/js/openHours.js) file.
 
 ---
 
 ### Changing other essential information.
 
-There are two spots in the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/index.html) file that specify the phone number. Change both spots.
+There are two spots in the [index.hbs](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/hbs/index.hbs) file that specify the phone number. Change both spots.
 
-To change which cars are available or their price (which should include VAT) edit the corresponding table in the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/index.html) file. To change the VAT tax simply change the value of the "vat" constant in [vatOnCars.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/js/vatOnCars.js).
+To change which cars are available or their price (which should include VAT) edit the corresponding table in the [index.hbs](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/hbs/index.hbs) file. To change the VAT tax simply change the value of the "vat" constant in [vatOnCars.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/public/js/vatOnCars.js).
 
-To change which ZIP codes that are delivered to and their price change the [listOfZIPCodes.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/js/listOfZIPCodes.js) file as well as the noscript span of the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/index.html) file.
+To change which ZIP codes that are delivered to and their price change the [listOfZIPCodes.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/public/js/listOfZIPCodes.js) file as well as the noscript span of the [index.hbs](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/hbs/index.hbs) file.
 
-To change the E-mail change the innerHTML and the value of the href-attribute of one element in the footer of the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/index.html) file.
+To change the E-mail change the innerHTML and the value of the href-attribute of one element in the footer of the [index.hbs](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/hbs/index.hbs) file.
 
-To change the address change the innerHTML and the value of the href-attribute of one element in the footer of the [index.html](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/index.html) file.
+To change the address change the innerHTML and the value of the href-attribute of one element in the footer of the [index.hbs](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/hbs/index.hbs) file.
 
 When making changes to any of the above files also make sure to add that change to its correlating python testing file.
 
