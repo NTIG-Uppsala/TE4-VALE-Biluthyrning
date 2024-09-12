@@ -6,7 +6,7 @@
 
 ### Compiling
 
-To compile simply run the [hbs-compile.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/scripts/hbs-compilor.js) file. Most information can be found in the locations and locales files situated in [the locations folder](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/tree/main/locations) and [the locales folder](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/tree/main/locales).
+To compile the project, run the [hbs-compile.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/scripts/hbs-compilor.js) file. Most information can be found in the locations and locales files situated in [the locations folder](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/tree/main/locations) and [the locales folder](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/tree/main/locales).
 
 ---
 
