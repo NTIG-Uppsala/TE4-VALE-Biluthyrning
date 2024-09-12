@@ -49,9 +49,13 @@ The project currently uses GitHub workflows to automate the testing of any files
 
 To manually conduct the w3c validation tests open [this page](https://validator.w3.org/#validate_by_upload) and submit the desired html-files.
 
-To manually conduct the automated content testing install Python 3.12.5 and run the following commands in the terminal: "pip install pytest-playwright", "pip install playwright", "pip install pytest-json-report", and "playwright install". After that run the tests/test_index.py file.
+To manually conduct the automated content testing install Python version 3.12.5 and run the following commands in the terminal: 
 
-To add more Python tests either add more methods (which start with test*) in the existing test*.py files or create a new file with the test*.py format using the template in template.py but with a changed class-name.
+``pip install pytest-playwright playwright pytest-json-report``
+
+``python -m playwright install``
+
+To add more Python tests either add more methods (which start with test*) in the existing test*.py files or create a new file with the test*.py format using the template in "tests/template.py" but with a changed class-name.
 
 ---
 
