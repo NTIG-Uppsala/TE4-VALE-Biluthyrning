@@ -6,7 +6,16 @@
 
 ### Compiling
 
-To compile the project, run the [hbs-compile.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/scripts/hbs-compilor.js) file. Most information can be found in the locations and locales files situated in [the locations folder](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/tree/main/locations) and [the locales folder](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/tree/main/locales).
+In order to compile the project, [Node.js](https://nodejs.org/en) has to be installed and working.
+Afterwards install the required packages with:
+
+``npm install js-yaml handlebars``
+
+To compile the project, run the [hbs-compile.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/scripts/hbs-compilor.js) script with:
+
+``node scripts/hbs-compilor.js``
+
+This will generate all the necessary html files from the [index.hbs](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/hbs/index.hbs) file.
 
 ---
 
