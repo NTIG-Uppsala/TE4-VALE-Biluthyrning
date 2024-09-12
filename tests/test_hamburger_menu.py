@@ -4,7 +4,7 @@ from utils import *
 
 class HamburgerMenu(TemplateTest):
     def setUp(self) -> None:
-        super().setUp(fileToTest="index.html")
+        super().setUp(fileToTest="public/se/kiruna/index.html")
         self.page.set_viewport_size({"width": 375, "height": 812})
 
     def testBrowserExists(self) -> None:

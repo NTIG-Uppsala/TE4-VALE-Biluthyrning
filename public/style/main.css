@@ -140,13 +140,16 @@ body {
             flex-flow: row wrap;
             justify-content: flex-end;
             column-gap: 1ch;
+            
+            @media screen and (max-width: 768px) {
+                max-width: min-content;
+            }
 
-            &>select {
+            & select {
                 background-color: var(--secondary-dark);
                 color: var(--primary-light);
                 border: none;
                 padding: 0.2rem;
-                /* margin: 0.2rem; */
 
                 width: max-content;
 
@@ -228,6 +231,7 @@ body {
         max-width: 100%;
 
         &>section,
+        &>noscript>section,
         &>span>section {
             width: 100%;
 
@@ -275,6 +279,7 @@ body {
                     padding: 0.15rem;
                     padding-right: 0.5rem;
                     padding-left: 0.5rem;
+                    cursor: pointer;
 
                     &.active {
                         background-color: var(--primary-accent);
@@ -330,6 +335,7 @@ body {
                     color: var(--primary-light);
                     padding: 0.2rem;
                     height: 100%;
+                    cursor: pointer;
                 }
             }
 
