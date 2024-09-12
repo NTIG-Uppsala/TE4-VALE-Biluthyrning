@@ -128,7 +128,7 @@ const localizationData = {
           },
           saturday: {
             day: "saturday",
-            hours: "12:00 - 15:00"
+            hours: "11:00 - 15:00"
           },
           sunday: {
             day: "sunday",
@@ -392,7 +392,7 @@ const localizationData = {
           },
           saturday: {
             day: "saturday",
-            hours: "12:00 - 15:00"
+            hours: "11:00 - 15:00"
           },
           sunday: {
             day: "sunday",
@@ -656,7 +656,7 @@ const localizationData = {
           },
           saturday: {
             day: "saturday",
-            hours: "12:00 - 15:00"
+            hours: "11:00 - 15:00"
           },
           sunday: {
             day: "sunday",

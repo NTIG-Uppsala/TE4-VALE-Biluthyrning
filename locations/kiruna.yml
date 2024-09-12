@@ -50,7 +50,7 @@ location:
             hours: "10:00 - 16:00"
         saturday:
             day: "saturday"
-            hours: "12:00 - 15:00"
+            hours: "11:00 - 15:00"
         sunday:
             day: "sunday"
             hours: "closed"
