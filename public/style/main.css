@@ -279,6 +279,7 @@ body {
                     padding: 0.15rem;
                     padding-right: 0.5rem;
                     padding-left: 0.5rem;
+                    cursor: pointer;
 
                     &.active {
                         background-color: var(--primary-accent);
@@ -334,6 +335,7 @@ body {
                     color: var(--primary-light);
                     padding: 0.2rem;
                     height: 100%;
+                    cursor: pointer;
                 }
             }
 
