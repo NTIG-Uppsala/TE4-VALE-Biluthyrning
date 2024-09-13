@@ -17,10 +17,7 @@ on:
     push:
         branches:
             - main
-            - gh-pages
-            - validation-testing
             - live
-            - validation-and-automation-testing
 
 jobs:
     validate:
