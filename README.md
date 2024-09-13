@@ -59,6 +59,13 @@ To add more Python tests either add more methods (which start with test*) in the
 
 ---
 
+### Deploy to Github Pages
+
+Github Pages is built from the "live" branch.
+To update the live github pages site you have to merge or rebase your changes to the "live" branch and then push to upstream (origin).
+
+---
+
 ### Documents
 
 _You must be a member of the NTI organization to open these documents due to administrator restrictions._
@@ -66,10 +73,3 @@ _You must be a member of the NTI organization to open these documents due to adm
 -   [Coding Standards](https://docs.google.com/document/d/1dJfQdgAl6E9tcHBeBnb0e2uB0bi2bdLuae2takOrGkk)
 -   [Development Environment](https://docs.google.com/document/d/1Ssf3YnYcBpyaFDB6_u13xwsDctFAzLoYFpRsogTgHsQ)
 -   [Programming languages](https://docs.google.com/document/d/1SSwpfVekfKO-xPAD7ia-tl_2XUqu4rodW4a1T_FcxaQ)
-
----
-
-### Deploy to Github Pages
-
-Github Pages is built from the "live" branch.
-To update the live github pages site you have to merge or rebase your changes to the "live" branch and then push to upstream (origin).
