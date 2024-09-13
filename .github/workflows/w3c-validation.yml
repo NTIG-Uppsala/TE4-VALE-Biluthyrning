@@ -57,7 +57,7 @@ jobs:
                   echo "$validation_failed" > validation_results/validation_failed_flag.txt
 
             - name: Upload validation results
-              uses: actions/upload-artifact@v2
+              uses: actions/upload-artifact@v4
               with:
                   name: validation-results
                   path: validation_results
