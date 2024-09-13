@@ -51,7 +51,7 @@ class TestEssentialInfo(TemplateTest):
             "Måndag - fredag",
             "10:00 - 16:00",
             "Lördag",
-            "12:00 - 15:00",
+            "11:00 - 15:00",
             "Söndag",
             "Stängt",
         ])
