@@ -25,7 +25,6 @@
     <link rel="stylesheet" href="../../style/variables.css">
     <link rel="stylesheet" href="../../style/main.css">
 
-    <script defer src="../../js/switchLocationAndLocale.js"></script>
     <script src="../../js/openHours.js"></script>
     <script src="../../js/listOfZIPCodes.js"></script>
     <script src="../../js/data/localizationData.js"></script>
@@ -50,29 +49,6 @@
             <a href="#delivery-section">Utkörning</a>
             <a href="#closed-dates-container">Avvikande tider</a>
         </nav>
-
-        <div class="select-container">
-            <form action="get" id="redirectLocation">
-                <select name="redirect" id="location-select">
-                    <option value="kiruna">Kiruna</option>
-                    <option value="./lulea">Luleå</option>
-                </select>
-                <noscript>
-                    <button type="submit">Go</button>
-                </noscript>
-            </form>
-
-            <form action="get" id="redirectLocale">
-                <select name="redirect" id="language-select">
-                    <option value="se">Svenska 🇸🇪</option>
-                    <option value="fi">Suomi 🇫🇮</option>
-                    <option value="en">English 🇬🇧</option>
-                </select>
-                <noscript>
-                    <button type="submit">Go</button>
-                </noscript>
-            </form>
-        </div>
 
         <button class="hamburger-menu" aria-label="Toggle menu">
             &#9776;
