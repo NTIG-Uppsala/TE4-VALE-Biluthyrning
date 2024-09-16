@@ -1,6 +1,6 @@
 # Car Rental Website for NTB Car Rental
 
-###### Group members: Viggo Ström, Axel Thornberg, Eskil Tornberg. This is a TE4 project by the group VALE.
+###### This is a TE4 project by the group VALE. Original group members: Viggo Ström, Axel Thornberg, Eskil Tornberg. Current maintainers: Ivar Bjerling, Tim Kelso, David Cavalli-Björkman.
 
 ---
 
