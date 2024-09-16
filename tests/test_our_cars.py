@@ -88,6 +88,9 @@ class TestOurCars(TemplateTest):
         self.assertInAllTextContent(["Audi A6", "2011", "640 kr"])
         self.assertInAllTextContent(["Mitsubishi Outlander", "2018", "360 kr"])
         self.assertInAllTextContent(["VW Polo", "2022", "240 kr"])
+    
+    def testAscendingCarButton(self) -> None:
+        ascendingCarButton = self.page.query_selector("#ascending-car-button")
 
 
 if __name__ == "__main__":
