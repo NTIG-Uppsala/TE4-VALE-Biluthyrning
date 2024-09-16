@@ -173,8 +173,23 @@ const refreshDynamicOpenStatus = () => {
     };
 
     // Separate holidays into those after today and before today
-    const holidaysAfterToday = holidays.filter(isAfterToday);
-    const holidaysBeforeToday = holidays.filter(holiday => !isAfterToday(holiday));
+    let holidaysAfterToday = holidays.filter(isAfterToday);
+    let holidaysBeforeToday = holidays.filter(holiday => !isAfterToday(holiday));
+
+    // Function to sort list of date objects in ascending order
+    const sort_dates = (dates_list) => {
+        dates_list.sort((a, b) => {
+            if (a.month !== b.month) {
+                return a.month - b.month; // Sort by month
+            } 
+            return a.day - b.day; // If months are equal, sort by day
+        });
+        return dates_list;
+    }
+
+    // Sort each list of holidays
+    holidaysAfterToday = sort_dates(holidaysAfterToday);
+    holidaysBeforeToday = sort_dates(holidaysBeforeToday);
 
     // Combine them to have holidays after today come first, then those before today
     const sortedHolidays = [...holidaysAfterToday, ...holidaysBeforeToday];

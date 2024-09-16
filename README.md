@@ -45,17 +45,24 @@ When making changes to any of the above files also make sure to add that change 
 
 ### Manual and Automated Testing
 
-The project currently uses GitHub workflows to automate the testing of any files pushed to the following branches: main, gh-pages, validation-testing, live, and validation-and-automation-testing. To change which branches are tested open .github/workflows/automated-tests.yml and .github/workflows/w3c-validation.yml and under "branches:" remove or add desired branches.
+The project currently uses GitHub workflows to automate the testing of any files pushed to certain branches. To view and change which branches are tested, open ".github/workflows/automated-tests.yml" and ".github/workflows/w3c-validation.yml" and under "branches:" remove or add desired branches for each file.
 
 To manually conduct the w3c validation tests open [this page](https://validator.w3.org/#validate_by_upload) and submit the desired html-files.
 
-To manually conduct the automated content testing install Python version 3.12.5 and run the following commands in the terminal: 
+To manually conduct the automated content testing you need to have installed Python version 3.12.5 and then run the following commands in the terminal: 
 
 ``pip install pytest-playwright playwright pytest-json-report``
 
 ``python -m playwright install``
 
 To add more Python tests either add more methods (which start with test*) in the existing test*.py files or create a new file with the test*.py format using the template in "tests/template.py" but with a changed class-name.
+
+---
+
+### Deploy to Github Pages
+
+Github Pages is built from the "live" branch.
+To update the live github pages site you have to merge or rebase your changes to the "live" branch and then push to upstream (origin).
 
 ---
 
