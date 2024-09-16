@@ -24,6 +24,7 @@
 
     <link rel="stylesheet" href="../../style/variables.css">
     <link rel="stylesheet" href="../../style/main.css">
+    <link rel="stylesheet" href="../../../flag-icons/css/flag-icons.min.css">
 
     <script defer src="../../js/switchLocationAndLocale.js"></script>
     <script src="../../js/openHours.js"></script>
@@ -63,16 +64,164 @@
             </form>
 
             <form action="get" id="redirectLocale">
-                <select name="redirect" id="language-select">
-                    <option value="se">Svenska 🇸🇪</option>
+                <!-- <select name="redirect" id="language-select">
+                    <option value="se">Svenska<span class="fi fi-se"></span></option>
                     <option value="fi">Suomi 🇫🇮</option>
                     <option value="en">English 🇬🇧</option>
-                </select>
+                </select> -->
+
+                <!-- <div name="redirect" id="language-select" class="custom-select">
+                    <div class="selected">Select Language</div>
+                        <div class="options">
+                            <div data-value="se">Svenska <span class="fi fi-se"></span></div>
+                            <div data-value="fi">Suomi <span class="fi fi-fi"></span></div>
+                            <div data-value="en">English <span class="fi fi-sh"></span></div>
+                        </div>
+                </div> -->
+
+                <div onclick="toggleDropdown()" class="dropdown">
+					<div id="dropdown-head" class="dropdown-head">
+						<img src="../../assets/icons/icons8-expand-arrow-48.png" id="arrow" alt="down arrow" width="20">
+					</div>
+			  		<!-- <div onclick="closeDropdown()" id="user-dropdown" class="dropdown-content"> -->
+			  		<div onclick="closeDropdown()" id="dropdown-content" class="dropdown-content">
+                        <div id="first" data-value="se">Svenska <span class="fi fi-se"></span></div>
+                        <div data-value="fi">Suomi <span class="fi fi-fi"></span></div>
+                        <div data-value="en">English <span class="fi fi-sh"></span></div>
+					</div>
+				</div>
+
                 <noscript>
                     <button type="submit">Go</button>
                 </noscript>
             </form>
         </div>
+
+        <style>
+            #dropdown-content {
+                display: none;
+            }
+
+            .dropdown-content {
+                display: flex;
+                flex-wrap: wrap;
+	            justify-content: center;
+                text-align: left;
+                margin-top: 5px;
+	            position: absolute;
+	            /* padding-top: 10px; */
+	            /* padding-bottom: 10px; */
+                width: fit-content;
+                text-align: left;
+	            background-color: var(--secondary-dark);
+                border-radius: 10px;
+                border: 2px solid var(--primary-light);
+                line-height: 1.5;
+	            /* border-style: solid;
+	            border-color: #ccccccff;
+	            border-width: 2.634px;
+	            border-radius: 17px;
+	            z-index: 3;
+	            text-align: center;
+	            padding-bottom: 40px; */
+            }
+
+            .dropdown-content div:hover {
+                background-color: var(--primary-accent)
+            }
+            
+            .dropdown {
+                position: relative;
+                display: inline-block;
+                margin-left: auto;
+            }
+
+            .dropdown-head {
+	            /* background-color: #decd87; */
+	            /* padding: 10px;
+	            padding-inline: 24px; */
+	            /*border-radius: 23.513px;*/
+	            /* border-radius: 15px;
+	            border-width: 0;
+	            border: none;
+	            color: white; */
+	            display: flex;
+	            justify-content: center;
+	            align-items: center;
+	            cursor: pointer;
+	            user-select: none;
+                margin-top: 2px;
+            }
+        </style>
+
+        <script> /* User dropdown */
+		/* TODO: ändra rotation på arrow 180 grader när man togglar */
+            const dropdown_content = document.getElementById("dropdown-content");
+            const dropdown_head = document.getElementById("dropdown-head");
+            const first_element = dropdown_content.querySelector("#first");
+            const first_element_copy = first_element.cloneNode(true);
+            dropdown_head.insertBefore(first_element_copy, dropdown_head.firstChild);
+
+	        function openDropdown() {
+			console.log("Opening user dropdown")
+	        	document.getElementById("arrow").style.transform = "rotate(180deg) scaleX(-1)";
+
+	        	document.getElementById("dropdown-content").style.display = "block";
+				document.addEventListener("keydown", event => { //Stäng sidenav om man trycker på escape
+				if (event.keyCode == 27) { //27 är keycode för escape
+					closeDropdown();
+				}
+			});
+	        }
+	              
+	        function closeDropdown() {
+			console.log("Closing user dropdown");
+	        	document.getElementById("dropdown-content").style.display = "none";
+	        	document.getElementById("arrow").style.transform = "rotate(0deg) scaleX(-1)";
+	        }
+
+		    function toggleDropdown() {
+		    	if (document.getElementById("dropdown-content").style.getPropertyValue('display') == "block") {
+		    		closeDropdown()
+		    	}
+		    	else {
+		    		openDropdown()
+		    	}
+		    }
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+              const languageSelect = document.getElementById("language-select");
+              const selected = languageSelect.querySelector(".selected");
+              const options = languageSelect.querySelector(".options");
+            
+              selected.addEventListener("click", () => {
+                options.style.display = options.style.display === "block" ? "none" : "block";
+              });
+          
+              // Hide options when clicking outside
+              document.addEventListener("click", (event) => {
+                if (!languageSelect.contains(event.target)) {
+                  options.style.display = "none";
+                }
+              });
+          
+              options.querySelectorAll("div").forEach(option => {
+                option.addEventListener("click", () => {
+                  const value = option.getAttribute('data-value');
+                  const text = option.textContent;
+                
+                  selected.textContent = text; // Update the selected element
+                  options.style.display = "none"; // Hide options
+                
+                  const windowPath = window.location.pathname.split("/");
+                  const location = windowPath[windowPath.length - 2] || "kiruna";
+                  window.location = window.location.pathname.replace("index.html", "") + "../../" + value + "/" + location;
+                });
+              });
+            });
+        </script>
 
         <button class="hamburger-menu" aria-label="Toggle menu">
             &#9776;
