@@ -148,12 +148,12 @@
                 <button id="no-vat-button">{{lang.vat_excluded}}</button>
             </div>
 
-            <table id="car-table" class="our-cars-table">
+            <table class="our-cars-table" id="our-cars-table">
                 <thead>
                     <tr>
-                        <th onclick="sortTable(0)">{{lang.car}}</th>
-                        <th onclick="sortTable(1)">{{lang.year_model}}</th>
-                        <th onclick="sortTable(2)">{{lang.price}}</th>
+                        <th onclick="sortTable(0)">{{lang.car}} <span id="ascending0">&#9652;</span><span id="neutral0">&#9656;</span><span id="descending0">&#9662;</span></th>
+                        <th onclick="sortTable(1)">{{lang.year_model}} <span id="ascending1">&#9652;</span><span id="neutral1">&#9656;</span><span id="descending1">&#9662;</span></th>
+                        <th onclick="sortTable(2)">{{lang.price}} <span id="ascending2">&#9652;</span><span id="neutral2">&#9656;</span><span id="descending2">&#9662;</span></th>
                     </tr>
                 </thead>
                 <tbody>

@@ -1,9 +1,15 @@
-function sortTable(column) {
+const sortTable = (column) => {
+
+    const updateIndicator = (updateColumn) => {
+        document.getElementById(`ascending${updateColumn}`).style.display = "none";
+        document.getElementById(`neutral${updateColumn}`).style.display = "inline";
+        document.getElementById(`descending${updateColumn}`).style.display = "none";
+    }
 
     var table, rows, switching, i, x, y, shouldSwitch, direction, switchcount = 0;
 
     // Get the HTML table
-    table = document.getElementById("car-table");
+    table = document.getElementById("our-cars-table");
 
     switching = true;
 
@@ -28,14 +34,33 @@ function sortTable(column) {
             if (direction == "ascending") {
                 if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
                     shouldSwitch = true;
-                    break;
+                    document.getElementById(`ascending${column}`).style.display = "inline";
+                    document.getElementById(`neutral${column}`).style.display = "none";
+                    document.getElementById(`descending${column}`).style.display = "none";
+                    if (column == 0) {
+                        updateIndicator(1);
+                        updateIndicator(2);
+                    }
+                    else if (column == 1) {
+                        updateIndicator(0);
+                        updateIndicator(2);
+                    }
+                    else if (column == 2) {
+                        updateIndicator(0);
+                        updateIndicator(1);
+                    }
+                    break; // Exit the for-loop
                 }
             }
             // If the direction is descending, switch if x is less than y
             else if (direction == "descending") {
                 if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
                     shouldSwitch = true;
-                    break;
+                    document.getElementById(`descending${column}`).style.display = "inline";
+                    document.getElementById(`neutral${column}`).style.display = "none";
+                    document.getElementById(`ascending${column}`).style.display = "none";
+
+                    break; // Exit the for-loop
                 }
             }
         }
