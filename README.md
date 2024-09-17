@@ -27,6 +27,24 @@ To change closed days change the text content of a table in the [index.hbs](http
 
 ---
 
+### Flag icons
+We use a customized version of the [flag-icons](https://github.com/lipis/flag-icons) project to integrate inline flag icons for the locale selection dropdown in the navigation bar. 
+In the [flag-icons](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/public/style/flag-icons/) folder of our project there are two folders, 
+[css](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/public/style/flag-icons/css) and
+[flags](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/public/style/flag-icons/flags).
+
+The [css](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/public/style/flag-icons/css) folder contains a minified CSS file which gets imported in the index.html files.
+The [flags](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/public/style/flag-icons/flags) folder contains the flag icons used, which are imported through said CSS file.
+
+Beware that you have to add a new flag icon to the [flags](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/public/style/flag-icons/flags) folder if you want to add more flag icons to the project.
+This can be done through downloading the [flag-icons](https://github.com/lipis/flag-icons) project and adding the desired flag icons.
+
+To place an inline icon on the page simply add this HTML, where xx is replaced with the desired country number:
+
+    <span class="fi fi-xx"></span>
+
+---
+
 ### Changing other essential information.
 
 There are two spots in the [index.hbs](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/hbs/index.hbs) file that specify the phone number. Change both spots.
