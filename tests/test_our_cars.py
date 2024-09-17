@@ -89,8 +89,39 @@ class TestOurCars(TemplateTest):
         self.assertInAllTextContent(["Mitsubishi Outlander", "2018", "360 kr"])
         self.assertInAllTextContent(["VW Polo", "2022", "240 kr"])
     
-    def testAscendingCarButton(self) -> None:
-        ascendingCarButton = self.page.query_selector("#ascending-car-button")
+
+
+
+
+
+
+    def testSortTableRowsToggle(self) -> None:
+        # Step 1: Check what's inside the first column, second row, and store that in a variable
+        initialValue = self.page.query_selector("#our-cars-table tr:nth-child(1) td:nth-child(1)").inner_text()
+
+        # Step 2: Click the button that sorts the table using JavaScript execution
+        self.page.evaluate("document.querySelector('#our-cars-table thead tr th:nth-child(1)').click()")
+
+        # Step 3: Check what's inside the first column, second row, and store that in another variable
+        newValue = self.page.query_selector("#our-cars-table tr:nth-child(1) td:nth-child(1)").inner_text()
+
+        # Step 4: Compare the two variables
+        if initialValue == newValue:
+            self.fail("The table is not sorted.")
+        else:
+            self.assertTrue(True, "The table is sorted.")
+
+
+
+# First, check whats inside the first column, second row, and store that in a variable.
+# Then, click the button that sorts the table.
+# Then, check whats inside the first column, second row, and compare it to the variable.
+# If it's the same, the table is not sorted.
+# If it's different, the table is sorted.
+
+
+
+
 
 
 if __name__ == "__main__":
