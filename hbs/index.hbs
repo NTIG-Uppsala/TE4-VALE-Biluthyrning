@@ -33,6 +33,7 @@
     <script defer src="../../js/checkZIPCode.js"></script>
     <script defer src="../../js/vatOnCars.js"></script>
     <script defer src="../../js/hamburgerMenu.js"></script>
+    <script defer src="../../js/sortTableRows.js"></script>
 
     <!-- Make sure this script is loaded last for testing purposes -->
     <script defer src="../../js/loadsLastForTests.js"></script>
@@ -147,12 +148,12 @@
                 <button id="no-vat-button">{{lang.vat_excluded}}</button>
             </div>
 
-            <table class="our-cars-table">
+            <table id="car-table" class="our-cars-table">
                 <thead>
                     <tr>
-                        <th>{{lang.car}}</th>
-                        <th>{{lang.year_model}}</th>
-                        <th>{{lang.price}}</th>
+                        <th onclick="sortTable(0)">{{lang.car}}</th>
+                        <th onclick="sortTable(1)">{{lang.year_model}}</th>
+                        <th onclick="sortTable(2)">{{lang.price}}</th>
                     </tr>
                 </thead>
                 <tbody>

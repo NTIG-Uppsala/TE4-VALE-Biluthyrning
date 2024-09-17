@@ -33,6 +33,7 @@
     <script defer src="../../js/checkZIPCode.js"></script>
     <script defer src="../../js/vatOnCars.js"></script>
     <script defer src="../../js/hamburgerMenu.js"></script>
+    <script defer src="../../js/sortTableRows.js"></script>
 
     <!-- Make sure this script is loaded last for testing purposes -->
     <script defer src="../../js/loadsLastForTests.js"></script>
@@ -150,12 +151,12 @@
                 <button id="no-vat-button">Ei sis. ALV</button>
             </div>
 
-            <table class="our-cars-table">
+            <table id="car-table" class="our-cars-table">
                 <thead>
                     <tr>
-                        <th>Auto</th>
-                        <th>Vuosimalli</th>
-                        <th>Hinta</th>
+                        <th onclick="sortTable(0)">Auto</th>
+                        <th onclick="sortTable(1)">Vuosimalli</th>
+                        <th onclick="sortTable(2)">Hinta</th>
                     </tr>
                 </thead>
                 <tbody>
