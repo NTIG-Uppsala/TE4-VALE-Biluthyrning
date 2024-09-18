@@ -28,6 +28,7 @@
 
     <script defer src="../../js/switchLocationAndLocale.js"></script>
     <script src="../../js/toggleDropdown.js"></script>
+    <script src="../../js/dropdownPreventHighlight.js"></script>
     <script src="../../js/openHours.js"></script>
     <script src="../../js/listOfZIPCodes.js"></script>
     <script src="../../js/data/localizationData.js"></script>
@@ -56,34 +57,44 @@
 
         <div class="redirect-dropdowns">
             <form action="get" id="redirectLocation">
-                <select name="redirect" id="location-select">
-                    <option value="#">Luleå</option>
-                    <option value="./kiruna">Kiruna</option>
-                                    </select>
+                <div onclick="toggleDropdown('location')" class="redirect-dropdown">
+                    <div id="location-dropdown-head" class="redirect-dropdown-head">
+                        <span class="name">Luleå</span> 
+                        						<img src="../../assets/icons/icons8-expand-arrow-48.png" id="location-dropdown-arrow" alt="down arrow" width="18">
+                    </div>
+			  		<div id="location-dropdown-content" class="redirect-dropdown-content">
+                        <div class="location-container" id="first" data-value="lulea">
+                            <span class="name">Luleå</span> 
+                        </div>
+                        <div class="location-container" id="last" data-value="./kiruna">
+                            <span class="name">Kiruna</span> 
+                        </div>
+                                            </div>
+                </div>
                 <noscript>
                     <button type="submit">Go</button>
                 </noscript>
             </form>
 
             <form action="get" id="redirectLocale">
-                <div onclick="toggleDropdown()" class="redirect-dropdown">
-					<div id="redirect-dropdown-head" class="redirect-dropdown-head">
+                <div onclick="toggleDropdown('locale')" class="redirect-dropdown">
+					<div id="locale-dropdown-head" class="redirect-dropdown-head">
                         <span class="fi fi-se"></span> <!--Flag icon. The country is specified through fi-xx, where xx is replaced with the country code.-->
-                        <span class="language-name">Svenska</span> 
-						<img src="../../assets/icons/icons8-expand-arrow-48.png" id="redirect-dropdown-arrow" alt="down arrow" width="18">
+                        <span class="name">Svenska</span> 
+						<img src="../../assets/icons/icons8-expand-arrow-48.png" id="locale-dropdown-arrow" alt="down arrow" width="18">
 					</div>
-			  		<div id="redirect-dropdown-content" class="redirect-dropdown-content">
+			  		<div id="locale-dropdown-content" class="redirect-dropdown-content">
                         <div class="language-container" id="first" data-value="se">
                             <span class="fi fi-se"></span>
-                            <span class="language-name">Svenska</span> 
+                            <span class="name">Svenska</span> 
                         </div>
                         <div class="language-container" data-value="fi">
                             <span class="fi fi-fi"></span>
-                            <span class="language-name">Suomi</span>
+                            <span class="name">Suomi</span>
                         </div>
                         <div class="language-container" id="last" data-value="en">
                             <span class="fi fi-gb"></span>
-                            <span class="language-name">English</span>
+                            <span class="name">English</span>
                         </div>
 					</div>
 				</div>

@@ -28,6 +28,7 @@
 
     <script defer src="../../js/switchLocationAndLocale.js"></script>
     <script src="../../js/toggleDropdown.js"></script>
+    <script src="../../js/dropdownPreventHighlight.js"></script>
     <script src="../../js/openHours.js"></script>
     <script src="../../js/listOfZIPCodes.js"></script>
     <script src="../../js/data/localizationData.js"></script>
@@ -56,74 +57,92 @@
 
         <div class="redirect-dropdowns">
             <form action="get" id="redirectLocation">
-                <select name="redirect" id="location-select">
-                    {{#if location.kiruna}}
-                    <option value="{{location.folder}}">Kiruna</option>
-                    <option value="{{location.redirect_locations.lulea}}">Luleå</option>
-                    {{else if location.lulea}}
-                    <option value="#">Luleå</option>
-                    <option value="{{location.redirect_locations.kiruna}}">Kiruna</option>
-                    {{/if}}
-                </select>
+                <div onclick="toggleDropdown('location')" class="redirect-dropdown">
+                    <div id="location-dropdown-head" class="redirect-dropdown-head">
+                        {{#if location.kiruna}}
+                        <span class="name">Kiruna</span> 
+                        {{else if location.lulea}}
+                        <span class="name">Luleå</span> 
+                        {{/if}}
+						<img src="../../assets/icons/icons8-expand-arrow-48.png" id="location-dropdown-arrow" alt="down arrow" width="18">
+                    </div>
+			  		<div id="location-dropdown-content" class="redirect-dropdown-content">
+                        {{#if location.kiruna}}
+                        <div class="location-container" id="first" data-value="{{location.folder}}">
+                            <span class="name">Kiruna</span> 
+                        </div>
+                        <div class="location-container" id="last" data-value="{{location.redirect_locations.lulea}}">
+                            <span class="name">Luleå</span> 
+                        </div>
+                        {{else if location.lulea}}
+                        <div class="location-container" id="first" data-value="{{location.folder}}">
+                            <span class="name">Luleå</span> 
+                        </div>
+                        <div class="location-container" id="last" data-value="{{location.redirect_locations.kiruna}}">
+                            <span class="name">Kiruna</span> 
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
                 <noscript>
                     <button type="submit">Go</button>
                 </noscript>
             </form>
 
             <form action="get" id="redirectLocale">
-                <div onclick="toggleDropdown()" class="redirect-dropdown">
-					<div id="redirect-dropdown-head" class="redirect-dropdown-head">
+                <div onclick="toggleDropdown('locale')" class="redirect-dropdown">
+					<div id="locale-dropdown-head" class="redirect-dropdown-head">
                         {{#if lang.se}}
                         <span class="fi fi-se"></span> <!--Flag icon. The country is specified through fi-xx, where xx is replaced with the country code.-->
-                        <span class="language-name">Svenska</span> 
+                        <span class="name">Svenska</span> 
                         {{else if lang.fi}}
                         <span class="fi fi-fi"></span> <!--Flag icon. The country is specified through fi-xx, where xx is replaced with the country code.-->
-                        <span class="language-name">Suomi</span> 
+                        <span class="name">Suomi</span> 
                         {{else if lang.en}}
                         <span class="fi fi-gb"></span> <!--Flag icon. The country is specified through fi-xx, where xx is replaced with the country code.-->
-                        <span class="language-name">English</span> 
+                        <span class="name">English</span> 
                         {{/if}}
-						<img src="../../assets/icons/icons8-expand-arrow-48.png" id="redirect-dropdown-arrow" alt="down arrow" width="18">
+						<img src="../../assets/icons/icons8-expand-arrow-48.png" id="locale-dropdown-arrow" alt="down arrow" width="18">
 					</div>
-			  		<div id="redirect-dropdown-content" class="redirect-dropdown-content">
+			  		<div id="locale-dropdown-content" class="redirect-dropdown-content">
                         {{#if lang.se}}
                         <div class="language-container" id="first" data-value="se">
                             <span class="fi fi-se"></span>
-                            <span class="language-name">Svenska</span> 
+                            <span class="name">Svenska</span> 
                         </div>
                         <div class="language-container" data-value="fi">
                             <span class="fi fi-fi"></span>
-                            <span class="language-name">Suomi</span>
+                            <span class="name">Suomi</span>
                         </div>
                         <div class="language-container" id="last" data-value="en">
                             <span class="fi fi-gb"></span>
-                            <span class="language-name">English</span>
+                            <span class="name">English</span>
                         </div>
                         {{else if lang.fi}}
                         <div class="language-container" id="first" data-value="fi">
                             <span class="fi fi-fi"></span>
-                            <span class="language-name">Suomi</span>
+                            <span class="name">Suomi</span>
                         </div>
                         <div class="language-container" data-value="en">
                             <span class="fi fi-gb"></span>
-                            <span class="language-name">English</span>
+                            <span class="name">English</span>
                         </div>
                         <div class="language-container" id="last" data-value="se">
                             <span class="fi fi-se"></span>
-                            <span class="language-name">Svenska</span> 
+                            <span class="name">Svenska</span> 
                         </div>
                         {{else if lang.en}}
                         <div class="language-container" id="first" data-value="en">
                             <span class="fi fi-gb"></span>
-                            <span class="language-name">English</span>
+                            <span class="name">English</span>
                         </div>
                         <div class="language-container" data-value="se">
                             <span class="fi fi-se"></span>
-                            <span class="language-name">Svenska</span> 
+                            <span class="name">Svenska</span> 
                         </div>
                         <div class="language-container" id="last" data-value="fi">
                             <span class="fi fi-fi"></span>
-                            <span class="language-name">Suomi</span>
+                            <span class="name">Suomi</span>
                         </div>
                         {{/if}}
 					</div>
