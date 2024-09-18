@@ -4,6 +4,7 @@
 * This is the default behavior for dropdowns created with <select> and <option> elements.
 * Currently, this solution prevents the default tab behavior for selecting items on the page.
 */ 
+
 requestAnimationFrame(() => {
 	document.body.querySelectorAll(".redirect-dropdown-head").forEach(head => {
 		head.addEventListener('mousedown', function(event) {
