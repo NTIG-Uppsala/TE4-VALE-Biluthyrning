@@ -1,5 +1,6 @@
 import unittest
 import re
+import datetime
 from utils import *
 
 
@@ -46,7 +47,10 @@ class TestHolidays(TemplateTest):
         closedDatesTable = [row for row in closedDatesTable if row]
 
         return closedDatesTable
-
+    
+    def currentYear(self) -> int:
+        return datetime.datetime.now().year
+    
     # tests
     def testHolidays(self) -> None:
         self.setAndTestTime(2024, 12, 24, 12, 37, ["Julafton", "fredag", "10:00"])
@@ -60,7 +64,7 @@ class TestHolidays(TemplateTest):
         self.setAndTestTime(2025, 6, 6, 12, 37, ["Nationaldagen", "lördag", "12:00"])
 
     def testHolidaySortingChristmasEve(self) -> None:
-        closedDatesTable = self.setTimeAndGetClosedDatesTable(2024, 12, 24, 19, 16)
+        closedDatesTable = self.setTimeAndGetClosedDatesTable(self.currentYear(), 12, 24, 19, 16)
         self.assertEqual(closedDatesTable[0][0], "24 december")
         self.assertEqual(closedDatesTable[0][1], "Julafton")
         self.assertEqual(closedDatesTable[0][2], "Stängt")
@@ -74,7 +78,7 @@ class TestHolidays(TemplateTest):
         self.assertEqual(closedDatesTable[7][2], "Stängt")
 
     def testHolidaySortingNewYearsDay(self) -> None:
-        closedDatesTable = self.setTimeAndGetClosedDatesTable(2025, 1, 1, 19, 16)
+        closedDatesTable = self.setTimeAndGetClosedDatesTable(self.currentYear()+1, 1, 1, 19, 16)
         self.assertEqual(closedDatesTable[0][0], "1 januari")
         self.assertEqual(closedDatesTable[0][1], "Nyårsdagen")
         self.assertEqual(closedDatesTable[0][2], "Stängt")
@@ -88,7 +92,7 @@ class TestHolidays(TemplateTest):
         self.assertEqual(closedDatesTable[6][2], "Stängt")
 
     def testHolidaySortingNationalDay(self) -> None:
-        closedDatesTable = self.setTimeAndGetClosedDatesTable(2025, 6, 6, 19, 16)
+        closedDatesTable = self.setTimeAndGetClosedDatesTable(self.currentYear()+1, 6, 6, 19, 16)
         self.assertEqual(closedDatesTable[0][0], "6 juni")
         self.assertEqual(closedDatesTable[0][1], "Nationaldagen")
         self.assertEqual(closedDatesTable[0][2], "Stängt")
