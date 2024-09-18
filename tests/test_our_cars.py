@@ -88,7 +88,18 @@ class TestOurCars(TemplateTest):
         self.assertInAllTextContent(["Audi A6", "2011", "640 kr"])
         self.assertInAllTextContent(["Mitsubishi Outlander", "2018", "360 kr"])
         self.assertInAllTextContent(["VW Polo", "2022", "240 kr"])
+    
+    def testSortTableRowsToggle(self) -> None:
+        initialValue = self.page.query_selector("#our-cars-table tr:nth-child(1) td:nth-child(1)").inner_text()
 
+        self.page.evaluate("document.querySelector('#our-cars-table thead tr th:nth-child(1)').click()")
+
+        newValue = self.page.query_selector("#our-cars-table tr:nth-child(1) td:nth-child(1)").inner_text()
+
+        if initialValue == newValue:
+            self.fail("Table rows were not sorted")
+        else:
+            self.assertTrue(True)
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

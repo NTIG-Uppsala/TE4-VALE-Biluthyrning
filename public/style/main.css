@@ -341,6 +341,38 @@ body {
                     }
                 }
             }
+
+            &>.our-cars-table th {
+                cursor: pointer;
+
+                &>#ascending0 {
+                    display: none;
+                }
+                &>#neutral0 {
+                    display: inline;
+                }
+                &>#descending0 {
+                    display: none;
+                }
+                &>#ascending1 {
+                    display: none;
+                }
+                &>#neutral1 {
+                    display: inline;
+                }
+                &>#descending1 {
+                    display: none;
+                }
+                &>#ascending2 {
+                    display: none;
+                }
+                &>#neutral2 {
+                    display: inline;
+                }
+                &>#descending2 {
+                    display: none;
+                }
+            }
         }
 
         &>.delivery-section,

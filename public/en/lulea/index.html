@@ -35,6 +35,7 @@
     <script defer src="../../js/checkZIPCode.js"></script>
     <script defer src="../../js/vatOnCars.js"></script>
     <script defer src="../../js/hamburgerMenu.js"></script>
+    <script defer src="../../js/sortTableRows.js"></script>
 
     <!-- Make sure this script is loaded last for testing purposes -->
     <script defer src="../../js/loadsLastForTests.js"></script>
@@ -168,12 +169,12 @@
                 <button id="no-vat-button">VAT excluded</button>
             </div>
 
-            <table class="our-cars-table">
+            <table class="our-cars-table" id="our-cars-table">
                 <thead>
                     <tr>
-                        <th>Car</th>
-                        <th>Year model</th>
-                        <th>Price</th>
+                        <th onclick="sortTable(0)">Car <span id="ascending0">&#9652;</span><span id="neutral0">&#9656;</span><span id="descending0">&#9662;</span></th>
+                        <th onclick="sortTable(1)">Year model <span id="ascending1">&#9652;</span><span id="neutral1">&#9656;</span><span id="descending1">&#9662;</span></th>
+                        <th onclick="sortTable(2)">Price <span id="ascending2">&#9652;</span><span id="neutral2">&#9656;</span><span id="descending2">&#9662;</span></th>
                     </tr>
                 </thead>
                 <tbody>
