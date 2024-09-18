@@ -135,7 +135,7 @@ body {
             text-align: left;
         }
 
-        &>.select-container {
+        &>.redirect-dropdowns {
             display: flex;
             flex-flow: row wrap;
             justify-content: flex-end;
@@ -158,6 +158,60 @@ body {
 
                 &:hover {
                     cursor: pointer;
+                }
+            }
+
+            & .redirect-dropdown {
+                display: inline-block;
+
+                & .redirect-dropdown-head {
+	                display: flex;
+                    text-wrap: nowrap;
+	                cursor: pointer;
+
+                    &> .language-name {
+                        margin-left: 5px;
+                        margin-right: 3px;
+                    }
+                }
+
+                & #redirect-dropdown-content {
+                    visibility: hidden;
+                }
+
+                & .redirect-dropdown-content {
+                    margin-top: 5px;
+	                position: absolute;
+                    width: fit-content;
+                    text-align: left;
+	                background-color: var(--secondary-dark);
+                    border-radius: 10px;
+                    border: 2px solid var(--primary-light);
+                    cursor: default;
+                    text-wrap: nowrap;
+            
+                    &>div {
+                        padding: 5px;
+                        padding-right: 12px;
+
+                        &:hover {
+                            background-color: var(--primary-accent);
+                        }
+
+                        &> .language-name {
+                            margin-left: 3px;
+                        }
+                        
+                        &#first {
+                            border-top-right-radius: 10px;
+                            border-top-left-radius: 10px;
+                        }
+
+                        &#last {
+                            border-bottom-right-radius: 10px;
+                            border-bottom-left-radius: 10px;
+                        }
+                    }
                 }
             }
         }

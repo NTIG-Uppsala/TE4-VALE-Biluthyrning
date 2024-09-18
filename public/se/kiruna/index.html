@@ -24,8 +24,10 @@
 
     <link rel="stylesheet" href="../../style/variables.css">
     <link rel="stylesheet" href="../../style/main.css">
+    <link rel="stylesheet" href="../../style/flag-icons/css/flag-icons.min.css">
 
     <script defer src="../../js/switchLocationAndLocale.js"></script>
+    <script src="../../js/toggleDropdown.js"></script>
     <script src="../../js/openHours.js"></script>
     <script src="../../js/listOfZIPCodes.js"></script>
     <script src="../../js/data/localizationData.js"></script>
@@ -52,7 +54,7 @@
             <a href="#closed-dates-container">Avvikande tider</a>
         </nav>
 
-        <div class="select-container">
+        <div class="redirect-dropdowns">
             <form action="get" id="redirectLocation">
                 <select name="redirect" id="location-select">
                     <option value="kiruna">Kiruna</option>
@@ -64,11 +66,27 @@
             </form>
 
             <form action="get" id="redirectLocale">
-                <select name="redirect" id="language-select">
-                    <option value="se">Svenska 🇸🇪</option>
-                    <option value="fi">Suomi 🇫🇮</option>
-                    <option value="en">English 🇬🇧</option>
-                </select>
+                <div onclick="toggleDropdown()" class="redirect-dropdown">
+					<div id="redirect-dropdown-head" class="redirect-dropdown-head">
+                        <span class="fi fi-se"></span> <!--Flag icon. The country is specified through fi-xx, where xx is replaced with the country code.-->
+                        <span class="language-name">Svenska</span> 
+						<img src="../../assets/icons/icons8-expand-arrow-48.png" id="redirect-dropdown-arrow" alt="down arrow" width="18">
+					</div>
+			  		<div id="redirect-dropdown-content" class="redirect-dropdown-content">
+                        <div class="language-container" id="first" data-value="se">
+                            <span class="fi fi-se"></span>
+                            <span class="language-name">Svenska</span> 
+                        </div>
+                        <div class="language-container" data-value="fi">
+                            <span class="fi fi-fi"></span>
+                            <span class="language-name">Suomi</span>
+                        </div>
+                        <div class="language-container" id="last" data-value="en">
+                            <span class="fi fi-gb"></span>
+                            <span class="language-name">English</span>
+                        </div>
+					</div>
+				</div>
                 <noscript>
                     <button type="submit">Go</button>
                 </noscript>
