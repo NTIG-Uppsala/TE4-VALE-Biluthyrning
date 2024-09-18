@@ -28,6 +28,7 @@
 
     <script defer src="../../js/switchLocationAndLocale.js"></script>
     <script src="../../js/toggleDropdown.js"></script>
+    <script src="../../js/dropdownPreventHighlight.js"></script>
     <script src="../../js/openHours.js"></script>
     <script src="../../js/listOfZIPCodes.js"></script>
     <script src="../../js/data/localizationData.js"></script>
@@ -66,13 +67,13 @@
             </form>
 
             <form action="get" id="redirectLocale">
-                <div onclick="toggleDropdown()" class="redirect-dropdown">
-					<div id="redirect-dropdown-head" class="redirect-dropdown-head">
+                <div onclick="toggleDropdown('locale')" class="redirect-dropdown">
+					<div id="locale-dropdown-head" class="redirect-dropdown-head">
                         <span class="fi fi-gb"></span> <!--Flag icon. The country is specified through fi-xx, where xx is replaced with the country code.-->
                         <span class="language-name">English</span> 
-                        						<img src="../../assets/icons/icons8-expand-arrow-48.png" id="redirect-dropdown-arrow" alt="down arrow" width="18">
+                        						<img src="../../assets/icons/icons8-expand-arrow-48.png" id="locale-dropdown-arrow" alt="down arrow" width="18">
 					</div>
-			  		<div id="redirect-dropdown-content" class="redirect-dropdown-content">
+			  		<div id="locale-dropdown-content" class="redirect-dropdown-content">
                         <div class="language-container" id="first" data-value="en">
                             <span class="fi fi-gb"></span>
                             <span class="language-name">English</span>

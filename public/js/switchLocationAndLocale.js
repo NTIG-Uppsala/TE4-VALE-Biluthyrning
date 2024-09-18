@@ -1,5 +1,5 @@
 const locationSelect = document.querySelector(".redirect-dropdowns #location-select");
-const localeSelect = document.getElementById("redirect-dropdown-content");
+const localeSelect = document.getElementById("locale-dropdown-content");
 
 // This will update the location when a new location is chosen
 if (locationSelect) {
@@ -25,13 +25,12 @@ languageContainers.forEach(container => {
             countryCode = locale;
         }
 
-        // Give the user confirmation that the language has been changed before refreshing
-        const dropDownHead = document.getElementById("redirect-dropdown-head");
+        // Give the user confirmation that the language has been changed before redirecting
+        const dropDownHead = document.getElementById("locale-dropdown-head");
         dropDownHead.innerHTML = `
             <span class="fi fi-${countryCode}"></span> <!--Flag icon. The country is specified through fi-xx, where xx is replaced with the country code.-->
             <span class="language-name">${container.querySelector('.language-name').textContent}</span> 
-			<img src="../../assets/icons/icons8-expand-arrow-48.png" id="arrow" alt="down arrow" width="18">
-
+			<img src="../../assets/icons/icons8-expand-arrow-48.png" id="locale-dropdown-arrow" alt="down arrow" width="18">
         `;
 
         // Redirect based on current location
