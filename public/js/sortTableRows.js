@@ -1,9 +1,9 @@
 const sortTable = (column) => {
 
     const updateIndicator = (updateColumn) => {
-        document.getElementById(`ascending${updateColumn}`).style.display = "none";
-        document.getElementById(`neutral${updateColumn}`).style.display = "inline";
-        document.getElementById(`descending${updateColumn}`).style.display = "none";
+        document.getElementById(`ascending-${updateColumn}`).style.display = "none";
+        document.getElementById(`neutral-${updateColumn}`).style.display = "inline";
+        document.getElementById(`descending-${updateColumn}`).style.display = "none";
     }
 
     var table, rows, switching, i, x, y, shouldSwitch, direction, switchcount = 0;
@@ -34,9 +34,9 @@ const sortTable = (column) => {
             if (direction == "ascending") {
                 if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
                     shouldSwitch = true;
-                    document.getElementById(`ascending${column}`).style.display = "inline";
-                    document.getElementById(`neutral${column}`).style.display = "none";
-                    document.getElementById(`descending${column}`).style.display = "none";
+                    document.getElementById(`ascending-${column}`).style.display = "inline";
+                    document.getElementById(`neutral-${column}`).style.display = "none";
+                    document.getElementById(`descending-${column}`).style.display = "none";
                     if (column == 0) {
                         updateIndicator(1);
                         updateIndicator(2);
@@ -56,9 +56,9 @@ const sortTable = (column) => {
             else if (direction == "descending") {
                 if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
                     shouldSwitch = true;
-                    document.getElementById(`descending${column}`).style.display = "inline";
-                    document.getElementById(`neutral${column}`).style.display = "none";
-                    document.getElementById(`ascending${column}`).style.display = "none";
+                    document.getElementById(`descending-${column}`).style.display = "inline";
+                    document.getElementById(`neutral-${column}`).style.display = "none";
+                    document.getElementById(`ascending-${column}`).style.display = "none";
 
                     break; // Exit the for-loop
                 }
@@ -78,3 +78,8 @@ const sortTable = (column) => {
         }
     }
 }
+
+
+
+// Vi måste get element by id och ändra {{lang.sort_decending}} till 
+// {{lang.sort_ascending}} och vice versa beroende på vilken riktning vi sorterar i.

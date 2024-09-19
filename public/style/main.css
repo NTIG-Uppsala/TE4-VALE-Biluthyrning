@@ -345,35 +345,35 @@ body {
             &>.our-cars-table th {
                 cursor: pointer;
 
-                &>#ascending0 {
+                &>#ascending-0 {
                     display: none;
                 }
-                &>#neutral0 {
+                &>#neutral-0 {
                     display: inline;
                 }
-                &>#descending0 {
+                &>#descending-0 {
                     display: none;
                 }
-                &>#ascending1 {
+                &>#ascending-1 {
                     display: none;
                 }
-                &>#neutral1 {
+                &>#neutral-1 {
                     display: inline;
                 }
-                &>#descending1 {
+                &>#descending-1 {
                     display: none;
                 }
-                &>#ascending2 {
+                &>#ascending-2 {
                     display: none;
                 }
-                &>#neutral2 {
+                &>#neutral-2 {
                     display: inline;
                 }
-                &>#descending2 {
+                &>#descending-2 {
                     display: none;
                 }
                 
-                &>span[tool-tip] {
+                /* &>span[tool-tip] {
                     position: absolute;
                     cursor: pointer;
                 }
@@ -395,7 +395,36 @@ body {
             
                 &>span:hover::after {
                     opacity: 1;
+                } */
+
+
+                /* .can-tooltip {
+                    position: relative;
+                    display: inline-block;
                 }
+                
+                .can-tooltip .tooltip {
+                    visibility: hidden;
+                    width: 120px;
+                    background-color: black;
+                    color: #fff;
+                    text-align: center;
+                    padding: 5px 0;
+                    border-radius: 6px;
+                
+                    position: absolute;
+                    z-index: 1;
+                }
+                
+                .can-tooltip:hover .tooltip {
+                    visibility: visible;
+                } */
+
+
+
+
+
+
             }
         }
 

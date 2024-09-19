@@ -173,20 +173,44 @@
                 <thead>
                     <tr>
                         <th onclick="sortTable(0)">Bil
-                            <span id="ascending0" tool-tip="Sortera fallande">&#9652;</span>
-                            <span id="neutral0" tool-tip="Sortera stigande">&#9656;</span>
-                            <span id="descending0" tool-tip="Sortera stigande">&#9662;</span>
+                            <span id="ascending-0">&#9652;</span>
+                            <span id="neutral-0">&#9656;</span>
+                            <span id="descending-0">&#9662;</span>
+                            <span id="tool-tip-0" class="tooltip">Sortera fallande</span>
                         </th>
                         <th onclick="sortTable(1)">Årsmodell
-                            <span id="ascending1" tool-tip="Sortera fallande">&#9652;</span>
-                            <span id="neutral1" tool-tip="Sortera stigande">&#9656;</span>
-                            <span id="descending1" tool-tip="Sortera stigande">&#9662;</span>
+                            <span id="ascending-1">&#9652;</span>
+                            <span id="neutral-1">&#9656;</span>
+                            <span id="descending-1">&#9662;</span>
+                            <span id="tool-tip-1" class="tooltip">Sortera fallande</span>
                         </th>
                         <th onclick="sortTable(2)">Pris
-                            <span id="ascending2" tool-tip="Sortera fallande">&#9652;</span>
-                            <span id="neutral2" tool-tip="Sortera stigande">&#9656;</span>
-                            <span id="descending2" tool-tip="Sortera stigande">&#9662;</span>
+                            <span id="ascending-2">&#9652;</span>
+                            <span id="neutral-2">&#9656;</span>
+                            <span id="descending-2">&#9662;</span>
+                            <span id="tool-tip-2" class="tooltip">Sortera fallande</span>
                         </th>
+                        <style>
+                            
+                            /* Tooltip text */
+                            th .tooltip {
+                                visibility: hidden;
+                                background-color: black;
+                                color: #fff;
+                                text-align: center;
+                                padding: 5px;
+                                border-radius: 6px;
+                                display: inline;
+                            
+                                /* Position the tooltip text - see examples below! */
+                                position: absolute;
+                            }
+                            
+                            /* Show the tooltip text when you mouse over the tooltip container */
+                            th:hover .tooltip {
+                                visibility: visible;
+                            }
+                        </style>
                     </tr>
                 </thead>
                 <tbody>
