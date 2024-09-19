@@ -372,8 +372,34 @@ body {
                 &>#descending2 {
                     display: none;
                 }
+                
+                &>span[tool-tip] {
+                    position: absolute;
+                    cursor: pointer;
+                }
+                
+                &>::after {
+                    content: attr(tool-tip);
+                    position: absolute;
+                    white-space: nowrap;
+                    background: #333;
+                    color: #fff;
+                    padding: 5px;
+                    border-radius: 5px;
+                    opacity: 0;
+                    transition: opacity 0.3s;
+                    top: -30px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+            
+                &>span:hover::after {
+                    opacity: 1;
+                }
             }
         }
+
+
 
         &>.delivery-section,
         &>span>.delivery-section-noscript {

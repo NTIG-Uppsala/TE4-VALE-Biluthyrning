@@ -195,9 +195,21 @@
             <table class="our-cars-table" id="our-cars-table">
                 <thead>
                     <tr>
-                        <th onclick="sortTable(0)">{{lang.car}} <span id="ascending0">&#9652;</span><span id="neutral0">&#9656;</span><span id="descending0">&#9662;</span></th>
-                        <th onclick="sortTable(1)">{{lang.year_model}} <span id="ascending1">&#9652;</span><span id="neutral1">&#9656;</span><span id="descending1">&#9662;</span></th>
-                        <th onclick="sortTable(2)">{{lang.price}} <span id="ascending2">&#9652;</span><span id="neutral2">&#9656;</span><span id="descending2">&#9662;</span></th>
+                        <th onclick="sortTable(0)">{{lang.car}}
+                            <span id="ascending0" tool-tip="{{lang.sort_decending}}">&#9652;</span>
+                            <span id="neutral0" tool-tip="{{lang.sort_ascending}}">&#9656;</span>
+                            <span id="descending0" tool-tip="{{lang.sort_ascending}}">&#9662;</span>
+                        </th>
+                        <th onclick="sortTable(1)">{{lang.year_model}}
+                            <span id="ascending1" tool-tip="{{lang.sort_decending}}">&#9652;</span>
+                            <span id="neutral1" tool-tip="{{lang.sort_ascending}}">&#9656;</span>
+                            <span id="descending1" tool-tip="{{lang.sort_ascending}}">&#9662;</span>
+                        </th>
+                        <th onclick="sortTable(2)">{{lang.price}}
+                            <span id="ascending2" tool-tip="{{lang.sort_decending}}">&#9652;</span>
+                            <span id="neutral2" tool-tip="{{lang.sort_ascending}}">&#9656;</span>
+                            <span id="descending2" tool-tip="{{lang.sort_ascending}}">&#9662;</span>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -217,13 +229,13 @@
                         <td class="price">500 kr</td>
                     </tr>
                     <tr>
-                        <td>Kia Carens</td>
-                        <td>2022</td>
+                        <td>Kia Soul</td>
+                        <td>2020</td>
                         <td class="price">400 kr</td>
                     </tr>
                     <tr>
-                        <td>Kia Soul</td>
-                        <td>2020</td>
+                        <td>Kia Carens</td>
+                        <td>2022</td>
                         <td class="price">400 kr</td>
                     </tr>
                     <tr>
