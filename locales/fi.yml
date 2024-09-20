@@ -25,6 +25,8 @@ lang:
     car: "Auto"
     year_model: "Vuosimalli"
     price: "Hinta"
+    sort_ascending: "Lajittele nousevasti"
+    sort_decending: "Lajittele laskevasti"
     delivery_description: "Toimitamme tiettyihin postinumeroihin, tarkista toimitammeko sinun alueellesi"
     zip_code: "Postinumero"
     search: "Hae"

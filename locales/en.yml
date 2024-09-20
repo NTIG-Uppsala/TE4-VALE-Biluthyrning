@@ -25,6 +25,8 @@ lang:
     car: "Car"
     year_model: "Year model"
     price: "Price"
+    sort_ascending: "Sort ascending"
+    sort_decending: "Sort descending"
     delivery_description: "We deliver to certain zip codes, check if we deliver to you"
     zip_code: "Zip code"
     search: "Search"
