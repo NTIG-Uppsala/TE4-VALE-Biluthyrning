@@ -25,6 +25,8 @@ lang:
     car: "Bil"
     year_model: "Årsmodell"
     price: "Pris"
+    sort_ascending: "Sortera stigande"
+    sort_decending: "Sortera fallande"
     delivery_description: "Vi kör ut till vissa postnummer, kolla om vi kör ut till dig"
     zip_code: "Postnummer"
     search: "Sök"

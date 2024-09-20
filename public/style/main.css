@@ -344,36 +344,56 @@ body {
 
             &>.our-cars-table th {
                 cursor: pointer;
+                user-select: none;
 
-                &>#ascending0 {
+                &>#ascending-0,
+                &>#descending-0,
+                &>#tool-tip-descending-0,
+                &>#ascending-1,
+                &>#descending-1,
+                &>#tool-tip-descending-1,
+                &>#ascending-2,
+                &>#descending-2,
+                &>#tool-tip-descending-2 {
                     display: none;
                 }
-                &>#neutral0 {
+
+                &>#neutral-0,
+                &>#neutral-1,
+                &>#neutral-2 {
                     display: inline;
                 }
-                &>#descending0 {
-                    display: none;
+                
+                &>#tool-tip-ascending-0,
+                &>#tool-tip-ascending-1,
+                &>#tool-tip-ascending-2 {
+                    display: block;
                 }
-                &>#ascending1 {
-                    display: none;
+
+                & .tool-tip {
+                    visibility: hidden;
+                    display: block;
+                    position: absolute;
+
+                    background-color: var(--secondary-dark);
+                    padding: 0.25rem;
+                    border-radius: 0.25rem;
+
+                    font-size: 0.75rem;
+                    color: var(--primary-light);
+
+                    transition: 0.25s;
+                    opacity: 0;
                 }
-                &>#neutral1 {
-                    display: inline;
-                }
-                &>#descending1 {
-                    display: none;
-                }
-                &>#ascending2 {
-                    display: none;
-                }
-                &>#neutral2 {
-                    display: inline;
-                }
-                &>#descending2 {
-                    display: none;
+                
+                &:hover .tool-tip {
+                    visibility: visible;
+                    opacity: 1;
                 }
             }
         }
+
+
 
         &>.delivery-section,
         &>span>.delivery-section-noscript {
