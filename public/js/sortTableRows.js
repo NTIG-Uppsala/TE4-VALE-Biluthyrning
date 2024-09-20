@@ -14,7 +14,7 @@ const sortTable = (column) => {
     switching = true;
 
     // By default, set the direction to ascending
-    direction = "ascending";
+    direction = "descending";
 
     while (switching) {
         // Stop looping after this iteration
@@ -32,11 +32,25 @@ const sortTable = (column) => {
 
             // If the direction is ascending, switch if x is greater than y
             if (direction == "ascending") {
+                document.getElementById(`tool-tip-ascending-${column}`).style.display = "block";
+                document.getElementById(`tool-tip-descending-${column}`).style.display = "none";
                 if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
                     shouldSwitch = true;
                     document.getElementById(`ascending-${column}`).style.display = "inline";
                     document.getElementById(`neutral-${column}`).style.display = "none";
                     document.getElementById(`descending-${column}`).style.display = "none";
+                    break; // Exit the for-loop
+                }
+            }
+            // If the direction is descending, switch if x is less than y
+            else if (direction == "descending") {
+                document.getElementById(`tool-tip-descending-${column}`).style.display = "block";
+                document.getElementById(`tool-tip-ascending-${column}`).style.display = "none";
+                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    document.getElementById(`descending-${column}`).style.display = "inline";
+                    document.getElementById(`neutral-${column}`).style.display = "none";
+                    document.getElementById(`ascending-${column}`).style.display = "none";
                     if (column == 0) {
                         updateIndicator(1);
                         updateIndicator(2);
@@ -52,17 +66,6 @@ const sortTable = (column) => {
                     break; // Exit the for-loop
                 }
             }
-            // If the direction is descending, switch if x is less than y
-            else if (direction == "descending") {
-                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                    shouldSwitch = true;
-                    document.getElementById(`descending-${column}`).style.display = "inline";
-                    document.getElementById(`neutral-${column}`).style.display = "none";
-                    document.getElementById(`ascending-${column}`).style.display = "none";
-
-                    break; // Exit the for-loop
-                }
-            }
         }
         // If a switch should be made
         if (shouldSwitch) {
@@ -72,14 +75,9 @@ const sortTable = (column) => {
             switchcount++;
         }
         // If a switch has been made, run the while loop again
-        else if (switchcount == 0 && direction == "ascending") {
-            direction = "descending";
+        else if (switchcount == 0 && direction == "descending") {
+            direction = "ascending";
             switching = true;
         }
     }
 }
-
-
-
-// Vi måste get element by id och ändra {{lang.sort_decending}} till 
-// {{lang.sort_ascending}} och vice versa beroende på vilken riktning vi sorterar i.
