@@ -220,56 +220,13 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {{#each cars}}
                     <tr>
-                        <td>Audi A6</td>
-                        <td>2011</td>
-                        <td class="price">800 kr</td>
-                    </tr>
-                    <tr>
-                        <td>Audi S3</td>
-                        <td>2015</td>
-                        <td class="price">450 kr</td>
-                    </tr>
-                    <tr>
-                        <td>Cadillac Escalade</td>
-                        <td>1999</td>
-                        <td class="price">500 kr</td>
-                    </tr>
-                    <tr>
-                        <td>Kia Carens</td>
-                        <td>2022</td>
-                        <td class="price">400 kr</td>
-                    </tr>
-                    <tr>
-                        <td>Kia Soul</td>
-                        <td>2020</td>
-                        <td class="price">400 kr</td>
-                    </tr>
-                    <tr>
-                        <td>Mitsubishi Outlander</td>
-                        <td>2018</td>
-                        <td class="price">450 kr</td>
-                    </tr>
-                    <tr>
-                        <td>Renault Kadjar</td>
-                        <td>2020</td>
-                        <td class="price">250 kr</td>
-                    </tr>
-                    <tr>
-                        <td>Subaru Outback</td>
-                        <td>2020</td>
-                        <td class="price">300 kr</td>
-                    </tr>
-                    <tr>
-                        <td>Volvo XC40</td>
-                        <td>2018</td>
-                        <td class="price">800 kr</td>
-                    </tr>
-                    <tr>
-                        <td>VW Polo</td>
-                        <td>2022</td>
-                        <td class="price">300 kr</td>
-                    </tr>
+                        <td>{{CarName}}</td>
+                        <td>{{CarYearModel}}</td>
+                        <td class="price">{{CarPrice}} kr</td>
+                    </tr> 
+                    {{/each}}
                 </tbody>
             </table>
         </section>
