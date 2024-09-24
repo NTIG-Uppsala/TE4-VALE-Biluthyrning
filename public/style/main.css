@@ -206,12 +206,12 @@ body {
                             margin-left: 3px;
                         }
                         
-                        &#first {
+                        &.first {
                             border-top-right-radius: 8px; /* A bit smaller than the content border radius */
                             border-top-left-radius: 8px;
                         }
 
-                        &#last {
+                        &.last {
                             border-bottom-right-radius: 8px;
                             border-bottom-left-radius: 8px;
                         }

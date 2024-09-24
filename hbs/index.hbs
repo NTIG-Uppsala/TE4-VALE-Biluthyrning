@@ -70,23 +70,23 @@
                     <div id="location-dropdown-content" class="redirect-dropdown-content">
                         {{#if location.kiruna}}
                         <a href="../{{location.folder}}">
-                            <div class="location-container" id="first">
+                            <div class="location-container first">
                                 <span class="name">Kiruna</span> 
                             </div>
                         </a>
                         <a href="../{{location.redirect_locations.lulea}}">
-                            <div class="location-container" id="last">
+                            <div class="location-container last">
                                 <span class="name">Luleå</span> 
                             </div>
                         </a>
                         {{else if location.lulea}}
                         <a href="../{{location.folder}}">
-                            <div class="location-container" id="first">
+                            <div class="location-container first">
                                 <span class="name">Luleå</span> 
                             </div>
                         </a>
                         <a href="../{{location.redirect_locations.kiruna}}">
-                            <div class="location-container" id="last">
+                            <div class="location-container last">
                                 <span class="name">Kiruna</span> 
                             </div>
                         </a>
@@ -130,7 +130,7 @@
                     <div id="locale-dropdown-content" class="redirect-dropdown-content">
                         {{#if lang.se}}
                         <a href="../../se/{{location.folder}}">
-                            <div class="language-container" id="first">
+                            <div class="language-container first">
                                 <span class="fi fi-se"></span>
                                 <span class="name">Svenska</span> 
                             </div>
@@ -142,14 +142,14 @@
                             </div>
                         </a>
                         <a href="../../en/{{location.folder}}">
-                            <div class="language-container" id="last">
+                            <div class="language-container last">
                                 <span class="fi fi-gb"></span>
                                 <span class="name">English</span>
                             </div>
                         </a>
                         {{else if lang.fi}}
                         <a href="../../fi/{{location.folder}}">
-                            <div class="language-container" id="first">
+                            <div class="language-container first">
                                 <span class="fi fi-fi"></span>
                                 <span class="name">Suomi</span>
                             </div> 
@@ -161,14 +161,14 @@
                             </div>
                         </a>
                         <a href="../../se/{{location.folder}}">
-                            <div class="language-container" id="last">
+                            <div class="language-container last">
                                 <span class="fi fi-se"></span>
                                 <span class="name">Svenska</span> 
                             </div>
                         </a>
                         {{else if lang.en}}
                         <a href="../../en/{{location.folder}}">
-                            <div class="language-container" id="first">
+                            <div class="language-container first">
                                 <span class="fi fi-gb"></span>
                                 <span class="name">English</span>
                             </div>
@@ -180,7 +180,7 @@
                             </div>
                         </a>
                         <a href="../../fi/{{location.folder}}">
-                            <div class="language-container" id="last">
+                            <div class="language-container last">
                                 <span class="fi fi-fi"></span>
                                 <span class="name">Suomi</span>
                             </div>
@@ -222,17 +222,17 @@
                 </div>
                 <div id="location-dropdown-content" class="redirect-dropdown-content">
                     {{#if location.kiruna}}
-                    <div class="location-container" id="first" data-value="{{location.folder}}">
+                    <div class="location-container first" data-value="{{location.folder}}">
                         <span class="name">Kiruna</span> 
                     </div>
-                    <div class="location-container" id="last" data-value="{{location.redirect_locations.lulea}}">
+                    <div class="location-container last" data-value="{{location.redirect_locations.lulea}}">
                         <span class="name">Luleå</span> 
                     </div>
                     {{else if location.lulea}}
-                    <div class="location-container" id="first" data-value="{{location.folder}}">
+                    <div class="location-container first" data-value="{{location.folder}}">
                         <span class="name">Luleå</span> 
                     </div>
-                    <div class="location-container" id="last" data-value="{{location.redirect_locations.kiruna}}">
+                    <div class="location-container last" data-value="{{location.redirect_locations.kiruna}}">
                         <span class="name">Kiruna</span> 
                     </div>
                     {{/if}}
@@ -257,7 +257,7 @@
                 </div>
                 <div id="locale-dropdown-content" class="redirect-dropdown-content">
                     {{#if lang.se}}
-                    <div class="language-container" id="first" data-value="se">
+                    <div class="language-container first" data-value="se">
                         <span class="fi fi-se"></span>
                         <span class="name">Svenska</span> 
                     </div>
@@ -265,12 +265,12 @@
                         <span class="fi fi-fi"></span>
                         <span class="name">Suomi</span>
                     </div>
-                    <div class="language-container" id="last" data-value="en">
+                    <div class="language-container last" data-value="en">
                         <span class="fi fi-gb"></span>
                         <span class="name">English</span>
                     </div>
                     {{else if lang.fi}}
-                    <div class="language-container" id="first" data-value="fi">
+                    <div class="language-container first" data-value="fi">
                         <span class="fi fi-fi"></span>
                         <span class="name">Suomi</span>
                     </div>
@@ -278,12 +278,12 @@
                         <span class="fi fi-gb"></span>
                         <span class="name">English</span>
                     </div>
-                    <div class="language-container" id="last" data-value="se">
+                    <div class="language-container last" data-value="se">
                         <span class="fi fi-se"></span>
                         <span class="name">Svenska</span> 
                     </div>
                     {{else if lang.en}}
-                    <div class="language-container" id="first" data-value="en">
+                    <div class="language-container first" data-value="en">
                         <span class="fi fi-gb"></span>
                         <span class="name">English</span>
                     </div>
@@ -291,7 +291,7 @@
                         <span class="fi fi-se"></span>
                         <span class="name">Svenska</span> 
                     </div>
-                    <div class="language-container" id="last" data-value="fi">
+                    <div class="language-container last" data-value="fi">
                         <span class="fi fi-fi"></span>
                         <span class="name">Suomi</span>
                     </div>
