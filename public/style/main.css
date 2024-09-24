@@ -134,6 +134,10 @@ body {
             justify-self: start;
             flex: 1;
             text-align: left;
+
+            &>#ntb-logo {
+               width: 2rem; 
+            }
         }
 
         &>.redirect-dropdowns {
