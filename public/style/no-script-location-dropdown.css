@@ -1,0 +1,14 @@
+body {
+    &>header {
+        &>.redirect-dropdowns {
+            & .redirect-dropdown {
+                &:focus-within #location-dropdown-content {
+                    visibility: visible;
+                }
+                &:focus-within #location-dropdown-arrow {
+                    transform: rotate(180deg);
+                }
+            } 
+        }
+    }
+}

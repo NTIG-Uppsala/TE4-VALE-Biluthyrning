@@ -57,53 +57,104 @@
         </nav>
 
         <div class="redirect-dropdowns">
-            <form action="get" id="redirectLocation">
-                <div onclick="toggleDropdown('location')" class="redirect-dropdown">
+            <!--If script is disabled, insert purely HTML and CSS compatible dropdowns-->
+            <noscript>
+                <div onclick="toggleDropdown('location')" class="redirect-dropdown" tabindex="0">
                     <div id="location-dropdown-head" class="redirect-dropdown-head">
                         <span class="name">Kiruna</span> 
-						<img src="../../assets/icons/icons8-expand-arrow-48.png" id="location-dropdown-arrow" alt="down arrow" width="18">
+                        <img src="../../assets/icons/icons8-expand-arrow-48.png" id="location-dropdown-arrow" alt="down arrow" width="18">
                     </div>
-			  		<div id="location-dropdown-content" class="redirect-dropdown-content">
-                        <div class="location-container" id="first" data-value="kiruna">
-                            <span class="name">Kiruna</span> 
-                        </div>
-                        <div class="location-container" id="last" data-value="./lulea">
-                            <span class="name">Luleå</span> 
-                        </div>
+                    <div id="location-dropdown-content" class="redirect-dropdown-content">
+                        <a href="../kiruna">
+                            <div class="location-container first">
+                                <span class="name">Kiruna</span> 
+                            </div>
+                        </a>
+                        <a href=".././lulea">
+                            <div class="location-container last">
+                                <span class="name">Luleå</span> 
+                            </div>
+                        </a>
                     </div>
                 </div>
-                <noscript>
-                    <button type="submit">Go</button>
-                </noscript>
-            </form>
+                <link rel="stylesheet" href="../../style/no-script-location-dropdown.css">
+            </noscript>
 
-            <form action="get" id="redirectLocale">
-                <div onclick="toggleDropdown('locale')" class="redirect-dropdown">
-					<div id="locale-dropdown-head" class="redirect-dropdown-head">
+            <noscript>
+                <div onclick="toggleDropdown('locale')" class="redirect-dropdown" id="locale-dropdown" tabindex="0">
+                    <div id="locale-dropdown-head" class="redirect-dropdown-head">
                         <span class="fi fi-se"></span> <!--Flag icon. The country is specified through fi-xx, where xx is replaced with the country code.-->
                         <span class="name">Svenska</span> 
-						<img src="../../assets/icons/icons8-expand-arrow-48.png" id="locale-dropdown-arrow" alt="down arrow" width="18">
-					</div>
-			  		<div id="locale-dropdown-content" class="redirect-dropdown-content">
-                        <div class="language-container" id="first" data-value="se">
-                            <span class="fi fi-se"></span>
-                            <span class="name">Svenska</span> 
-                        </div>
-                        <div class="language-container" data-value="fi">
-                            <span class="fi fi-fi"></span>
-                            <span class="name">Suomi</span>
-                        </div>
-                        <div class="language-container" id="last" data-value="en">
-                            <span class="fi fi-gb"></span>
-                            <span class="name">English</span>
-                        </div>
-					</div>
-				</div>
-                <noscript>
-                    <button type="submit">Go</button>
-                </noscript>
-            </form>
+                        <img src="../../assets/icons/icons8-expand-arrow-48.png" id="locale-dropdown-arrow" alt="down arrow" width="18">
+                    </div>
+                    <div id="locale-dropdown-content" class="redirect-dropdown-content">
+                        <a href="../../se/kiruna">
+                            <div class="language-container first">
+                                <span class="fi fi-se"></span>
+                                <span class="name">Svenska</span> 
+                            </div>
+                        </a>
+                        <a href="../../fi/kiruna">
+                            <div class="language-container">
+                                <span class="fi fi-fi"></span>
+                                <span class="name">Suomi</span>
+                            </div>
+                        </a>
+                        <a href="../../en/kiruna">
+                            <div class="language-container last">
+                                <span class="fi fi-gb"></span>
+                                <span class="name">English</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <link rel="stylesheet" href="../../style/no-script-locale-dropdown.css">
+            </noscript>
         </div>
+        <!--If script is enabled, insert standard dropdowns through JS-->
+        <script>
+            redirect_dropdowns = document.querySelector(".redirect-dropdowns");
+            redirect_dropdowns.insertAdjacentHTML('afterbegin', `
+            <div onclick="toggleDropdown('location')" class="redirect-dropdown">
+                <div id="location-dropdown-head" class="redirect-dropdown-head">
+                    <span class="name">Kiruna</span> 
+                    <img src="../../assets/icons/icons8-expand-arrow-48.png" id="location-dropdown-arrow" alt="down arrow" width="18">
+                </div>
+                <div id="location-dropdown-content" class="redirect-dropdown-content">
+                    <div class="location-container first" data-value="kiruna">
+                        <span class="name">Kiruna</span> 
+                    </div>
+                    <div class="location-container last" data-value="./lulea">
+                        <span class="name">Luleå</span> 
+                    </div>
+                </div>
+            </div>
+            `);
+
+            redirect_dropdowns.insertAdjacentHTML('beforeend', `
+            <div onclick="toggleDropdown('locale')" class="redirect-dropdown" id="locale-dropdown">
+                <div id="locale-dropdown-head" class="redirect-dropdown-head">
+                    <span class="fi fi-se"></span> <!--Flag icon. The country is specified through fi-xx, where xx is replaced with the country code.-->
+                    <span class="name">Svenska</span> 
+                    <img src="../../assets/icons/icons8-expand-arrow-48.png" id="locale-dropdown-arrow" alt="down arrow" width="18">
+                </div>
+                <div id="locale-dropdown-content" class="redirect-dropdown-content">
+                    <div class="language-container first" data-value="se">
+                        <span class="fi fi-se"></span>
+                        <span class="name">Svenska</span> 
+                    </div>
+                    <div class="language-container" data-value="fi">
+                        <span class="fi fi-fi"></span>
+                        <span class="name">Suomi</span>
+                    </div>
+                    <div class="language-container last" data-value="en">
+                        <span class="fi fi-gb"></span>
+                        <span class="name">English</span>
+                    </div>
+                </div>
+            </div>
+            `);
+        </script>
 
         <button class="hamburger-menu" aria-label="Toggle menu">
             &#9776;
