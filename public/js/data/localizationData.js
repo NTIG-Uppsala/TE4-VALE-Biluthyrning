@@ -4,6 +4,8 @@ const localizationData = {
       lang: {
         lang: "en",
         folder: "en",
+        ntb: "NTB",
+        car_rental: "Car Rental",
         ntb_car_rental: "NTB Car Rental",
         opening_hours: "Opening hours",
         our_cars: "Our cars",
@@ -143,6 +145,8 @@ const localizationData = {
       lang: {
         lang: "en",
         folder: "en",
+        ntb: "NTB",
+        car_rental: "Car Rental",
         ntb_car_rental: "NTB Car Rental",
         opening_hours: "Opening hours",
         our_cars: "Our cars",
@@ -272,6 +276,8 @@ const localizationData = {
       lang: {
         lang: "fi",
         folder: "fi",
+        ntb: "NTB",
+        car_rental: "Autovuokraamo",
         ntb_car_rental: "NTB Autovuokraamo",
         opening_hours: "Aukioloajat",
         our_cars: "Meidän autot",
@@ -411,6 +417,8 @@ const localizationData = {
       lang: {
         lang: "fi",
         folder: "fi",
+        ntb: "NTB",
+        car_rental: "Autovuokraamo",
         ntb_car_rental: "NTB Autovuokraamo",
         opening_hours: "Aukioloajat",
         our_cars: "Meidän autot",
@@ -540,6 +548,8 @@ const localizationData = {
       lang: {
         lang: "sv",
         folder: "se",
+        ntb: "NTB",
+        car_rental: "Biluthyrning",
         ntb_car_rental: "NTB Biluthyrning",
         opening_hours: "Öppettider",
         our_cars: "Våra bilar",
@@ -679,6 +689,8 @@ const localizationData = {
       lang: {
         lang: "sv",
         folder: "se",
+        ntb: "NTB",
+        car_rental: "Biluthyrning",
         ntb_car_rental: "NTB Biluthyrning",
         opening_hours: "Öppettider",
         our_cars: "Våra bilar",

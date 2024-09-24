@@ -270,13 +270,31 @@ body {
         }
 
         /* If the device is narrow enough, switch to hamburger nav */
-        @media (max-width: 768px) {
+        @media (max-width: 790px) {
             &>.nav-bar {
                 display: none;
             }
 
             &>.hamburger-menu {
                 display: block;
+            }
+        }
+
+        @media (max-width: 1000px) {
+            .header-text {
+                display: none;
+            }
+        }
+
+        @media (max-width: 790px) {
+            .header-text {
+                display: contents;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .header-text {
+                display: none;
             }
         }
     }

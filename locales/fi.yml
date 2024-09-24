@@ -2,6 +2,8 @@
 lang:
     lang: "fi"
     folder: "fi"
+    ntb: "NTB"
+    car_rental: "Autovuokraamo"
     ntb_car_rental: "NTB Autovuokraamo"
     opening_hours: "Aukioloajat"
     our_cars: "Meidän autot"

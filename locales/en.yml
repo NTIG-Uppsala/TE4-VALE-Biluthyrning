@@ -2,6 +2,8 @@
 lang:
     lang: "en"
     folder: "en"
+    ntb: "NTB"
+    car_rental: "Car Rental"
     ntb_car_rental: "NTB Car Rental"
     opening_hours: "Opening hours"
     our_cars: "Our cars"

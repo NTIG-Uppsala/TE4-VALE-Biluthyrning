@@ -2,6 +2,8 @@
 lang:
     lang: "sv"
     folder: "se"
+    ntb: "NTB"
+    car_rental: "Biluthyrning"
     ntb_car_rental: "NTB Biluthyrning"
     opening_hours: "Öppettider"
     our_cars: "Våra bilar"
