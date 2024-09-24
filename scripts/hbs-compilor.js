@@ -13,6 +13,7 @@ const translate = (key, options) => {
   return langData[key] || key;  // Return the translated value or the key itself if not found
 };
 
+// TODO: store JSON as data in a separate file as a fallback, in case fetch fails
 const url = 'https://cars.ntbbiluthyrning.workers.dev/api/cars';
 let carsTable;
 
