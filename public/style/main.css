@@ -498,6 +498,7 @@ body {
 
         &>#copyright-info {
             justify-self: end;
+            padding-bottom: 1%;
         }
     }
 }
