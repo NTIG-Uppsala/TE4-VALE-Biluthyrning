@@ -32,7 +32,7 @@ location:
         zip_code_7:
             zip_code: "981 47"
             price: "299 kr"
-    opening_hours:
+    open_hours:
         monday:
             day: "monday"
             hours: "10:00 - 16:00"
@@ -54,7 +54,7 @@ location:
         sunday:
             day: "sunday"
             hours: "closed"
-    july_opening_hours:
+    july_open_hours:
         monday:
             day: "monday"
             hours: "12:00 - 16:00"

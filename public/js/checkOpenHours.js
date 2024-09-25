@@ -98,7 +98,7 @@ const refreshDynamicOpenStatus = () => {
                 plural: dayNoDates.name,
                 singular: dayNoDates.nameSingular,
             },
-            opening: {
+            open: {
                 date: fromDate,
                 string: dayNoDates.from,
             },
@@ -113,7 +113,7 @@ const refreshDynamicOpenStatus = () => {
         ) {
             dayWithDates.holiday =
                 closedDates[date.getMonth()]["days"][date.getDate()];
-            dayWithDates.opening = false;
+            dayWithDates.open = false;
             dayWithDates.closing = false;
         }
 
@@ -122,8 +122,8 @@ const refreshDynamicOpenStatus = () => {
 
     let openStatusString = dataHours.lang.current_status_fallback;
 
-    if (now < followingDays[0].opening.date) {
-        const time = formatTimeString(followingDays[0].opening.string)
+    if (now < followingDays[0].open.date) {
+        const time = formatTimeString(followingDays[0].open.string)
         openStatusString = dataHours.lang.not_open_yet.replace("${time}", time);
 
     } else if (now < followingDays[0].closing.date) {
@@ -131,20 +131,20 @@ const refreshDynamicOpenStatus = () => {
         openStatusString = dataHours.lang.open_now.replace("${time}", time);
 
     } else {
-        const nextOpenDay = followingDays.slice(1).filter((day) => day.closing.date && day.opening.date)[0];
-        const next_opening_day = nextOpenDay.name.singular;
-        const time = formatTimeString(nextOpenDay.opening.string)
+        const nextOpenDay = followingDays.slice(1).filter((day) => day.closing.date && day.open.date)[0];
+        const next_open_day = nextOpenDay.name.singular;
+        const time = formatTimeString(nextOpenDay.open.string)
         if (followingDays[0].holiday) {
             const holiday = followingDays[0].holiday;
-            openStatusString = dataHours.lang.closed_now_holiday.replace("${holiday}", holiday).replace("${next_opening_day}", next_opening_day).replace("${time}", time);
+            openStatusString = dataHours.lang.closed_now_holiday.replace("${holiday}", holiday).replace("${next_open_day}", next_open_day).replace("${time}", time);
         } else if (followingDays[0].closing.string) {
-            openStatusString = dataHours.lang.after_hours.replace("${next_opening_day}", next_opening_day).replace("${time}", time);
+            openStatusString = dataHours.lang.after_hours.replace("${next_open_day}", next_open_day).replace("${time}", time);
         } else {
-            openStatusString = dataHours.lang.closed_now.replace("${next_opening_day}", next_opening_day).replace("${time}", time);
+            openStatusString = dataHours.lang.closed_now.replace("${next_open_day}", next_open_day).replace("${time}", time);
         }
     }
 
-    const openStatusTag = document.getElementById("dynamic-opening-hours-tag");
+    const openStatusTag = document.getElementById("dynamic-open-hours-tag");
     openStatusTag.innerHTML = openStatusString;
 
     const table = document.querySelector(".closed-dates-table>tbody");

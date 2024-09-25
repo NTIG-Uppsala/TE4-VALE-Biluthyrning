@@ -7,14 +7,14 @@ const localizationData = {
         ntb: "NTB",
         car_rental: "Car Rental",
         ntb_car_rental: "NTB Car Rental",
-        opening_hours: "Opening hours",
+        open_hours: "Opening hours",
         our_cars: "Our cars",
         delivery: "Delivery",
         closed_dates: "Closed dates",
         welcome: "Welcome to NTB Car Rental",
         phone_contact_pt1: "Call us at",
         phone_contact_pt2: "to reserve your car",
-        current_status_default: "Check our opening hours at the bottom of the page",
+        current_status_default: "Check our open hours at the bottom of the page",
         monday: "Monday",
         tuesday: "Tuesday",
         wednesday: "Wednesday",
@@ -57,9 +57,9 @@ const localizationData = {
         current_status_fallback: "Check our opening hours to see when we are open",
         not_open_yet: "We open at ${time} today",
         open_now: "We are open now and close at ${time}",
-        closed_now_holiday: "We are closed on ${holiday} <br> We open again on ${next_opening_day} at ${time}",
-        after_hours: "We are closed for today <br> We open again on ${next_opening_day} at ${time}",
-        closed_now: "We are closed today <br> We open again on ${next_opening_day} at ${time}",
+        closed_now_holiday: "We are closed on ${holiday} <br> We open again on ${next_open_day} at ${time}",
+        after_hours: "We are closed for today <br> We open again on ${next_open_day} at ${time}",
+        closed_now: "We are closed today <br> We open again on ${next_open_day} at ${time}",
         no_zip_code: "You must enter a zip code in the box",
         zip_code_not_correct_length: "The zip code must be five digits long",
         does_not_deliver: "We do not deliver to zip code ${zip_code}",
@@ -109,7 +109,7 @@ const localizationData = {
             price: "299 kr"
           }
         },
-        opening_hours: {
+        open_hours: {
           monday: {
             day: "monday",
             hours: "10:00 - 16:00"
@@ -139,7 +139,7 @@ const localizationData = {
             hours: "closed"
           }
         },
-        july_opening_hours: {
+        july_open_hours: {
           monday: {
             day: "monday",
             hours: "12:00 - 16:00"
@@ -178,14 +178,14 @@ const localizationData = {
         ntb: "NTB",
         car_rental: "Car Rental",
         ntb_car_rental: "NTB Car Rental",
-        opening_hours: "Opening hours",
+        open_hours: "Opening hours",
         our_cars: "Our cars",
         delivery: "Delivery",
         closed_dates: "Closed dates",
         welcome: "Welcome to NTB Car Rental",
         phone_contact_pt1: "Call us at",
         phone_contact_pt2: "to reserve your car",
-        current_status_default: "Check our opening hours at the bottom of the page",
+        current_status_default: "Check our open hours at the bottom of the page",
         monday: "Monday",
         tuesday: "Tuesday",
         wednesday: "Wednesday",
@@ -228,9 +228,9 @@ const localizationData = {
         current_status_fallback: "Check our opening hours to see when we are open",
         not_open_yet: "We open at ${time} today",
         open_now: "We are open now and close at ${time}",
-        closed_now_holiday: "We are closed on ${holiday} <br> We open again on ${next_opening_day} at ${time}",
-        after_hours: "We are closed for today <br> We open again on ${next_opening_day} at ${time}",
-        closed_now: "We are closed today <br> We open again on ${next_opening_day} at ${time}",
+        closed_now_holiday: "We are closed on ${holiday} <br> We open again on ${next_open_day} at ${time}",
+        after_hours: "We are closed for today <br> We open again on ${next_open_day} at ${time}",
+        closed_now: "We are closed today <br> We open again on ${next_open_day} at ${time}",
         no_zip_code: "You must enter a zip code in the box",
         zip_code_not_correct_length: "The zip code must be five digits long",
         does_not_deliver: "We do not deliver to zip code ${zip_code}",
@@ -268,7 +268,7 @@ const localizationData = {
             price: "199 kr"
           }
         },
-        opening_hours: {
+        open_hours: {
           monday: {
             day: "monday",
             hours: "10:00 - 17:00"
@@ -298,7 +298,7 @@ const localizationData = {
             hours: "closed"
           }
         },
-        july_opening_hours: {
+        july_open_hours: {
           monday: {
             day: "monday",
             hours: "12:00 - 16:00"
@@ -339,7 +339,7 @@ const localizationData = {
         ntb: "NTB",
         car_rental: "Autovuokraamo",
         ntb_car_rental: "NTB Autovuokraamo",
-        opening_hours: "Aukioloajat",
+        open_hours: "Aukioloajat",
         our_cars: "Meidän autot",
         delivery: "Toimitus",
         closed_dates: "Poikkeavat ajat",
@@ -389,9 +389,9 @@ const localizationData = {
         current_status_fallback: "Tarkista aukioloaikamme nähdäksesi milloin olemme avoinna",
         not_open_yet: "Avaamme klo. ${time} tänään",
         open_now: "Olemme auki nyt ja suljemme klo. ${time}",
-        closed_now_holiday: "Olemme suljettu ${holiday} <br> Avaamme uudelleen ${next_opening_day} klo. ${time}",
-        after_hours: "Olemme suljettu tänään <br> Avaamme uudelleen ${next_opening_day} klo. ${time}",
-        closed_now: "Olemme suljettu tänään <br> Avaamme uudelleen ${next_opening_day} klo. ${time}",
+        closed_now_holiday: "Olemme suljettu ${holiday} <br> Avaamme uudelleen ${next_open_day} klo. ${time}",
+        after_hours: "Olemme suljettu tänään <br> Avaamme uudelleen ${next_open_day} klo. ${time}",
+        closed_now: "Olemme suljettu tänään <br> Avaamme uudelleen ${next_open_day} klo. ${time}",
         no_zip_code: "Sinun täytyy syöttää postinumero laatikkoon",
         zip_code_not_correct_length: "Postinumeron täytyy olla viisi numeroa pitkä",
         does_not_deliver: "Emme toimita postinumeroon ${zip_code}",
@@ -441,7 +441,7 @@ const localizationData = {
             price: "299 kr"
           }
         },
-        opening_hours: {
+        open_hours: {
           monday: {
             day: "monday",
             hours: "10:00 - 16:00"
@@ -471,7 +471,7 @@ const localizationData = {
             hours: "closed"
           }
         },
-        july_opening_hours: {
+        july_open_hours: {
           monday: {
             day: "monday",
             hours: "12:00 - 16:00"
@@ -510,7 +510,7 @@ const localizationData = {
         ntb: "NTB",
         car_rental: "Autovuokraamo",
         ntb_car_rental: "NTB Autovuokraamo",
-        opening_hours: "Aukioloajat",
+        open_hours: "Aukioloajat",
         our_cars: "Meidän autot",
         delivery: "Toimitus",
         closed_dates: "Poikkeavat ajat",
@@ -560,9 +560,9 @@ const localizationData = {
         current_status_fallback: "Tarkista aukioloaikamme nähdäksesi milloin olemme avoinna",
         not_open_yet: "Avaamme klo. ${time} tänään",
         open_now: "Olemme auki nyt ja suljemme klo. ${time}",
-        closed_now_holiday: "Olemme suljettu ${holiday} <br> Avaamme uudelleen ${next_opening_day} klo. ${time}",
-        after_hours: "Olemme suljettu tänään <br> Avaamme uudelleen ${next_opening_day} klo. ${time}",
-        closed_now: "Olemme suljettu tänään <br> Avaamme uudelleen ${next_opening_day} klo. ${time}",
+        closed_now_holiday: "Olemme suljettu ${holiday} <br> Avaamme uudelleen ${next_open_day} klo. ${time}",
+        after_hours: "Olemme suljettu tänään <br> Avaamme uudelleen ${next_open_day} klo. ${time}",
+        closed_now: "Olemme suljettu tänään <br> Avaamme uudelleen ${next_open_day} klo. ${time}",
         no_zip_code: "Sinun täytyy syöttää postinumero laatikkoon",
         zip_code_not_correct_length: "Postinumeron täytyy olla viisi numeroa pitkä",
         does_not_deliver: "Emme toimita postinumeroon ${zip_code}",
@@ -600,7 +600,7 @@ const localizationData = {
             price: "199 kr"
           }
         },
-        opening_hours: {
+        open_hours: {
           monday: {
             day: "monday",
             hours: "10:00 - 17:00"
@@ -630,7 +630,7 @@ const localizationData = {
             hours: "closed"
           }
         },
-        july_opening_hours: {
+        july_open_hours: {
           monday: {
             day: "monday",
             hours: "12:00 - 16:00"
@@ -671,7 +671,7 @@ const localizationData = {
         ntb: "NTB",
         car_rental: "Biluthyrning",
         ntb_car_rental: "NTB Biluthyrning",
-        opening_hours: "Öppettider",
+        open_hours: "Öppettider",
         our_cars: "Våra bilar",
         delivery: "Utkörning",
         closed_dates: "Avvikande tider",
@@ -721,9 +721,9 @@ const localizationData = {
         current_status_fallback: "Kolla våra öppettider för att se när vi har öppet",
         not_open_yet: "Vi öppnar kl. ${time} idag",
         open_now: "Vi har öppet nu och stänger kl. ${time}",
-        closed_now_holiday: "Vi har stängt på ${holiday} <br> Vi öppnar igen på ${next_opening_day} kl. ${time}",
-        after_hours: "Vi har stängt för idag <br> Vi öppnar igen på ${next_opening_day} kl. ${time}",
-        closed_now: "Vi har stängt idag <br> Vi öppnar igen på ${next_opening_day} kl. ${time}",
+        closed_now_holiday: "Vi har stängt på ${holiday} <br> Vi öppnar igen på ${next_open_day} kl. ${time}",
+        after_hours: "Vi har stängt för idag <br> Vi öppnar igen på ${next_open_day} kl. ${time}",
+        closed_now: "Vi har stängt idag <br> Vi öppnar igen på ${next_open_day} kl. ${time}",
         no_zip_code: "Du måste ange ett postnummer i rutan",
         zip_code_not_correct_length: "Postnumret måste vara fem siffror långt",
         does_not_deliver: "Vi kör inte ut till postnummer ${zip_code}",
@@ -773,7 +773,7 @@ const localizationData = {
             price: "299 kr"
           }
         },
-        opening_hours: {
+        open_hours: {
           monday: {
             day: "monday",
             hours: "10:00 - 16:00"
@@ -803,7 +803,7 @@ const localizationData = {
             hours: "closed"
           }
         },
-        july_opening_hours: {
+        july_open_hours: {
           monday: {
             day: "monday",
             hours: "12:00 - 16:00"
@@ -842,7 +842,7 @@ const localizationData = {
         ntb: "NTB",
         car_rental: "Biluthyrning",
         ntb_car_rental: "NTB Biluthyrning",
-        opening_hours: "Öppettider",
+        open_hours: "Öppettider",
         our_cars: "Våra bilar",
         delivery: "Utkörning",
         closed_dates: "Avvikande tider",
@@ -892,9 +892,9 @@ const localizationData = {
         current_status_fallback: "Kolla våra öppettider för att se när vi har öppet",
         not_open_yet: "Vi öppnar kl. ${time} idag",
         open_now: "Vi har öppet nu och stänger kl. ${time}",
-        closed_now_holiday: "Vi har stängt på ${holiday} <br> Vi öppnar igen på ${next_opening_day} kl. ${time}",
-        after_hours: "Vi har stängt för idag <br> Vi öppnar igen på ${next_opening_day} kl. ${time}",
-        closed_now: "Vi har stängt idag <br> Vi öppnar igen på ${next_opening_day} kl. ${time}",
+        closed_now_holiday: "Vi har stängt på ${holiday} <br> Vi öppnar igen på ${next_open_day} kl. ${time}",
+        after_hours: "Vi har stängt för idag <br> Vi öppnar igen på ${next_open_day} kl. ${time}",
+        closed_now: "Vi har stängt idag <br> Vi öppnar igen på ${next_open_day} kl. ${time}",
         no_zip_code: "Du måste ange ett postnummer i rutan",
         zip_code_not_correct_length: "Postnumret måste vara fem siffror långt",
         does_not_deliver: "Vi kör inte ut till postnummer ${zip_code}",
@@ -932,7 +932,7 @@ const localizationData = {
             price: "199 kr"
           }
         },
-        opening_hours: {
+        open_hours: {
           monday: {
             day: "monday",
             hours: "10:00 - 17:00"
@@ -962,7 +962,7 @@ const localizationData = {
             hours: "closed"
           }
         },
-        july_opening_hours: {
+        july_open_hours: {
           monday: {
             day: "monday",
             hours: "12:00 - 16:00"

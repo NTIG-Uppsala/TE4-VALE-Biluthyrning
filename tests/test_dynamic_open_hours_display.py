@@ -3,7 +3,7 @@ import datetime
 from utils import *
 
 
-class TestOpeningHours(TemplateTest):
+class TestOpenHours(TemplateTest):
     def setUp(self) -> None:
         super().setUp(fileToTest="public/se/kiruna/index.html")
 
@@ -37,28 +37,28 @@ class TestOpeningHours(TemplateTest):
 
     # tests
     def testWeekdays(self) -> None:
-        # monday before opening. we expect the opening time to show
+        # monday before open. we expect the open time to show
         self.setAndTestTime(self.currentYear(), 9, 2, 9, 58, expected=["öppnar", "10:00"])
 
-        # monday after opening. we expect the closing time to show
+        # monday after open. we expect the closing time to show
         self.setAndTestTime(self.currentYear(), 9, 2, 12, 37, expected=["öppet", "16:00"])
 
         # monday after closing
         self.setAndTestTime(self.currentYear(), 9, 2, 16, 1, expected=["stängt", "öppnar", "tisdag", "10:00"])
 
-        # friday before opening
+        # friday before open
         self.setAndTestTime(self.currentYear(), 9, 6, 9, 58, expected=["öppnar", "10:00"])
 
-        # friday after opening
+        # friday after open
         self.setAndTestTime(self.currentYear(), 9, 6, 12, 37, expected=["öppet", "16:00"])
 
         # friday after closing
         self.setAndTestTime(self.currentYear(), 9, 6, 16, 1, expected=["stängt", "öppnar", "lördag", "12:00"])
 
-        # saturday before opening
+        # saturday before open
         self.setAndTestTime(self.currentYear(), 9, 7, 11, 58, expected=["öppnar", "12:00"])
 
-        # saturday after opening
+        # saturday after open
         self.setAndTestTime(self.currentYear(), 9, 7, 12, 37, expected=["öppet", "15:00"])
 
         # saturday after closing

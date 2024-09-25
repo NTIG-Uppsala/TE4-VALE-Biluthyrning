@@ -23,7 +23,7 @@ location:
         zip_code_4:
             zip_code: "961 91"
             price: "199 kr"
-    opening_hours:
+    open_hours:
         monday:
             day: "monday"
             hours: "10:00 - 17:00"
@@ -45,7 +45,7 @@ location:
         sunday:
             day: "sunday"
             hours: "closed"
-    july_opening_hours:
+    july_open_hours:
         monday:
             day: "monday"
             hours: "12:00 - 16:00"

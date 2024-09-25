@@ -19,9 +19,9 @@ This will generate all the necessary html files from the [index.hbs](https://git
 
 ---
 
-### Changing Open Opening Hours
+### Changing Open Hours
 
-To change the opening hours that appear on the site, you have to change the object in the [openHours.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/public/js/openHours.js) file.
+To change the open hours that appear on the site, you have to change the object in the [openHours.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/public/js/openHours.js) file.
 
 To change closed days change the text content of a table in the [index.hbs](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/hbs/index.hbs) file and change the closedDates object in the [openHours.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/public/js/openHours.js) file.
 
