@@ -5,7 +5,7 @@ const openHours = {
     3: { order: 2, name: "Onsdag", nameSingular: "onsdag", from: "1000", to: "1600" },
     4: { order: 3, name: "Torsdag", nameSingular: "torsdag", from: "1000", to: "1600" },
     5: { order: 4, name: "Fredag", nameSingular: "fredag", from: "1000", to: "1600" },
-    6: { order: 5, name: "Lördag", nameSingular: "lördag", from: "1200", to: "1500" },
+    6: { order: 5, name: "Lördag", nameSingular: "lördag", from: "1100", to: "1500" },
     0: { order: 6, name: "Söndag", nameSingular: "söndag", from: false, to: false }
 };
 

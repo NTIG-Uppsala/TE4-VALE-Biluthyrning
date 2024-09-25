@@ -1,5 +1,6 @@
 import unittest
 from utils import *
+import datetime
 
 
 class TestEssentialInfo(TemplateTest):
@@ -47,15 +48,24 @@ class TestEssentialInfo(TemplateTest):
     # but those tests test the dynamic open hours feature,
     # i.e. it tests the thing that says if they're currently open or not
     def testOpenHours(self) -> None:
-        self.assertInAllTextContent([
-            "Måndag - fredag",
-            "10:00 - 16:00",
-            "Lördag",
-            "11:00 - 15:00",
-            "Söndag",
-            "Stängt",
-        ])
-
+        if datetime.datetime.now().month != 7:
+            self.assertInAllTextContent([
+                "Måndag - fredag",
+                "10:00 - 16:00",
+                "Lördag",
+                "11:00 - 15:00",
+                "Söndag",
+                "Stängt",
+            ])
+        else: 
+            self.assertInAllTextContent([
+                "Måndag - fredag",
+                "12:00 - 16:00",
+                "Lördag",
+                "12:00 - 15:00",
+                "Söndag",
+                "Stängt",
+            ])
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
