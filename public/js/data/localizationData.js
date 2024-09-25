@@ -138,6 +138,36 @@ const localizationData = {
             day: "sunday",
             hours: "closed"
           }
+        },
+        july_opening_hours: {
+          monday: {
+            day: "monday",
+            hours: "12:00 - 16:00"
+          },
+          tuesday: {
+            day: "tuesday",
+            hours: "12:00 - 16:00"
+          },
+          wednesday: {
+            day: "wednesday",
+            hours: "12:00 - 16:00"
+          },
+          thursday: {
+            day: "thursday",
+            hours: "12:00 - 16:00"
+          },
+          friday: {
+            day: "friday",
+            hours: "12:00 - 16:00"
+          },
+          saturday: {
+            day: "saturday",
+            hours: "12:00 - 15:00"
+          },
+          sunday: {
+            day: "sunday",
+            hours: "closed"
+          }
         }
       }
     },
@@ -258,6 +288,36 @@ const localizationData = {
           friday: {
             day: "friday",
             hours: "10:00 - 16:00"
+          },
+          saturday: {
+            day: "saturday",
+            hours: "12:00 - 15:00"
+          },
+          sunday: {
+            day: "sunday",
+            hours: "closed"
+          }
+        },
+        july_opening_hours: {
+          monday: {
+            day: "monday",
+            hours: "12:00 - 16:00"
+          },
+          tuesday: {
+            day: "tuesday",
+            hours: "12:00 - 16:00"
+          },
+          wednesday: {
+            day: "wednesday",
+            hours: "12:00 - 16:00"
+          },
+          thursday: {
+            day: "thursday",
+            hours: "12:00 - 16:00"
+          },
+          friday: {
+            day: "friday",
+            hours: "12:00 - 16:00"
           },
           saturday: {
             day: "saturday",
@@ -410,6 +470,36 @@ const localizationData = {
             day: "sunday",
             hours: "closed"
           }
+        },
+        july_opening_hours: {
+          monday: {
+            day: "monday",
+            hours: "12:00 - 16:00"
+          },
+          tuesday: {
+            day: "tuesday",
+            hours: "12:00 - 16:00"
+          },
+          wednesday: {
+            day: "wednesday",
+            hours: "12:00 - 16:00"
+          },
+          thursday: {
+            day: "thursday",
+            hours: "12:00 - 16:00"
+          },
+          friday: {
+            day: "friday",
+            hours: "12:00 - 16:00"
+          },
+          saturday: {
+            day: "saturday",
+            hours: "12:00 - 15:00"
+          },
+          sunday: {
+            day: "sunday",
+            hours: "closed"
+          }
         }
       }
     },
@@ -530,6 +620,36 @@ const localizationData = {
           friday: {
             day: "friday",
             hours: "10:00 - 16:00"
+          },
+          saturday: {
+            day: "saturday",
+            hours: "12:00 - 15:00"
+          },
+          sunday: {
+            day: "sunday",
+            hours: "closed"
+          }
+        },
+        july_opening_hours: {
+          monday: {
+            day: "monday",
+            hours: "12:00 - 16:00"
+          },
+          tuesday: {
+            day: "tuesday",
+            hours: "12:00 - 16:00"
+          },
+          wednesday: {
+            day: "wednesday",
+            hours: "12:00 - 16:00"
+          },
+          thursday: {
+            day: "thursday",
+            hours: "12:00 - 16:00"
+          },
+          friday: {
+            day: "friday",
+            hours: "12:00 - 16:00"
           },
           saturday: {
             day: "saturday",
@@ -682,6 +802,36 @@ const localizationData = {
             day: "sunday",
             hours: "closed"
           }
+        },
+        july_opening_hours: {
+          monday: {
+            day: "monday",
+            hours: "12:00 - 16:00"
+          },
+          tuesday: {
+            day: "tuesday",
+            hours: "12:00 - 16:00"
+          },
+          wednesday: {
+            day: "wednesday",
+            hours: "12:00 - 16:00"
+          },
+          thursday: {
+            day: "thursday",
+            hours: "12:00 - 16:00"
+          },
+          friday: {
+            day: "friday",
+            hours: "12:00 - 16:00"
+          },
+          saturday: {
+            day: "saturday",
+            hours: "12:00 - 15:00"
+          },
+          sunday: {
+            day: "sunday",
+            hours: "closed"
+          }
         }
       }
     },
@@ -802,6 +952,36 @@ const localizationData = {
           friday: {
             day: "friday",
             hours: "10:00 - 16:00"
+          },
+          saturday: {
+            day: "saturday",
+            hours: "12:00 - 15:00"
+          },
+          sunday: {
+            day: "sunday",
+            hours: "closed"
+          }
+        },
+        july_opening_hours: {
+          monday: {
+            day: "monday",
+            hours: "12:00 - 16:00"
+          },
+          tuesday: {
+            day: "tuesday",
+            hours: "12:00 - 16:00"
+          },
+          wednesday: {
+            day: "wednesday",
+            hours: "12:00 - 16:00"
+          },
+          thursday: {
+            day: "thursday",
+            hours: "12:00 - 16:00"
+          },
+          friday: {
+            day: "friday",
+            hours: "12:00 - 16:00"
           },
           saturday: {
             day: "saturday",
