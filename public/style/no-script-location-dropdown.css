@@ -4,6 +4,9 @@ body {
             & .redirect-dropdown {
                 &:focus-within #location-dropdown-content {
                     visibility: visible;
+                    opacity: 1;
+                    margin-top: 5px;
+                    z-index: 1;
                 }
                 &:focus-within #location-dropdown-arrow {
                     transform: rotate(180deg);

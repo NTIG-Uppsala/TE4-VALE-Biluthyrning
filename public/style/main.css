@@ -197,6 +197,11 @@ body {
                     text-wrap: wrap;
                     /* word-break: break-all; */
                     
+                    &>a {
+                        text-decoration: none; /* Remove underline */
+                        color: inherit; /* Use the parent's text color */
+                    } 
+
                     &.visible {
                         visibility: visible;
                         opacity: 1;
