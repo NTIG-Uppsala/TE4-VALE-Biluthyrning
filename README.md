@@ -27,7 +27,7 @@ To change closed days change the text content of a table in the [index.hbs](http
 
 ---
 
-### Flag icons
+### Flag Icons
 We use a customized version of the [flag-icons](https://github.com/lipis/flag-icons) project to integrate inline flag icons for the locale selection dropdown in the navigation bar. 
 In the [flag-icons](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/public/style/flag-icons/) folder of our project there are two folders, 
 [css](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/public/style/flag-icons/css) and
@@ -45,7 +45,7 @@ To place an inline icon on the page simply add this HTML, where xx is replaced w
 
 ---
 
-### Changing other essential information.
+### Changing other Essential Information.
 
 There are two spots in the [index.hbs](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/hbs/index.hbs) file that specify the phone number. Change both spots.
 
