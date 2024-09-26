@@ -1,0 +1,9 @@
+body {
+    & > header {
+        & > .hamburger-menu-wrapper {
+            & #hamburger-menu-toggle:checked + .hamburger-menu + .dropdown-menu {
+                display: flex;
+            }
+        }
+    }
+}
