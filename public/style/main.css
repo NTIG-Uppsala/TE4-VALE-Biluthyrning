@@ -7,7 +7,7 @@
 a {
     color: inherit;
 
-    &:hover {
+    &:hover:not(#homepage-redirect) {
         color: var(--hover-accent);
         transition: 0.25s;
     }
@@ -130,13 +130,15 @@ body {
         position: sticky;
         background-color: var(--secondary-dark);
 
-        &>h3 {
-            justify-self: start;
-            flex: 1;
-            text-align: left;
-
-            &>#ntb-logo {
-               width: 2rem;
+        &>#homepage-redirect {
+            text-decoration: none;
+            margin-right: auto;
+            &>h3 {
+                display: flex;
+                align-items: center;
+                &>#ntb-logo {
+                   width: 2rem;
+                }
             }
         }
 

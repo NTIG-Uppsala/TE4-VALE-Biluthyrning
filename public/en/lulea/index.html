@@ -44,10 +44,12 @@
 
 <body>
     <header>
-        <h3 style="cursor: pointer;  display: flex; align-items: center;" onclick="window.scrollTo(0, 0); location.reload();">
-            <img id="ntb-logo" src="../../assets/images/NTB_logo.jpg" alt="NTB" style="margin-right: 8px;">
-            <span class="header-text">Car Rental - Luleå</span>
-        </h3>
+        <a href="." id="homepage-redirect">
+            <h3>
+                <img id="ntb-logo" src="../../assets/images/NTB_logo.jpg" alt="NTB" style="margin-right: 8px;">
+                <span class="header-text">Car Rental - Luleå</span>
+            </h3>
+        </a>
 
         <nav class="nav-bar">
             <a href="#opening-hours-section">Opening hours</a>
@@ -163,7 +165,7 @@
                     &#9776;
                 </label>
 
-                <div for="hamburger-menu-toggle" class="dropdown-menu">
+                <div class="dropdown-menu">
                     <a href="#opening-hours-section">Opening hours</a>
                     <a href="#our-cars-section">Our cars</a>
                     <a href="#delivery-section">Delivery</a>
