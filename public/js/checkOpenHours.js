@@ -1,7 +1,8 @@
+// Check which document is open and viewed by the user
 const lang = document.querySelector("#lang").textContent;
 const cityLocation = document.querySelector("#location").textContent;
 
-// Get the data for the current language and location
+// Get the relevant data for that current document
 const dataHours = localizationData[lang][cityLocation];
 
 // Helper functions
@@ -11,42 +12,46 @@ const formatTimeString = (time) => {
     return hour + ":" + minute;
 };
 
+// Merge rows with the exact same hours for a more readable and compact table
 const mergeRowsWithSameHours = (table) => {
     const rows = table.querySelectorAll("tbody>tr");
-
-
-    // Merge rows with the same hours so that the first cell contains the string "first day - last day"
-
-    const mergedRows = [];
+    const processedRows = [];
     let previousDaySameHours = false;
 
     rows.forEach((row, index) => {
         const currentDay = row.querySelector("td[data-day]").dataset.day;
         const currentHours = row.querySelector("td[data-hours]").dataset.hours;
 
-        // Remember to use the dataHours object to get the correct language for text content but use data to set the correct dataset values
+        // Using the dataHours object, the correct language is displayed in the table
         const currentDayText = dataHours.lang[currentDay];
 
+        // If it's the first row, just add it to the list of processed rows
         if (index === 0) {
-            mergedRows.push(row);
+            processedRows.push(row);
             return;
         }
 
-        const previousRow = mergedRows[mergedRows.length - 1];
+        const previousRow = processedRows[processedRows.length - 1];
         const previousDay = previousRow.querySelector("td[data-day]").dataset.day;
         const previousHours = previousRow.querySelector("td[data-hours]").dataset.hours;
         
         const previousDayText = dataHours.lang[previousDay];
 
+        // If the current row has the same hours as the previous row, merge them
         if (currentHours === previousHours) {
+            // If the previous row already had the same hours as the row before that, update the text
             if (previousDaySameHours) {
                 previousRow.querySelector("td[data-day]").textContent = `${previousDayText} - ${currentDayText.toLowerCase()}`;
-            } else {
+            } 
+            // If the previous row didn't have the same hours as the row before that, add the current day to the text
+            else {
                 previousRow.querySelector("td[data-day]").textContent = `${previousDayText} - ${currentDayText.toLowerCase()}`;
                 previousDaySameHours = true;
             }
-        } else {
-            mergedRows.push(row);
+        } 
+        // If the current row has different hours than the previous row, add it to the list of processed rows
+        else {
+            processedRows.push(row);
             previousDaySameHours = false;
         }        
     });
@@ -54,8 +59,8 @@ const mergeRowsWithSameHours = (table) => {
     // Clear the existing table content
     table.innerHTML = '<tbody></tbody>';
     
-    // Append the merged rows to the table
-    mergedRows.forEach((row) => {
+    // Append the new processed rows to the table
+    processedRows.forEach((row) => {
         table.querySelector("tbody").appendChild(row);
     });
 };
