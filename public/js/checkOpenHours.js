@@ -5,16 +5,71 @@ const cityLocation = document.querySelector("#location").textContent;
 // Get the relevant data for that current document
 const dataHours = localizationData[lang][cityLocation];
 
-// Define open hours and closed dates
-const openHours = {
-    1: { name: "Måndag", from: "1000", to: "1600" },
-    2: { name: "Tisdag", from: "1000", to: "1600" },
-    3: { name: "Onsdag", from: "1000", to: "1600" },
-    4: { name: "Torsdag", from: "1000", to: "1600" },
-    5: { name: "Fredag", from: "1000", to: "1600" },
-    6: { name: "Lördag", from: "1100", to: "1500" },
-    0: { name: "Söndag", from: false, to: false }
-};
+const now = new Date();
+
+function parseOpenHours(data) {
+    let open_hours;
+    if (now.getMonth() === 6) {
+       open_hours = data.location.july_open_hours;
+    }
+    else {
+       open_hours = data.location.open_hours;
+    }
+    // console.log(data.location.july_open_hours);
+
+    if (!data || !data.lang || !open_hours) {
+        console.error("Invalid data structure");
+        return {};
+    }
+
+    const daysOfWeek = {
+        monday: { index: 1, name: data.lang.monday },
+        tuesday: { index: 2, name: data.lang.tuesday },
+        wednesday: { index: 3, name: data.lang.wednesday },
+        thursday: { index: 4, name: data.lang.thursday },
+        friday: { index: 5, name: data.lang.friday },
+        saturday: { index: 6, name: data.lang.saturday },
+        sunday: { index: 0, name: data.lang.sunday },
+    };
+
+    const openHours = {};
+
+    for (const dayKey in daysOfWeek) {
+        const day = daysOfWeek[dayKey];
+        const hours = open_hours[dayKey].hours;
+        let from = false;
+        let to = false;
+
+        if (hours !== "closed") {
+            // const [startHour, endHour] = hours.split(" - ").map(str => str.replace(":", "").padEnd(4, "0"));
+            const [startHour, endHour] = hours.split(" - ").map(str => str.replace(":", "").padEnd(4, "0"));
+            from = startHour;
+            to = endHour;
+        }
+
+        // Add to openHours object
+        openHours[day.index] = {
+            name: day.name,
+            from: from,
+            to: to,
+        };
+    }
+    return openHours;
+}
+
+// Call the function to parse open hours
+// let openHours = parseOpenHours(dataHours);
+// console.log(openHours);
+
+// const openHours = {
+//     1: { name: "Monday", from: "1000", to: "1600" },
+//     2: { name: "Tuesday", from: "1000", to: "1600" },
+//     3: { name: "Wednesday", from: "1000", to: "1600" },
+//     4: { name: "Thursday", from: "1000", to: "1600" },
+//     5: { name: "Friday", from: "1000", to: "1600" },
+//     6: { name: "Saturday", from: "1100", to: "1500" },
+//     0: { name: "Sunday", from: false, to: false }
+// };
 
 const closedDates = {
     0: {
@@ -100,9 +155,15 @@ const mergeRowsWithSameHours = (table) => {
     });
 };
 
-const now = new Date();
-
 const refreshDynamicOpenStatus = () => {
+    openHoursTable = document.querySelectorAll("open-hours-table");
+    openHoursTable.forEach((table) => {
+        table.innerHTML.replace
+    })
+
+    let openHours = parseOpenHours(dataHours);
+    console.log(openHours);
+    
     const openHoursMondayFirst = [];
     Object.keys(openHours).forEach((key) => {
         openHoursMondayFirst.push(openHours[key]);
