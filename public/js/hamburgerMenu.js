@@ -6,6 +6,7 @@ document.querySelector(".hamburger-menu").addEventListener("click", () => {
     dropdownMenu.style.display = dropdownMenu.style.display === "flex" ? "none" : "flex";
 
     document.addEventListener("click", onClickHamburgerClose);
+    document.addEventListener("keydown", onKeyPressHamburgerClose);
 });
 
 const onClickHamburgerClose = (event) => {
@@ -15,13 +16,24 @@ const onClickHamburgerClose = (event) => {
 
     // If the dropdown menu is clicked
     if (event.target === hamburgerMenu) {
-        // Do nothing
         return;
     }
 
-    // If the dropdown menu is not clicked
-    // Hide the dropdown menu
+    /* If the dropdown menu is not clicked,
+    * hide the dropdown menu
+    */
     dropdownMenu.style.display = "none";
 
+    document.removeEventListener("keydown", onKeyPressHamburgerClose);
     document.removeEventListener("click", onClickHamburgerClose);
+};
+
+const onKeyPressHamburgerClose = (event) => {
+    if (event.key == "Escape") {
+        const dropdownMenu = document.querySelector(".dropdown-menu");
+        dropdownMenu.style.display = "none";
+
+        document.removeEventListener("keydown", onKeyPressHamburgerClose);
+        document.removeEventListener("click", onClickHamburgerClose);
+    }
 };
