@@ -5,6 +5,41 @@ const cityLocation = document.querySelector("#location").textContent;
 // Get the relevant data for that current document
 const dataHours = localizationData[lang][cityLocation];
 
+// Define open hours and closed dates
+const openHours = {
+    1: { name: "Måndag", from: "1000", to: "1600" },
+    2: { name: "Tisdag", from: "1000", to: "1600" },
+    3: { name: "Onsdag", from: "1000", to: "1600" },
+    4: { name: "Torsdag", from: "1000", to: "1600" },
+    5: { name: "Fredag", from: "1000", to: "1600" },
+    6: { name: "Lördag", from: "1100", to: "1500" },
+    0: { name: "Söndag", from: false, to: false }
+};
+
+const closedDates = {
+    0: {
+        name: "januari",
+        days: { 1: "Nyårsdagen", 6: "Trettondedag jul" },
+    },
+    4: {
+        name: "maj",
+        days: { 1: "Första maj" },
+    },
+    5: {
+        name: "juni",
+        days: { 6: "Nationaldagen" },
+    },
+    11: {
+        name: "december",
+        days: {
+            24: "Julafton",
+            25: "Juldagen",
+            26: "Annandag jul",
+            31: "Nyårsafton",
+        },
+    },
+};
+
 // Helper functions
 const formatTimeString = (time) => {
     const hour = time.slice(0, 2).padStart(2, "0");
@@ -72,7 +107,7 @@ const refreshDynamicOpenStatus = () => {
     Object.keys(openHours).forEach((key) => {
         openHoursMondayFirst.push(openHours[key]);
     });
-    openHoursMondayFirst.sort((a, b) => a.order - b.order);
+    openHoursMondayFirst.sort((a, b) => a - b);
 
     // Slice of the start of the week and re-add it to the end
     const openHoursTodayFirst = openHoursMondayFirst
@@ -101,7 +136,7 @@ const refreshDynamicOpenStatus = () => {
         const dayWithDates = {
             name: {
                 plural: dayNoDates.name,
-                singular: dayNoDates.nameSingular,
+                singular: dayNoDates.name.toLowerCase(),
             },
             open: {
                 date: fromDate,
