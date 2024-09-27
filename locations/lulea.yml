@@ -48,13 +48,13 @@ location:
     july_open_hours:
         monday:
             day: "monday"
-            hours: "12:00 - 16:00"
+            hours: "12:00 - 17:00"
         tuesday:
             day: "tuesday"
             hours: "12:00 - 16:00"
         wednesday:
             day: "wednesday"
-            hours: "12:00 - 16:00"
+            hours: "12:00 - 15:00"
         thursday:
             day: "thursday"
             hours: "12:00 - 16:00"

@@ -303,16 +303,18 @@
 
             <table class="open-hours-table">
                 <tbody>
-                    {{#each location.open_hours}}
-                    <tr>
-                        <td data-day="{{this.day}}">{{translate
-                            this.day
-                            }}</td>
-                        <td data-hours="{{this.hours}}">{{translate
-                            this.hours
-                            }}</td>
-                    </tr>
-                    {{/each}}
+                    <noscript>
+                        {{#each location.open_hours}}
+                        <tr>
+                            <td data-day="{{this.day}}">{{translate
+                                this.day
+                                }}</td>
+                            <td data-hours="{{this.hours}}">{{translate
+                                this.hours
+                                }}</td>
+                        </tr>
+                        {{/each}}
+                    </noscript>
                 </tbody>
             </table>
 
@@ -497,16 +499,18 @@
             <h4 class="footer-header">{{lang.open_hours}}</h4>
             <table class="open-hours-table">
                 <tbody>
-                    {{#each location.open_hours}}
-                    <tr>
-                        <td data-day="{{this.day}}">{{translate
-                            this.day
-                            }}</td>
-                        <td data-hours="{{this.hours}}">{{translate
-                            this.hours
-                            }}</td>
-                    </tr>
-                    {{/each}}
+                    <noscript>
+                        {{#each location.open_hours}}
+                        <tr>
+                            <td data-day="{{this.day}}">{{translate
+                                this.day
+                                }}</td>
+                            <td data-hours="{{this.hours}}">{{translate
+                                this.hours
+                                }}</td>
+                        </tr>
+                        {{/each}}
+                    </noscript>
                 </tbody>
             </table>
         </div>

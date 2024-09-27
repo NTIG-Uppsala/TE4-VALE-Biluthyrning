@@ -2,74 +2,70 @@
 const lang = document.querySelector("#lang").textContent;
 const cityLocation = document.querySelector("#location").textContent;
 
-// Get the relevant data for that current document
+// Get the relevant data for the current index.html
 const dataHours = localizationData[lang][cityLocation];
 
 const now = new Date();
 
-function parseOpenHours(data) {
+/* Generate an object which stores the opening hours and weekday names
+* for the current location and locale.
+*/
+const parseOpenHours = (data) => {
     let open_hours;
     if (now.getMonth() === 6) {
-       open_hours = data.location.july_open_hours;
+       open_hours = data.location.july_open_hours; // Exception for opening hours during July
     }
     else {
        open_hours = data.location.open_hours;
     }
-    // console.log(data.location.july_open_hours);
 
+    // Handle incorrect data format input
     if (!data || !data.lang || !open_hours) {
         console.error("Invalid data structure");
         return {};
     }
 
     const daysOfWeek = {
-        monday: { index: 1, name: data.lang.monday },
-        tuesday: { index: 2, name: data.lang.tuesday },
-        wednesday: { index: 3, name: data.lang.wednesday },
-        thursday: { index: 4, name: data.lang.thursday },
-        friday: { index: 5, name: data.lang.friday },
-        saturday: { index: 6, name: data.lang.saturday },
-        sunday: { index: 0, name: data.lang.sunday },
+        monday: { index: 1, name: data.lang.monday, data_name: "monday"},
+        tuesday: { index: 2, name: data.lang.tuesday, data_name: "tuesday"},
+        wednesday: { index: 3, name: data.lang.wednesday, data_name: "wednesday"},
+        thursday: { index: 4, name: data.lang.thursday, data_name: "thursday"},
+        friday: { index: 5, name: data.lang.friday, data_name: "friday"},
+        saturday: { index: 6, name: data.lang.saturday, data_name: "saturday"},
+        sunday: { index: 0, name: data.lang.sunday, data_name: "sunday"},
     };
 
     const openHours = {};
 
+    // Go through and generate an entry for each day
     for (const dayKey in daysOfWeek) {
         const day = daysOfWeek[dayKey];
-        const hours = open_hours[dayKey].hours;
+        const data_name = day.data_name;
         let from = false;
         let to = false;
+        let hours = open_hours[dayKey].hours;
 
         if (hours !== "closed") {
-            // const [startHour, endHour] = hours.split(" - ").map(str => str.replace(":", "").padEnd(4, "0"));
+            // Convert xx:xx - xx:xx opening hours format to [xxxx, xxxx]
             const [startHour, endHour] = hours.split(" - ").map(str => str.replace(":", "").padEnd(4, "0"));
             from = startHour;
             to = endHour;
         }
+        else {
+            hours = data.lang.closed;
+        }
 
-        // Add to openHours object
+        // Add entry to openHours object
         openHours[day.index] = {
             name: day.name,
+            data_name: data_name,
             from: from,
             to: to,
+            hours_std: hours
         };
     }
     return openHours;
 }
-
-// Call the function to parse open hours
-// let openHours = parseOpenHours(dataHours);
-// console.log(openHours);
-
-// const openHours = {
-//     1: { name: "Monday", from: "1000", to: "1600" },
-//     2: { name: "Tuesday", from: "1000", to: "1600" },
-//     3: { name: "Wednesday", from: "1000", to: "1600" },
-//     4: { name: "Thursday", from: "1000", to: "1600" },
-//     5: { name: "Friday", from: "1000", to: "1600" },
-//     6: { name: "Saturday", from: "1100", to: "1500" },
-//     0: { name: "Sunday", from: false, to: false }
-// };
 
 const closedDates = {
     0: {
@@ -156,13 +152,44 @@ const mergeRowsWithSameHours = (table) => {
 };
 
 const refreshDynamicOpenStatus = () => {
-    openHoursTable = document.querySelectorAll("open-hours-table");
-    openHoursTable.forEach((table) => {
-        table.innerHTML.replace
-    })
-
     let openHours = parseOpenHours(dataHours);
-    console.log(openHours);
+
+    openHoursTable = document.querySelectorAll(".open-hours-table");
+
+    // Go through and change the content of each open-hours-table
+    openHoursTable.forEach((table) => {
+        const tbody = table.querySelector("tbody");
+        tbody.innerHTML = ''; // Clear tbody innerHTML
+
+        /* Function to insert a weekday column and relating opening hours column 
+        * for each row in the tbody element with the relevant data
+        */
+        const tableInsertHTML = (entryDataName, entryName, hoursData, hours) => {
+            tbody.insertAdjacentHTML('beforeend', `
+            <tr>
+                <td data-day="${entryDataName}">${entryName}</td>
+                <td data-hours="${hoursData}">${hours}</td>
+            </tr>
+            `);
+        }
+        
+        const keys = Object.keys(openHours); //Select the keys from the openHours object
+        const firstKey = keys.shift(); // This removes the first key and returns it
+        keys.push(firstKey); // Move the "0" key to the bottom of keys, which is the key for Sunday
+
+        /* Go through each key in the openHours object and change the 
+        * tbody element's innerHTML with the relevant data
+        */
+        keys.forEach((key) => {
+            const entry = openHours[key];
+            if (key == 0) { // If the weekday is Sunday
+                tableInsertHTML(entry.data_name, entry.name, "closed", entry.hours_std);
+            }
+            else {
+                tableInsertHTML(entry.data_name, entry.name, entry.hours_std, entry.hours_std);
+            }
+        })
+    });
     
     const openHoursMondayFirst = [];
     Object.keys(openHours).forEach((key) => {

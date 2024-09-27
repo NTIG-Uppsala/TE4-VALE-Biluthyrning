@@ -301,7 +301,7 @@ const localizationData = {
         july_open_hours: {
           monday: {
             day: "monday",
-            hours: "12:00 - 16:00"
+            hours: "12:00 - 17:00"
           },
           tuesday: {
             day: "tuesday",
@@ -309,7 +309,7 @@ const localizationData = {
           },
           wednesday: {
             day: "wednesday",
-            hours: "12:00 - 16:00"
+            hours: "12:00 - 15:00"
           },
           thursday: {
             day: "thursday",
@@ -633,7 +633,7 @@ const localizationData = {
         july_open_hours: {
           monday: {
             day: "monday",
-            hours: "12:00 - 16:00"
+            hours: "12:00 - 17:00"
           },
           tuesday: {
             day: "tuesday",
@@ -641,7 +641,7 @@ const localizationData = {
           },
           wednesday: {
             day: "wednesday",
-            hours: "12:00 - 16:00"
+            hours: "12:00 - 15:00"
           },
           thursday: {
             day: "thursday",
@@ -965,7 +965,7 @@ const localizationData = {
         july_open_hours: {
           monday: {
             day: "monday",
-            hours: "12:00 - 16:00"
+            hours: "12:00 - 17:00"
           },
           tuesday: {
             day: "tuesday",
@@ -973,7 +973,7 @@ const localizationData = {
           },
           wednesday: {
             day: "wednesday",
-            hours: "12:00 - 16:00"
+            hours: "12:00 - 15:00"
           },
           thursday: {
             day: "thursday",
