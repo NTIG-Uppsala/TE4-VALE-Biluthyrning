@@ -97,14 +97,10 @@ const localizationData = {
             price: "299 kr"
           },
           zip_code_5: {
-            zip_code: "981 45",
-            price: "299 kr"
-          },
-          zip_code_6: {
             zip_code: "981 46",
             price: "299 kr"
           },
-          zip_code_7: {
+          zip_code_6: {
             zip_code: "981 47",
             price: "299 kr"
           }
@@ -369,14 +365,10 @@ const localizationData = {
             price: "299 kr"
           },
           zip_code_5: {
-            zip_code: "981 45",
-            price: "299 kr"
-          },
-          zip_code_6: {
             zip_code: "981 46",
             price: "299 kr"
           },
-          zip_code_7: {
+          zip_code_6: {
             zip_code: "981 47",
             price: "299 kr"
           }
@@ -641,14 +633,10 @@ const localizationData = {
             price: "299 kr"
           },
           zip_code_5: {
-            zip_code: "981 45",
-            price: "299 kr"
-          },
-          zip_code_6: {
             zip_code: "981 46",
             price: "299 kr"
           },
-          zip_code_7: {
+          zip_code_6: {
             zip_code: "981 47",
             price: "299 kr"
           }
