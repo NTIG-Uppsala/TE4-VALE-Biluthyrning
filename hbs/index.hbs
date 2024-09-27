@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="../../style/flag-icons/css/flag-icons.min.css">
 
     <script defer src="../../js/switchLocationAndLocale.js"></script>
+    <script defer src="../../js/currencyExchange.js"></script>
     <script src="../../js/toggleDropdown.js"></script>
     <script src="../../js/dropdownPreventHighlight.js"></script>
     <script src="../../js/openHours.js"></script>
@@ -359,7 +360,7 @@
                     <tr>
                         <td>{{CarName}}</td>
                         <td>{{CarYearModel}}</td>
-                        <td class="price">{{CarPrice}} kr</td>
+                        <td class="price" data-price-sek="{{CarPrice}}">{{CarPrice}} kr</td>
                     </tr> 
                     {{/each}}
                 </tbody>
