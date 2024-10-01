@@ -59,12 +59,12 @@ class HamburgerMenu(TemplateTest):
         # Click the first link and verify the section title is in the viewport
         hamburgerMenuLinks[0].click()
 
-        # Check that the url ends with #opening-hours-section
-        self.assertTrue(self.page.url.endswith("#opening-hours-section"))
+        # Check that the url ends with #open-hours-section
+        self.assertTrue(self.page.url.endswith("#open-hours-section"))
 
         # Check if the element is within the viewport using JavaScript
-        openingHoursTitle = self.page.query_selector("#opening-hours-section h2")
-        self.assertTrue(openingHoursTitle.is_visible())
+        openHoursTitle = self.page.query_selector("#open-hours-section h2")
+        self.assertTrue(openHoursTitle.is_visible())
         isInViewport = self.page.evaluate("""
             (element) => {
                 const rect = element.getBoundingClientRect();
@@ -75,7 +75,7 @@ class HamburgerMenu(TemplateTest):
                     rect.right <= (window.innerWidth || document.documentElement.clientWidth)
                 );
             }
-        """, openingHoursTitle)
+        """, openHoursTitle)
         self.assertTrue(isInViewport)
 
         # Open the hamburger menu again

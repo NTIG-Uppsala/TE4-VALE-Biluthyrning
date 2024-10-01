@@ -61,7 +61,7 @@ class TestHolidays(TemplateTest):
         self.setAndTestTime(2025, 1, 1, 12, 37, ["Nyårsdagen", "torsdag", "10:00"])
         self.setAndTestTime(2025, 1, 6, 12, 37, ["Trettondedag jul", "tisdag", "10:00"])
         self.setAndTestTime(2025, 5, 1, 12, 37, ["Första maj", "fredag", "10:00"])
-        self.setAndTestTime(2025, 6, 6, 12, 37, ["Nationaldagen", "lördag", "12:00"])
+        self.setAndTestTime(2025, 6, 6, 11, 37, ["Nationaldagen", "lördag", "11:00"])
 
     def testHolidaySortingChristmasEve(self) -> None:
         closedDatesTable = self.setTimeAndGetClosedDatesTable(self.currentYear(), 12, 24, 19, 16)

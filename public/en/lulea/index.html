@@ -30,10 +30,9 @@
     <script defer src="../../js/currencyExchange.js"></script>
     <script src="../../js/toggleDropdown.js"></script>
     <script src="../../js/dropdownPreventHighlight.js"></script>
-    <script src="../../js/openHours.js"></script>
     <script src="../../js/listOfZIPCodes.js"></script>
     <script src="../../js/data/localizationData.js"></script>
-    <script defer src="../../js/checkOpeningHours.js"></script>
+    <script defer src="../../js/checkOpenHours.js"></script>
     <script defer src="../../js/checkZIPCode.js"></script>
     <script defer src="../../js/vatOnCars.js"></script>
     <script defer src="../../js/hamburgerMenu.js"></script>
@@ -53,7 +52,7 @@
         </a>
 
         <nav class="nav-bar">
-            <a href="#opening-hours-section">Opening hours</a>
+            <a href="#open-hours-section">Opening hours</a>
             <a href="#our-cars-section">Our cars</a>
             <a href="#delivery-section">Delivery</a>
             <a href="#closed-dates-container">Closed dates</a>
@@ -167,7 +166,7 @@
                 </label>
 
                 <div class="dropdown-menu">
-                    <a href="#opening-hours-section">Opening hours</a>
+                    <a href="#open-hours-section">Opening hours</a>
                     <a href="#our-cars-section">Our cars</a>
                     <a href="#delivery-section">Delivery</a>
                     <a href="#closed-dates-container">Closed dates</a>
@@ -184,7 +183,7 @@
             </button>
 
             <div class="dropdown-menu">
-                <a href="#opening-hours-section">Opening hours</a>
+                <a href="#open-hours-section">Opening hours</a>
                 <a href="#our-cars-section">Our cars</a>
                 <a href="#delivery-section">Delivery</a>
                 <a href="#closed-dates-container">Closed dates</a>
@@ -208,41 +207,43 @@
             </p>
         </section>
 
-        <section class="opening-hours-section" id="opening-hours-section">
+        <section class="open-hours-section" id="open-hours-section">
             <h2>Opening hours</h2>
 
-            <p id="dynamic-opening-hours-tag">Check our opening hours at the bottom of the page</p>
+            <p id="dynamic-open-hours-tag">Check our open hours at the bottom of the page</p>
 
             <table class="open-hours-table">
                 <tbody>
-                    <tr>
-                        <td data-day="monday">Monday</td>
-                        <td data-hours="10:00 - 17:00">10:00 - 17:00</td>
-                    </tr>
-                    <tr>
-                        <td data-day="tuesday">Tuesday</td>
-                        <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
-                    </tr>
-                    <tr>
-                        <td data-day="wednesday">Wednesday</td>
-                        <td data-hours="10:00 - 15:00">10:00 - 15:00</td>
-                    </tr>
-                    <tr>
-                        <td data-day="thursday">Thursday</td>
-                        <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
-                    </tr>
-                    <tr>
-                        <td data-day="friday">Friday</td>
-                        <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
-                    </tr>
-                    <tr>
-                        <td data-day="saturday">Saturday</td>
-                        <td data-hours="12:00 - 15:00">12:00 - 15:00</td>
-                    </tr>
-                    <tr>
-                        <td data-day="sunday">Sunday</td>
-                        <td data-hours="closed">Closed</td>
-                    </tr>
+                    <noscript>
+                        <tr>
+                            <td data-day="monday">Monday</td>
+                            <td data-hours="10:00 - 17:00">10:00 - 17:00</td>
+                        </tr>
+                        <tr>
+                            <td data-day="tuesday">Tuesday</td>
+                            <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
+                        </tr>
+                        <tr>
+                            <td data-day="wednesday">Wednesday</td>
+                            <td data-hours="10:00 - 15:00">10:00 - 15:00</td>
+                        </tr>
+                        <tr>
+                            <td data-day="thursday">Thursday</td>
+                            <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
+                        </tr>
+                        <tr>
+                            <td data-day="friday">Friday</td>
+                            <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
+                        </tr>
+                        <tr>
+                            <td data-day="saturday">Saturday</td>
+                            <td data-hours="12:00 - 15:00">12:00 - 15:00</td>
+                        </tr>
+                        <tr>
+                            <td data-day="sunday">Sunday</td>
+                            <td data-hours="closed">Closed</td>
+                        </tr>
+                    </noscript>
                 </tbody>
             </table>
 
@@ -485,34 +486,36 @@
             <h4 class="footer-header">Opening hours</h4>
             <table class="open-hours-table">
                 <tbody>
-                    <tr>
-                        <td data-day="monday">Monday</td>
-                        <td data-hours="10:00 - 17:00">10:00 - 17:00</td>
-                    </tr>
-                    <tr>
-                        <td data-day="tuesday">Tuesday</td>
-                        <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
-                    </tr>
-                    <tr>
-                        <td data-day="wednesday">Wednesday</td>
-                        <td data-hours="10:00 - 15:00">10:00 - 15:00</td>
-                    </tr>
-                    <tr>
-                        <td data-day="thursday">Thursday</td>
-                        <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
-                    </tr>
-                    <tr>
-                        <td data-day="friday">Friday</td>
-                        <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
-                    </tr>
-                    <tr>
-                        <td data-day="saturday">Saturday</td>
-                        <td data-hours="12:00 - 15:00">12:00 - 15:00</td>
-                    </tr>
-                    <tr>
-                        <td data-day="sunday">Sunday</td>
-                        <td data-hours="closed">Closed</td>
-                    </tr>
+                    <noscript>
+                        <tr>
+                            <td data-day="monday">Monday</td>
+                            <td data-hours="10:00 - 17:00">10:00 - 17:00</td>
+                        </tr>
+                        <tr>
+                            <td data-day="tuesday">Tuesday</td>
+                            <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
+                        </tr>
+                        <tr>
+                            <td data-day="wednesday">Wednesday</td>
+                            <td data-hours="10:00 - 15:00">10:00 - 15:00</td>
+                        </tr>
+                        <tr>
+                            <td data-day="thursday">Thursday</td>
+                            <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
+                        </tr>
+                        <tr>
+                            <td data-day="friday">Friday</td>
+                            <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
+                        </tr>
+                        <tr>
+                            <td data-day="saturday">Saturday</td>
+                            <td data-hours="12:00 - 15:00">12:00 - 15:00</td>
+                        </tr>
+                        <tr>
+                            <td data-day="sunday">Sunday</td>
+                            <td data-hours="closed">Closed</td>
+                        </tr>
+                    </noscript>
                 </tbody>
             </table>
         </div>

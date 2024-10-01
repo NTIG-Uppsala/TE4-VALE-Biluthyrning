@@ -30,10 +30,9 @@
     <script defer src="../../js/currencyExchange.js"></script>
     <script src="../../js/toggleDropdown.js"></script>
     <script src="../../js/dropdownPreventHighlight.js"></script>
-    <script src="../../js/openHours.js"></script>
     <script src="../../js/listOfZIPCodes.js"></script>
     <script src="../../js/data/localizationData.js"></script>
-    <script defer src="../../js/checkOpeningHours.js"></script>
+    <script defer src="../../js/checkOpenHours.js"></script>
     <script defer src="../../js/checkZIPCode.js"></script>
     <script defer src="../../js/vatOnCars.js"></script>
     <script defer src="../../js/hamburgerMenu.js"></script>
@@ -53,7 +52,7 @@
         </a>
 
         <nav class="nav-bar">
-            <a href="#opening-hours-section">{{lang.opening_hours}}</a>
+            <a href="#open-hours-section">{{lang.open_hours}}</a>
             <a href="#our-cars-section">{{lang.our_cars}}</a>
             <a href="#delivery-section">{{lang.delivery}}</a>
             <a href="#closed-dates-container">{{lang.closed_dates}}</a>
@@ -281,7 +280,7 @@
                 </label>
 
                 <div class="dropdown-menu">
-                    <a href="#opening-hours-section">{{lang.opening_hours}}</a>
+                    <a href="#open-hours-section">{{lang.open_hours}}</a>
                     <a href="#our-cars-section">{{lang.our_cars}}</a>
                     <a href="#delivery-section">{{lang.delivery}}</a>
                     <a href="#closed-dates-container">{{lang.closed_dates}}</a>
@@ -298,7 +297,7 @@
             </button>
 
             <div class="dropdown-menu">
-                <a href="#opening-hours-section">{{lang.opening_hours}}</a>
+                <a href="#open-hours-section">{{lang.open_hours}}</a>
                 <a href="#our-cars-section">{{lang.our_cars}}</a>
                 <a href="#delivery-section">{{lang.delivery}}</a>
                 <a href="#closed-dates-container">{{lang.closed_dates}}</a>
@@ -322,23 +321,25 @@
             </p>
         </section>
 
-        <section class="opening-hours-section" id="opening-hours-section">
-            <h2>{{lang.opening_hours}}</h2>
+        <section class="open-hours-section" id="open-hours-section">
+            <h2>{{lang.open_hours}}</h2>
 
-            <p id="dynamic-opening-hours-tag">{{lang.current_status_default}}</p>
+            <p id="dynamic-open-hours-tag">{{lang.current_status_default}}</p>
 
             <table class="open-hours-table">
                 <tbody>
-                    {{#each location.opening_hours}}
-                    <tr>
-                        <td data-day="{{this.day}}">{{translate
-                            this.day
-                            }}</td>
-                        <td data-hours="{{this.hours}}">{{translate
-                            this.hours
-                            }}</td>
-                    </tr>
-                    {{/each}}
+                    <noscript>
+                        {{#each location.open_hours}}
+                        <tr>
+                            <td data-day="{{this.day}}">{{translate
+                                this.day
+                                }}</td>
+                            <td data-hours="{{this.hours}}">{{translate
+                                this.hours
+                                }}</td>
+                        </tr>
+                        {{/each}}
+                    </noscript>
                 </tbody>
             </table>
 
@@ -520,19 +521,21 @@
         </div>
 
         <div class="footer-container">
-            <h4 class="footer-header">{{lang.opening_hours}}</h4>
+            <h4 class="footer-header">{{lang.open_hours}}</h4>
             <table class="open-hours-table">
                 <tbody>
-                    {{#each location.opening_hours}}
-                    <tr>
-                        <td data-day="{{this.day}}">{{translate
-                            this.day
-                            }}</td>
-                        <td data-hours="{{this.hours}}">{{translate
-                            this.hours
-                            }}</td>
-                    </tr>
-                    {{/each}}
+                    <noscript>
+                        {{#each location.open_hours}}
+                        <tr>
+                            <td data-day="{{this.day}}">{{translate
+                                this.day
+                                }}</td>
+                            <td data-hours="{{this.hours}}">{{translate
+                                this.hours
+                                }}</td>
+                        </tr>
+                        {{/each}}
+                    </noscript>
                 </tbody>
             </table>
         </div>
