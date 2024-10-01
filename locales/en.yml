@@ -24,6 +24,7 @@ lang:
     see_closed_dates: "See our closed dates"
     vat_included: "VAT included"
     vat_excluded: "VAT excluded"
+    car_search_placeholder: "Car model"
     car: "Car"
     year_model: "Year model"
     price: "Price"
@@ -31,7 +32,6 @@ lang:
     sort_decending: "Sort descending"
     delivery_description: "We deliver to certain zip codes, check if we deliver to you"
     zip_code: "Zip code"
-    search: "Search"
     # Add translations for zip code output here
     december_24: "24th of December"
     december_25: "25th of December"
