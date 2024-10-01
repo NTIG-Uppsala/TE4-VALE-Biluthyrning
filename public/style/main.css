@@ -370,6 +370,51 @@ body {
                 }
             }
 
+            &>.input-container {
+                display: flex;
+                
+                margin: 0.4rem;
+
+                &>input[type="search"] {
+                    height: 100%;
+                    border: none;
+                    margin: 0;
+                    padding: 0.2rem;
+                    appearance: textfield;
+                    -moz-appearance: textfield;
+
+                    &::-webkit-outer-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                    }
+
+                    &::-webkit-inner-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                    }
+                    &:focus {
+                        outline: none;
+                    }
+                }
+
+                &>button {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    background-color: var(--primary-accent);
+                    border: none;
+                    color: var(--primary-light);
+                    padding: 0.2rem;
+                    height: 100%;
+                    cursor: pointer;
+
+                    &>img {
+                        height: 1rem;
+                    }
+                }
+            }
+
             &>.our-cars-table th {
                 cursor: pointer;
                 user-select: none;
@@ -441,7 +486,7 @@ body {
 
             &>.input-container {
                 display: flex;
-
+                
                 margin: 0.4rem;
 
                 &>input[type="number"] {
@@ -461,15 +506,26 @@ body {
                         -webkit-appearance: none;
                         margin: 0;
                     }
+                    &:focus {
+                        outline: none;
+                    }
                 }
-
+ 
                 &>button {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
                     background-color: var(--primary-accent);
                     border: none;
                     color: var(--primary-light);
                     padding: 0.2rem;
                     height: 100%;
                     cursor: pointer;
+
+                    &>img {
+                        height: 1rem;
+                    }
                 }
             }
 

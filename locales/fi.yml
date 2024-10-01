@@ -24,6 +24,7 @@ lang:
     see_closed_dates: "Katso poikkeavat aukioloaikamme"
     vat_included: "Sis. ALV"
     vat_excluded: "Ei sis. ALV"
+    car_search_placeholder: "Automalli"
     car: "Auto"
     year_model: "Vuosimalli"
     price: "Hinta"
@@ -31,7 +32,6 @@ lang:
     sort_decending: "Lajittele laskevasti"
     delivery_description: "Toimitamme tiettyihin postinumeroihin, tarkista toimitammeko sinun alueellesi"
     zip_code: "Postinumero"
-    search: "Hae"
     # Add translations for zip code output here
     december_24: "24. joulukuuta"
     december_25: "25. joulukuuta"
