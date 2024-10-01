@@ -44,7 +44,7 @@ class TestOpenHours(TemplateTest):
             openAtHourSaturday = "12:00"
         else:
             openAtHourWeekdays = "10:00"
-            openAtHourSaturday = "10:00"
+            openAtHourSaturday = "11:00"
 
         # monday before open. we expect the open time to show
         self.setAndTestTime(self.currentYear(), 9, 2, 9, 58, expected=["öppnar", openAtHourWeekdays])

@@ -44,10 +44,26 @@ class TestEssentialInfo(TemplateTest):
             "https://x.com/ntiuppsala",
         ])
 
+    # helpers
+    def setPageTimeTo(self, year: int, month: int, day: int, hour: int, minute: int) -> None:
+        self.page.evaluate(
+            f"""
+            now.setFullYear({year}, {month - 1}, {day});
+            now.setHours({hour});
+            now.setMinutes({minute});
+            refreshDynamicOpenStatus();
+        """
+        )
+
+    def setAndTestTime(self, year: int, month: int, day: int, hour: int, minute: int, expected: list[str]) -> None:
+        self.setPageTimeTo(year, month, day, hour, minute)
+        self.assertInAllTextContent(expected)
+
     # testing of open hours is also done in a separate file
     # but those tests test the dynamic open hours feature,
     # i.e. it tests the thing that says if they're currently open or not
     def testOpenHours(self) -> None:
+        # if it's not july, we expect the normal opening hours
         if datetime.datetime.now().month != 7:
             self.assertInAllTextContent([
                 "Måndag - fredag",
@@ -58,7 +74,7 @@ class TestEssentialInfo(TemplateTest):
                 "Stängt",
             ])
         else: 
-            self.assertInAllTextContent([
+            self.setAndTestTime(2025, 7, 5, 7, 20, [
                 "Måndag - fredag",
                 "12:00 - 16:00",
                 "Lördag",
@@ -66,6 +82,7 @@ class TestEssentialInfo(TemplateTest):
                 "Söndag",
                 "Stängt",
             ])
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
