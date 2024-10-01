@@ -9,15 +9,31 @@
 In order to compile the project, [Node.js](https://nodejs.org/en) has to be installed and working.
 Afterwards install the required packages with:
 
-``npm install js-yaml handlebars``
+``npm install js-yaml handlebars dotenv cross-env``
 
-To compile the project, run the [hbs-compile.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/scripts/hbs-compilor.js) script with:
+To compile the project, run the [hbs-compilor.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/scripts/hbs-compilor.js) script with:
 
 ``node scripts/hbs-compilor.js``
 
 This will generate all the necessary html files from the [index.hbs](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/hbs/index.hbs) file.
 
 ---
+
+### Set Database Environment
+The website uses a Cloud SQL-based database solution hosted on [cloudflare](https://www.cloudflare.com/) to fetch information about the cars.
+There are two database tables available, a production and a development table.
+The current database table is fetched and processed in the [hbs-compilor.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/scripts/hbs-compilor.js) script.
+The URLs for the tables are set in the [database.env](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/database.env) file, which defines environment variables for the production and development table URLs.
+
+To change the database environment and recompile the website, run:
+
+``npm run <env>``
+
+where ``<env>`` should be replaced with either ``prod`` or ``dev``.
+
+You can also manually set the CARSDB_ENV environment variable to either "prod" or "dev" and run:
+
+``node scripts/hbs-compilor.js``
 
 ### Changing Open Hours
 

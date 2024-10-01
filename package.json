@@ -7,7 +7,9 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prod": "cross-env CARSDB_ENV='prod' node scripts/hbs-compilor.js",
+    "dev": "cross-env CARSDB_ENV='dev' node scripts/hbs-compilor.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +22,8 @@
   },
   "homepage": "https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning#readme",
   "dependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.5",
     "handlebars": "^4.7.8",
     "js-yaml": "^4.1.0"
   }

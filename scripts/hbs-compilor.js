@@ -1,3 +1,4 @@
+const dotenv = require('dotenv');
 const fs = require('fs');
 const yaml = require('js-yaml');
 const Handlebars = require('handlebars');  // Use only one Handlebars import
@@ -13,10 +14,14 @@ const translate = (key, options) => {
   return langData[key] || key;  // Return the translated value or the key itself if not found
 };
 
-// TODO: store JSON as data in a separate file as a fallback, in case fetch fails
-const url = 'https://cars-prod.ntbbiluthyrning.workers.dev/api/cars';
+// Read the database different URL's from the database.env file
+dotenv.config({ path: 'database.env' });
+
+// Source the database URL depending on the environment
+const url = process.env.CARSDB_ENV === 'prod' ? process.env.URL_PROD : process.env.URL_DEV;
 let carsTable;
 
+// TODO: store JSON as data in a separate file as a fallback, in case fetch fails
 async function fetchCars() {
     try {
         const response = await fetch(url, {
