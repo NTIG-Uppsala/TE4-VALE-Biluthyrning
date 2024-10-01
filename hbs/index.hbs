@@ -36,6 +36,7 @@
     <script defer src="../../js/vatOnCars.js"></script>
     <script defer src="../../js/hamburgerMenu.js"></script>
     <script defer src="../../js/sortTableRows.js"></script>
+    <script defer src="../../js/filterTableRows.js"></script>
 
     <!-- Make sure this script is loaded last for testing purposes -->
     <script defer src="../../js/loadsLastForTests.js"></script>
@@ -328,8 +329,8 @@
             </div>
 
             <div class="input-container">
-                <input type="search" placeholder="{{lang.car_search_placeholder}}" id="car-search-input">
-                <button id="car-search-button"><img src="../../assets/icons/icons8-search.svg" alt="Search icon"></button>
+                <input type="search" placeholder="{{lang.car_search_placeholder}}" id="car-search-input" oninput="searchTable()">
+                <button id="car-search-button" onclick="searchTable()"><img src="../../assets/icons/icons8-search.svg" alt="Search icon"></button>
             </div>
 
             <table class="our-cars-table" id="our-cars-table">
