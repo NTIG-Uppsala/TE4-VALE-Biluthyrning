@@ -24,6 +24,7 @@ lang:
     see_closed_dates: "Se våra avvikande öppettider"
     vat_included: "Moms"
     vat_excluded: "Exkl. moms"
+    car_search_placeholder: "Bilmodell"
     car: "Bil"
     year_model: "Årsmodell"
     price: "Pris"
@@ -31,7 +32,6 @@ lang:
     sort_decending: "Sortera fallande"
     delivery_description: "Vi kör ut till vissa postnummer, kolla om vi kör ut till dig"
     zip_code: "Postnummer"
-    search: "Sök"
     # Add translations for zip code output here
     december_24: "24 december"
     december_25: "25 december"
