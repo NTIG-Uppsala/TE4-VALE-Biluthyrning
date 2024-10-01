@@ -27,12 +27,12 @@
     <link rel="stylesheet" href="../../style/flag-icons/css/flag-icons.min.css">
 
     <script defer src="../../js/switchLocationAndLocale.js"></script>
+    <script defer src="../../js/currencyExchange.js"></script>
     <script src="../../js/toggleDropdown.js"></script>
     <script src="../../js/dropdownPreventHighlight.js"></script>
-    <script src="../../js/openHours.js"></script>
     <script src="../../js/listOfZIPCodes.js"></script>
     <script src="../../js/data/localizationData.js"></script>
-    <script defer src="../../js/checkOpeningHours.js"></script>
+    <script defer src="../../js/checkOpenHours.js"></script>
     <script defer src="../../js/checkZIPCode.js"></script>
     <script defer src="../../js/vatOnCars.js"></script>
     <script defer src="../../js/hamburgerMenu.js"></script>
@@ -44,13 +44,15 @@
 
 <body>
     <header>
-        <h3 style="cursor: pointer;  display: flex; align-items: center;" onclick="window.scrollTo(0, 0); location.reload();">
-            <img id="ntb-logo" src="../../assets/images/NTB_logo.jpg" alt="NTB" style="margin-right: 8px;">
-            <span class="header-text">Biluthyrning - Luleå</span>
-        </h3>
+        <a href="." id="homepage-redirect">
+            <h3>
+                <img id="ntb-logo" src="../../assets/images/NTB_logo.jpg" alt="NTB" style="margin-right: 8px;">
+                <span class="header-text">Biluthyrning - Luleå</span>
+            </h3>
+        </a>
 
         <nav class="nav-bar">
-            <a href="#opening-hours-section">Öppettider</a>
+            <a href="#open-hours-section">Öppettider</a>
             <a href="#our-cars-section">Våra bilar</a>
             <a href="#delivery-section">Utkörning</a>
             <a href="#closed-dates-container">Avvikande tider</a>
@@ -59,7 +61,7 @@
         <div class="redirect-dropdowns">
             <!--If script is disabled, insert purely HTML and CSS compatible dropdowns-->
             <noscript>
-                <div onclick="toggleDropdown('location')" class="redirect-dropdown" tabindex="0">
+                <div class="redirect-dropdown" tabindex="0">
                     <div id="location-dropdown-head" class="redirect-dropdown-head">
                         <span class="name">Luleå</span> 
                                                 <img src="../../assets/icons/icons8-expand-arrow-48.png" id="location-dropdown-arrow" alt="down arrow" width="18">
@@ -81,7 +83,7 @@
             </noscript>
 
             <noscript>
-                <div onclick="toggleDropdown('locale')" class="redirect-dropdown" id="locale-dropdown" tabindex="0">
+                <div class="redirect-dropdown" id="locale-dropdown" tabindex="0">
                     <div id="locale-dropdown-head" class="redirect-dropdown-head">
                         <span class="fi fi-se"></span> <!--Flag icon. The country is specified through fi-xx, where xx is replaced with the country code.-->
                         <span class="name">Svenska</span> 
@@ -156,16 +158,38 @@
             `);
         </script>
 
-        <button class="hamburger-menu" aria-label="Toggle menu">
-            &#9776;
-        </button>
+        <div class="hamburger-menu-wrapper">
+            <noscript>
+                <input type="checkbox" id="hamburger-menu-toggle" style="display: none">
+                <label class="hamburger-menu" for="hamburger-menu-toggle" aria-label="Toggle menu">
+                    &#9776;
+                </label>
 
-        <div class="dropdown-menu">
-            <a href="#opening-hours-section">Öppettider</a>
-            <a href="#our-cars-section">Våra bilar</a>
-            <a href="#delivery-section">Utkörning</a>
-            <a href="#closed-dates-container">Avvikande tider</a>
+                <div class="dropdown-menu">
+                    <a href="#open-hours-section"></a>
+                    <a href="#our-cars-section">Våra bilar</a>
+                    <a href="#delivery-section">Utkörning</a>
+                    <a href="#closed-dates-container">Avvikande tider</a>
+                </div>
+
+                <link rel="stylesheet" href="../../style/no-script-hamburger-menu.css">
+            </noscript>
         </div>
+        <script>
+            const hamburgerMenuWrapper = document.querySelector(".hamburger-menu-wrapper");
+            hamburgerMenuWrapper.insertAdjacentHTML('afterbegin', `
+            <button class="hamburger-menu" aria-label="Toggle menu">
+                &#9776;
+            </button>
+
+            <div class="dropdown-menu">
+                <a href="#open-hours-section"></a>
+                <a href="#our-cars-section">Våra bilar</a>
+                <a href="#delivery-section">Utkörning</a>
+                <a href="#closed-dates-container">Avvikande tider</a>
+            </div>
+            `);
+        </script>
     </header>
 
     <main>
@@ -183,41 +207,43 @@
             </p>
         </section>
 
-        <section class="opening-hours-section" id="opening-hours-section">
+        <section class="open-hours-section" id="open-hours-section">
             <h2>Öppettider</h2>
 
-            <p id="dynamic-opening-hours-tag">Kolla våra öppettider på botten av sidan</p>
+            <p id="dynamic-open-hours-tag">Kolla våra öppettider på botten av sidan</p>
 
             <table class="open-hours-table">
                 <tbody>
-                    <tr>
-                        <td data-day="monday">Måndag</td>
-                        <td data-hours="10:00 - 17:00">10:00 - 17:00</td>
-                    </tr>
-                    <tr>
-                        <td data-day="tuesday">Tisdag</td>
-                        <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
-                    </tr>
-                    <tr>
-                        <td data-day="wednesday">Onsdag</td>
-                        <td data-hours="10:00 - 15:00">10:00 - 15:00</td>
-                    </tr>
-                    <tr>
-                        <td data-day="thursday">Torsdag</td>
-                        <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
-                    </tr>
-                    <tr>
-                        <td data-day="friday">Fredag</td>
-                        <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
-                    </tr>
-                    <tr>
-                        <td data-day="saturday">Lördag</td>
-                        <td data-hours="12:00 - 15:00">12:00 - 15:00</td>
-                    </tr>
-                    <tr>
-                        <td data-day="sunday">Söndag</td>
-                        <td data-hours="closed">Stängt</td>
-                    </tr>
+                    <noscript>
+                        <tr>
+                            <td data-day="monday">Måndag</td>
+                            <td data-hours="10:00 - 17:00">10:00 - 17:00</td>
+                        </tr>
+                        <tr>
+                            <td data-day="tuesday">Tisdag</td>
+                            <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
+                        </tr>
+                        <tr>
+                            <td data-day="wednesday">Onsdag</td>
+                            <td data-hours="10:00 - 15:00">10:00 - 15:00</td>
+                        </tr>
+                        <tr>
+                            <td data-day="thursday">Torsdag</td>
+                            <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
+                        </tr>
+                        <tr>
+                            <td data-day="friday">Fredag</td>
+                            <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
+                        </tr>
+                        <tr>
+                            <td data-day="saturday">Lördag</td>
+                            <td data-hours="12:00 - 15:00">12:00 - 15:00</td>
+                        </tr>
+                        <tr>
+                            <td data-day="sunday">Söndag</td>
+                            <td data-hours="closed">Stängt</td>
+                        </tr>
+                    </noscript>
                 </tbody>
             </table>
 
@@ -262,57 +288,57 @@
                     <tr>
                         <td>Audi A6</td>
                         <td>2011</td>
-                        <td class="price">800 kr</td>
+                        <td class="price" data-price-sek="800">800 kr</td>
                     </tr> 
                     <tr>
                         <td>Audi S3</td>
                         <td>2015</td>
-                        <td class="price">450 kr</td>
+                        <td class="price" data-price-sek="450">450 kr</td>
                     </tr> 
                     <tr>
                         <td>Cadillac Escalade</td>
                         <td>1999</td>
-                        <td class="price">500 kr</td>
+                        <td class="price" data-price-sek="500">500 kr</td>
                     </tr> 
                     <tr>
                         <td>Kia Carens</td>
                         <td>2022</td>
-                        <td class="price">400 kr</td>
+                        <td class="price" data-price-sek="400">400 kr</td>
                     </tr> 
                     <tr>
                         <td>Kia Soul</td>
                         <td>2020</td>
-                        <td class="price">400 kr</td>
+                        <td class="price" data-price-sek="400">400 kr</td>
                     </tr> 
                     <tr>
                         <td>Mitsubishi Outlander</td>
                         <td>2018</td>
-                        <td class="price">450 kr</td>
+                        <td class="price" data-price-sek="450">450 kr</td>
                     </tr> 
                     <tr>
                         <td>Renault Kadjar</td>
                         <td>2020</td>
-                        <td class="price">250 kr</td>
+                        <td class="price" data-price-sek="250">250 kr</td>
                     </tr> 
                     <tr>
                         <td>Subaru Outback</td>
                         <td>2020</td>
-                        <td class="price">300 kr</td>
+                        <td class="price" data-price-sek="300">300 kr</td>
                     </tr> 
                     <tr>
                         <td>Volvo XC40</td>
                         <td>2018</td>
-                        <td class="price">800 kr</td>
+                        <td class="price" data-price-sek="800">800 kr</td>
                     </tr> 
                     <tr>
                         <td>VW Polo</td>
                         <td>2022</td>
-                        <td class="price">300 kr</td>
+                        <td class="price" data-price-sek="300">300 kr</td>
                     </tr> 
                     <tr>
                         <td>Volvo V70</td>
                         <td>2000</td>
-                        <td class="price">250 kr</td>
+                        <td class="price" data-price-sek="250">250 kr</td>
                     </tr> 
                 </tbody>
             </table>
@@ -460,34 +486,36 @@
             <h4 class="footer-header">Öppettider</h4>
             <table class="open-hours-table">
                 <tbody>
-                    <tr>
-                        <td data-day="monday">Måndag</td>
-                        <td data-hours="10:00 - 17:00">10:00 - 17:00</td>
-                    </tr>
-                    <tr>
-                        <td data-day="tuesday">Tisdag</td>
-                        <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
-                    </tr>
-                    <tr>
-                        <td data-day="wednesday">Onsdag</td>
-                        <td data-hours="10:00 - 15:00">10:00 - 15:00</td>
-                    </tr>
-                    <tr>
-                        <td data-day="thursday">Torsdag</td>
-                        <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
-                    </tr>
-                    <tr>
-                        <td data-day="friday">Fredag</td>
-                        <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
-                    </tr>
-                    <tr>
-                        <td data-day="saturday">Lördag</td>
-                        <td data-hours="12:00 - 15:00">12:00 - 15:00</td>
-                    </tr>
-                    <tr>
-                        <td data-day="sunday">Söndag</td>
-                        <td data-hours="closed">Stängt</td>
-                    </tr>
+                    <noscript>
+                        <tr>
+                            <td data-day="monday">Måndag</td>
+                            <td data-hours="10:00 - 17:00">10:00 - 17:00</td>
+                        </tr>
+                        <tr>
+                            <td data-day="tuesday">Tisdag</td>
+                            <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
+                        </tr>
+                        <tr>
+                            <td data-day="wednesday">Onsdag</td>
+                            <td data-hours="10:00 - 15:00">10:00 - 15:00</td>
+                        </tr>
+                        <tr>
+                            <td data-day="thursday">Torsdag</td>
+                            <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
+                        </tr>
+                        <tr>
+                            <td data-day="friday">Fredag</td>
+                            <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
+                        </tr>
+                        <tr>
+                            <td data-day="saturday">Lördag</td>
+                            <td data-hours="12:00 - 15:00">12:00 - 15:00</td>
+                        </tr>
+                        <tr>
+                            <td data-day="sunday">Söndag</td>
+                            <td data-hours="closed">Stängt</td>
+                        </tr>
+                    </noscript>
                 </tbody>
             </table>
         </div>

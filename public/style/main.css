@@ -7,7 +7,7 @@
 a {
     color: inherit;
 
-    &:hover {
+    &:hover:not(#homepage-redirect) {
         color: var(--hover-accent);
         transition: 0.25s;
     }
@@ -130,13 +130,15 @@ body {
         position: sticky;
         background-color: var(--secondary-dark);
 
-        &>h3 {
-            justify-self: start;
-            flex: 1;
-            text-align: left;
-
-            &>#ntb-logo {
-               width: 2rem; 
+        &>#homepage-redirect {
+            text-decoration: none;
+            margin-right: auto;
+            &>h3 {
+                display: flex;
+                align-items: center;
+                &>#ntb-logo {
+                   width: 2rem;
+                }
             }
         }
 
@@ -200,7 +202,7 @@ body {
                     &>a {
                         text-decoration: none; /* Remove underline */
                         color: inherit; /* Use the parent's text color */
-                    } 
+                    }
 
                     &.visible {
                         visibility: visible;
@@ -247,43 +249,46 @@ body {
             }
         }
 
-        &>.hamburger-menu {
+        &>.hamburger-menu-wrapper {
             display: none;
-
-            font-size: 2rem;
-            color: var(--primary-light);
-
-            background: none;
-
-            border: none;
-
-            cursor: pointer;
-        }
-
-        &>.dropdown-menu {
-            display: none;
-            flex-flow: column nowrap;
-            position: fixed;
-
-            top: 4rem;
-            right: 0;
-
-            background-color: var(--secondary-dark);
-            z-index: 10;
-
-            width: 100%;
-            max-height: calc(100svh - 4rem);
-            overflow-y: scroll;
-
-            &::-webkit-scrollbar {
+            & .hamburger-menu {
                 display: none;
+
+                font-size: 2rem;
+                color: var(--primary-light);
+
+                background: none;
+
+                border: none;
+
+                cursor: pointer;
             }
 
-            &>a {
-                padding: 1rem;
-                text-decoration: none;
-                color: var(--primary-light);
-                border-bottom: 0.0625rem solid var(--primary-light);
+            & .dropdown-menu {
+                display: none;
+                flex-flow: column nowrap;
+                position: fixed;
+
+                top: 4rem;
+                right: 0;
+
+                background-color: var(--secondary-dark);
+                z-index: 10;
+
+                width: 100%;
+                max-height: calc(100svh - 4rem);
+                overflow-y: scroll;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+
+                &>a {
+                    padding: 1rem;
+                    text-decoration: none;
+                    color: var(--primary-light);
+                    border-bottom: 0.0625rem solid var(--primary-light);
+                }
             }
         }
 
@@ -293,8 +298,11 @@ body {
                 display: none;
             }
 
-            &>.hamburger-menu {
-                display: block;
+            &>.hamburger-menu-wrapper {
+            display: block;
+                & .hamburger-menu {
+                    display: block;
+                }
             }
         }
 

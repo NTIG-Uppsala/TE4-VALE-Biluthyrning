@@ -27,12 +27,12 @@
     <link rel="stylesheet" href="../../style/flag-icons/css/flag-icons.min.css">
 
     <script defer src="../../js/switchLocationAndLocale.js"></script>
+    <script defer src="../../js/currencyExchange.js"></script>
     <script src="../../js/toggleDropdown.js"></script>
     <script src="../../js/dropdownPreventHighlight.js"></script>
-    <script src="../../js/openHours.js"></script>
     <script src="../../js/listOfZIPCodes.js"></script>
     <script src="../../js/data/localizationData.js"></script>
-    <script defer src="../../js/checkOpeningHours.js"></script>
+    <script defer src="../../js/checkOpenHours.js"></script>
     <script defer src="../../js/checkZIPCode.js"></script>
     <script defer src="../../js/vatOnCars.js"></script>
     <script defer src="../../js/hamburgerMenu.js"></script>
@@ -44,13 +44,15 @@
 
 <body>
     <header>
-        <h3 style="cursor: pointer;  display: flex; align-items: center;" onclick="window.scrollTo(0, 0); location.reload();">
-            <img id="ntb-logo" src="../../assets/images/NTB_logo.jpg" alt="{{lang.ntb}}" style="margin-right: 8px;">
-            <span class="header-text">{{lang.car_rental}} - {{location.location}}</span>
-        </h3>
+        <a href="." id="homepage-redirect">
+            <h3>
+                <img id="ntb-logo" src="../../assets/images/NTB_logo.jpg" alt="{{lang.ntb}}" style="margin-right: 8px;">
+                <span class="header-text">{{lang.car_rental}} - {{location.location}}</span>
+            </h3>
+        </a>
 
         <nav class="nav-bar">
-            <a href="#opening-hours-section">{{lang.opening_hours}}</a>
+            <a href="#open-hours-section">{{lang.open_hours}}</a>
             <a href="#our-cars-section">{{lang.our_cars}}</a>
             <a href="#delivery-section">{{lang.delivery}}</a>
             <a href="#closed-dates-container">{{lang.closed_dates}}</a>
@@ -59,7 +61,7 @@
         <div class="redirect-dropdowns">
             <!--If script is disabled, insert purely HTML and CSS compatible dropdowns-->
             <noscript>
-                <div onclick="toggleDropdown('location')" class="redirect-dropdown" tabindex="0">
+                <div class="redirect-dropdown" tabindex="0">
                     <div id="location-dropdown-head" class="redirect-dropdown-head">
                         {{#if location.kiruna}}
                         <span class="name">Kiruna</span> 
@@ -98,7 +100,7 @@
             </noscript>
 
             <noscript>
-                <div onclick="toggleDropdown('locale')" class="redirect-dropdown" id="locale-dropdown" tabindex="0">
+                <div class="redirect-dropdown" id="locale-dropdown" tabindex="0">
                     <div id="locale-dropdown-head" class="redirect-dropdown-head">
                         {{#if lang.se}}
                         <span class="fi fi-se"></span> <!--Flag icon. The country is specified through fi-xx, where xx is replaced with the country code.-->
@@ -270,16 +272,38 @@
             `);
         </script>
 
-        <button class="hamburger-menu" aria-label="Toggle menu">
-            &#9776;
-        </button>
+        <div class="hamburger-menu-wrapper">
+            <noscript>
+                <input type="checkbox" id="hamburger-menu-toggle" style="display: none">
+                <label class="hamburger-menu" for="hamburger-menu-toggle" aria-label="Toggle menu">
+                    &#9776;
+                </label>
 
-        <div class="dropdown-menu">
-            <a href="#opening-hours-section">{{lang.opening_hours}}</a>
-            <a href="#our-cars-section">{{lang.our_cars}}</a>
-            <a href="#delivery-section">{{lang.delivery}}</a>
-            <a href="#closed-dates-container">{{lang.closed_dates}}</a>
+                <div class="dropdown-menu">
+                    <a href="#open-hours-section">{{lang.open_hours}}</a>
+                    <a href="#our-cars-section">{{lang.our_cars}}</a>
+                    <a href="#delivery-section">{{lang.delivery}}</a>
+                    <a href="#closed-dates-container">{{lang.closed_dates}}</a>
+                </div>
+
+                <link rel="stylesheet" href="../../style/no-script-hamburger-menu.css">
+            </noscript>
         </div>
+        <script>
+            const hamburgerMenuWrapper = document.querySelector(".hamburger-menu-wrapper");
+            hamburgerMenuWrapper.insertAdjacentHTML('afterbegin', `
+            <button class="hamburger-menu" aria-label="Toggle menu">
+                &#9776;
+            </button>
+
+            <div class="dropdown-menu">
+                <a href="#open-hours-section">{{lang.open_hours}}</a>
+                <a href="#our-cars-section">{{lang.our_cars}}</a>
+                <a href="#delivery-section">{{lang.delivery}}</a>
+                <a href="#closed-dates-container">{{lang.closed_dates}}</a>
+            </div>
+            `);
+        </script>
     </header>
 
     <main>
@@ -297,23 +321,25 @@
             </p>
         </section>
 
-        <section class="opening-hours-section" id="opening-hours-section">
-            <h2>{{lang.opening_hours}}</h2>
+        <section class="open-hours-section" id="open-hours-section">
+            <h2>{{lang.open_hours}}</h2>
 
-            <p id="dynamic-opening-hours-tag">{{lang.current_status_default}}</p>
+            <p id="dynamic-open-hours-tag">{{lang.current_status_default}}</p>
 
             <table class="open-hours-table">
                 <tbody>
-                    {{#each location.opening_hours}}
-                    <tr>
-                        <td data-day="{{this.day}}">{{translate
-                            this.day
-                            }}</td>
-                        <td data-hours="{{this.hours}}">{{translate
-                            this.hours
-                            }}</td>
-                    </tr>
-                    {{/each}}
+                    <noscript>
+                        {{#each location.open_hours}}
+                        <tr>
+                            <td data-day="{{this.day}}">{{translate
+                                this.day
+                                }}</td>
+                            <td data-hours="{{this.hours}}">{{translate
+                                this.hours
+                                }}</td>
+                        </tr>
+                        {{/each}}
+                    </noscript>
                 </tbody>
             </table>
 
@@ -359,7 +385,7 @@
                     <tr>
                         <td>{{CarName}}</td>
                         <td>{{CarYearModel}}</td>
-                        <td class="price">{{CarPrice}} kr</td>
+                        <td class="price" data-price-sek="{{CarPrice}}">{{CarPrice}} kr</td>
                     </tr> 
                     {{/each}}
                 </tbody>
@@ -495,19 +521,21 @@
         </div>
 
         <div class="footer-container">
-            <h4 class="footer-header">{{lang.opening_hours}}</h4>
+            <h4 class="footer-header">{{lang.open_hours}}</h4>
             <table class="open-hours-table">
                 <tbody>
-                    {{#each location.opening_hours}}
-                    <tr>
-                        <td data-day="{{this.day}}">{{translate
-                            this.day
-                            }}</td>
-                        <td data-hours="{{this.hours}}">{{translate
-                            this.hours
-                            }}</td>
-                    </tr>
-                    {{/each}}
+                    <noscript>
+                        {{#each location.open_hours}}
+                        <tr>
+                            <td data-day="{{this.day}}">{{translate
+                                this.day
+                                }}</td>
+                            <td data-hours="{{this.hours}}">{{translate
+                                this.hours
+                                }}</td>
+                        </tr>
+                        {{/each}}
+                    </noscript>
                 </tbody>
             </table>
         </div>
