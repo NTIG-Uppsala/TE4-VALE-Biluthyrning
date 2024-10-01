@@ -326,22 +326,24 @@
 
             <p id="dynamic-open-hours-tag">{{lang.current_status_default}}</p>
 
-            <table class="open-hours-table">
-                <tbody>
-                    <noscript>
-                        {{#each location.open_hours}}
-                        <tr>
-                            <td data-day="{{this.day}}">{{translate
-                                this.day
-                                }}</td>
-                            <td data-hours="{{this.hours}}">{{translate
-                                this.hours
-                                }}</td>
-                        </tr>
-                        {{/each}}
-                    </noscript>
-                </tbody>
-            </table>
+            <div class="open-hours-wrapper">
+                <noscript>
+                    <table class="open-hours-table">
+                        <tbody>
+                            {{#each location.open_hours}}
+                            <tr>
+                                <td data-day="{{this.day}}">{{translate
+                                    this.day
+                                    }}</td>
+                                <td data-hours="{{this.hours}}">{{translate
+                                    this.hours
+                                    }}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </noscript>
+            </div>
 
             <a href="#closed-dates-container">{{lang.see_closed_dates}}</a>
         </section>
@@ -522,22 +524,24 @@
 
         <div class="footer-container">
             <h4 class="footer-header">{{lang.open_hours}}</h4>
-            <table class="open-hours-table">
-                <tbody>
-                    <noscript>
-                        {{#each location.open_hours}}
-                        <tr>
-                            <td data-day="{{this.day}}">{{translate
-                                this.day
-                                }}</td>
-                            <td data-hours="{{this.hours}}">{{translate
-                                this.hours
-                                }}</td>
-                        </tr>
-                        {{/each}}
-                    </noscript>
-                </tbody>
-            </table>
+            <div class="open-hours-wrapper">
+                <noscript>
+                    <table class="open-hours-table">
+                        <tbody>
+                            {{#each location.open_hours}}
+                            <tr>
+                                <td data-day="{{this.day}}">{{translate
+                                    this.day
+                                    }}</td>
+                                <td data-hours="{{this.hours}}">{{translate
+                                    this.hours
+                                    }}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </noscript>
+            </div>
         </div>
 
         <p id="copyright-info">© 2024 NTB Biluthyrning</p>

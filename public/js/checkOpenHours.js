@@ -154,18 +154,24 @@ const mergeRowsWithSameHours = (table) => {
 const refreshDynamicOpenStatus = () => {
     let openHours = parseOpenHours(dataHours);
 
-    openHoursTable = document.querySelectorAll(".open-hours-table");
+    openHoursTableWrapper = document.querySelectorAll(".open-hours-wrapper");
 
     // Go through and change the content of each open-hours-table
-    openHoursTable.forEach((table) => {
-        const tbody = table.querySelector("tbody");
-        tbody.innerHTML = ''; // Clear tbody innerHTML
+    openHoursTableWrapper.forEach((tableWrapper) => {
+        // const tbody = table.querySelector("tbody");
+        // const openHoursTable = table.querySelector("tbody");
+        // tbody.innerHTML = ''; // Clear tbody innerHTML
+        tableWrapper.innerHTML = `<table class="open-hours-table">
+            <tbody>
+            </tbody>
+        </table>`;
+        const tableTbody = tableWrapper.querySelector("tbody");
 
         /* Function to insert a weekday column and relating opening hours column 
         * for each row in the tbody element with the relevant data
         */
         const tableInsertHTML = (entryDataName, entryName, hoursData, hours) => {
-            tbody.insertAdjacentHTML('beforeend', `
+            tableTbody.insertAdjacentHTML('beforeend', `
             <tr>
                 <td data-day="${entryDataName}">${entryName}</td>
                 <td data-hours="${hoursData}">${hours}</td>
@@ -189,6 +195,10 @@ const refreshDynamicOpenStatus = () => {
                 tableInsertHTML(entry.data_name, entry.name, entry.hours_std, entry.hours_std);
             }
         })
+    });
+
+    openHoursTableWrapper.forEach((tableWrapper) => {
+        console.log(tableWrapper.innerHTML);
     });
     
     // Generate a list from the openHours object with Monday as the first day
