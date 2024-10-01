@@ -166,7 +166,7 @@
                 </label>
 
                 <div class="dropdown-menu">
-                    <a href="#open-hours-section"></a>
+                    <a href="#open-hours-section">Öppettider</a>
                     <a href="#our-cars-section">Våra bilar</a>
                     <a href="#delivery-section">Utkörning</a>
                     <a href="#closed-dates-container">Avvikande tider</a>
@@ -183,7 +183,7 @@
             </button>
 
             <div class="dropdown-menu">
-                <a href="#open-hours-section"></a>
+                <a href="#open-hours-section">Öppettider</a>
                 <a href="#our-cars-section">Våra bilar</a>
                 <a href="#delivery-section">Utkörning</a>
                 <a href="#closed-dates-container">Avvikande tider</a>
@@ -212,40 +212,42 @@
 
             <p id="dynamic-open-hours-tag">Kolla våra öppettider på botten av sidan</p>
 
-            <table class="open-hours-table">
-                <tbody>
-                    <noscript>
-                        <tr>
-                            <td data-day="monday">Måndag</td>
-                            <td data-hours="10:00 - 17:00">10:00 - 17:00</td>
-                        </tr>
-                        <tr>
-                            <td data-day="tuesday">Tisdag</td>
-                            <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
-                        </tr>
-                        <tr>
-                            <td data-day="wednesday">Onsdag</td>
-                            <td data-hours="10:00 - 15:00">10:00 - 15:00</td>
-                        </tr>
-                        <tr>
-                            <td data-day="thursday">Torsdag</td>
-                            <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
-                        </tr>
-                        <tr>
-                            <td data-day="friday">Fredag</td>
-                            <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
-                        </tr>
-                        <tr>
-                            <td data-day="saturday">Lördag</td>
-                            <td data-hours="12:00 - 15:00">12:00 - 15:00</td>
-                        </tr>
-                        <tr>
-                            <td data-day="sunday">Söndag</td>
-                            <td data-hours="closed">Stängt</td>
-                        </tr>
-                    </noscript>
-                </tbody>
-            </table>
+            <div class="open-hours-wrapper">
+                <noscript>
+                    <table class="open-hours-table">
+                        <tbody>
+                            <tr>
+                                <td data-day="monday">Måndag</td>
+                                <td data-hours="10:00 - 17:00">10:00 - 17:00</td>
+                            </tr>
+                            <tr>
+                                <td data-day="tuesday">Tisdag</td>
+                                <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
+                            </tr>
+                            <tr>
+                                <td data-day="wednesday">Onsdag</td>
+                                <td data-hours="10:00 - 15:00">10:00 - 15:00</td>
+                            </tr>
+                            <tr>
+                                <td data-day="thursday">Torsdag</td>
+                                <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
+                            </tr>
+                            <tr>
+                                <td data-day="friday">Fredag</td>
+                                <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
+                            </tr>
+                            <tr>
+                                <td data-day="saturday">Lördag</td>
+                                <td data-hours="12:00 - 15:00">12:00 - 15:00</td>
+                            </tr>
+                            <tr>
+                                <td data-day="sunday">Söndag</td>
+                                <td data-hours="closed">Stängt</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </noscript>
+            </div>
 
             <a href="#closed-dates-container">Se våra avvikande öppettider</a>
         </section>
@@ -484,40 +486,42 @@
 
         <div class="footer-container">
             <h4 class="footer-header">Öppettider</h4>
-            <table class="open-hours-table">
-                <tbody>
-                    <noscript>
-                        <tr>
-                            <td data-day="monday">Måndag</td>
-                            <td data-hours="10:00 - 17:00">10:00 - 17:00</td>
-                        </tr>
-                        <tr>
-                            <td data-day="tuesday">Tisdag</td>
-                            <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
-                        </tr>
-                        <tr>
-                            <td data-day="wednesday">Onsdag</td>
-                            <td data-hours="10:00 - 15:00">10:00 - 15:00</td>
-                        </tr>
-                        <tr>
-                            <td data-day="thursday">Torsdag</td>
-                            <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
-                        </tr>
-                        <tr>
-                            <td data-day="friday">Fredag</td>
-                            <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
-                        </tr>
-                        <tr>
-                            <td data-day="saturday">Lördag</td>
-                            <td data-hours="12:00 - 15:00">12:00 - 15:00</td>
-                        </tr>
-                        <tr>
-                            <td data-day="sunday">Söndag</td>
-                            <td data-hours="closed">Stängt</td>
-                        </tr>
-                    </noscript>
-                </tbody>
-            </table>
+            <div class="open-hours-wrapper">
+                <noscript>
+                    <table class="open-hours-table">
+                        <tbody>
+                            <tr>
+                                <td data-day="monday">Måndag</td>
+                                <td data-hours="10:00 - 17:00">10:00 - 17:00</td>
+                            </tr>
+                            <tr>
+                                <td data-day="tuesday">Tisdag</td>
+                                <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
+                            </tr>
+                            <tr>
+                                <td data-day="wednesday">Onsdag</td>
+                                <td data-hours="10:00 - 15:00">10:00 - 15:00</td>
+                            </tr>
+                            <tr>
+                                <td data-day="thursday">Torsdag</td>
+                                <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
+                            </tr>
+                            <tr>
+                                <td data-day="friday">Fredag</td>
+                                <td data-hours="10:00 - 16:00">10:00 - 16:00</td>
+                            </tr>
+                            <tr>
+                                <td data-day="saturday">Lördag</td>
+                                <td data-hours="12:00 - 15:00">12:00 - 15:00</td>
+                            </tr>
+                            <tr>
+                                <td data-day="sunday">Söndag</td>
+                                <td data-hours="closed">Stängt</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </noscript>
+            </div>
         </div>
 
         <p id="copyright-info">© 2024 NTB Biluthyrning</p>
