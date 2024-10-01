@@ -14,7 +14,7 @@ const translate = (key, options) => {
 };
 
 // TODO: store JSON as data in a separate file as a fallback, in case fetch fails
-const url = 'https://cars.ntbbiluthyrning.workers.dev/api/cars';
+const url = 'https://cars-prod.ntbbiluthyrning.workers.dev/api/cars';
 let carsTable;
 
 async function fetchCars() {
