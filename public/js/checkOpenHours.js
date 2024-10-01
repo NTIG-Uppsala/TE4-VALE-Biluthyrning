@@ -173,7 +173,7 @@ const refreshDynamicOpenStatus = () => {
             `);
         }
         
-        const keys = Object.keys(openHours); //Select the keys from the openHours object
+        const keys = Object.keys(openHours); // Select the keys from the openHours object
         const firstKey = keys.shift(); // This removes the first key and returns it
         keys.push(firstKey); // Move the "0" key to the bottom of keys, which is the key for Sunday
 
@@ -191,15 +191,15 @@ const refreshDynamicOpenStatus = () => {
         })
     });
     
+    // Generate a list from the openHours object with Monday as the first day
     const openHoursMondayFirst = [];
     Object.keys(openHours).forEach((key) => {
         openHoursMondayFirst.push(openHours[key]);
     });
-    openHoursMondayFirst.sort((a, b) => a - b);
 
     // Slice of the start of the week and re-add it to the end
     const openHoursTodayFirst = openHoursMondayFirst
-        .slice(now.getDay() - 1)
+        .slice(now.getDay())
         .concat(openHoursMondayFirst.slice(0, now.getDay() - 1));
 
     const followingDays = [];
