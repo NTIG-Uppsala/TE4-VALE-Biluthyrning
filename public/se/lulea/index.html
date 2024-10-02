@@ -37,6 +37,7 @@
     <script defer src="../../js/vatOnCars.js"></script>
     <script defer src="../../js/hamburgerMenu.js"></script>
     <script defer src="../../js/sortTableRows.js"></script>
+    <script defer src="../../js/filterTableRows.js"></script>
 
     <!-- Make sure this script is loaded last for testing purposes -->
     <script defer src="../../js/loadsLastForTests.js"></script>
@@ -260,6 +261,11 @@
                 <button id="no-vat-button">Exkl. moms</button>
             </div>
 
+            <div class="input-container">
+                <input type="search" placeholder="Bilmodell" id="car-search-input" oninput="searchTable()">
+                <button id="car-search-button" onclick="searchTable()"><img src="../../assets/icons/icons8-search.svg" alt="Search icon"></button>
+            </div>
+
             <table class="our-cars-table" id="our-cars-table">
                 <thead>
                     <tr>
@@ -337,11 +343,6 @@
                         <td>2022</td>
                         <td class="price" data-price-sek="300">300 kr</td>
                     </tr> 
-                    <tr>
-                        <td>Volvo V70</td>
-                        <td>2000</td>
-                        <td class="price" data-price-sek="250">250 kr</td>
-                    </tr> 
                 </tbody>
             </table>
         </section>
@@ -357,7 +358,7 @@
 
             <div class="input-container">
                 <input type="number" placeholder="Postnummer" id="zip-input">
-                <button id="zip-button">Sök</button>
+                <button id="zip-button"><img src="../../assets/icons/icons8-search.svg" alt="Search icon"></button>
             </div>
 
             <p id="delivery-status-tag"></p>

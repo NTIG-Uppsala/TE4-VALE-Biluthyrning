@@ -1,7 +1,6 @@
-const apiKey = '7ee8d776c33362f73cbf585e';
-const url = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/SEK`; // Base currency is SEK
-
-async function fetchExchangeRates() {
+const fetchExchangeRates = async (currency) => {
+    const apiKey = '7ee8d776c33362f73cbf585e';
+    const url = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/${currency}`; // Base currency is SEK
     try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -15,7 +14,7 @@ async function fetchExchangeRates() {
     }
 }
 
-async function getCachedExchangeRates() {
+const getCachedExchangeRates = async () => {
     const cacheKey = 'exchangeRates';
     const cacheTimeKey = 'exchangeRatesTime';
     const cacheDuration = 24 * 60 * 60 * 1000; // 24 hours in milliseconds (1 day)
@@ -40,7 +39,7 @@ async function getCachedExchangeRates() {
     }
 }
 
-async function convertCurrency(priceInSek, targetCurrency) {
+const convertCurrency = async (priceInSek, targetCurrency) => {
     const exchangeRates = await getCachedExchangeRates();
     if (exchangeRates && exchangeRates[targetCurrency]) {
         return (priceInSek * exchangeRates[targetCurrency]).toFixed(2);
@@ -49,7 +48,7 @@ async function convertCurrency(priceInSek, targetCurrency) {
 }
 
 // Update prices for all cars dynamically based on selected currency
-async function updateCarPrices(targetCurrency) {
+const updateCarPrices = async (targetCurrency) => {
     const carPriceElements = document.querySelectorAll('.price');
     const exchangeRates = await getCachedExchangeRates();
 
