@@ -196,10 +196,6 @@ const refreshDynamicOpenStatus = () => {
             }
         })
     });
-
-    openHoursTableWrapper.forEach((tableWrapper) => {
-        console.log(tableWrapper.innerHTML);
-    });
     
     // Generate a list from the openHours object with Monday as the first day
     const openHoursMondayFirst = [];

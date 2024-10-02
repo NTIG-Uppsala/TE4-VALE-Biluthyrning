@@ -10,7 +10,6 @@ const normalizedCity = city.toLowerCase();
 
 // Get the data for the current language and location
 const dataZIP = localizationData[language][normalizedCity];
-console.log("Localization Data for City:", dataZIP); // Debugging
 
 // Determine the correct list of ZIP codes based on the city
 const zipCodes = normalizedCity === "kiruna" ? zipCodesKiruna : zipCodesLulea;
