@@ -19,12 +19,12 @@ This will generate all the necessary html files from the [index.hbs](https://git
 
 ---
 
-### Set Database Environment
+### Database and Database Environments
 The website uses a Cloud SQL-based database solution hosted on [cloudflare](https://www.cloudflare.com/) to fetch information about the cars.
 There are two database tables available, a production and a development table.
 The current database table is fetched and processed in the [hbs-compilor.js](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/scripts/hbs-compilor.js) script.
+The (ntbSchema.sql)[https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/schema/ntbSchema.sql] file defines the schema for our production database table, which was used to generate it on cloudflare.
 The URLs for the tables are set in the [database.env](https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/blob/main/database.env) file, which defines environment variables for the production and development table URLs.
-
 To change the database environment and recompile the website, run:
 
 ``npm run <env>``
