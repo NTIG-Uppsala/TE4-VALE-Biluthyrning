@@ -30,7 +30,6 @@
     "express-handlebars": "^8.0.1",
     "express-session": "^1.18.0",
     "js-yaml": "^4.1.0",
-    "mysql2": "^3.11.3",
-    "prisma": "^5.20.0"
+    "mysql2": "^3.11.3"
   }
 }
