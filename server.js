@@ -38,15 +38,24 @@ app.use(express.static(path.join(__dirname, "public"))); // Serve static files
 // Routes
 app.get("/", (req, res) => {
     const data = {
-        language: req.query.lang,
-        location: req.query.location,
+        lang: dataHelpers.getLanguage(req, req.query.language),
+        location: dataHelpers.getLocation(req, req.query.location),
     };
     expressHelpers.renderPage(req, res, data, "index");
 });
 
-app.get("/POST/language", (req, res) => {
-    const { language, route } = req.query;
-    const redirectUrl = `/${route}?lang=${language}`;
+// TODO: These currently only allow to change either the language or the location, but not both. If the user changes both, only the last change will be applied and the other will be reset to the default value.
+
+app.post("/POST/language", (req, res) => {
+    console.log(req);
+    const { language, route } = req.body;
+    const redirectUrl = `/${route}?language=${language}`;
+    res.redirect(redirectUrl);
+});
+
+app.post("/POST/location", (req, res) => {
+    const { location, route } = req.body;
+    const redirectUrl = `/${route}?location=${location}`;
     res.redirect(redirectUrl);
 });
 

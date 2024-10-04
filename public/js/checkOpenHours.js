@@ -98,59 +98,6 @@ const formatTimeString = (time) => {
     return hour + ":" + minute;
 };
 
-// Merge rows with the exact same hours for a more readable and compact table
-const mergeRowsWithSameHours = (table) => {
-    const rows = table.querySelectorAll("tbody>tr");
-    const processedRows = [];
-    let previousDaySameHours = false;
-
-    rows.forEach((row, index) => {
-        const currentDay = row.querySelector("td[data-day]").dataset.day;
-        const currentHours = row.querySelector("td[data-hours]").dataset.hours;
-
-        // Using the dataHours object, the correct language is displayed in the table
-        const currentDayText = dataHours.lang[currentDay];
-
-        // If it's the first row, just add it to the list of processed rows
-        if (index === 0) {
-            processedRows.push(row);
-            return;
-        }
-
-        const previousRow = processedRows[processedRows.length - 1];
-        const previousDay = previousRow.querySelector("td[data-day]").dataset.day;
-        const previousHours = previousRow.querySelector("td[data-hours]").dataset.hours;
-        
-        const previousDayText = dataHours.lang[previousDay];
-
-        // If the current row has the same hours as the previous row, merge them
-        if (currentHours === previousHours) {
-            // If the previous row already had the same hours as the row before that, update the text
-            if (previousDaySameHours) {
-                previousRow.querySelector("td[data-day]").textContent = `${previousDayText} - ${currentDayText.toLowerCase()}`;
-            } 
-            // If the previous row didn't have the same hours as the row before that, add the current day to the text
-            else {
-                previousRow.querySelector("td[data-day]").textContent = `${previousDayText} - ${currentDayText.toLowerCase()}`;
-                previousDaySameHours = true;
-            }
-        } 
-        // If the current row has different hours than the previous row, add it to the list of processed rows
-        else {
-            processedRows.push(row);
-            previousDaySameHours = false;
-        }        
-    });
-    
-    // Clear the existing table content
-    table.innerHTML = '<tbody></tbody>';
-    
-    // Append the new processed rows to the table
-    processedRows.forEach((row) => {
-        table.querySelector("tbody").appendChild(row);
-    });
-};
-
 const refreshDynamicOpenStatus = () => {
     let openHours = parseOpenHours(dataHours);
 
@@ -280,77 +227,6 @@ const refreshDynamicOpenStatus = () => {
 
     const openStatusTag = document.getElementById("dynamic-open-hours-tag");
     openStatusTag.innerHTML = openStatusString;
-
-    const table = document.querySelector(".closed-dates-table>tbody");
-    const rows = table.querySelectorAll("tr");
-
-    const holidays = Array.from(rows).map((row) => {
-        return {
-            month: parseInt(row.dataset.month),
-            day: parseInt(row.dataset.day),
-            date: row.querySelectorAll("td")[0].dataset.key,
-            name: row.querySelectorAll("td")[1].dataset.key,
-            state: row.querySelectorAll("td")[2].dataset.key
-        };
-    });
-
-    // Get today's date
-    const todayMonth = now.getMonth();
-    const todayDate = now.getDate();
-
-    // Function to determine if a holiday is after today
-    const isAfterToday = (holiday) => {
-        return (
-            holiday.month > todayMonth ||
-            (holiday.month === todayMonth && holiday.day >= todayDate)
-        );
-    };
-
-    // Separate holidays into those after today and before today
-    let holidaysAfterToday = holidays.filter(isAfterToday);
-    let holidaysBeforeToday = holidays.filter(holiday => !isAfterToday(holiday));
-
-    // Function to sort list of date objects in ascending order
-    const sortDates = (listOfDates) => {
-        listOfDates.sort((a, b) => {
-            if (a.month !== b.month) {
-                return a.month - b.month; // Sort by month
-            } 
-            return a.day - b.day; // If months are equal, sort by day
-        });
-        return listOfDates;
-    }
-
-    // Sort each list of holidays
-    holidaysAfterToday = sortDates(holidaysAfterToday);
-    holidaysBeforeToday = sortDates(holidaysBeforeToday);
-
-    // Combine them to have holidays after today come first, then those before today
-    const sortedHolidays = [...holidaysAfterToday, ...holidaysBeforeToday];
-
-    // Clear the existing table content
-    table.innerHTML = '';
-
-    // Append new rows to the table
-    sortedHolidays.forEach((holiday) => {
-        const row = document.createElement('tr');
-        row.dataset.month = holiday.month;
-        row.dataset.day = holiday.day;
-
-        row.innerHTML = `
-            <td data-key="${holiday.date}">${dataHours.lang[holiday.date] || holiday.date}</td>
-            <td data-key="${holiday.name}">${dataHours.lang[holiday.name] || holiday.name}</td>
-            <td data-key="${holiday.state}">${dataHours.lang[holiday.state] || holiday.state}</td>
-        `;
-
-        table.appendChild(row);
-    });
-
-    const tables = document.querySelectorAll(".open-hours-table");
-    // Merge rows with the same hours in each table
-    tables.forEach((table) => {
-        mergeRowsWithSameHours(table);
-    });
 };
 
 refreshDynamicOpenStatus();
