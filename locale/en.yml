@@ -28,7 +28,7 @@ car: "Car"
 year_model: "Year model"
 price: "Price"
 sort_ascending: "Sort ascending"
-sort_decending: "Sort descending"
+sort_descending: "Sort descending"
 delivery_description: "We deliver to certain zip codes, check if we deliver to you"
 zip_code: "Zip code"
 # Add translations for zip code output here
@@ -64,3 +64,4 @@ does_not_deliver: "We do not deliver to zip code ${zip_code}"
 delivers: "We deliver to zip code ${zip_code} for ${price} kr"
 en: true
 capitalize_weekdays: true
+submit: "Submit"

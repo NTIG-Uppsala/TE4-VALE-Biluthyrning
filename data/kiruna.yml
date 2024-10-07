@@ -183,3 +183,34 @@ social_medias:
       url: "https://www.x.com/ntiuppsala"
       icon: "assets/icons/icons8-twitterx-material-outlined/icons8-twitterx-192.png"
       source: "https://icons8.com/icon/AsTsQrvtZVNv/twitterx"
+cars:
+    - name: "Audi A6"
+      year: "2011"
+      price: 800
+    - name: "Audi S3"
+      year: "2015"
+      price: 450
+    - name: "Cadillac Escalade"
+      year: "1999"
+      price: 500
+    - name: "Kia Carens"
+      year: "2022"
+      price: 400
+    - name: "Kia Soul"
+      year: "2020"
+      price: 400
+    - name: "Mitsubishi Outlander"
+      year: "2018"
+      price: 450
+    - name: "Renault Kadjar"
+      year: "2020"
+      price: 250
+    - name: "Subaru Outback"
+      year: "2020"
+      price: 300
+    - name: "Volvo XC40"
+      year: "2018"
+      price: 800
+    - name: "VW Polo"
+      year: "2022"
+      price: 300

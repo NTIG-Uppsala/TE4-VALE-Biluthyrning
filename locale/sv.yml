@@ -28,7 +28,7 @@ car: "Bil"
 year_model: "Årsmodell"
 price: "Pris"
 sort_ascending: "Sortera stigande"
-sort_decending: "Sortera fallande"
+sort_descending: "Sortera fallande"
 delivery_description: "Vi kör ut till vissa postnummer, kolla om vi kör ut till dig"
 zip_code: "Postnummer"
 # Add translations for zip code output here
@@ -64,3 +64,4 @@ does_not_deliver: "Vi kör inte ut till postnummer ${zip_code}"
 delivers: "Vi kör ut till postnummer ${zip_code} för ${price} kr"
 se: true
 capitalize_weekdays: false
+submit: "Skicka"

@@ -34,12 +34,19 @@ app.set("views", path.join(__dirname, "views")); // Set views directory
 app.use(express.urlencoded({ extended: false })); // Parse URL-encoded bodies
 app.use(express.json()); // Parse JSON bodies
 app.use(express.static(path.join(__dirname, "public"))); // Serve static files
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false,
+    })
+)
 
 // Routes
 app.get("/", (req, res) => {
     const data = {
-        lang: dataHelpers.getLanguage(req, req.query.language),
-        location: dataHelpers.getLocation(req, req.query.location),
+        lang: dataHelpers.getLanguage(req),
+        location: dataHelpers.getLocation(req),
     };
     expressHelpers.renderPage(req, res, data, "index");
 });
@@ -47,16 +54,15 @@ app.get("/", (req, res) => {
 // TODO: These currently only allow to change either the language or the location, but not both. If the user changes both, only the last change will be applied and the other will be reset to the default value.
 
 app.post("/POST/language", (req, res) => {
-    console.log(req);
     const { language, route } = req.body;
-    const redirectUrl = `/${route}?language=${language}`;
-    res.redirect(redirectUrl);
+    req.session.language = language;
+    res.redirect(`/${route}`);
 });
 
 app.post("/POST/location", (req, res) => {
     const { location, route } = req.body;
-    const redirectUrl = `/${route}?location=${location}`;
-    res.redirect(redirectUrl);
+    req.session.location = location;
+    res.redirect(`/${route}`);
 });
 
 // This has to be changed when pushed to production

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="{{lang.lang}}">
     <head>
         <meta name="robots" content="noindex, nofollow" />
@@ -60,7 +61,7 @@
                         <option value="{{this.code}}">{{this.name}}</option>
                     {{/each}}
                 </select>
-                <noscript class="noscript">
+                <noscript>
                     <button type="submit">{{lang.submit}}</button>
                 </noscript>
             </form>
@@ -71,7 +72,7 @@
                         <option value="{{this.code}}">{{this.name}}</option>
                     {{/each}}
                 </select>
-                <noscript class="noscript">
+                <noscript>
                     <button type="submit">{{lang.submit}}</button>
                 </noscript>
             </form>
@@ -151,21 +152,21 @@
                                 <span id="ascending-0">&#9652;</span>
                                 <span id="neutral-0">&#9656;</span>
                                 <span id="descending-0">&#9662;</span>
-                                <span id="tool-tip-ascending-0" class="tool-tip">{{lang.sort_decending}}</span>
+                                <span id="tool-tip-ascending-0" class="tool-tip">{{lang.sort_descending}}</span>
                                 <span id="tool-tip-descending-0" class="tool-tip">{{lang.sort_ascending}}</span>
                             </th>
                             <th onclick="sortTable(1)">{{lang.year_model}}
                                 <span id="ascending-1">&#9652;</span>
                                 <span id="neutral-1">&#9656;</span>
                                 <span id="descending-1">&#9662;</span>
-                                <span id="tool-tip-ascending-1" class="tool-tip">{{lang.sort_decending}}</span>
+                                <span id="tool-tip-ascending-1" class="tool-tip">{{lang.sort_descending}}</span>
                                 <span id="tool-tip-descending-1" class="tool-tip">{{lang.sort_ascending}}</span>
                             </th>
                             <th onclick="sortTable(2)">{{lang.price}}
                                 <span id="ascending-2">&#9652;</span>
                                 <span id="neutral-2">&#9656;</span>
                                 <span id="descending-2">&#9662;</span>
-                                <span id="tool-tip-ascending-2" class="tool-tip">{{lang.sort_decending}}</span>
+                                <span id="tool-tip-ascending-2" class="tool-tip">{{lang.sort_descending}}</span>
                                 <span id="tool-tip-descending-2" class="tool-tip">{{lang.sort_ascending}}</span>
                             </th>
                         </tr>
@@ -173,9 +174,9 @@
                     <tbody>
                         {{#each location.cars}}
                             <tr>
-                                <td>{{CarName}}</td>
-                                <td>{{CarYearModel}}</td>
-                                <td class="price" data-price-sek="{{CarPrice}}">{{CarPrice}} kr</td>
+                                <td>{{this.name}}</td>
+                                <td>{{this.year}}</td>
+                                <td class="price" data-price-sek="{{this.price}}">{{this.price}} kr</td>
                             </tr>
                         {{/each}}
                     </tbody>

@@ -28,7 +28,7 @@ car: "Auto"
 year_model: "Vuosimalli"
 price: "Hinta"
 sort_ascending: "Lajittele nousevasti"
-sort_decending: "Lajittele laskevasti"
+sort_descending: "Lajittele laskevasti"
 delivery_description: "Toimitamme tiettyihin postinumeroihin, tarkista toimitammeko sinun alueellesi"
 zip_code: "Postinumero"
 # Add translations for zip code output here
@@ -65,3 +65,4 @@ does_not_deliver: "Emme toimita postinumeroon ${zip_code}"
 delivers: "Toimitamme postinumeroon ${zip_code} hintaan ${price} kr"
 fi: true
 capitalize_weekdays: false
+submit: "Lähetä"
