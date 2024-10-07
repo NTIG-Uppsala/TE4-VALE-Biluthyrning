@@ -71,35 +71,105 @@ zip_codes:
 open_hours:
     - day: "monday"
       hours: "10:00 - 16:00"
+      from_hour: 10
+      to_hour: 16
+      from_minute: 0
+      to_minute: 0
+      index: 1
     - day: "tuesday"
       hours: "10:00 - 16:00"
+      from_hour: 10
+      to_hour: 16
+      from_minute: 0
+      to_minute: 0
+      index: 2
     - day: "wednesday"
       hours: "10:00 - 16:00"
+      from_hour: 10
+      to_hour: 16
+      from_minute: 0
+      to_minute: 0
+      index: 3
     - day: "thursday"
       hours: "10:00 - 16:00"
+      from_hour: 10
+      to_hour: 16
+      from_minute: 0
+      to_minute: 0
+      index: 4
     - day: "friday"
       hours: "10:00 - 16:00"
+      from_hour: 10
+      to_hour: 16
+      from_minute: 0
+      to_minute: 0
+      index: 5
     - day: "saturday"
       hours: "11:00 - 15:00"
+      from_hour: 11
+      to_hour: 15
+      from_minute: 0
+      to_minute: 0
+      index: 6
     - day: "sunday"
       hours: "closed"
+      from_hour: null # null means closed
+      to_hour: null # null means closed
+      from_minute: null # null means closed
+      to_minute: null # null means closed
+      index: 0
 special_open_hours:
     - month: 6
       open_hours:
           - day: "monday"
             hours: "12:00 - 16:00"
+            from_hour: 12
+            to_hour: 16
+            from_minute: 0
+            to_minute: 0
+            index: 1
           - day: "tuesday"
             hours: "12:00 - 16:00"
+            from_hour: 12
+            to_hour: 16
+            from_minute: 0
+            to_minute: 0
+            index: 2
           - day: "wednesday"
             hours: "12:00 - 15:00"
+            from_hour: 12
+            to_hour: 15
+            from_minute: 0
+            to_minute: 0
+            index: 3
           - day: "thursday"
             hours: "12:00 - 16:00"
+            from_hour: 12
+            to_hour: 16
+            from_minute: 0
+            to_minute: 0
+            index: 4
           - day: "friday"
             hours: "12:00 - 16:00"
+            from_hour: 12
+            to_hour: 16
+            from_minute: 0
+            to_minute: 0
+            index: 5
           - day: "saturday"
             hours: "12:00 - 15:00"
+            from_hour: 12
+            to_hour: 15
+            from_minute: 0
+            to_minute: 0
+            index: 6
           - day: "sunday"
             hours: "closed"
+            from_hour: null # null means closed
+            to_hour: null # null means closed
+            from_minute: null # null means closed
+            to_minute: null # null means closed
+            index: 0
 social_medias:
     - name: "Facebook"
       url: "https://www.facebook.com/ntiuppsala"

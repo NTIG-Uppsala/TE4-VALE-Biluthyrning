@@ -30,7 +30,6 @@
         <script src="js/dropdownPreventHighlight.js"></script>
         <script src="js/listOfZIPCodes.js"></script>
         <script src="js/data/localizationData.js"></script>
-        <script defer src="js/checkOpenHours.js"></script>
         <script defer src="js/checkZIPCode.js"></script>
         <script defer src="js/vatOnCars.js"></script>
         <script defer src="js/hamburgerMenu.js"></script>
@@ -117,9 +116,7 @@
 
             <section class="open-hours-section" id="open-hours-section">
                 <h2>{{lang.open_hours}}</h2>
-
-                <p id="dynamic-open-hours-tag">{{currentStatus lang.current_status_messages}}</p>
-
+                <p id="dynamic-open-hours-tag">{{currentStatus location lang}}</p>
                 <table class="open-hours-table">
                     <tbody>
                         {{#each (merge location.open_hours location.special_open_hours lang)}}
@@ -174,7 +171,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{#each cars}}
+                        {{#each location.cars}}
                             <tr>
                                 <td>{{CarName}}</td>
                                 <td>{{CarYearModel}}</td>
