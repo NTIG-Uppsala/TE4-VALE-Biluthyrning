@@ -3,11 +3,11 @@
 ###### This is a TE4 project by the group VALE. Original group members: Viggo Ström, Axel Thornberg, Eskil Tornberg. Former maintainers: Ivar Bjerling, Tim Kelso, David Cavalli-Björkman. Current maintainers: Jesper Cejie, Carl Eriksson Skogh, Joel Jansson, Viggo Ström och Axel Thornberg.
 
 
-## Documents
-
 - [Coding Standard](docs/coding-standard.md)
 - [Development Environment](docs/development-environment.md)
 - [Programming languages](docs/programming-languages.md)
+- [Database-connection](docs/Database-Connection.md)
+
 
 
 ## Compiling
