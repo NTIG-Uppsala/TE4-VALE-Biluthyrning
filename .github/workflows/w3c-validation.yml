@@ -1,6 +1,6 @@
-# Name: W3C HTML & CSS Validation
+# Name: W3C HTML
 #
-# Description: This GitHub Actions workflow performs HTML and CSS validation using the W3C Validator API and the W3C CSS Validator. It runs on the 'main', 'gh-pages', and 'validation-testing' branches whenever a push event occurs.
+# Description: This GitHub Actions workflow performs HTML using the W3C Validator API. It runs on the 'main', 'gh-pages', and 'validation-testing' branches whenever a push event occurs.
 #
 # Jobs:
 #   - validate:

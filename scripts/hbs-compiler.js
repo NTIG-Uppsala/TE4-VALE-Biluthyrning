@@ -3,9 +3,9 @@ const fs = require('fs');
 const yaml = require('js-yaml');
 const Handlebars = require('handlebars');  // Use only one Handlebars import
 
-const inputFolder = 'locales/';  // Folder where localization files are stored
-const locationFolder = 'locations/';  // Folder where location-specific files are stored
-const templateFile = 'hbs/index.hbs';  // Template file to be used
+const inputFolder = 'locale/';  // Folder where localization files are stored
+const locationFolder = 'data/';  // Folder where location-specific files are stored
+const templateFile = 'views/index.hbs';  // Template file to be used
 const outputFolder = 'public/';  // Root folder where output files will be stored
 const jsDataFolder = 'public/js/data/';  // Folder where the JavaScript object will be stored
 

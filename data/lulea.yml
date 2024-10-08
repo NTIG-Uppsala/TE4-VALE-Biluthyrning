@@ -1,44 +1,45 @@
 location:
     redirect_locations:
-        lulea: "./lulea"
-    kiruna: true
-    folder: "kiruna"
-    zip_code: "981 39"
-    address: "Fjällgatan 32H"
-    location: "Kiruna"
-    city: "Kiruna"
-    phone_number_html: "+46630555555"
-    phone_number_text: "+46 63-055 55 55"
-    mail: "info@ntbhyr.se"
+        kiruna: "./kiruna"
+    lulea: true
+    folder: "lulea"
+    zip_code: "961 93"
+    address: "Färjledsvägen 38"
+    location: "Luleå"
+    city: "Södra Sunderbyn, Luleå"
+    phone_number_html: "+46640555333"
+    phone_number_text: "+46 64-055 53 33"
+    mail: "lulea@ntbhyr.se"
+    languages:
+        - name: "Svenska"
+          code: "sv"
+        - name: "English"
+          code: "en"
+        - name: "Suomi"
+          code: "fi"
     zip_codes:
         zip_code_1:
-            zip_code: "981 38"
+            zip_code: "961 93"
             price: "199 kr"
         zip_code_2:
-            zip_code: "981 40"
+            zip_code: "961 94"
             price: "199 kr"
         zip_code_3:
-            zip_code: "981 41"
+            zip_code: "961 90"
             price: "199 kr"
         zip_code_4:
-            zip_code: "981 44"
-            price: "299 kr"
-        zip_code_5:
-            zip_code: "981 46"
-            price: "299 kr"
-        zip_code_6:
-            zip_code: "981 47"
-            price: "299 kr"
+            zip_code: "961 91"
+            price: "199 kr"
     open_hours:
         monday:
             day: "monday"
-            hours: "10:00 - 16:00"
+            hours: "10:00 - 17:00"
         tuesday:
             day: "tuesday"
             hours: "10:00 - 16:00"
         wednesday:
             day: "wednesday"
-            hours: "10:00 - 16:00"
+            hours: "10:00 - 15:00"
         thursday:
             day: "thursday"
             hours: "10:00 - 16:00"
@@ -47,20 +48,20 @@ location:
             hours: "10:00 - 16:00"
         saturday:
             day: "saturday"
-            hours: "11:00 - 15:00"
+            hours: "12:00 - 15:00"
         sunday:
             day: "sunday"
             hours: "closed"
     july_open_hours:
         monday:
             day: "monday"
-            hours: "12:00 - 16:00"
+            hours: "12:00 - 17:00"
         tuesday:
             day: "tuesday"
             hours: "12:00 - 16:00"
         wednesday:
             day: "wednesday"
-            hours: "12:00 - 16:00"
+            hours: "12:00 - 15:00"
         thursday:
             day: "thursday"
             hours: "12:00 - 16:00"

@@ -2,3 +2,5 @@ tests/__pycache__/
 node_modules/
 .vscode/
 notes.txt
+.env
+todo
