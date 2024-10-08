@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="{{lang.lang}}">
     <head>
         <meta name="robots" content="noindex, nofollow" />
@@ -24,6 +23,7 @@
         <link rel="stylesheet" href="css/variables.css" />
         <link rel="stylesheet" href="css/main.css" />
         <link rel="stylesheet" href="css/flag-icons/css/flag-icons.min.css" />
+        <link rel="stylesheet" href="css/no-script-hamburger-menu.css" />
 
         <script defer src="js/switchLocationAndLocale.js"></script>
         <script defer src="js/currencyExchange.js"></script>
@@ -44,7 +44,7 @@
     <body>
         <header>
             <a href="." id="homepage-redirect">
-                <img id="ntb-logo" src="assets/images/NTB_logo.jpg" alt="{{lang.ntb}}" style="margin-right: 8px;" />
+                <img id="ntb-logo" src="assets/images/NTB_logo.jpg" alt="{{lang.ntb}}" />
                 <p class="header-text">{{lang.car_rental}} - {{location.location}}</p>
             </a>
 
@@ -76,7 +76,22 @@
                     <button type="submit">{{lang.submit}}</button>
                 </noscript>
             </form>
-            <div class="hamburger-menu-wrapper">
+            {{! Rework the hamburger menu to not use javascript }}
+            <section>
+                <input type="checkbox" id="hamburger-menu-toggle" style="display: none" />
+                <label class="hamburger-menu" for="hamburger-menu-toggle" aria-label="Toggle menu">
+                    &#9776;
+                </label>
+
+                <nav>
+                    <a href="#open-hours-section">{{lang.open_hours}}</a>
+                    <a href="#our-cars-section">{{lang.our_cars}}</a>
+                    <a href="#delivery-section">{{lang.delivery}}</a>
+                    <a href="#closed-dates-container">{{lang.closed_dates}}</a>
+                </nav>
+            </section>
+
+            {{!-- <div class="hamburger-menu-wrapper">
                 <noscript>
                     <input type="checkbox" id="hamburger-menu-toggle" style="display: none" />
                     <label class="hamburger-menu" for="hamburger-menu-toggle" aria-label="Toggle menu">
@@ -93,12 +108,20 @@
                     <link rel="stylesheet" href="css/no-script-hamburger-menu.css" />
                 </noscript>
             </div>
-            <script>
-                const hamburgerMenuWrapper = document.querySelector(".hamburger-menu-wrapper"); hamburgerMenuWrapper.insertAdjacentHTML('afterbegin', ` <button class="hamburger-menu"
-                aria-label="Toggle menu"> &#9776; </button> <div class="dropdown-menu"> <a href="#open-hours-section">{{lang.open_hours}}</a> <a href="#our-cars-section">{{lang.our_cars}}</a> <a
-                href="#delivery-section">{{lang.delivery}}</a> <a href="#closed-dates-container">{{lang.closed_dates}}</a> </div> `);
-            </script>
+            {{!-- <div class="hamburger-menu-wrapper show-script">
+                <script>
+                    document.querySelector("show-script").style.display = "flex";
+                </script>
+                <button class="hamburger-menu" aria-label="Toggle menu"> &#9776; </button>
+                <div class="dropdown-menu">
+                    <a href="#open-hours-section">{{lang.open_hours}}</a>
+                    <a href="#our-cars-section">{{lang.our_cars}}</a>
+                    <a href="#delivery-section">{{lang.delivery}}</a>
+                    <a href="#closed-dates-container">{{lang.closed_dates}}</a>
+                </div>
+            </div> --}}
         </header>
+        --}}
 
         <main>
             <section class="welcome-section">
@@ -184,7 +207,7 @@
             </section>
 
             <section class="delivery-section" style="display: none;" id="delivery-section">
-                <!-- Unhides this section if js is enabled, otherwise it will be hidden -->
+                <!-- Shows this section if js is enabled, otherwise it will be hidden -->
                 <script>document.querySelector(".delivery-section").style.display = "flex"</script>
 
                 <h2>{{lang.delivery}}</h2>
@@ -248,17 +271,17 @@
             </section>
         </main>
         <footer>
-            <section class="footer-container">
+            <section>
                 <h4>{{lang.phone}}</h4>
                 <a href="tel:{{location.phone_number_html}}" target="_blank">{{location.phone_number_text}}</a>
             </section>
 
-            <section class="footer-container">
+            <section>
                 <h4>{{lang.email}}</h4>
                 <a href="mailto:{{location.mail}}" target="_blank">{{location.mail}}</a>
             </section>
 
-            <section class="footer-container">
+            <section>
                 <h4>{{lang.address}}</h4>
                 <a href="https://maps.app.goo.gl/5c7N2tctTDWgJgYr7" target="_blank">{{location.address}},
                     {{location.zip_code}}
@@ -274,8 +297,8 @@
                 {{/each}}
             </section>
 
-            <section class="footer-container">
-                <h4 class="footer-header">{{lang.open_hours}}</h4>
+            <section>
+                <h4>{{lang.open_hours}}</h4>
                 <table class="open-hours-table">
                     <tbody>
                         {{#each (merge location.open_hours location.special_open_hours lang)}}
@@ -290,8 +313,7 @@
 
             <p id="copyright-info">© 2024 NTB Biluthyrning</p>
         </footer>
-        <div id="lang" style="display: none;">{{lang.folder}}</div>
-        <div id="location" style="display: none;">{{location.folder}}</div>
+        <div id="data" style="display: none;" data-lang="{{lang.folder}}" data-location="{{location.folder}}"></div>
+        <div id="zip-codes"></div>
     </body>
-
 </html>

@@ -51,8 +51,6 @@ app.get("/", (req, res) => {
     expressHelpers.renderPage(req, res, data, "index");
 });
 
-// TODO: These currently only allow to change either the language or the location, but not both. If the user changes both, only the last change will be applied and the other will be reset to the default value.
-
 app.post("/POST/language", (req, res) => {
     const { language, route } = req.body;
     req.session.language = language;
@@ -63,6 +61,11 @@ app.post("/POST/location", (req, res) => {
     const { location, route } = req.body;
     req.session.location = location;
     res.redirect(`/${route}`);
+});
+
+// Default route for requests that don't match any other routes. It currently redirects to the home page.
+app.use((req, res) => {
+    res.redirect("/");
 });
 
 // This has to be changed when pushed to production

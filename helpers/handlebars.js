@@ -3,7 +3,7 @@ const translate = (lang, key) => {
     return lang[key] || key;
 };
 
-// Register the 'order' helper in Handlebars
+// Order the locations and languages so that the current language is first
 const order = (array, language, key) => {
     const index = array.findIndex((element) => element[key] === language);
     if (index > -1) {
