@@ -5,4 +5,4 @@ notes.txt
 .env
 env
 todo
-migration.sql
+prisma/migrations/0_init/migration.sql
