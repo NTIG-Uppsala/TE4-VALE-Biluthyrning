@@ -1,14 +1,32 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model languages {
+  id           Int            @id @default(autoincrement())
+  code         String         @db.VarChar(10)
+  name         String         @db.VarChar(50)
+  translations translations[]
+}
+
+model translation_keys {
+  id           Int            @id @default(autoincrement())
+  key          String         @db.VarChar(100)
+  translations translations[]
+}
+
+model translations {
+  language_id        Int
+  translation_key_id Int
+  translation        String           @db.Text
+  languages          languages        @relation(fields: [language_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "translations_ibfk_1")
+  translation_keys   translation_keys @relation(fields: [translation_key_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "translations_ibfk_2")
+
+  @@id([language_id, translation_key_id])
+  @@index([translation_key_id], map: "translation_key_id")
 }

@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning#readme",
   "dependencies": {
+    "@prisma/client": "^5.20.0",
     "@types/node": "^22.7.4",
     "bcryptjs": "^2.4.3",
     "cross-env": "^7.0.3",
