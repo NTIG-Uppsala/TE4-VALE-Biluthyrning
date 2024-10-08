@@ -10,6 +10,7 @@ city: "Södra Sunderbyn, Luleå"
 phone_number_html: "+46640555333"
 phone_number_text: "+46 64-055 53 33"
 mail: "lulea@ntbhyr.se"
+vat_on_cars: 1.25
 languages:
     - name: "Svenska"
       code: "sv"

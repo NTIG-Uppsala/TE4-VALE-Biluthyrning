@@ -10,6 +10,7 @@ city: "Kiruna"
 phone_number_html: "+46630555555"
 phone_number_text: "+46 63-055 55 55"
 mail: "info@ntbhyr.se"
+vat_on_cars: 1.25
 languages:
     - name: "Svenska"
       code: "sv"

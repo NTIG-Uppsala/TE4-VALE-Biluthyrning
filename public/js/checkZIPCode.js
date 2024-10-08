@@ -5,6 +5,18 @@ const zipOutput = deliverySection.querySelector("#delivery-status-tag");
 const language = document.querySelector("#lang").textContent;
 const city = document.querySelector("#location").textContent.trim(); // Ensure no extra spaces
 
+// Call language and location data from the server
+const data = (async () => {
+    const response = await fetch("/GET/location");
+    return await response.json();
+})();
+
+const lang = (async () => {
+    const response = await fetch("/GET/language");
+    return await response.json();
+})();
+
+
 // Normalize city names to match localizationData keys
 const normalizedCity = city.toLowerCase();
 

@@ -44,7 +44,7 @@ h4 {
 }
 
 /* ID tags that the nav buttons in the header lead to */
-#opening-hours-section,
+#open-hours-section,
 #our-cars-section,
 #delivery-section,
 #closed-dates-container {
@@ -136,26 +136,31 @@ body {
             display: flex;
             flex-direction: row;
             flex-wrap: nowrap;
+            height: 4rem;
             &>img {
+                height: 2rem;
                 width: 2rem;
+                margin-top: 1rem;
                 margin-right: 0.5rem;
             }
             &>p {
                 display: flex;
                 align-items: center;
-                @media screen and (max-width: 840px) {
+                @media screen and (max-width: 950px) {
                     display: none;
                 }
-                @media screen and (max-width: 790px) {
+                @media screen and (max-width: 810px) {
                     display: flex;
                 }
-                @media screen and (max-width: 450px) {
+                @media screen and (max-width: 456px) {
                     display: none;     
                 }
             }
         }
 
-        &>nav {
+        &>nav,
+        &>noscript>nav,
+        &>span>nav {
             display: flex;
             flex-flow: row nowrap;
             gap: 0.5ch;
@@ -166,80 +171,115 @@ body {
                 margin: 0.5rem;
             }
 
-            @media screen and (max-width: 790px) {
+            @media screen and (max-width: 810px) {
                 display: none;                
             }
         }
 
         &>form {
+            height: 1.5rem;
+            display: flex;
+            flex-flow: row nowrap;
             &>select {
+                height: 100%;   
                 background-color: var(--secondary-dark);
                 color: var(--primary-light);
                 border: none;
-                padding: 0.2rem;
 
                 width: max-content;
-
+                font-family: inherit;
                 font-size: 1rem;
-                font-weight: 300;
 
                 &:hover {
                     cursor: pointer;
                 }
             }
-            &>noscript>button,
-            &>span>button {
-                background-color: var(--primary-accent);
-                color: var(--primary-light);
-                border: none;
-                padding: 0.2rem;
-                cursor: pointer;
+            &>noscript,
+            &>span {
+                height: 100%;
+                width: fit-content;
+                flex-flow: row nowrap;
+                display: flex !important;
+                vertical-align: middle;
+                & > button {
+                    font-family: inherit;
+                    font-size: 1rem;
+                    background-color: var(--primary-accent);
+                    color: var(--primary-light);
+                    border: none;
+                    cursor: pointer;
+                    height: 100%;
+                    padding: 0.2rem;
+                }
+            }
+            @media screen and (max-width: 568px) {
+                flex-flow: column nowrap;
+                float: left;
+                height: 3rem;
             }
         }
 
         &>section {
-            display: flex;
-            flex-flow: row nowrap;
-            gap: 0.5ch;
-
-            &>nav>a {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                background-color: var(--primary-accent);
-                color: var(--primary-light);
-
-                border: none;
-                padding: 0.2rem;
-
-                cursor: pointer;
-
-                &>img {
-                    height: 1rem;
-                }
-            }
-
+            display: none;
+            overflow: hidden;
+            justify-content: center;
+            width: 3rem;
+            height: 100%;
             &>button {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                background-color: var(--primary-accent);
-                color: var(--primary-light);
-
                 border: none;
-                padding: 0.2rem;
-
-                cursor: pointer;
-
-                &>img {
-                    height: 1rem;
+                font-family: inherit;
+                background-color: var(--secondary-dark);
+                color: var(--primary-light);
+                font-size: 1.5rem;
+                vertical-align: middle;
+                &:hover {
+                    cursor: pointer;
                 }
             }
-
-            @media screen and (min-width: 790px) {
+            &>nav {
+                background-color: var(--secondary-dark);
+                max-height: calc(100svh - 4rem);
+                flex-flow: column nowrap;
+                position: fixed;
+                overflow-y: scroll;
+                z-index: 10;
+                width: 100%;
+                right: 0;
+                top: 4rem;
                 display: none;
+                overflow-y: scroll;
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+                &>a {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    padding: 1rem;
+                    text-decoration: none;
+                    color: var(--primary-light);
+                    border-bottom: 0.0625rem solid var(--primary-light);
+                    
+                    &>img {
+                        height: 1rem;
+                    }
+                }
+                &:hover {
+                    display: flex;
+                    &>a {
+                        display: flex;
+                    }
+                }
+            }
+            &:hover,
+            &:focus-within {
+                &>nav {
+                    display: flex;
+                }
+            }
+            @media screen and (max-width: 810px) {
+                display: flex;
             }
         }
 
@@ -574,4 +614,8 @@ body {
             padding-bottom: 1%;
         }
     }
+}
+
+.script {
+    display: none !important;
 }

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="{{lang.lang}}">
     <head>
         <meta name="robots" content="noindex, nofollow" />
@@ -25,6 +26,7 @@
         <link rel="stylesheet" href="css/flag-icons/css/flag-icons.min.css" />
         <link rel="stylesheet" href="css/no-script-hamburger-menu.css" />
 
+        <script src="js/callBackend"></script>
         <script defer src="js/switchLocationAndLocale.js"></script>
         <script defer src="js/currencyExchange.js"></script>
         <script src="js/toggleDropdown.js"></script>
@@ -33,9 +35,9 @@
         <script src="js/data/localizationData.js"></script>
         <script defer src="js/checkZIPCode.js"></script>
         <script defer src="js/vatOnCars.js"></script>
-        <script defer src="js/hamburgerMenu.js"></script>
         <script defer src="js/sortTableRows.js"></script>
         <script defer src="js/filterTableRows.js"></script>
+        <script defer src="js/showScript.js"></script>
 
         <!-- Make sure this script is loaded last for testing purposes -->
         <script defer src="js/loadsLastForTests.js"></script>
@@ -48,12 +50,22 @@
                 <p class="header-text">{{lang.car_rental}} - {{location.location}}</p>
             </a>
 
-            <nav class="nav-bar">
+            <nav class="nav-bar script">
                 <a href="#open-hours-section">{{lang.open_hours}}</a>
                 <a href="#our-cars-section">{{lang.our_cars}}</a>
                 <a href="#delivery-section">{{lang.delivery}}</a>
                 <a href="#closed-dates-container">{{lang.closed_dates}}</a>
             </nav>
+
+            <noscript>
+                <nav class="nav-bar">
+                    <a href="#open-hours-section">{{lang.open_hours}}</a>
+                    <a href="#our-cars-section">{{lang.our_cars}}</a>
+                    <a href="#delivery-section-noscript">{{lang.delivery}}</a>
+                    <a href="#closed-dates-container">{{lang.closed_dates}}</a>
+                </nav>
+            </noscript>
+
             <form action="/POST/location" method="post">
                 <input type="hidden" name="route" value="" />
                 <select name="location" onchange="this.form.submit()">
@@ -76,13 +88,10 @@
                     <button type="submit">{{lang.submit}}</button>
                 </noscript>
             </form>
-            {{! Rework the hamburger menu to not use javascript }}
             <section>
-                <input type="checkbox" id="hamburger-menu-toggle" style="display: none" />
-                <label class="hamburger-menu" for="hamburger-menu-toggle" aria-label="Toggle menu">
+                <button>
                     &#9776;
-                </label>
-
+                </button>
                 <nav>
                     <a href="#open-hours-section">{{lang.open_hours}}</a>
                     <a href="#our-cars-section">{{lang.our_cars}}</a>
@@ -90,39 +99,7 @@
                     <a href="#closed-dates-container">{{lang.closed_dates}}</a>
                 </nav>
             </section>
-
-            {{!-- <div class="hamburger-menu-wrapper">
-                <noscript>
-                    <input type="checkbox" id="hamburger-menu-toggle" style="display: none" />
-                    <label class="hamburger-menu" for="hamburger-menu-toggle" aria-label="Toggle menu">
-                        &#9776;
-                    </label>
-
-                    <div class="dropdown-menu">
-                        <a href="#open-hours-section">{{lang.open_hours}}</a>
-                        <a href="#our-cars-section">{{lang.our_cars}}</a>
-                        <a href="#delivery-section">{{lang.delivery}}</a>
-                        <a href="#closed-dates-container">{{lang.closed_dates}}</a>
-                    </div>
-
-                    <link rel="stylesheet" href="css/no-script-hamburger-menu.css" />
-                </noscript>
-            </div>
-            {{!-- <div class="hamburger-menu-wrapper show-script">
-                <script>
-                    document.querySelector("show-script").style.display = "flex";
-                </script>
-                <button class="hamburger-menu" aria-label="Toggle menu"> &#9776; </button>
-                <div class="dropdown-menu">
-                    <a href="#open-hours-section">{{lang.open_hours}}</a>
-                    <a href="#our-cars-section">{{lang.our_cars}}</a>
-                    <a href="#delivery-section">{{lang.delivery}}</a>
-                    <a href="#closed-dates-container">{{lang.closed_dates}}</a>
-                </div>
-            </div> --}}
         </header>
-        --}}
-
         <main>
             <section class="welcome-section">
                 <div class="background-image">
@@ -227,7 +204,7 @@
             </section>
 
             <noscript>
-                <section class="delivery-section-noscript">
+                <section class="delivery-section-noscript" id="delivery-section-noscript">
                     <h2>{{lang.delivery}}</h2>
 
                     <p>{{lang.delivery_description}}</p>
@@ -314,6 +291,5 @@
             <p id="copyright-info">© 2024 NTB Biluthyrning</p>
         </footer>
         <div id="data" style="display: none;" data-lang="{{lang.folder}}" data-location="{{location.folder}}"></div>
-        <div id="zip-codes"></div>
     </body>
 </html>

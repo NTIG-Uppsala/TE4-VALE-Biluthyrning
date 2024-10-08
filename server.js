@@ -63,6 +63,20 @@ app.post("/POST/location", (req, res) => {
     res.redirect(`/${route}`);
 });
 
+// Client requests for the location data
+app.get("/GET/location", (req, res) => {
+    const data = dataHelpers.getLocation(req);
+    res.setHeader("Content-Type", "application/json");
+    res.json(data);
+});
+
+// Client requests for the language data
+app.get("/GET/language", (req, res) => {
+    const data = dataHelpers.getLanguage(req);
+    res.setHeader("Content-Type", "application/json");
+    res.json(data);
+});
+
 // Default route for requests that don't match any other routes. It currently redirects to the home page.
 app.use((req, res) => {
     res.redirect("/");
