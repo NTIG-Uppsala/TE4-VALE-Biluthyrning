@@ -4,4 +4,4 @@ node_modules/
 notes.txt
 .env
 todo
-migration.sql
+prisma/migrations/0_init/migration.sql
