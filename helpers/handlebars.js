@@ -15,7 +15,7 @@ const order = (array, language, key) => {
 
 // Sort the holidays by moving the one's after the current date to the beginning of the array
 const sort = (array, debugTime) => {
-    const now = new Date(debugTime ? parseInt(debugTime) : new Date().getTime());
+    const now = debugTime ? new Date(parseInt(debugTime)) : new Date();
     const dateString = `${now.getMonth().toString().padStart(2, "0")}${now.getDate().toString().padStart(2, "0")}`;
     const before = array.filter((element) => element.date < dateString);
     const after = array.filter((element) => element.date >= dateString);
@@ -24,7 +24,7 @@ const sort = (array, debugTime) => {
 
 // Merge all rows of a table into a single row if they have the same data value
 const merge = (array, otherOpeningHours, lang, debugTime) => {
-    const now = new Date(debugTime ? parseInt(debugTime) : new Date().getTime());
+    const now = debugTime ? new Date(parseInt(debugTime)) : new Date();
     let openHours;
     const monthsWithDifferingOpeningHours = otherOpeningHours.map((element) => element.month);
     if (monthsWithDifferingOpeningHours.includes(now.getMonth())) {
@@ -72,7 +72,7 @@ const merge = (array, otherOpeningHours, lang, debugTime) => {
 
 // Writes the current status of the store based on the current time
 const currentStatus = (location, lang, debugTime) => {
-    const now = new Date(debugTime ? parseInt(debugTime) : new Date().getTime());
+    const now = debugTime ? new Date(parseInt(debugTime)) : new Date();
     const closedDates = location.closed_dates;
     let openHours;
 
@@ -110,22 +110,20 @@ const currentStatus = (location, lang, debugTime) => {
 
     // Formats the current time to "MMDD"
     const dateString = `${now.getMonth().toString().padStart(2, "0")}${now.getDate().toString().padStart(2, "0")}`;
-
     // Check if it is a holiday
     if (closedDates.map((element) => element.date).includes(dateString)) {
         const holiday = closedDates.find((element) => element.date === dateString);
-        const nextOpenDay = lang[nextOpenDayObject.day];
+        const nextOpenDay = lang[capitalize_weekdays] ? lang[nextOpenDayObject.day] : lang[nextOpenDayObject.day].toLowerCase();
         const time = `${nextOpenDayObject.from_hour.toString().padStart(2, "0")}:${nextOpenDayObject.from_minute.toString().padStart(2, "0")}`;
         return lang.closed_now_holiday.replace("${holiday}", holiday.name).replace("${next_open_day}", nextOpenDay).replace("${time}", time);
     }
 
     // Check if it is a weekday that is normally not open
     if (openHoursToday.from_hour === null || openHoursToday.to_hour === null || openHoursToday.from_minute === null || openHoursToday.to_minute === null) {
-        const nextOpenDay = lang[nextOpenDayObject.day];
+        const nextOpenDay = lang[capitalize_weekdays] ? lang[nextOpenDayObject.day] : lang[nextOpenDayObject.day].toLowerCase();
         const time = `${nextOpenDayObject.from_hour.toString().padStart(2, "0")}:${nextOpenDayObject.from_minute.toString().padStart(2, "0")}`;
         return lang.after_hours.replace("${next_open_day}", nextOpenDay).replace("${time}", time);
     }
-
     // Check if the store has not opened yet for the day
     if (now.getHours() < openHoursToday.from_hour || (now.getHours() === openHoursToday.from_hour && now.getMinutes() < openHoursToday.from_minute)) {
         const time = `${openHoursToday.from_hour.toString().padStart(2, "0")}:${openHoursToday.from_minute.toString().padStart(2, "0")}`;
@@ -139,7 +137,7 @@ const currentStatus = (location, lang, debugTime) => {
     }
 
     // Check if the store has closed for the day
-    const nextOpenDay = lang[nextOpenDayObject.day];
+    const nextOpenDay = lang[capitalize_weekdays] ? lang[nextOpenDayObject.day] : lang[nextOpenDayObject.day].toLowerCase();
     const time = `${nextOpenDayObject.from_hour.toString().padStart(2, "0")}:${nextOpenDayObject.from_minute.toString().padStart(2, "0")}`;
     return lang.after_hours.replace("${next_open_day}", nextOpenDay).replace("${time}", time);
 };

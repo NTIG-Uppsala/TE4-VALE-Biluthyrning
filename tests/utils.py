@@ -25,7 +25,7 @@ class TemplateTest(unittest.TestCase):
         self.playwright.stop()
 
     def setUp(self) -> None:
-        self.page.goto("https://ntbbiluthyrning.ntig.dev/")
+        self.page.goto("http://localhost:4000/")
 
         # a certain js script loads last and makes this element
         # so we check for it to make sure other scripts have loaded

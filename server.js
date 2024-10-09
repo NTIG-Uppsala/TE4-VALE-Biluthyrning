@@ -40,7 +40,7 @@ app.use(
         resave: false,
         saveUninitialized: false,
     })
-)
+);
 
 // Routes
 app.get("/", (req, res) => {
