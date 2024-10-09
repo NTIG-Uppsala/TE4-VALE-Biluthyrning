@@ -44,7 +44,6 @@ app.use(
 
 // Routes
 app.get("/", (req, res) => {
-    console.log(req.query);
     const data = {
         lang: dataHelpers.getLanguage(req),
         location: dataHelpers.getLocation(req),
