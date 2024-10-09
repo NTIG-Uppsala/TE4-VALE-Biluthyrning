@@ -6,7 +6,7 @@
 - [Coding Standard](docs/coding-standard.md)
 - [Development Environment](docs/development-environment.md)
 - [Programming languages](docs/programming-languages.md)
-- [Database-connection](docs/Database-Connection.md)
+- [Database](docs/database.md)
 
 
 
