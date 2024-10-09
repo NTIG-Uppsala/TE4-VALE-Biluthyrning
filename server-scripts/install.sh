@@ -10,15 +10,15 @@ install_or_update() {
 
     if dpkg -s "$package" &> /dev/null; then
         echo "$package is already installed. Updating $package..."
-        sudo apt-get update -y && sudo apt-get upgrade -y $package
+        apt-get update -y && apt-get upgrade -y $package
         if [[ $? -ne 0 ]]; then
             echo "Error updating $package. Please check manually."
             exit 1
         fi
     else
         echo "$package is not installed. Installing $package..."
-        sudo apt-get update -y
-        sudo apt-get install -y $package
+        apt-get update -y
+        apt-get install -y $package
         if [[ $? -ne 0 ]]; then
             echo "Error installing $package. Please check manually."
             exit 1

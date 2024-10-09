@@ -4,10 +4,13 @@
 
 2. run
 ```bash
-wget 
+wget https://raw.githubusercontent.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/refs/heads/backendConversion/server-scripts/install.sh
+bash install.sh
 ```
+This downloads the install script and runs it.
 
-1. run 
+1. Run:
 ```bash
 /usr/local/bin/deploy.sh <tag>
 ```
+Where `<tag>` is the tag of the release you want to deploy. 
