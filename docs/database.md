@@ -64,7 +64,9 @@ You can insert data into tables using MySQL Workbench or by writing SQL code man
 ### Insert using Python scripts
 Both the options above can be very tedious when inserting bulk data. To facilitate this, we've created some Python scripts that automatically insert all the data from YAML files. Follow the instructions below to use these scripts.
 
-#### To fill the tables, run one of the Python scripts listed below. These scripts require an [.env file](https://drive.google.com/file/d/1bbLyv1HWyYzVd9tsMDsWBNocZKUnETIF/view?usp=drive_link) and insert data from the [YAML files](../db_insert_scripts/yaml_files/).
+#### To fill the tables, run one of the Python scripts listed below. These scripts require an [.env file*](https://drive.google.com/file/d/1bbLyv1HWyYzVd9tsMDsWBNocZKUnETIF/view?usp=drive_link) and insert data from the [YAML files](../db_insert_scripts/yaml_files/).
+
+_*Download the .env file by clicking on the hyperlink and place the file in the root folder of the project._
 
 - **Schemas:**
   - [Kiruna Schema](../db_insert_scripts/kiruna.py)
