@@ -62,7 +62,8 @@ closed_now: "Olemme suljettu tänään <br> Avaamme uudelleen ${next_open_day} k
 no_zip_code: "Sinun täytyy syöttää postinumero laatikkoon"
 zip_code_not_correct_length: "Postinumeron täytyy olla viisi numeroa pitkä"
 does_not_deliver: "Emme toimita postinumeroon ${zip_code}"
-delivers: "Toimitamme postinumeroon ${zip_code} hintaan ${price} kr"
+delivers: "Toimitamme postinumeroon ${zip_code} hintaan ${price} SEK"
 fi: true
 capitalize_weekdays: false
 submit: "Lähetä"
+currency: "SEK"

@@ -1,11 +1,8 @@
-let dataValue, langValue;
-
-(async () => {
+// Gets location and language data from the server
+const fetchData = async () => {
     const dataResponse = await fetch("/GET/location");
-    dataValue = await dataResponse.json();
-
+    locationData = await dataResponse.json();
     const langResponse = await fetch("/GET/language");
-    langValue = await langResponse.json();
-})();
-
-console.log(dataValue, langValue);
+    languageData = await langResponse.json();
+    return { locationData, languageData };
+}

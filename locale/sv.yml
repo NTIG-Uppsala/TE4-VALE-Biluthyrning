@@ -65,3 +65,4 @@ delivers: "Vi kör ut till postnummer ${zip_code} för ${price} kr"
 se: true
 capitalize_weekdays: false
 submit: "Skicka"
+currency: "kr"

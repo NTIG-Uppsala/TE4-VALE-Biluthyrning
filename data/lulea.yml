@@ -10,7 +10,7 @@ city: "Södra Sunderbyn, Luleå"
 phone_number_html: "+46640555333"
 phone_number_text: "+46 64-055 53 33"
 mail: "lulea@ntbhyr.se"
-vat_on_cars: 1.25
+vat_on_car: 1.25
 languages:
     - name: "Svenska"
       code: "sv"
@@ -57,14 +57,14 @@ closed_dates:
       hours: "closed"
       date: "1131"
 zip_codes:
-    - zip_code: "961 93"
-      price: "199 kr"
-    - zip_code: "961 94"
-      price: "199 kr"
-    - zip_code: "961 90"
-      price: "199 kr"
-    - zip_code: "961 91"
-      price: "199 kr"
+    - zip_code: "96193"
+      price: "199"
+    - zip_code: "96194"
+      price: "199"
+    - zip_code: "96190"
+      price: "199"
+    - zip_code: "96191"
+      price: "199"
 open_hours:
     - day: "monday"
       hours: "10:00 - 17:00"

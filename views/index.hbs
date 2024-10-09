@@ -26,13 +26,9 @@
         <link rel="stylesheet" href="css/flag-icons/css/flag-icons.min.css" />
         <link rel="stylesheet" href="css/no-script-hamburger-menu.css" />
 
-        <script src="js/callBackend"></script>
-        <script defer src="js/switchLocationAndLocale.js"></script>
+        <script src="js/callBackend.js"></script>
         <script defer src="js/currencyExchange.js"></script>
         <script src="js/toggleDropdown.js"></script>
-        <script src="js/dropdownPreventHighlight.js"></script>
-        <script src="js/listOfZIPCodes.js"></script>
-        <script src="js/data/localizationData.js"></script>
         <script defer src="js/checkZIPCode.js"></script>
         <script defer src="js/vatOnCars.js"></script>
         <script defer src="js/sortTableRows.js"></script>
@@ -176,7 +172,7 @@
                             <tr>
                                 <td>{{this.name}}</td>
                                 <td>{{this.year}}</td>
-                                <td class="price" data-price-sek="{{this.price}}">{{this.price}} kr</td>
+                                <td class="price" data-price-sek="{{this.price}}">{{this.price}} {{@root.lang.currency}}</td>
                             </tr>
                         {{/each}}
                     </tbody>
@@ -290,6 +286,5 @@
 
             <p id="copyright-info">© 2024 NTB Biluthyrning</p>
         </footer>
-        <div id="data" style="display: none;" data-lang="{{lang.folder}}" data-location="{{location.folder}}"></div>
     </body>
 </html>

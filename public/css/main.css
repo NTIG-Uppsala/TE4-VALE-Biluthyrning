@@ -189,9 +189,13 @@ body {
                 width: max-content;
                 font-family: inherit;
                 font-size: 1rem;
-
                 &:hover {
                     cursor: pointer;
+                }
+                &>option {
+                    background-color: var(--secondary-dark);
+                    color: var(--primary-light);
+                    font-family: inherit;
                 }
             }
             &>noscript,

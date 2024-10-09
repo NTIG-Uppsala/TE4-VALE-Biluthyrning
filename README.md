@@ -46,11 +46,11 @@ To place an inline icon on the page add the language name and code to the `langu
 
 - Phone numbers are changed in [lulea.yml](data/lulea.yml) and [kiruna.yml](data/kiruna.yml).
 
-- Changing which cars are available is done somewhere. 
+- Changing which cars are available in [lulea.yml](data/lulea.yml) and [kiruna.yml](data/kiruna.yml).
 
-- To change the VAT tax simply change the value of the "vat" constant in [vatOnCars.js](public/js/vatOnCars.js).
+- To change the VAT tax simply change the value of the "vat_on_cars" in [lulea.yml](data/lulea.yml) and [kiruna.yml](data/kiruna.yml).
 
-- To change which ZIP codes are delivered to and their price change the [listOfZIPCodes.js](public/js/listOfZIPCodes.js) file as well as the `zip_codes`-variable in [kiruna.yml](data/kiruna.yml) or [lulea.yml](data/lulea.yml).
+- To change which ZIP codes are delivered to and their price change the value of the `zip_codes`-key in [kiruna.yml](data/kiruna.yml) or [lulea.yml](data/lulea.yml).
 
 - To change the E-mail change the `mail`-variable in [kiruna.yml](data/kiruna.yml) or [lulea.yml](data/lulea.yml).
 
@@ -76,11 +76,3 @@ python -m playwright install
 ```
 
 To add more Python tests either add more methods (which start with test*) in the existing test*.py files or create a new file with the test*.py format using the template in "tests/template.py" but with a changed class-name.
-
-
-## Deploy to Github Pages
-
-Github Pages is built from the "main" branch.
-To update the live github pages site you have to squash merge your changes to the "main" branch and then push to the repository.
-
-To change which branch is deployed, change "branches" in [static.yml](.github/workflows/static.yml).

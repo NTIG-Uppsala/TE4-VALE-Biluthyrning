@@ -4,7 +4,7 @@ const searchTable = () => {
     const input = document.querySelector("#car-search-input");
     const filter = input.value.toUpperCase();
     const table = document.querySelector("#our-cars-table");
-    const tr = table.document.querySelectorAll("tr");
+    const tr = table.querySelector("tbody").querySelectorAll("tr");
 
     // Loop through all table rows, and hide those who don't match the search query
     Array.from(tr).forEach((row) => {
