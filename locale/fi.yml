@@ -67,3 +67,4 @@ fi: true
 capitalize_weekdays: false
 submit: "Lähetä"
 currency: "SEK"
+social_media: "Sosiaalinen media"

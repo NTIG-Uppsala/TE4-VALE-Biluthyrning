@@ -66,3 +66,4 @@ se: true
 capitalize_weekdays: false
 submit: "Skicka"
 currency: "kr"
+social_media: "Sociala medier"
