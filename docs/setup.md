@@ -8,7 +8,7 @@ npm install
 ```
 
 ```bash
-pip install pytest-playwright playwright pytest-json-report
+pip install pytest-playwright playwright pytest-json-report python-dotenv
 ```
 
 ```bash

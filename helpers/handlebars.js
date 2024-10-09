@@ -14,8 +14,8 @@ const order = (array, language, key) => {
 };
 
 // Sort the holidays by moving the one's after the current date to the beginning of the array
-const sort = (array) => {
-    const now = new Date();
+const sort = (array, debugTime) => {
+    const now = new Date(debugTime ? parseInt(debugTime) : new Date().getTime());
     const dateString = `${now.getMonth().toString().padStart(2, "0")}${now.getDate().toString().padStart(2, "0")}`;
     const before = array.filter((element) => element.date < dateString);
     const after = array.filter((element) => element.date >= dateString);
@@ -23,8 +23,8 @@ const sort = (array) => {
 };
 
 // Merge all rows of a table into a single row if they have the same data value
-const merge = (array, otherOpeningHours, lang) => {
-    const now = new Date();
+const merge = (array, otherOpeningHours, lang, debugTime) => {
+    const now = new Date(debugTime ? parseInt(debugTime) : new Date().getTime());
     let openHours;
     const monthsWithDifferingOpeningHours = otherOpeningHours.map((element) => element.month);
     if (monthsWithDifferingOpeningHours.includes(now.getMonth())) {
@@ -71,8 +71,8 @@ const merge = (array, otherOpeningHours, lang) => {
 };
 
 // Writes the current status of the store based on the current time
-const currentStatus = (location, lang) => {
-    const now = new Date();
+const currentStatus = (location, lang, debugTime) => {
+    const now = new Date(debugTime ? parseInt(debugTime) : new Date().getTime());
     const closedDates = location.closed_dates;
     let openHours;
 
@@ -96,7 +96,7 @@ const currentStatus = (location, lang) => {
         openHoursToday.to_hour === null || // Check if it is a weekday that is normally not open
         openHoursToday.from_minute === null || // Check if it is a weekday that is normally not open
         openHoursToday.to_minute === null || // Check if it is a weekday that is normally not open
-        (tempDate.getFullYear() === now.getFullYear() && (now.getHours() > openHoursToday.to_hour || (now.getHours() === openHoursToday.to_hour && now.getMinutes() >= openHoursToday.to_minute))) // Check if it is the first iteration and the store has closed for the day
+        (tempDate.getTime() === now.getTime() && (now.getHours() > openHoursToday.to_hour || (now.getHours() === openHoursToday.to_hour && now.getMinutes() >= openHoursToday.to_minute))) // Check if it is the first iteration and the store has closed for the day
     ) {
         // Increment tempDate by 1 day
         tempDate.setDate(tempDate.getDate() + 1);

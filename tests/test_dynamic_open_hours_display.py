@@ -1,5 +1,7 @@
 import unittest
 import datetime
+import dotenv
+from os import path
 from utils import *
 
 
@@ -16,68 +18,56 @@ class TestOpenHours(TemplateTest):
 
     # helpers
     def setPageTimeTo(self, year: int, month: int, day: int, hour: int, minute: int) -> None:
-        self.page.evaluate(
-            f"""
-            now.setFullYear({year}, {month - 1}, {day});
-            now.setHours({hour});
-            now.setMinutes({minute});
-            refreshDynamicOpenStatus();
-        """
-        )
+        pass        
 
     def setAndTestTime(self, year: int, month: int, day: int, hour: int, minute: int, expected: list[str]) -> None:
-        self.setPageTimeTo(year, month, day, hour, minute)
+        # Convert the given time to unix time
+        time = str(int(datetime.datetime(year, month, day, hour, minute).timestamp())*1000)
+        print("\n", time, expected)
+        debugKey = dotenv.get_key(path.join(path.dirname(__file__), "..", ".env"), "DEBUG_KEY")
+        self.page.goto(f"https://ntbbiluthyrning.ntig.dev/?debugTime={time}&debugKey={debugKey}")
         self.assertInAllTextContent(expected)
-    
+
     def currentYear(self) -> int:
         return datetime.datetime.now().year
 
     # tests
     def testWeekdays(self) -> None:
-        openAtHourWeekdays = ""
-        openAtHourSaturday = ""
-        if datetime.datetime.now().month == 7:
-            openAtHourWeekdays = "12:00"
-            openAtHourSaturday = "12:00"
-        else:
-            openAtHourWeekdays = "10:00"
-            openAtHourSaturday = "11:00"
-
         # monday before open. we expect the open time to show
-        self.setAndTestTime(self.currentYear(), 9, 2, 9, 58, expected=["öppnar", openAtHourWeekdays])
+        self.setAndTestTime(2024, 9, 2, 9, 58, expected=["öppnar", "10:00"])
 
         # monday after open. we expect the closing time to show
-        self.setAndTestTime(self.currentYear(), 9, 2, 12, 37, expected=["öppet", "16:00"])
+        self.setAndTestTime(2024, 9, 2, 12, 37, expected=["öppet", "16:00"])
 
         # monday after closing
-        self.setAndTestTime(self.currentYear(), 9, 2, 16, 1, expected=["stängt", "öppnar", "tisdag", openAtHourWeekdays])
+        self.setAndTestTime(2024, 9, 2, 16, 1, expected=["stängt", "öppnar", "tisdag", "10:00"])
 
         # friday before open
-        self.setAndTestTime(self.currentYear(), 9, 6, 9, 58, expected=["öppnar", openAtHourWeekdays])
+        self.setAndTestTime(2024, 9, 6, 9, 58, expected=["öppnar", "10:00"])
 
         # friday after open
-        self.setAndTestTime(self.currentYear(), 9, 6, 12, 37, expected=["öppet", "16:00"])
+        self.setAndTestTime(2024, 9, 6, 12, 37, expected=["öppet", "16:00"])
 
         # friday after closing
-        self.setAndTestTime(self.currentYear(), 9, 6, 16, 1, expected=["stängt", "öppnar", "lördag", openAtHourSaturday])
+        self.setAndTestTime(2024, 9, 6, 16, 1, expected=["stängt", "öppnar", "lördag", "11:00"])
 
         # saturday before open
-        self.setAndTestTime(self.currentYear(), 9, 7, 10, 58, expected=["öppnar", openAtHourSaturday])
+        self.setAndTestTime(2024, 9, 7, 10, 58, expected=["öppnar", "11:00"])
 
         # saturday after open
-        self.setAndTestTime(self.currentYear(), 9, 7, 12, 37, expected=["öppet", "15:00"])
+        self.setAndTestTime(2024, 9, 7, 12, 37, expected=["öppet", "15:00"])
 
         # saturday after closing
-        self.setAndTestTime(self.currentYear(), 9, 7, 15, 1, expected=["stängt", "öppnar", "måndag", openAtHourWeekdays])
+        self.setAndTestTime(2024, 9, 7, 15, 1, expected=["stängt", "öppnar", "måndag", "10:00"])
 
         # sunday early morning
-        self.setAndTestTime(self.currentYear(), 9, 8, 7, 58, expected=["stängt", "öppnar", "måndag", openAtHourWeekdays])
+        self.setAndTestTime(2024, 9, 8, 7, 58, expected=["stängt", "öppnar", "måndag", "10:00"])
 
         # sunday mid day
-        self.setAndTestTime(self.currentYear(), 9, 8, 13, 37, expected=["stängt", "öppnar", "måndag", openAtHourWeekdays])
+        self.setAndTestTime(2024, 9, 8, 13, 37, expected=["stängt", "öppnar", "måndag", "10:00"])
 
         # sunday late
-        self.setAndTestTime(self.currentYear(), 9, 8, 23, 59, expected=["stängt", "öppnar", "måndag", openAtHourWeekdays])
+        self.setAndTestTime(2024, 9, 8, 23, 59, expected=["stängt", "öppnar", "måndag", "10:00"])
 
 
 if __name__ == "__main__":

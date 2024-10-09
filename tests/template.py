@@ -3,9 +3,6 @@ from utils import *
 
 
 class TestName(TemplateTest):
-    def setUp(self) -> None:
-        super().setUp(fileToTest="index.html")
-
     def testBrowserExists(self) -> None:
         self.assertIsNotNone(self.page)
 

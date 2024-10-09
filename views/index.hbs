@@ -113,10 +113,10 @@
 
             <section class="open-hours-section" id="open-hours-section">
                 <h2>{{lang.open_hours}}</h2>
-                <p id="dynamic-open-hours-tag">{{currentStatus location lang}}</p>
+                <p id="dynamic-open-hours-tag">{{{currentStatus location lang debugTime}}}</p>
                 <table class="open-hours-table">
                     <tbody>
-                        {{#each (merge location.open_hours location.special_open_hours lang)}}
+                        {{#each (merge location.open_hours location.special_open_hours lang debugTime)}}
                             <tr>
                                 <td data-day="{{this.day}}">{{translate @root.lang this.day}}</td>
                                 <td data-hours="{{this.hours}}">{{translate @root.lang this.hours}}</td>
@@ -232,7 +232,7 @@
 
                 <table class="closed-dates-table">
                     <tbody>
-                        {{#each (sort location.closed_dates)}}
+                        {{#each (sort location.closed_dates debugTime)}}
                             <tr>
                                 <td>{{translate @root.lang this.date_key}}</td>
                                 <td>{{translate @root.lang this.name_key}}</td>
@@ -273,7 +273,7 @@
                 <h4>{{lang.open_hours}}</h4>
                 <table class="open-hours-table">
                     <tbody>
-                        {{#each (merge location.open_hours location.special_open_hours lang)}}
+                        {{#each (merge location.open_hours location.special_open_hours lang debugTime)}}
                             <tr>
                                 <td data-day="{{this.day}}">{{translate @root.lang this.day}}</td>
                                 <td data-hours="{{this.hours}}">{{translate @root.lang this.hours}}</td>
