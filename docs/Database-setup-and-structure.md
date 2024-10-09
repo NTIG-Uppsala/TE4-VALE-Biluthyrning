@@ -26,20 +26,3 @@ mysql -u <User> -p
 The login information for both servers is available in [this locked google doc](https://docs.google.com/document/d/1e-FzBbY3JdYLGsp38Va0nXPVGH7eKSYGxgbwL7voolg/edit). Access is given to maintainers.
 
 ## Database Structure
-
-The database consists of three schemas: **Translation**, **Kiruna**, and **Lulea**. The **Kiruna** and **Lulea** schemas share the exact same structure.
-
-Below are the diagrams for each schema:
-
-- [Translation Schema](https://github.com/user-attachments/assets/f2d37e1d-0260-4f8b-9e5e-e539397822d8)
-- [Kiruna Schema](https://github.com/user-attachments/assets/0da0714d-a454-452b-83a8-f8ed4f325752)
-
-To create all the empty tables for the **Translation** schema, you can either import the SQL file below into Workbench or simply copy and paste the code:
-
-- [Translation SQL](../sql/Translation.sql)
-
-To create the tables for either the **Lulea** or **Kiruna** schemas (they share the same structure), follow the same steps with the file below:
-
-- [Kiruna and Lulea SQL](../sql/Kiruna_and_Lulea.sql)
-
-
