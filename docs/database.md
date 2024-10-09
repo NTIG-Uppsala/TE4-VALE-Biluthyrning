@@ -1,4 +1,4 @@
-# Connect to database
+# Connect to Database
 
 ## VPN Access
 If you have VPN access to the LAN that the servers are on, you can skip to [step 2](#2-then-on-the-web-server-ssh-from-it-to-the-database-server) since you are already on the correct network.
@@ -6,33 +6,39 @@ If you have VPN access to the LAN that the servers are on, you can skip to [step
 ## Connect via the Web Server
 #### 1. First, connect to the web server.
 ```bash
-ssh root@<Ip 1> -p <Port>
+ssh root@<web-server-ip> -p <Port>
 ```
-- Input password when prompted.
+- Input `root-password` when prompted.
 
 #### 2. Then on the web server ssh from it to the database server.
 ```bash
-ssh root@<Ip 2>
+ssh root@<database-server-ip>
 ```
-- Input password when prompted.
+- Input `root-password` when prompted.
 
 #### 3. Login to the database on the database server. 
 ```bash
-mysql -u <User> -p
+mysql -u <user> -p
 ```
-- Input password when prompted.
+- Input `mysql-password` when prompted.
 
+If everything succeeded, you should now see the MySQL prompt in the terminal like shown below. 
+```bash
+mysql>
+```
 ## Connect via MySQL Workbench
 
-To connect using MySQL Workbench, fill in the connection information as follows:
+To connect using MySQL Workbench you must use a vpn. To connect, fill in the connection information as follows:
 
-- **Host**: `<database-ip-address>`
+- **Host**: `<database-server-ip>`
 - **Port**: `<mysql-port>`
-- **Username**: `<username>`
+- **Username**: `<user>`
 - **Password**: `<mysql-password>`
 
 ## IPs & Passwords
-The login information for both servers is available in [this locked google doc](https://docs.google.com/document/d/1e-FzBbY3JdYLGsp38Va0nXPVGH7eKSYGxgbwL7voolg/edit). Access is given to maintainers.
+All the login information for the servers is available in [this locked google doc](https://docs.google.com/document/d/1e-FzBbY3JdYLGsp38Va0nXPVGH7eKSYGxgbwL7voolg/edit). Access is given to maintainers.
+
+_*The folder contains login information for both the prod and the dev server._
 
 ## Database Structure
 
@@ -58,13 +64,17 @@ You can insert data into tables using MySQL Workbench or by writing SQL code man
 
 - **MySQL Workbench**: Use built-in features or write SQL code.
   - [Connect via MySQL Workbench](#connect-via-mysql-workbench)
+   _requires vpn_
 - **Database**: Write SQL code directly in the database.
   - [Connect via The Web Server](#connect-via-the-web-server)
 
 ### Insert using Python scripts
-Both the options above can be very tedious when inserting bulk data. To facilitate this, we've created some Python scripts that automatically insert all the data from YAML files. Follow the instructions below to use these scripts.
-
-#### To fill the tables, run one of the Python scripts listed below. These scripts require an [.env file*](https://drive.google.com/file/d/1bbLyv1HWyYzVd9tsMDsWBNocZKUnETIF/view?usp=drive_link) and insert data from the [YAML files](../db_insert_scripts/yaml_files/).
+Both the options above can be very tedious when inserting bulk data. To facilitate this, we've created some Python scripts that automatically insert all the data from YAML files, VPN is needed for this. Follow the instructions below to use the scripts.
+#### 1. Run pip install on the required packages:
+```bash
+pip install pyyaml python-dotenv mysql-connector-python
+```
+#### 2. To fill the tables, run one of the Python scripts listed below. These scripts require an [.env file*](https://drive.google.com/file/d/1bbLyv1HWyYzVd9tsMDsWBNocZKUnETIF/view?usp=drive_link) and insert data from the [YAML files](../db_insert_scripts/yaml_files/).
 
 _*Download the .env file by clicking on the hyperlink and place the file in the root folder of the project._
 
