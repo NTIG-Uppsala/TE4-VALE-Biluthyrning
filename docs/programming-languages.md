@@ -9,7 +9,7 @@
 
 \*The actual version depends on the client browser but the code is written for ES2023.
 
-*The actual version depends on the client browser but the code is written for ES2023.
+_*The actual version depends on the client browser but the code is written for ES2023._
   
 ## Backend
 -   Node.js
