@@ -85,60 +85,57 @@ const currentStatus = (location, lang, debugTime) => {
         openHours = location.open_hours;
     }
 
+    const openHoursToday = openHours.find((element) => element.index === now.getDay());
+
     const tempDate = new Date(now);
 
     // Get the weekday object for the current day
-    let openHoursToday = openHours.find((element) => element.index === tempDate.getDay());
+    let nextOpenHours = openHours.find((element) => element.index === tempDate.getDay());
     // Increment tempDate by 1 day until a day is found where the store is open
     while (
         closedDates.map((element) => element.date).includes(`${tempDate.getMonth().toString().padStart(2, "0")}${tempDate.getDate().toString().padStart(2, "0")}`) || // Check if it is a holiday
-        openHoursToday.from_hour === null || // Check if it is a weekday that is normally not open
-        openHoursToday.to_hour === null || // Check if it is a weekday that is normally not open
-        openHoursToday.from_minute === null || // Check if it is a weekday that is normally not open
-        openHoursToday.to_minute === null || // Check if it is a weekday that is normally not open
-        (tempDate.getTime() === now.getTime() && (now.getHours() > openHoursToday.to_hour || (now.getHours() === openHoursToday.to_hour && now.getMinutes() >= openHoursToday.to_minute))) // Check if it is the first iteration and the store has closed for the day
+        nextOpenHours.from_hour === null || // Check if it is a weekday that is normally not open
+        nextOpenHours.to_hour === null || // Check if it is a weekday that is normally not open
+        nextOpenHours.from_minute === null || // Check if it is a weekday that is normally not open
+        nextOpenHours.to_minute === null || // Check if it is a weekday that is normally not open
+        (tempDate.getTime() === now.getTime() && (now.getHours() > nextOpenHours.to_hour || (now.getHours() === nextOpenHours.to_hour && now.getMinutes() >= nextOpenHours.to_minute))) // Check if it is the first iteration and the store has closed for the day
     ) {
         // Increment tempDate by 1 day
         tempDate.setDate(tempDate.getDate() + 1);
 
         // Get the weekday object for the next day
-        openHoursToday = openHours.find((element) => element.index === tempDate.getDay());
+        nextOpenHours = openHours.find((element) => element.index === tempDate.getDay());
     }
-
-    // Get the weekday object for the next open day
-    const nextOpenDayObject = openHours.find((element) => element.index === tempDate.getDay());
-
     // Formats the current time to "MMDD"
     const dateString = `${now.getMonth().toString().padStart(2, "0")}${now.getDate().toString().padStart(2, "0")}`;
     // Check if it is a holiday
     if (closedDates.map((element) => element.date).includes(dateString)) {
         const holiday = closedDates.find((element) => element.date === dateString);
-        const nextOpenDay = lang[capitalize_weekdays] ? lang[nextOpenDayObject.day] : lang[nextOpenDayObject.day].toLowerCase();
-        const time = `${nextOpenDayObject.from_hour.toString().padStart(2, "0")}:${nextOpenDayObject.from_minute.toString().padStart(2, "0")}`;
+        const nextOpenDay = lang.capitalize_weekdays ? lang[nextOpenHours.day] : lang[nextOpenHours.day].toLowerCase();
+        const time = `${nextOpenHours.from_hour.toString().padStart(2, "0")}:${nextOpenHours.from_minute.toString().padStart(2, "0")}`;
         return lang.closed_now_holiday.replace("${holiday}", holiday.name).replace("${next_open_day}", nextOpenDay).replace("${time}", time);
     }
 
     // Check if it is a weekday that is normally not open
     if (openHoursToday.from_hour === null || openHoursToday.to_hour === null || openHoursToday.from_minute === null || openHoursToday.to_minute === null) {
-        const nextOpenDay = lang[capitalize_weekdays] ? lang[nextOpenDayObject.day] : lang[nextOpenDayObject.day].toLowerCase();
-        const time = `${nextOpenDayObject.from_hour.toString().padStart(2, "0")}:${nextOpenDayObject.from_minute.toString().padStart(2, "0")}`;
+        const nextOpenDay = lang.capitalize_weekdays ? lang[nextOpenHours.day] : lang[nextOpenHours.day].toLowerCase();
+        const time = `${nextOpenHours.from_hour.toString().padStart(2, "0")}:${nextOpenHours.from_minute.toString().padStart(2, "0")}`;
         return lang.after_hours.replace("${next_open_day}", nextOpenDay).replace("${time}", time);
     }
     // Check if the store has not opened yet for the day
     if (now.getHours() < openHoursToday.from_hour || (now.getHours() === openHoursToday.from_hour && now.getMinutes() < openHoursToday.from_minute)) {
-        const time = `${openHoursToday.from_hour.toString().padStart(2, "0")}:${openHoursToday.from_minute.toString().padStart(2, "0")}`;
+        const time = `${nextOpenHours.from_hour.toString().padStart(2, "0")}:${nextOpenHours.from_minute.toString().padStart(2, "0")}`;
         return lang.not_open_yet.replace("${time}", time);
     }
 
     // Check if the store is currently open
     if (now.getHours() < openHoursToday.to_hour || (now.getHours() === openHoursToday.to_hour && now.getMinutes() < openHoursToday.to_minute)) {
-        const time = `${openHoursToday.to_hour.toString().padStart(2, "0")}:${openHoursToday.to_minute.toString().padStart(2, "0")}`;
+        const time = `${nextOpenHours.to_hour.toString().padStart(2, "0")}:${nextOpenHours.to_minute.toString().padStart(2, "0")}`;
         return lang.open_now.replace("${time}", time);
     }
-
     // Check if the store has closed for the day
-    const nextOpenDay = lang[capitalize_weekdays] ? lang[nextOpenDayObject.day] : lang[nextOpenDayObject.day].toLowerCase();
-    const time = `${nextOpenDayObject.from_hour.toString().padStart(2, "0")}:${nextOpenDayObject.from_minute.toString().padStart(2, "0")}`;
+    const nextOpenDay = lang.capitalize_weekdays ? lang[nextOpenHours.day] : lang[nextOpenHours.day].toLowerCase();
+    const time = `${nextOpenHours.from_hour.toString().padStart(2, "0")}:${nextOpenHours.from_minute.toString().padStart(2, "0")}`;
     return lang.after_hours.replace("${next_open_day}", nextOpenDay).replace("${time}", time);
 };
 

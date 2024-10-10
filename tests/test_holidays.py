@@ -1,6 +1,3 @@
-import unittest
-import re
-import datetime
 from utils import *
 
 
@@ -16,22 +13,9 @@ class TestHolidays(TemplateTest):
             self.fail("Test class name is not correct")
 
     # helpers
-    def setPageTimeTo(self, year: int, month: int, day: int, hour: int, minute: int) -> None:
-        self.page.evaluate(
-            f"""
-            now.setFullYear({year}, {month - 1}, {day});
-            now.setHours({hour});
-            now.setMinutes({minute});
-            refreshDynamicOpenStatus();
-        """
-        )
-
-    def setAndTestTime(self, year: int, month: int, day: int, hour: int, minute: int, expected: list[str]) -> None:
-        self.setPageTimeTo(year, month, day, hour, minute)
-        self.assertInAllTextContent(expected)
 
     def setTimeAndGetClosedDatesTable(self, year: int, month: int, day: int, hour: int, minute: int) -> list[list[str]]:
-        self.setPageTimeTo(year, month, day, hour, minute)
+        self.setTime(year, month, day, hour, minute)
 
         closedDatesTable = self.page.query_selector(".closed-dates-table").inner_html().split("</tr>")
 
@@ -44,9 +28,6 @@ class TestHolidays(TemplateTest):
         closedDatesTable = [row for row in closedDatesTable if row]
 
         return closedDatesTable
-    
-    def currentYear(self) -> int:
-        return datetime.datetime.now().year
     
     # tests
     def testHolidays(self) -> None:
@@ -61,7 +42,7 @@ class TestHolidays(TemplateTest):
         self.setAndTestTime(2025, 6, 6, 11, 37, ["Nationaldagen", "lördag", "11:00"])
 
     def testHolidaySortingChristmasEve(self) -> None:
-        closedDatesTable = self.setTimeAndGetClosedDatesTable(self.currentYear(), 12, 24, 19, 16)
+        closedDatesTable = self.setTimeAndGetClosedDatesTable(2024, 12, 24, 19, 16)
         self.assertEqual(closedDatesTable[0][0], "24 december")
         self.assertEqual(closedDatesTable[0][1], "Julafton")
         self.assertEqual(closedDatesTable[0][2], "Stängt")
@@ -75,7 +56,7 @@ class TestHolidays(TemplateTest):
         self.assertEqual(closedDatesTable[7][2], "Stängt")
 
     def testHolidaySortingNewYearsDay(self) -> None:
-        closedDatesTable = self.setTimeAndGetClosedDatesTable(self.currentYear()+1, 1, 1, 19, 16)
+        closedDatesTable = self.setTimeAndGetClosedDatesTable(2025, 1, 1, 19, 16)
         self.assertEqual(closedDatesTable[0][0], "1 januari")
         self.assertEqual(closedDatesTable[0][1], "Nyårsdagen")
         self.assertEqual(closedDatesTable[0][2], "Stängt")
@@ -89,7 +70,7 @@ class TestHolidays(TemplateTest):
         self.assertEqual(closedDatesTable[6][2], "Stängt")
 
     def testHolidaySortingNationalDay(self) -> None:
-        closedDatesTable = self.setTimeAndGetClosedDatesTable(self.currentYear()+1, 6, 6, 19, 16)
+        closedDatesTable = self.setTimeAndGetClosedDatesTable(2025, 6, 6, 19, 16)
         self.assertEqual(closedDatesTable[0][0], "6 juni")
         self.assertEqual(closedDatesTable[0][1], "Nationaldagen")
         self.assertEqual(closedDatesTable[0][2], "Stängt")

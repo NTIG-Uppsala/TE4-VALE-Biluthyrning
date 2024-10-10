@@ -1,7 +1,3 @@
-import unittest
-import datetime
-import dotenv
-from os import path
 from utils import *
 
 
@@ -15,21 +11,6 @@ class TestOpenHours(TemplateTest):
     def testSelfName(self) -> None:
         if self.__class__.__name__ == "TestName":
             self.fail("Test class name is not correct")
-
-    # helpers
-    def setPageTimeTo(self, year: int, month: int, day: int, hour: int, minute: int) -> None:
-        pass        
-
-    def setAndTestTime(self, year: int, month: int, day: int, hour: int, minute: int, expected: list[str]) -> None:
-        # Convert the given time to unix time
-        time = str(int(datetime.datetime(year, month, day, hour, minute, tzinfo=datetime.datetime.now().astimezone().tzinfo).timestamp()) * 1000)
-        debugKey = dotenv.get_key(path.join(path.dirname(__file__), "..", ".env"), "DEBUG_KEY")
-        self.page.goto(f"http://localhost:4000/?debugTime={time}&debugKey={debugKey}")
-        self.page.wait_for_selector("#checkJsCompleted", state="attached")
-        self.assertInAllTextContent(expected)
-
-    def currentYear(self) -> int:
-        return datetime.datetime.now().year
 
     # tests
     def testWeekdays(self) -> None:

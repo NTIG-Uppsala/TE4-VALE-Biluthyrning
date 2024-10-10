@@ -55,12 +55,22 @@ app.get("/", (req, res) => {
 app.post("/POST/language", (req, res) => {
     const { language, route } = req.body;
     req.session.language = language;
+    req.session.save((err) => {
+        if (err) {
+            console.error(err);
+        }
+    });
     res.redirect(`/${route}`);
 });
 
 app.post("/POST/location", (req, res) => {
     const { location, route } = req.body;
     req.session.location = location;
+    req.session.save((err) => {
+        if (err) {
+            console.error(err);
+        }
+    });
     res.redirect(`/${route}`);
 });
 

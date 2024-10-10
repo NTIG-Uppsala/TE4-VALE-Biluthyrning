@@ -1,4 +1,8 @@
 import unittest
+import datetime
+import dotenv
+import time
+import re
 from playwright.sync_api import sync_playwright
 from os import path
 
@@ -37,6 +41,16 @@ class TemplateTest(unittest.TestCase):
     #
     # Helper functions
     #
+
+    def setTime(self, year: int, month: int, day: int, hour: int, minute: int) -> None:
+        time = str(int(datetime.datetime(year, month, day, hour, minute, tzinfo=datetime.datetime.now().astimezone().tzinfo).timestamp()) * 1000)
+        debugKey = dotenv.get_key(path.join(path.dirname(__file__), "..", ".env"), "DEBUG_KEY")
+        self.page.goto(f"http://localhost:4000/?debugTime={time}&debugKey={debugKey}")
+        self.page.wait_for_selector("#checkJsCompleted", state="attached")
+
+    def setAndTestTime(self, year: int, month: int, day: int, hour: int, minute: int, expected: list[str]) -> None:
+        self.setTime(year, month, day, hour, minute)        
+        self.assertInAllTextContent(expected)
 
     # run assertIn for every string in the list
     def assertInAll(self, matches: list[str]) -> None:

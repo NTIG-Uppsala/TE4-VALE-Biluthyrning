@@ -20,8 +20,7 @@ name: Index Page Automated Content Tests
 on:
     push:
         branches:
-            - main
-            - live
+            - "**"
 
 jobs:
     test:
@@ -36,12 +35,25 @@ jobs:
               with:
                   python-version: "3.12.5"
 
+            - name: "Install Node.js"
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "latest"
+
             - name: Install dependencies
               run: |
-                  pip install pytest-playwright
-                  pip install playwright
-                  pip install pytest-json-report
+                  pip install pytest-playwright playwright pytest-json-report python-dotenv
                   playwright install
+                  npm install
+
+            - name: Create a .env file dynamically from environment variables
+              run: |
+                printenv | grep ^SECRET_ > .env
+              shell: bash
+
+            - name: Run server
+              run: |
+                  npm run start
 
             - name: Run tests with pytest-playwright
               run: |

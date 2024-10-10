@@ -1,6 +1,4 @@
-import unittest
 from utils import *
-import datetime
 
 
 class TestEssentialInfo(TemplateTest):

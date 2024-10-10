@@ -1,5 +1,3 @@
-import unittest
-import time
 from utils import *
 
 
@@ -15,11 +13,11 @@ class TestZIPCodes(TemplateTest):
             self.fail("Test class name is not correct")
 
     # Helper functions
-    def submitAndTestZIPCode(self, zip_code: str, match: str) -> None:
-        zip_input = self.page.query_selector("#zip-input")
-        zip_button = self.page.query_selector("#zip-button")
-        zip_input.fill(zip_code)
-        zip_button.click()
+    def submitAndTestZIPCode(self, zipCode: str, match: str) -> None:
+        zipInput = self.page.locator("#zip-input")
+        zipButton = self.page.locator("#zip-button")
+        zipInput.fill(zipCode)
+        zipButton.click()
         time.sleep(0.2)
         self.assertInTextContent(match)
 

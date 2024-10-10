@@ -24,7 +24,6 @@
         <link rel="stylesheet" href="css/variables.css" />
         <link rel="stylesheet" href="css/main.css" />
         <link rel="stylesheet" href="css/flag-icons/css/flag-icons.min.css" />
-        <link rel="stylesheet" href="css/no-script-hamburger-menu.css" />
 
         <script src="js/callBackend.js"></script>
         <script defer src="js/currencyExchange.js"></script>
@@ -179,10 +178,7 @@
                 </table>
             </section>
 
-            <section class="delivery-section" style="display: none;" id="delivery-section">
-                <!-- Shows this section if js is enabled, otherwise it will be hidden -->
-                <script>document.querySelector(".delivery-section").style.display = "flex"</script>
-
+            <section class="delivery-section script" id="delivery-section">
                 <h2>{{lang.delivery}}</h2>
 
                 <p>{{lang.delivery_description}}</p>
