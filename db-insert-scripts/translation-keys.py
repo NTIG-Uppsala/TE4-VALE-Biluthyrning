@@ -8,12 +8,12 @@ import os
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Load environment variables from .env file located one directory back
-env_path = os.path.join(os.path.dirname(__file__), '..', '.env')
-load_dotenv(env_path)
+envPath = os.path.join(os.path.dirname(__file__), '..', '.env')
+load_dotenv(envPath)
 
 # Load YAML file
-def load_yaml(file_path):
-    with open(file_path, 'r', encoding='utf-8') as file:
+def loadYaml(filePath):
+    with open(filePath, 'r', encoding='utf-8') as file:
         return yaml.safe_load(file)
 
 try:
@@ -32,7 +32,7 @@ except mysql.connector.Error as err:
     exit(1)
 
 # Function to get or create a translation key ID in the database
-def get_or_create_translation_key_id(key):
+def getOrCreateTranslationKeyId(key):
     # Execute a SELECT query to check if the key already exists in the translation_keys table
     cursor.execute("SELECT id FROM translation_keys WHERE `key` = %s", (key,))
     result = cursor.fetchone()  # Fetch the first row of the result set
@@ -51,26 +51,26 @@ def get_or_create_translation_key_id(key):
     return cursor.lastrowid
 
 # Directory containing the YAML files (same directory as the Python script)
-locales_dir = os.path.dirname(__file__)
+localesDir = os.path.dirname(__file__)
 
 # List of YAML files to process
-yaml_files = ['en.yml', 'fi.yml', 'sv.yml']
+yamlFiles = ['en.yml', 'fi.yml', 'sv.yml']
 
 # Process each YAML file in the list
-for yaml_file in yaml_files:
+for yamlFile in yamlFiles:
     # Construct the full file path for the current YAML file
-    file_path = os.path.join(locales_dir, 'yaml_files', yaml_file)
+    filePath = os.path.join(localesDir, 'yaml-files', yamlFile)
     
     # Load and parse the YAML file into a Python dictionary
-    data = load_yaml(file_path)
+    data = loadYaml(filePath)
     
     # Iterate over each key in the loaded YAML data
     for key in data.keys():
         # Insert the key into the database or get its ID if it already exists
-        get_or_create_translation_key_id(key)
+        getOrCreateTranslationKeyId(key)
     
     # Log a message indicating that the current YAML file has been processed
-    logging.info(f"Processed {yaml_file}")
+    logging.info(f"Processed {yamlFile}")
 
 # Close connection
 cursor.close()
