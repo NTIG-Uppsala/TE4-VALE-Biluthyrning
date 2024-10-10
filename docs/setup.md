@@ -15,6 +15,9 @@ pip install pytest-playwright playwright pytest-json-report python-dotenv
 playwright install
 ```
 
+The repository does not track a required `.env`-file due to security reasons. The file can be found [here](https://drive.google.com/file/d/1lmhCGe8ItjaIrP0iR04PWg-1RiKhOH2k/view?usp=drive_link). Download it and place it in the root-directory of the project.
+
+
 ## Maintaining the code
 
 The following commands are either required or recommended to be run to ensure functionality of the project:
