@@ -1,4 +1,4 @@
-# Definition of Done 4.0
+# Definition of Done 4.1
 
 #### Before moving a post-it to done, make sure you have:
 
@@ -12,15 +12,16 @@
 
 - Looked at generated screenshots.
 
-- Reviewed code:
-  - Someone should've read the code without any explanations and understood it.
-  - Make sure every team member has an understanding of the code. At least at an overview level.
+- Reviewed work:
+  - Make sure any and all code follows our [coding standard](/docs/coding-standard.md).
+  - Someone should've read the work without any explanations and accepted it to be submitted.
 
 - Yellow post-it:
   - Pushed changes to its feature branch.
   - Documented the changes for the sprint review.
 
 - Blue post-it:
+  - Make sure every team member has an understanding of the code. At least at an overview level.
   - Gone through all the yellow post-its to make sure nothing has been missed.
   - Incremented the version number in the **package.json** file.
   - Squash merged it to main.
