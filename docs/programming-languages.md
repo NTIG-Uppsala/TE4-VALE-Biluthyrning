@@ -1,6 +1,6 @@
 # Programming Languages
 
-## Front end
+## Frontend
 - HTML5
 
 - CSS 3
@@ -9,11 +9,12 @@
 
 *The actual version depends on the client browser but the code is written for ES2023.
   
-## Back end
-- Python 3
-
+## Backend
 - Node.js
 
 - Handlebars
 
 - SCSS
+
+## Tests
+- Python 3
