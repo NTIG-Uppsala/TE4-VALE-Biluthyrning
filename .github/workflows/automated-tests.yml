@@ -46,9 +46,10 @@ jobs:
                   playwright install
                   npm install
 
-            - name: Create a .env file dynamically from environment variables
+            - name: Create a .env file from environment variables
               run: |
-                printenv | grep ^SECRET_ > .env
+                    echo "EXPRESS_SESSION=${{ secrets.EXPRESS_SESSION }}" > .env
+                    echo "DEBUG_KEY=${{ secrets.DEBUG_KEY }}" >> .env
               shell: bash
 
             - name: Run server
