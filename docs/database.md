@@ -6,19 +6,19 @@ If you have VPN access to the LAN that the servers are on, you can skip to [step
 ## Connect via the Web Server
 #### 1. First, connect to the web server.
 ```bash
-ssh root@<web-server-ip> -p <Port>
+ssh root@<web-server-ip> -p <web-server-port>
 ```
-- Input `root-password` when prompted.
+- Input `web-server-root-password` when prompted.
 
 #### 2. Then on the web server ssh from it to the database server.
 ```bash
 ssh root@<database-server-ip>
 ```
-- Input `root-password` when prompted.
+- Input `database-server-root-password` when prompted.
 
 #### 3. Login to the database on the database server. 
 ```bash
-mysql -u <user> -p
+mysql -u <mysql-user> -p
 ```
 - Input `mysql-password` when prompted.
 
@@ -28,11 +28,11 @@ mysql>
 ```
 ## Connect via MySQL Workbench
 
-To connect using MySQL Workbench you must use a vpn. To connect, fill in the connection information as follows:
+To connect using MySQL Workbench you must use a VPN. To connect, fill in the connection information as follows:
 
 - **Host**: `<database-server-ip>`
 - **Port**: `<mysql-port>`
-- **Username**: `<user>`
+- **Username**: `<mysql-user>`
 - **Password**: `<mysql-password>`
 
 ## IPs & Passwords
@@ -59,33 +59,33 @@ To create the tables for either the **Lulea** or **Kiruna** schemas (they share 
 
 ## Insert Data into Schemas
 
-### Insert using MySQL Workbench or via the Database
+### Insert Using MySQL Workbench or via the Database
 You can insert data into tables using MySQL Workbench or by writing SQL code manually.
 
 - **MySQL Workbench**: Use built-in features or write SQL code.
   - [Connect via MySQL Workbench](#connect-via-mysql-workbench)
-   _requires vpn_
+   _requires VPM_
 - **Database**: Write SQL code directly in the database.
   - [Connect via The Web Server](#connect-via-the-web-server)
 
-### Insert using Python scripts
+### Insert Using Python Scripts
 Both the options above can be very tedious when inserting bulk data. To facilitate this, we've created some Python scripts that automatically insert all the data from YAML files, VPN is needed for this. Follow the instructions below to use the scripts.
 #### 1. Run pip install on the required packages:
 ```bash
 pip install pyyaml python-dotenv mysql-connector-python
 ```
-#### 2. To fill the tables, run one of the Python scripts listed below. These scripts require an [.env file*](https://drive.google.com/file/d/1bbLyv1HWyYzVd9tsMDsWBNocZKUnETIF/view?usp=drive_link) and insert data from the [YAML files](../db_insert_scripts/yaml_files/).
+#### 2. To fill the tables, run one of the Python scripts listed below. These scripts require an [.env file*](https://drive.google.com/file/d/1bbLyv1HWyYzVd9tsMDsWBNocZKUnETIF/view?usp=drive_link) to insert data from the [YAML files](../db-insert-scripts/yaml-files/).
 
-_*Download the .env file by clicking on the hyperlink and place the file in the root folder of the project._
+_*Download the .env file by clicking on the hyperlink and place the file in the root folder of the project. Also make sure it is named ".env" and not "env"._
 
 - **Schemas:**
-  - [Kiruna Schema](../db_insert_scripts/kiruna.py)
-  - [Lulea Schema](../db_insert_scripts/lulea.py)
+  - [Kiruna Schema](../db-insert-scripts/kiruna.py)
+  - [Lulea Schema](../db-insert-scripts/lulea.py)
 
 - **Translation Schema:**
-  - [Translation Keys Table](../db_insert_scripts/translation_keys.py)
-  - [Languages Table](../db_insert_scripts/languages.py)
-  - [Translations Table](../db_insert_scripts/translations.py)
+  - [Translation Keys Table](../db-insert-scripts/translation_keys.py)
+  - [Languages Table](../db-insert-scripts/languages.py)
+  - [Translations Table](../db-insert-scripts/translations.py)
 
-**Note:** If you want to add new data, edit the corresponding YAML file, ensuring the structure is maintained. If you decide to create a new yamlfile you need to edit which file the python script is reading by editing the `yaml_files` variable.
+**Note:** If you want to add new data, edit the corresponding YAML file, ensuring the structure is maintained. If you decide to create a new YAML file you need to edit which file the python script is reading by editing the `yaml_file` variable.
   
