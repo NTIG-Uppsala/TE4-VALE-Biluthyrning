@@ -2,15 +2,14 @@
 
 1. SSH to server with root access, see [login credentials](https://docs.google.com/document/d/1e-FzBbY3JdYLGsp38Va0nXPVGH7eKSYGxgbwL7voolg/edit?tab=t.0).
 
-2. run
+2. To set up the server, run the following commands:
 ```bash
 wget https://raw.githubusercontent.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/refs/heads/backendConversion/server-scripts/install.sh
 bash install.sh
 ```
 This downloads the install script and runs it.
 
-1. Run:
+3. When you are ready to deploy a new release, run the following command, where `<tag>` is the tag of the release you want to deploy.
 ```bash
 /usr/local/bin/deploy.sh <tag>
 ```
-Where `<tag>` is the tag of the release you want to deploy. 
