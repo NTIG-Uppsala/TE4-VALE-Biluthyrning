@@ -98,3 +98,10 @@ var myVar = "newValue"
 - Classes: *PascalCase*.
 - Functions: *camelCase*.
 - Variables: *camelCase*.
+
+
+## Shellscript (Bash)
+#### Naming
+- Functions: *lower_case*.
+- Variables: *lower_case*.
+- Constants: *UPPER_CASE*.
