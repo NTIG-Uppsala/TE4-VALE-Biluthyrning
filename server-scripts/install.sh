@@ -116,7 +116,7 @@ echo "Deployment of version $VERSION_TAG complete!"
 EOL
 
 # Clean up the /var/www directory
-rm -rf /var/www/*
+rm -rf /var/www/
 
 # Make the deploy.sh script executable
 chmod +x "$DEPLOY_SCRIPT_PATH"
