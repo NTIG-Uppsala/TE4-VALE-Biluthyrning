@@ -1,10 +1,10 @@
 name: Index Page Automated Content Tests
 
 on:
-    push:
-        branches:
-            - "**"
+    schedule:
+        - cron: "0 17 * * 1-5"
 
+        
 jobs:
     test:
         runs-on: ubuntu-latest
