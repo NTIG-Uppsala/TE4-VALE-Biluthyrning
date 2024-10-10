@@ -18,14 +18,14 @@ def loadYaml(filePath):
 
 try:
     # Database connection
-    conn = mysql.connector.connect(
+    connection = mysql.connector.connect(
         host=os.getenv('host'),
         user=os.getenv('user'),
         password=os.getenv('password'),
         database=os.getenv('database_3')
     )
     
-    cursor = conn.cursor()
+    cursor = connection.cursor()
     logging.info("Successfully connected to the MySQL database.")
 except mysql.connector.Error as err:
     logging.error(f"Error: {err}")
@@ -45,7 +45,7 @@ def getOrCreateTranslationKeyId(key):
     
     # If the key does not exist, insert it into the translation_keys table
     cursor.execute("INSERT INTO translation_keys (`key`) VALUES (%s)", (key,))
-    conn.commit()  # Commit the transaction to save the changes
+    connection.commit()  # Commit the transaction to save the changes
     
     # Return the ID of the newly inserted key
     return cursor.lastrowid
@@ -74,5 +74,5 @@ for yamlFile in yamlFiles:
 
 # Close connection
 cursor.close()
-conn.close()
+connection.close()
 logging.info("Database connection closed.")
