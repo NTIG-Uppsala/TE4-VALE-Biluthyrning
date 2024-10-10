@@ -2,38 +2,11 @@
 
 ###### This is a TE4 project by the group VALE. Original group members: Viggo Ström, Axel Thornberg, Eskil Tornberg. Former maintainers: Ivar Bjerling, Tim Kelso, David Cavalli-Björkman. Current maintainers: Jesper Cejie, Carl Eriksson Skogh, Joel Jansson, Viggo Ström och Axel Thornberg.
 
-
 ## Documents
 
-- [Coding Standard](docs/coding-standard.md)
-- [Development Environment](docs/development-environment.md)
-- [Programming languages](docs/programming-languages.md)
-
-
-## Compiling
-
-In order to compile the project, [Node.js](https://nodejs.org/en/download/) version 20.18.0 has to be installed and working.
-Afterwards install the required packages with:
-
-```bash
-npm install js-yaml handlebars dotenv cross-env
-```
-
-To compile the project, run the [hbs-compiler.js](scripts/hbs-compiler.js) script with:
-
-```bash
-node scripts/hbs-compiler.js
-```
-
-This will generate all the necessary html files from the [index.hbs](views/index.hbs) file.
-
-
-## Changing Open Hours
-
-To change the open hours that appear on the site, you have to change `open_hours` and/or `july_open_hours` in the [kiruna.yml](data/kiruna.yml) and/or [lulea.yml](data/lulea.yml) file.
-
-To change closed days change the text content of a table in the [index.hbs](views/index.hbs) file and change the closedDates object in the [openHours.js](public/js/openHours.js) file.
-
+-   [Coding Standard](docs/coding-standard.md)
+-   [Development Environment](docs/development-environment.md)
+-   [Programming languages](docs/programming-languages.md)
 
 ## Flag Icons
 
@@ -41,38 +14,36 @@ We use a customized version of the [flag-icons](https://github.com/lipis/flag-ic
 
 To place an inline icon on the page add the language name and code to the `languages`-variable in [lulea.yml](data/lulea.yml) and [kiruna.yml](data/kiruna.yml).
 
+## Changing Information on the page.
 
-## Changing other Essential Information.
+-   Phone numbers are changed in [lulea.yml](data/lulea.yml) and [kiruna.yml](data/kiruna.yml).
 
-- Phone numbers are changed in [lulea.yml](data/lulea.yml) and [kiruna.yml](data/kiruna.yml).
+-   Changing which cars are available in [lulea.yml](data/lulea.yml) and [kiruna.yml](data/kiruna.yml).
 
-- Changing which cars are available in [lulea.yml](data/lulea.yml) and [kiruna.yml](data/kiruna.yml).
+-   To change the VAT tax simply change the value of the "vat_on_cars" in [lulea.yml](data/lulea.yml) and [kiruna.yml](data/kiruna.yml).
 
-- To change the VAT tax simply change the value of the "vat_on_cars" in [lulea.yml](data/lulea.yml) and [kiruna.yml](data/kiruna.yml).
+-   To change which ZIP codes are delivered to and their price change the value of the `zip_codes`-key in [kiruna.yml](data/kiruna.yml) or [lulea.yml](data/lulea.yml).
 
-- To change which ZIP codes are delivered to and their price change the value of the `zip_codes`-key in [kiruna.yml](data/kiruna.yml) or [lulea.yml](data/lulea.yml).
+-   To change the E-mail change the `mail`-variable in [kiruna.yml](data/kiruna.yml) or [lulea.yml](data/lulea.yml).
 
-- To change the E-mail change the `mail`-variable in [kiruna.yml](data/kiruna.yml) or [lulea.yml](data/lulea.yml).
+-   To change the address change the `address`- and `zip_code`-variables in [kiruna.yml](data/kiruna.yml) or [lulea.yml](data/lulea.yml).
 
-- To change the address change the `address`- and `zip_code`-variables in [kiruna.yml](data/kiruna.yml) or [lulea.yml](data/lulea.yml).
+-   To change holidays where one or more stores are closed change the value of the `closed_dates`-key in [kiruna.yml](data/kiruna.yml) and [lulea.yml](data/lulea.yml). The `date`-key is in the following format: `MMDD` where Janauary is month 0 and December is month 11.
+
+-   To change the hours which the store is open change the value of the `open_hours`-key in [kiruna.yml](data/kiruna.yml) and [lulea.yml](data/lulea.yml). The `index`-key is an integer for which day of the week the object refers to with Sunday as day 0 and Saturday as day 6.
+
+-   There is also an object `special_open_hours` which allows for differing hours during a specific month. It consists of two keys: `month` which indicates which month this applies to (January is month 0 and December is month 11.) and `open_hours` which follows the same structure as mentioned in the previously.
 
 _When making changes to any of the above files also make sure to add that change to its correlating python testing file._
 
+## Testing
 
-## Manual and Automated Testing
+This project utilizes Python Playwright to test the website for content and functionality. To configure and setup this, read the [setup](docs/setup.md)-file.
 
-The project currently uses GitHub workflows to automate the testing of any files pushed to certain branches. To view and change which branches are tested, open [automated-tests.yml](.github/workflows/automated-tests.yml) and [w3c-validation.yml](.github/workflows/w3c-validation.yml) and under "branches:" remove or add desired branches for each file.
-
-To manually conduct the w3c html-validation tests open [w3validator](https://validator.w3.org/#validate_by_upload) and submit the desired html-files.
-
-To manually conduct the automated content testing you need to have installed Python version 3.12.5 and then run the following commands in the terminal: 
+To run the tests the server needs to be running. To do this open a command line in the root of the project and run:
 
 ```bash
-pip install pytest-playwright playwright pytest-json-report
+npm run start
 ```
 
-```bash
-python -m playwright install
-```
-
-To add more Python tests either add more methods (which start with test*) in the existing test*.py files or create a new file with the test*.py format using the template in "tests/template.py" but with a changed class-name.
+Following that run either each python file starting with `test_` manually or by opening the Testing-view in VSCode and running the tests from there.

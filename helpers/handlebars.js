@@ -110,10 +110,10 @@ const currentStatus = (location, lang, debugTime) => {
     const dateString = `${now.getMonth().toString().padStart(2, "0")}${now.getDate().toString().padStart(2, "0")}`;
     // Check if it is a holiday
     if (closedDates.map((element) => element.date).includes(dateString)) {
-        const holiday = closedDates.find((element) => element.date === dateString);
+        const holiday = lang[closedDates.find((element) => element.date === dateString).name_key];
         const nextOpenDay = lang.capitalize_weekdays ? lang[nextOpenHours.day] : lang[nextOpenHours.day].toLowerCase();
         const time = `${nextOpenHours.from_hour.toString().padStart(2, "0")}:${nextOpenHours.from_minute.toString().padStart(2, "0")}`;
-        return lang.closed_now_holiday.replace("${holiday}", holiday.name).replace("${next_open_day}", nextOpenDay).replace("${time}", time);
+        return lang.closed_now_holiday.replace("${holiday}", holiday).replace("${next_open_day}", nextOpenDay).replace("${time}", time);
     }
 
     // Check if it is a weekday that is normally not open

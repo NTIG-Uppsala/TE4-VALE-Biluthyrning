@@ -42,12 +42,14 @@ class TemplateTest(unittest.TestCase):
     # Helper functions
     #
 
+    # Sets the time by generating a timestamp and setting it as a query parameter which the server reads and sets the time to
     def setTime(self, year: int, month: int, day: int, hour: int, minute: int) -> None:
         time = str(int(datetime.datetime(year, month, day, hour, minute, tzinfo=datetime.datetime.now().astimezone().tzinfo).timestamp()) * 1000)
         debugKey = dotenv.get_key(path.join(path.dirname(__file__), "..", ".env"), "DEBUG_KEY")
         self.page.goto(f"http://localhost:4000/?debugTime={time}&debugKey={debugKey}")
         self.page.wait_for_selector("#checkJsCompleted", state="attached")
 
+    # Sets the time and checks for the expected text content 
     def setAndTestTime(self, year: int, month: int, day: int, hour: int, minute: int, expected: list[str]) -> None:
         self.setTime(year, month, day, hour, minute)        
         self.assertInAllTextContent(expected)
