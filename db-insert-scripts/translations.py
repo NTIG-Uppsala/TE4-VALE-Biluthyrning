@@ -5,12 +5,12 @@ import logging
 import os
 
 # Load environment variables from .env file located one directory back
-env_path = os.path.join(os.path.dirname(__file__), '..', '.env')
-load_dotenv(env_path)
+envPath = os.path.join(os.path.dirname(__file__), '..', '.env')
+load_dotenv(envPath)
 
 # load yaml files
-def load_yaml(file_path):
-    with open(file_path, 'r', encoding='utf-8') as file:
+def loadYaml(filePath):
+    with open(filePath, 'r', encoding='utf-8') as file:
         return yaml.safe_load(file)
 
 try:
@@ -28,49 +28,49 @@ except mysql.connector.Error as err:
     exit(1)
 
 # get the language id
-def get_language_id(lang):
+def getLanguageId(lang):
     cursor.execute("SELECT id FROM languages WHERE `code` = %s", (lang,))
     result = cursor.fetchone()
-    language_id = result[0]
-    return language_id
+    languageId = result[0]
+    return languageId
     
 
 # Function to get or create a translation key ID in the database
-def get_translation_key_id(key):
+def getTranslationKeyId(key):
     # Execute a SELECT query to check for ids in the translation_keys table
     cursor.execute("SELECT id FROM translation_keys WHERE `key` = %s", (key,))
     result = cursor.fetchone()  # Fetch the first row of the result set
-    translation_key_id = result[0]
-    return translation_key_id
+    translationKeyId = result[0]
+    return translationKeyId
 
-def insert_translation(translation_key_id, language_id, translation):
+def insertTranslation(translationKeyId, languageId, translation):
     # Execute a SELECT query to check if the key already exists in the translations table
-    cursor.execute("SELECT * FROM translations WHERE `translation_key_id` = %s AND `language_id` = %s", (translation_key_id, language_id))
+    cursor.execute("SELECT * FROM translations WHERE `translation_key_id` = %s AND `language_id` = %s", (translationKeyId, languageId))
     result = cursor.fetchone()
     if result:
         print("Translation already exists")
         return
     
     # If the key does not exist, insert it into the translations table
-    cursor.execute("INSERT INTO translations (`translation_key_id`, `language_id`, translation) VALUES (%s, %s, %s)", (translation_key_id, language_id, translation))
+    cursor.execute("INSERT INTO translations (`translation_key_id`, `language_id`, translation) VALUES (%s, %s, %s)", (translationKeyId, languageId, translation))
     connection.commit()
     print("Translation inserted")
     row = cursor.fetchone() # Fetch the first row of the result set
     return row  # Return the entire row
 
 # List of YAML files to process
-yaml_files = ['en.yml', 'fi.yml', 'sv.yml']
+yamlFiles = ['en.yml', 'fi.yml', 'sv.yml']
 
 # Directory containing the YAML files (same directory as the Python script)
-locales_dir = os.path.dirname(__file__)
+localesDir = os.path.dirname(__file__)
 # Load and parse the YAML file into a Python dictionary
 
-for yaml_file in yaml_files:
-    file_path = os.path.join(locales_dir, 'yaml_files', yaml_file)
-    data = load_yaml(file_path)
+for yamlFile in yamlFiles:
+    filePath = os.path.join(localesDir, 'yaml-files', yamlFile)
+    data = loadYaml(filePath)
     #get the current language
-    lang = yaml_file.split(".")[0]
-    language_id = get_language_id(lang)
+    lang = yamlFile.split(".")[0]
+    languageId = getLanguageId(lang)
     
     
     
@@ -78,7 +78,7 @@ for yaml_file in yaml_files:
     for key in data.keys():
         # get the translation from the yaml files
         translation = data[key]
-        translation_key_id = get_translation_key_id(key)
-        insert_translation(translation_key_id, language_id, translation)
+        translationKeyId = getTranslationKeyId(key)
+        insertTranslation(translationKeyId, languageId, translation)
     
-    print(f"Processed {yaml_file}")
+    print(f"Processed {yamlFile}")

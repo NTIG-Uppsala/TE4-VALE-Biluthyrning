@@ -8,12 +8,12 @@ import os
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Load environment variables from .env file located one directory back
-env_path = os.path.join(os.path.dirname(__file__), '..', '.env')
-load_dotenv(env_path)
+envPath = os.path.join(os.path.dirname(__file__), '..', '.env')
+load_dotenv(envPath)
 
 # Load YAML file
-def load_yaml(file_path):
-    with open(file_path, 'r', encoding='utf-8') as file:
+def loadYaml(filePath):
+    with open(filePath, 'r', encoding='utf-8') as file:
         return yaml.safe_load(file)
 
 try:
@@ -31,7 +31,7 @@ except mysql.connector.Error as err:
     logging.error(f"Error: {err}")
     exit(1)
 
-def get_or_create_languages():
+def getOrCreateLanguages():
     # Check if the languages already exist
     cursor.execute("SELECT `code`, `name` FROM `languages` WHERE `code` IN ('sv', 'en', 'fi')")
     result = cursor.fetchall()  # Fetch all matching rows
@@ -52,7 +52,7 @@ def get_or_create_languages():
     print("Languages inserted successfully.")
 
 # Call the function to insert languages
-get_or_create_languages()
+getOrCreateLanguages()
 
 # Close connection
 cursor.close()
