@@ -15,13 +15,13 @@ def loadYaml(filePath):
 
 try:
     # Database connection
-    conn = mysql.connector.connect(
+    connection = mysql.connector.connect(
         host=os.getenv('host'),
         user=os.getenv('user'),
         password=os.getenv('password'),
         database=os.getenv('database_3')
     )
-    cursor = conn.cursor()
+    cursor = connection.cursor()
     logging.info("Successfully connected to the MySQL database.")
 except mysql.connector.Error as err:
     logging.error(f"Error: {err}")

@@ -18,13 +18,13 @@ def loadYaml(filePath):
 
 # Database connection
 try:
-    conn = mysql.connector.connect(
+    connection = mysql.connector.connect(
         host=os.getenv('host'),
         user=os.getenv('user'),
         password=os.getenv('password'),
         database=os.getenv('database_1')
     )
-    cursor = conn.cursor()
+    cursor = connection.cursor()
     logging.info("Successfully connected to the MySQL database.")
 except mysql.connector.Error as err:
     logging.error(f"Error: {err}")
@@ -54,7 +54,7 @@ def insertOpenHours(data):
                 item['from_minute'], item['to_minute'], item['index']
             ))
             print(f"Record for {item['day']} inserted")
-    conn.commit()
+    connection.commit()
 
 # Function to insert data into languages table
 def insertLanguages(data):
@@ -71,7 +71,7 @@ def insertLanguages(data):
         else:
             cursor.execute(insertQuery, (item['language_name'], item['language_code']))
             print(f"Language {item['language_code']} added")
-    conn.commit()
+    connection.commit()
 
 # Function to insert data into social_media table
 def insertSocialMedia(data):
@@ -88,7 +88,7 @@ def insertSocialMedia(data):
         else:
             cursor.execute(insertQuery, (item['name'], item['url'], item['icon'], item['source']))
             print(f"Social media {item['name']} added")
-    conn.commit()
+    connection.commit()
 
 # Function to insert data into location_info table
 def insertLocationInfo(data):
@@ -107,7 +107,7 @@ def insertLocationInfo(data):
             data['location'], data['city'], data['phone_number'], data['mail']
         ))
         print(f"Location info for {data['key']} added")
-    conn.commit()
+    connection.commit()
 
 # Function to insert data into zip_codes table
 def insertZipCodes(data):
@@ -124,7 +124,7 @@ def insertZipCodes(data):
         else:
             cursor.execute(insertQuery, (item['zip_code'], item['price']))
             print(f"Zip code {item['zip_code']} added")
-    conn.commit()
+    connection.commit()
 
 # Function to insert data into special_open_hours table
 def insertSpecialOpenHours(data):
@@ -149,7 +149,7 @@ def insertSpecialOpenHours(data):
                     item['from_minute'], item['to_minute'], item['index']
                 ))
                 print(f"Special open hours for {item['day']} in month {month} added")
-    conn.commit()
+    connection.commit()
 
 # Function to insert data into closed_dates table
 def insertClosedDates(data):
@@ -166,7 +166,7 @@ def insertClosedDates(data):
         else:
             cursor.execute(insertQuery, (item['holiday'], item['date_name'], item['hours'], item['date_code']))
             print(f"Closed date {item['date_code']} added")
-    conn.commit()
+    connection.commit()
 
 # Function to insert data into Cars table
 def insertCars(data):
@@ -183,7 +183,7 @@ def insertCars(data):
         else:
             cursor.execute(insertQuery, (item['name'], item['year'], item['price']))
             print(f"Car {item['name']} from year {item['year']} added")
-    conn.commit()
+    connection.commit()
 
 # Directory containing the YAML files (same directory as the Python script)
 localesDir = os.path.dirname(__file__)
@@ -212,5 +212,5 @@ logging.info(f"Processed {yamlFile}")
 
 # Close connection
 cursor.close()
-conn.close()
+connection.close()
 logging.info("Database connection closed.")

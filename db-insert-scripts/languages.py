@@ -18,14 +18,14 @@ def loadYaml(filePath):
 
 try:
     # Database connection
-    conn = mysql.connector.connect(
+    connection = mysql.connector.connect(
         host=os.getenv('host'),
         user=os.getenv('user'),
         password=os.getenv('password'),
         database=os.getenv('database_3')
     )
     
-    cursor = conn.cursor()
+    cursor = connection.cursor()
     logging.info("Successfully connected to the MySQL database.")
 except mysql.connector.Error as err:
     logging.error(f"Error: {err}")
@@ -48,7 +48,7 @@ def getOrCreateLanguages():
         ('en', 'English'),
         ('fi', 'Finnish')
     """)
-    conn.commit()  # Commit the transaction to save the changes
+    connection.commit()  # Commit the transaction to save the changes
     print("Languages inserted successfully.")
 
 # Call the function to insert languages
@@ -56,5 +56,5 @@ getOrCreateLanguages()
 
 # Close connection
 cursor.close()
-conn.close()
+connection.close()
 logging.info("Database connection closed.")
