@@ -25,6 +25,7 @@ install_or_update() {
 # Install or update necessary packages
 install_or_update "git"
 install_or_update "nginx"
+install_or_update "nodejs"
 
 # Set up the systemd service to auto-start the Node.js app
 echo "Setting up systemd service for application startup..."

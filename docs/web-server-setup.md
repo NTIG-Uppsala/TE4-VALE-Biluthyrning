@@ -7,14 +7,15 @@
 wget https://raw.githubusercontent.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/refs/heads/backendConversion/server-scripts/install.sh
 bash install.sh
 ```
-This downloads the install script and runs it.
 
-3. Clone the repository to the server, where `<tag_name>` is the tag of the release you want to deploy and `<repo_url>` is the URL of the repository.
+3. Clone the repository to the server.
 ```bash
-git clone <repo_url> /var/www/
+git clone https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning.git /var/www/
 ```
 
-4. When you are ready to deploy a new release, run the following command, where `<tag>` is the tag of the release you want to deploy.
+4. You will need to set up the `.env` file at `/var/www/.env`.
+
+5. When you are ready to deploy a new release, run the following command, where `<tag>` is the tag of the release you want to deploy.
 ```bash
 /usr/local/bin/deploy.sh <tag>
 ```
