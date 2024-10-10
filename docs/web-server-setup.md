@@ -9,7 +9,12 @@ bash install.sh
 ```
 This downloads the install script and runs it.
 
-3. When you are ready to deploy a new release, run the following command, where `<tag>` is the tag of the release you want to deploy.
+3. Clone the repository to the server, where `<tag_name>` is the tag of the release you want to deploy and `<repo_url>` is the URL of the repository.
+```bash
+git clone --branch <tag_name> <repo_url> /var/www/
+```
+
+4. When you are ready to deploy a new release, run the following command, where `<tag>` is the tag of the release you want to deploy.
 ```bash
 /usr/local/bin/deploy.sh <tag>
 ```
