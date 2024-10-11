@@ -1,12 +1,7 @@
-import unittest
 from utils import *
-import datetime
 
 
 class TestEssentialInfo(TemplateTest):
-    def setUp(self) -> None:
-        super().setUp(fileToTest="public/se/kiruna/index.html")
-
     def testBrowserExists(self) -> None:
         self.assertIsNotNone(self.page)
 
@@ -39,9 +34,9 @@ class TestEssentialInfo(TemplateTest):
 
     def testSocialMedia(self) -> None:
         self.assertInAll([
-            "https://facebook.com/ntiuppsala",
-            "https://instagram.com/ntiuppsala",
-            "https://x.com/ntiuppsala",
+            "https://www.facebook.com/ntiuppsala",
+            "https://www.instagram.com/ntiuppsala",
+            "https://www.x.com/ntiuppsala",
         ])
 
     # helpers

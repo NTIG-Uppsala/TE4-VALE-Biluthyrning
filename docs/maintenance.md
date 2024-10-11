@@ -1,21 +1,4 @@
-# Setup
-## Internal installations and setup
-
-To properly setup and configure everything the following commands needs to be run:
-
-```bash
-npm install
-```
-
-```bash
-pip install pytest-playwright playwright pytest-json-report
-```
-
-```bash
-playwright install
-```
-
-## Maintaining the code
+# Maintaining the codebase
 
 The following commands are either required or recommended to be run to ensure functionality of the project:
 
@@ -36,3 +19,7 @@ To remove unnecessary dependencies in `package-lock.json`
 ```bash
 npm prune
 ```
+
+---
+
+[Back to README](/README.md)

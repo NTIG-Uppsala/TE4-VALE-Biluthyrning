@@ -2,22 +2,14 @@ const deliverySection = document.querySelector(".delivery-section");
 const zipInputField = deliverySection.querySelector(".input-container>input");
 const zipSubmitButton = deliverySection.querySelector(".input-container>button");
 const zipOutput = deliverySection.querySelector("#delivery-status-tag");
-const language = document.querySelector("#lang").textContent;
-const city = document.querySelector("#location").textContent.trim(); // Ensure no extra spaces
-
-// Normalize city names to match localizationData keys
-const normalizedCity = city.toLowerCase();
-
-// Get the data for the current language and location
-const dataZIP = localizationData[language][normalizedCity];
-
-// Determine the correct list of ZIP codes based on the city
-const zipCodes = normalizedCity === "kiruna" ? zipCodesKiruna : zipCodesLulea;
 
 /**
  * Checks if the ZIP code is valid and if it is in the list of ZIP codes.
  */
-const checkZIPCode = () => {
+const checkZIPCode = async () => {
+    const data = await fetchData()
+    const zipCodes = data.locationData.zip_codes;
+
     // Clear the output text and wait 0.1 seconds before refilling it to signal that the input has been received.
     zipOutput.textContent = "";
 
@@ -26,25 +18,25 @@ const checkZIPCode = () => {
         const zip = zipInputField.value.replace(/\D/g, "");
 
         if (zip === "") {
-            zipOutput.textContent = dataZIP.lang.no_zip_code;
+            zipOutput.textContent = data.languageData.no_zip_code;
             return;
         }
         // Remove all non-digit characters from the ZIP code.
         if (zip.length !== 5) {
-            zipOutput.textContent = dataZIP.lang.zip_code_not_correct_length;
+            zipOutput.textContent = data.languageData.zip_code_not_correct_length;
             return;
         }
         // Check if the ZIP code is in the list of ZIP codes that are deliverable.
         if (
             !zipCodes.map((zipObject) => {
-                return zipObject.zipCode;
+                return zipObject.zip_code;
             }).includes(zip)
         ) {
-            zipOutput.textContent = dataZIP.lang.does_not_deliver.replace("${zip_code}", zip);
+            zipOutput.textContent = data.languageData.does_not_deliver.replace("${zip_code}", zip);
             return;
         }
-        const price = zipCodes.filter((zipObject) => zipObject.zipCode === zip)[0].price;
-        zipOutput.textContent = dataZIP.lang.delivers.replace("${zip_code}", zip).replace("${price}", price);
+        const price = zipCodes.filter((zipObject) => zipObject.zip_code === zip)[0].price;
+        zipOutput.textContent = data.languageData.delivers.replace("${zip_code}", zip).replace("${price}", price);
     }, 100);
 };
 

@@ -1,11 +1,7 @@
-import unittest
 from utils import *
 
 
 class TestOurCars(TemplateTest):
-    def setUp(self) -> None:
-        super().setUp(fileToTest="public/se/kiruna/index.html")
-
     def testBrowserExists(self) -> None:
         self.assertIsNotNone(self.page)
 

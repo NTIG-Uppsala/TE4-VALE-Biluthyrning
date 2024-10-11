@@ -1,37 +1,35 @@
 {
-  "name": "te4-vale-biluthyrning",
-  "version": "3.2.0",
-  "description": "Webpage for the (fictional) NTB Car rental company",
-  "main": "server.js",
-  "directories": {
-    "test": "tests"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prod": "cross-env CARSDB_ENV='prod' node scripts/hbs-compiler.js",
-    "dev": "cross-env CARSDB_ENV='dev' node scripts/hbs-compiler.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning.git"
-  },
-  "author": "Jesper Cejie, Carl Eriksson Skogh, Joel Jansson, Viggo Ström, Axel Thornberg",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/issues"
-  },
-  "homepage": "https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning#readme",
-  "dependencies": {
-    "@types/node": "^22.7.4",
-    "bcryptjs": "^2.4.3",
-    "cross-env": "^7.0.3",
-    "dotenv": "^16.4.5",
-    "express": "^4.21.0",
-    "express-handlebars": "^8.0.1",
-    "express-session": "^1.18.0",
-    "handlebars": "^4.7.8",
-    "js-yaml": "^4.1.0",
-    "mysql2": "^3.11.3",
-    "prisma": "^5.20.0"
-  }
+    "name": "te4-vale-biluthyrning",
+    "version": "4.0.0",
+    "description": "Webpage for the (fictional) NTB Car rental company",
+    "main": "server.js",
+    "directories": {
+        "test": "tests"
+    },
+    "scripts": {
+        "start": "node ./server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning.git"
+    },
+    "author": "Jesper Cejie, Carl Eriksson Skogh, Joel Jansson, Viggo Ström, Axel Thornberg",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/issues"
+    },
+    "homepage": "https://github.com/NTIG-Uppsala/TE4-VALE-Biluthyrning#readme",
+    "dependencies": {
+        "@prisma/client": "^5.20.0",
+        "@types/node": "^22.7.5",
+        "bcryptjs": "^2.4.3",
+        "cross-env": "^7.0.3",
+        "dotenv": "^16.4.5",
+        "express": "^4.21.1",
+        "express-handlebars": "^8.0.1",
+        "express-session": "^1.18.1",
+        "js-yaml": "^4.1.0",
+        "mysql2": "^3.11.3",
+        "prisma": "^5.20.0"
+    }
 }

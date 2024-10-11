@@ -1,12 +1,7 @@
-import unittest
-import time
 from utils import *
 
 
 class TestZIPCodes(TemplateTest):
-    def setUp(self) -> None:
-        super().setUp(fileToTest="public/se/kiruna/index.html")
-
     def testBrowserExists(self) -> None:
         self.assertIsNotNone(self.page)
 
@@ -18,12 +13,12 @@ class TestZIPCodes(TemplateTest):
             self.fail("Test class name is not correct")
 
     # Helper functions
-    def submitAndTestZIPCode(self, zip_code: str, match: str) -> None:
-        zip_input = self.page.query_selector("#zip-input")
-        zip_button = self.page.query_selector("#zip-button")
-        zip_input.fill(zip_code)
-        zip_button.click()
-        time.sleep(0.2)
+    def submitAndTestZIPCode(self, zipCode: str, match: str) -> None:
+        zipInput = self.page.locator("#zip-input")
+        zipButton = self.page.locator("#zip-button")
+        zipInput.fill(zipCode)
+        zipButton.click()
+        self.page.wait_for_timeout(200)
         self.assertInTextContent(match)
 
     # tests
@@ -46,7 +41,8 @@ class TestZIPCodes(TemplateTest):
         zipInput = self.page.query_selector("#zip-input")
         zipInput.fill("98138")
         zipInput.press("Enter")
-        time.sleep(0.2)
+        self.page.wait_for_timeout(200)
+
         self.assertInTextContent("Vi kör ut till postnummer 98138 för 199 kr")
 
     def testOnBlur(self) -> None:
@@ -58,7 +54,8 @@ class TestZIPCodes(TemplateTest):
             """,
             zipInput,
         )
-        time.sleep(0.2)
+        self.page.wait_for_timeout(200)
+
         self.assertInTextContent("Vi kör ut till postnummer 98138 för 199 kr")
 
 

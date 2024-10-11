@@ -1,10 +1,9 @@
-import unittest
 from utils import *
 
 
 class HamburgerMenu(TemplateTest):
     def setUp(self) -> None:
-        super().setUp(fileToTest="public/se/kiruna/index.html")
+        super().setUp()
         self.page.set_viewport_size({"width": 375, "height": 812})
 
     def testBrowserExists(self) -> None:
@@ -21,25 +20,25 @@ class HamburgerMenu(TemplateTest):
 
     def testHamburgerMenuDropdown(self) -> None:
         # Check that the dropdown menu switches between visible and hidden when the hamburger menu button is clicked
-        hamburgerMenuButton = self.page.query_selector(".hamburger-menu")
+        hamburgerMenuButton = self.page.locator("header > section > button")
 
-        self.assertFalse(self.page.is_visible(".dropdown-menu"))
+        self.assertFalse(self.page.is_visible("header > section > nav"))
 
-        hamburgerMenuButton.click()
+        hamburgerMenuButton.hover()
 
-        self.assertTrue(self.page.is_visible(".dropdown-menu"))
+        self.assertTrue(self.page.is_visible("header > section > nav"))
 
-        hamburgerMenuButton.click()
+        self.page.mouse.move(0, 812)
 
-        self.assertFalse(self.page.is_visible(".dropdown-menu"))
+        self.assertFalse(self.page.is_visible("header > section > nav"))
 
     def testHamburgerMenuLinks(self) -> None:
         # Check that the hamburger menu links are correct
 
-        hamburgerMenuButton = self.page.query_selector(".hamburger-menu")
-        hamburgerMenuLinks = self.page.query_selector_all(".dropdown-menu a")
+        hamburgerMenuButton = self.page.locator("header > section > button")
+        hamburgerMenuLinks = self.page.locator("header > section > nav > a").all()
 
-        hamburgerMenuButton.click()
+        hamburgerMenuButton.hover()
 
         self.assertEqual(len(hamburgerMenuLinks), 4)
 
@@ -50,11 +49,11 @@ class HamburgerMenu(TemplateTest):
 
     def testHamburgerMenuLinkClick(self) -> None:
         # Check that the hamburger menu links navigate to the correct sections
-        hamburgerMenuButton = self.page.query_selector(".hamburger-menu")
-        hamburgerMenuLinks = self.page.query_selector_all(".dropdown-menu a")
+        hamburgerMenuButton = self.page.locator("header > section > button")
+        hamburgerMenuLinks = self.page.locator("header > section > nav > a").all()
 
         # Open the hamburger menu
-        hamburgerMenuButton.click()
+        hamburgerMenuButton.hover()
 
         # Click the first link and verify the section title is in the viewport
         hamburgerMenuLinks[0].click()
@@ -79,7 +78,7 @@ class HamburgerMenu(TemplateTest):
         self.assertTrue(isInViewport)
 
         # Open the hamburger menu again
-        hamburgerMenuButton.click()
+        hamburgerMenuButton.hover()
 
         # Click the fourth link and verify the section title is in the viewport
         hamburgerMenuLinks[3].click()

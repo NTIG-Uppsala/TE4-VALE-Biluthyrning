@@ -1,19 +1,25 @@
 # Programming Languages
 
 ## Front end
-- HTML5
 
-- CSS 3
+-   HTML5
 
-- JavaScript ES2023*
+-   CSS 3
 
-*The actual version depends on the client browser but the code is written for ES2023.
-  
+-   JavaScript ES2023\*
+
+\*The actual version depends on the client browser but the code is written for ES2023.
+
 ## Back end
-- Python 3
 
-- Node.js
+-   Python 3
 
-- Handlebars
+-   Node.js
 
-- SCSS
+-   Handlebars
+
+-   SCSS
+
+---
+
+[Back to README](/README.md)
