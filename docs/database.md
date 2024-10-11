@@ -88,4 +88,7 @@ _*Download the .env file by clicking on the hyperlink and place the file in the 
   - [Translations Table](../db-insert-scripts/translations.py)
 
 **Note:** If you want to add new data, edit the corresponding YAML file, ensuring the structure is maintained. If you decide to create a new YAML file you need to edit which file the python script is reading by editing the `yamlFile` variable.
-  
+
+---
+
+[Back to README](/README.md)
