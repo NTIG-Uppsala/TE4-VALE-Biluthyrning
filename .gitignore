@@ -6,3 +6,4 @@ notes.txt
 env
 todo
 prisma/migrations/0_init/migration.sql
+/prisma/seeds
