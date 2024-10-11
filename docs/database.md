@@ -1,4 +1,4 @@
-# Connect to Database
+# Connect to and Modify Database
 
 ## VPN Access
 If you have VPN access to the LAN that the servers are on, you can skip to [step 2](#2-then-on-the-web-server-ssh-from-it-to-the-database-server) since you are already on the correct network.
