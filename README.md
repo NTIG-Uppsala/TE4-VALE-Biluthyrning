@@ -10,7 +10,7 @@
 -   [Programming Languages](/docs/programming-languages.md)
 
 -   [Connecting to Our Servers](/docs/connecting-to-our-servers.md)
--   [How to Set Up a New Web Server](/docs/web-server-setup.md)
+-   [How to Set Up a New Web Server](/docs/web-server.md)
 -   [Backend Setup](/docs/backend-setup.md)
 -   [Running the Backend Locally](/docs/running-the-backend.md)
 -   [Running Tests](/docs/testing.md)
