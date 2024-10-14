@@ -133,6 +133,7 @@ app.post("/POST/location", (req, res) => {
 
 // Login route
 app.post("/POST/login", async (req, res) => {
+    console.log("Login route");
     const { password } = req.body;
     console.log(password);
 });
