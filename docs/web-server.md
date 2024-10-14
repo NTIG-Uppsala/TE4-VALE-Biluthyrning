@@ -10,7 +10,7 @@
 
 2. To set up the web server, run the following commands:
 ```bash
-wget https://raw.githubusercontent.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/refs/heads/backendConversion/server-scripts/install.sh
+wget https://raw.githubusercontent.com/NTIG-Uppsala/TE4-VALE-Biluthyrning/refs/heads/main/server-scripts/install.sh
 bash install.sh
 ```
 
