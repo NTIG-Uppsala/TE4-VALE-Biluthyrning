@@ -102,18 +102,10 @@ git checkout tags/"$VERSION_TAG" || { echo "Failed to checkout tag: $VERSION_TAG
 echo "Installing npm dependencies..."
 npm install || { echo "Failed to install dependencies"; exit 1; }
 
-# Stop any running Node.js processes
-echo "Stopping any running Node.js processes..."
-pkill node || echo "No Node.js processes found."
-
-# Restart NGINX service
-echo "Restarting NGINX..."
-systemctl restart nginx || { echo "Failed to restart NGINX"; exit 1; }
-
-echo "Starting the application..."
-npm run start || { echo "Failed to start the application"; exit 1; }
-
 echo "Deployment of version $VERSION_TAG complete!"
+echo "Restarting system in 5 seconds..."
+sleep 5
+reboot
 
 EOL
 
