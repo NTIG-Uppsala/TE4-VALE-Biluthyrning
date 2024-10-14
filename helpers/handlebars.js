@@ -1,4 +1,3 @@
-
 // Takes a key from the data files and returns the corresponding translation from the language file
 const translate = (lang, key) => {
     return lang[key] || key;
@@ -18,7 +17,6 @@ const order = (items, language, key) => {
 
 // Sort the holidays by moving the ones after the current date to the beginning of the array
 const sort = (holidays, debugTime) => {
-
     // When testing, the current time can be set to a specific time
     const now = debugTime ? new Date(parseInt(debugTime)) : new Date();
 
@@ -31,7 +29,6 @@ const sort = (holidays, debugTime) => {
 
 // Merge all rows of a table into a single row if they have the same data value
 const merge = (dayObjects, differingOpeningHours, lang, debugTime) => {
-
     // When testing, the current time can be set to a specific time
     const now = debugTime ? new Date(parseInt(debugTime)) : new Date();
 
@@ -40,7 +37,6 @@ const merge = (dayObjects, differingOpeningHours, lang, debugTime) => {
     const monthsWithDifferingOpeningHours = differingOpeningHours.map((element) => element.month);
     if (monthsWithDifferingOpeningHours.includes(now.getMonth())) {
         openDays = differingOpeningHours.find((element) => element.month === now.getMonth()).open_hours;
-
     } else {
         openDays = dayObjects;
     }
@@ -53,58 +49,48 @@ const merge = (dayObjects, differingOpeningHours, lang, debugTime) => {
 
     // Merge all rows with the same hours
     openDays.forEach(({ day, hours }, index) => {
+        // Check if it is the last day in the array
+        const lastDay = index === openDays.length - 1;
 
-        if (currentRange.hourRange === null) {
-            // If an empty range is found, set the current range to the current row
+        // Create a new range if the current range is empty
+        if (!currentRange.hourRange) {
             currentRange = { startDay: day, endDay: day, hourRange: hours };
-
-        } else if (currentRange.hourRange === hours) {
-            // If the current row has the same hours as the current range, extend the range
-            currentRange.endDay = day;
-
-        } else {
-            // If the current row has different hours, add the current range to the merged hours
-
-            if (currentRange.startDay === currentRange.endDay) {
-                // If the range is only for one day, add the day as a string
+            if (lastDay) {
                 mergedDays.push({ day: currentRange.startDay, hours: currentRange.hourRange });
-
-            } else {
-                // If the range is for multiple days, add the days as a string with a dash in between the first and last day
-                const startDay = translate(lang, currentRange.startDay);
-                const endDay = lang.capitalize_weekdays ? translate(lang, currentRange.endDay) : translate(lang, currentRange.endDay).toLowerCase();
-
-                mergedDays.push({ day: `${startDay} - ${endDay}`, hours: currentRange.hourRange });
             }
-
-            // Set the current range to the current row
-            currentRange = { startDay: day, endDay: day, hourRange: hours };
-        }
-
-        // Check if it is the last row
-        if (!index === openDays.length - 1) {
             return;
         }
 
-        if (currentRange.startDay === currentRange.endDay) {
-            // If the range is only one day, add the day as a string
+        // Add the day to the current range if the hours are the same
+        if (currentRange.hourRange === hours) {
+            currentRange.endDay = day;
+            if (lastDay) {
+                // Check if the range spans multiple days and format the day label accordingly
+                const dayLabel =
+                    currentRange.startDay === currentRange.endDay
+                        ? currentRange.startDay
+                        : `${lang[currentRange.startDay]} - ${lang.capitalize_weekdays ? lang[currentRange.endDay] : lang[currentRange.endDay].toLowerCase()}`;
+                mergedDays.push({ day: dayLabel, hours: currentRange.hourRange });
+            }
+            return;
+        }
+        // If the hours are different, add the current range to the merged days array and create a new range
+        // Check if the range spans multiple days and format the day label accordingly
+        const dayLabel =
+            currentRange.startDay === currentRange.endDay
+                ? currentRange.startDay
+                : `${lang[currentRange.startDay]} - ${lang.capitalize_weekdays ? lang[currentRange.endDay] : lang[currentRange.endDay].toLowerCase()}`;
+        mergedDays.push({ day: dayLabel, hours: currentRange.hourRange });
+        currentRange = { startDay: day, endDay: day, hourRange: hours };
+        if (lastDay) {
             mergedDays.push({ day: currentRange.startDay, hours: currentRange.hourRange });
-
-        } else {
-            // If the range is for multiple days, add the days as a string with a dash in between the first and last day e.g. "Monday - Wednesday"
-            const startDay = translate(lang, currentRange.startDay);
-            const endDay = lang.capitalize_weekdays ? translate(lang, currentRange.endDay) : translate(lang, currentRange.endDay).toLowerCase();
-
-            mergedDays.push({ day: `${startDay} - ${endDay}`, hours: currentRange.hourRange });
         }
     });
-
     return mergedDays;
 };
 
 // Writes the current status of the store based on the current time
 const currentStatus = (location, lang, debugTime) => {
-
     // When testing, the current time can be set to a specific time
     const now = debugTime ? new Date(parseInt(debugTime)) : new Date();
 
@@ -132,31 +118,15 @@ const currentStatus = (location, lang, debugTime) => {
 
     // Increment tempDate by 1 day until a day is found where the store is open
     while (
-        closedDates.map((element) => element.date) // Is it a holiday?
-            .includes(`${lookAheadDate.getMonth().toString().padStart(2, "0")}${lookAheadDate.getDate().toString().padStart(2, "0")}`)
-        ||
-        nextOpenHours.from_hour === null // Is it a weekday that is normally not open?
-        ||
-        nextOpenHours.to_hour === null // Is it a weekday that is normally not open?
-        ||
-        nextOpenHours.from_minute === null // Is it a weekday that is normally not open?
-        ||
-        nextOpenHours.to_minute === null // Is it a weekday that is normally not open?
-        ||
-        (
-            // Check if it is the first iteration and the store has closed for the day
-            lookAheadDate.getTime() === now.getTime()
-            &&
-            (
-                now.getHours() > nextOpenHours.to_hour
-                ||
-                (
-                    now.getHours() === nextOpenHours.to_hour
-                    &&
-                    now.getMinutes() >= nextOpenHours.to_minute
-                )
-            )
-        )
+        closedDates
+            .map((element) => element.date) // Is it a holiday?
+            .includes(`${lookAheadDate.getMonth().toString().padStart(2, "0")}${lookAheadDate.getDate().toString().padStart(2, "0")}`) ||
+        nextOpenHours.from_hour === null || // Is it a weekday that is normally not open?
+        nextOpenHours.to_hour === null || // Is it a weekday that is normally not open?
+        nextOpenHours.from_minute === null || // Is it a weekday that is normally not open?
+        nextOpenHours.to_minute === null || // Is it a weekday that is normally not open?
+        // Check if it is the first iteration and the store has closed for the day
+        (lookAheadDate.getTime() === now.getTime() && (now.getHours() > nextOpenHours.to_hour || (now.getHours() === nextOpenHours.to_hour && now.getMinutes() >= nextOpenHours.to_minute)))
     ) {
         // Increment tempDate by 1 day
         lookAheadDate.setDate(lookAheadDate.getDate() + 1);
