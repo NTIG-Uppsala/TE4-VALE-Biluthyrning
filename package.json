@@ -2,13 +2,13 @@
     "name": "te4-vale-biluthyrning",
     "version": "4.0.0",
     "description": "Webpage for the (fictional) NTB Car rental company",
-    "main": "server.js",
+    "main": "server/server.js",
     "directories": {
         "test": "tests"
     },
     "scripts": {
-        "start": "node ./server.js",
-        "migrate": "powershell prisma/get-sql.ps1"
+        "start": "node ./server/server.js",
+        "migrate": "powershell database/prisma/get-sql.ps1"
     },
     "repository": {
         "type": "git",

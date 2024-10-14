@@ -5,15 +5,15 @@ const dotenv = require("dotenv");
 const session = require("express-session");
 
 // Import custom helpers
-const handlebarsHelpers = require("./helpers/handlebars");
-const expressHelpers = require("./helpers/express");
-const dataHelpers = require("./helpers/data");
+const handlebarsHelpers = require("./scripts/handlebars");
+const expressHelpers = require("./scripts/expressHelpers");
+const dataHelpers = require("./scripts/dataHandler");
 
 // Create an Express application
 const app = express();
 
 // Load environment variables
-dotenv.config({ path: path.join(__dirname, ".env") });
+dotenv.config({ path: path.join(__dirname, "..", ".env") });
 
 // Set up Handlebars
 const hbs = handlebars.create({
@@ -29,7 +29,7 @@ app.set("views", path.join(__dirname, "views")); // Set views directory
 // Middleware setup
 app.use(express.urlencoded({ extended: false })); // Parse URL-encoded bodies
 app.use(express.json()); // Parse JSON bodies
-app.use(express.static(path.join(__dirname, "public"))); // Serve static files
+app.use(express.static(path.join(__dirname, "..", "public"))); // Serve static files
 app.use(
     session({
         secret: process.env.SESSION_SECRET,
