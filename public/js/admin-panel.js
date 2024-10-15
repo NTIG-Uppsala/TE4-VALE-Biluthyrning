@@ -6,13 +6,15 @@ const submitForm = async (event) => {
     const data = await fetchData();
 
     // The newly updated data from the admin panel
-    const updatedData = Array.from(document.querySelectorAll("form>input"))
+    const updatedData = {};
+    Array.from(document.querySelectorAll("form>input"))
         .filter((input) => {
             return input.placeholder !== input.value;
         })
-        .map((input) => {
-            return { [input.dataset.key]: input.value };
+        .forEach((input) => {
+            updatedData[input.dataset.key] = input.value;
         });
+    console.log(updatedData);
 
     try {
         const response = await fetch("/POST/set-data", {
@@ -26,8 +28,8 @@ const submitForm = async (event) => {
         });
 
         if (response.ok) {
-            alert("Updated ", updatedData);
             // Handle success (e.g., redirect or show success message)
+            alert("Updated ", JSON.stringify(updatedData));
 
         } else {
             const error = await response.json();
