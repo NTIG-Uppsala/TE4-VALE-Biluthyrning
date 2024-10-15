@@ -88,12 +88,17 @@ dbLanguages.connect((err) => {
     console.log("Connected to database");
 });
 
+const acceptedLanguages = ["sv", "en", "fi"];
+
 // Routes
 // Index / Home page
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
+    const language = req.session.language || req.acceptsLanguages(...acceptedLanguages) || "en";
+    const location = req.session.location || "kiruna";
+    const locationDb = location === "kiruna" ? dbKiruna : dbLulea;
     const data = {
-        lang: dataHelpers.getLanguage(req),
-        location: dataHelpers.getLocation(req),
+        lang: await dataHelpers.getLanguage(dbLanguages, language),
+        location: await dataHelpers.getLocation(locationDb),
         debugTime: req.query.debugKey === process.env.DEBUG_KEY ? req.query.debugTime : null,
     };
     expressHelpers.renderPage(req, res, data, "index");
@@ -124,15 +129,17 @@ app.post("/POST/location", (req, res) => {
 });
 
 // Client requests for the location data
-app.get("/GET/location", (req, res) => {
-    const data = dataHelpers.getLocation(req);
+app.get("/GET/location", async (req, res) => {
+    const location = req.session.location || "kiruna";
+    const locationDb = location === "kiruna" ? dbKiruna : dbLulea;
+    const data = await dataHelpers.getLocation(locationDb);
     res.setHeader("Content-Type", "application/json");
     res.json(data);
 });
 
 // Client requests for the language data
-app.get("/GET/language", (req, res) => {
-    const data = dataHelpers.getLanguage(req);
+app.get("/GET/language", async (req, res) => {
+    const data = await dataHelpers.getLanguage(dbLanguages, language);
     res.setHeader("Content-Type", "application/json");
     res.json(data);
 });
