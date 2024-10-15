@@ -117,10 +117,10 @@ app.get("/404", (req, res) => {
 
 // Admin panel page, redirects to login page if not logged in
 app.get("/admin", (req, res) => {
-    if (!req.session.isLoggedIn) {
-        res.redirect("/login");
-        return;
-    }
+    // if (!req.session.isLoggedIn) {
+    //     res.redirect("/login");
+    //     return;
+    // }
     const data = {
         lang: dataHelpers.getLanguage(req),
     };

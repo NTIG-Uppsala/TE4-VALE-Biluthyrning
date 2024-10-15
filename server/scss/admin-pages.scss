@@ -1,3 +1,4 @@
+// Everything
 * {
     padding: 0;
     margin: 0;
@@ -6,12 +7,44 @@
     font-family: sans-serif;
 }
 
-.login-page-body {
+// Wide selectors 
+body {
     width: 100dvw;
     max-width: 100%;
 
     &>main {
         width: 100%;
+    }
+}
+
+form>button {
+
+    font-weight: bold;
+
+    color: white;
+    background-color: #0066cc;
+
+    &:hover {
+        background-color: #0055bb;
+    }
+}
+
+form * {
+    padding: 0.5rem;
+}
+
+form input,
+form button {
+    border: none;
+    appearance: none;
+
+    border-radius: 0.4rem;
+    border: 0.01rem solid #0066cc;
+}
+
+// Specific selectors
+.login-page-body {
+    &>main {
         padding-top: 20dvh;
 
         display: flex;
@@ -19,25 +52,55 @@
         align-items: center;
         row-gap: 1rem;
 
-        &>form * {
-            padding: 0.5rem;
-            
-            border: none;
-            appearance: none;
+    }
+}
 
-            border-radius: 0.4rem;
-            border: 0.01rem solid #0066cc;
+.admin-panel-page {
+    &>header {
+        border-bottom: 0.01rem solid black;
+
+        padding: 0.9rem;
+
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        column-gap: 2rem;
+
+        &>h1 {
+            font-size: 1.5rem;
         }
+    }
 
-        &>form>button {
+    &>main {
+        display: flex;
+        flex-flow: row wrap;
 
-            font-weight: bold;
+        gap: 0.5rem;
+        padding: 0.5rem;
 
-            color: white;
-            background-color: #0066cc;
+        .info-bubble {
+            padding: 0.5rem;
 
-            &:hover {
-                background-color: #0055bb;
+            border: 0.01rem solid black;
+            border-radius: 0.4rem;
+
+            background-color: #f0f0f0;
+
+            display: flex;
+            flex-flow: column nowrap;
+
+            width: max-content;
+            height: max-content;
+
+            &>form {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+
+                gap: 0.5rem;
+
+                &>button {
+                    grid-column: 2;
+                }
             }
         }
     }
