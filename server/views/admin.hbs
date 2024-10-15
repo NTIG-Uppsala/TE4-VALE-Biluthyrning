@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="{{lang.lang}}">
+
+<head>
+   <meta name="robots" content="noindex, nofollow" />
+   <meta name="googlebot" content="noindex, nofollow" />
+
+   <noscript>
+      <meta http-equiv="refresh" content="0;url=/noscript">
+   </noscript>
+
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <link rel="stylesheet" href="../scss/admin-pages.scss">
+
+   <title>{{lang.admin}}</title>
+
+   <script src="js/call-backend.js"></script>
+   <script defer src="js/admin-panel.js"></script>
+</head>
+
+<body class="admin-panel-page">
+   <header>
+      <h1>NTB {{location.location}} - {{lang.admin_panel_header}}</h1>
+
+      <button class="log-out-button" data-href="/">{{lang.admin_back_to_index}}</button>
+
+      <button class="log-out-button" data-href="/login">{{lang.admin_log_out}}</button>
+   </header>
+
+   <main>
+      {{!--
+      To add another info bubble, copy one in this comment and populate all the {{}} areas with the correct data.
+
+      <section class="info-bubble">
+         <h2>{{lang.bubble_category_name}}</h2>
+
+         <form>
+            <label for="some-id">{{lang.label_text_content}}</label>
+            <input id="some-id" type="text" placeholder="{{location.the_same_data_key}}" value="{{location.the_same_data_key}}" data-key="the_same_data_key">
+
+            <label for="some-id">{{lang.label_text_content}}</label>
+            <input id="some-id" type="text" placeholder="{{location.the_same_data_key}}" value="{{location.the_same_data_key}}" data-key="the_same_data_key">
+
+            <label for="some-id">{{lang.label_text_content}}</label>
+            <input id="some-id" type="text" placeholder="{{location.the_same_data_key}}" value="{{location.the_same_data_key}}" data-key="the_same_data_key">
+
+            <button type="submit">{{lang.admin_update_button}}</button>
+         </form>
+      </section>
+      --}}
+
+      <section class="info-bubble">
+         <h2>{{lang.admin_contact_info}}</h2>
+
+         <form>
+            <label for="phone-number">{{lang.phone}}</label>
+            <input id="phone-number" type="text" placeholder="{{location.phone_number}}" value="{{location.phone_number}}" data-key="phone_number">
+
+            <label for="email">{{lang.email}}</label>
+            <input id="email" type="text" placeholder="{{location.mail}}" , value="{{location.mail}}" data-key="mail">
+
+            <button type="submit">{{lang.admin_update_button}}</button>
+         </form>
+      </section>
+
+      <section class="info-bubble">
+         <h2>{{lang.admin_location_info}}</h2>
+
+         <form>
+            <label for="city">{{lang.admin_city}}</label>
+            <input id="city" type="text" placeholder="{{location.location}}" , value="{{location.location}}" data-key="location">
+
+            <label for="address">{{lang.address}}</label>
+            <input id="address" type="text" placeholder="{{location.address}}" , value="{{location.address}}" data-key="address">
+
+            <label for="zip-code">{{lang.zip_code}}</label>
+            <input id="zip-code" type="text" placeholder="{{location.zip_code}}" value="{{location.zip_code}}" data-key="zip_code">
+
+            <label for="city-in-address">{{lang.admin_address_city}}</label>
+            <input id="city-in-address" type="text" placeholder="{{location.city}}" value="{{location.city}}" data-key="city">
+
+            <button type="submit">{{lang.admin_update_button}}</button>
+         </form>
+      </section>
+   </main>
+</body>
+
+</html>

@@ -42,4 +42,4 @@ Press `CTRL + D` when focused on the terminal.
 
 ---
 
-[Back to README](/README.md)
+[Back to README.](/README.md)

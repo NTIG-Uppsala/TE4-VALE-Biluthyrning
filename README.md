@@ -10,11 +10,40 @@
 -   [Programming Languages](/docs/programming-languages.md)
 
 -   [Connecting to Our Servers](/docs/connecting-to-our-servers.md)
--   [How to Set Up a New Web Server](/docs/web-server.md)
+-   [Connect to and Modify Database](docs/database.md)
+-   [How to Set Up a New Web Server](/docs/web-server-setup.md)
 -   [Backend Setup](/docs/backend-setup.md)
 -   [Running the Backend Locally](/docs/running-the-backend.md)
 -   [Running Tests](/docs/testing.md)
 -   [Maintaining the Codebase](/docs/maintenance.md)
+
+
+
+## Compiling
+
+In order to compile the project, [Node.js](https://nodejs.org/en/download/prebuilt-installer) version 20.18.0 has to be installed and working.
+Afterwards install the required packages with:
+
+```bash
+npm install js-yaml handlebars dotenv cross-env
+```
+
+To compile the project, run the [hbs-compiler.js](scripts/hbs-compiler.js) script with:
+
+```bash
+node scripts/hbs-compiler.js
+```
+
+This will generate all the necessary html files from the [index.hbs](views/index.hbs) file.
+
+
+## Changing Open Hours
+
+To change the open hours that appear on the site, you have to change `open_hours` and/or `july_open_hours` in the [kiruna.yml](data/kiruna.yml) and/or [lulea.yml](data/lulea.yml) file.
+
+To change closed days change the text content of a table in the [index.hbs](views/index.hbs) file and change the closedDates object in the [openHours.js](public/js/openHours.js) file.
+
+
 
 ## Flag Icons
 

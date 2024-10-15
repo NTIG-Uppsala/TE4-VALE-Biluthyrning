@@ -5,7 +5,7 @@ const buttons = document.querySelectorAll("#vat-button, #no-vat-button");
 (async () => {
     const data = await fetchData();
     // The value added tax (swe: moms) is 25%
-    const vat = data.locationData.vat_on_cars;
+    const vat = data.locationData.vat_on_car;
 
     // Get all the prices from the table
     const priceDOMs = Array.from(document.querySelectorAll(".our-cars-table .price"));

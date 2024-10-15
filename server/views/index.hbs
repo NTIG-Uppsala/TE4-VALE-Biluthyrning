@@ -81,8 +81,8 @@
             <input type="hidden" name="route" value="" />
 
             <select name="language" onchange="this.form.submit()">
-                {{#each (order location.languages lang.lang "code")}}
-                <option value="{{this.code}}">{{this.name}}</option>
+                {{#each (order location.languages lang.lang "language_code")}}
+                <option value="{{this.language_code}}">{{this.language_name}}</option>
                 {{/each}}
             </select>
 
@@ -115,7 +115,7 @@
 
             <p>
                 {{lang.phone_contact_pt1}}
-                <a href="tel:{{location.phone_number_html}}">{{location.phone_number_text}}</a>
+                <a href="tel:{{format location.phone_number}}">{{location.phone_number}}</a>
                 {{lang.phone_contact_pt2}}
             </p>
         </section>
@@ -240,13 +240,12 @@
 
         <section class="closed-dates-section" id="closed-dates-container">
             <h2>{{lang.closed_dates}}</h2>
-
             <table class="closed-dates-table">
                 <tbody>
                     {{#each (sort location.closed_dates debugTime)}}
                     <tr>
-                        <td>{{translate @root.lang this.date_key}}</td>
-                        <td>{{translate @root.lang this.name_key}}</td>
+                        <td>{{translate @root.lang this.date_name}}</td>
+                        <td>{{translate @root.lang this.holiday}}</td>
                         <td>{{translate @root.lang this.hours}}</td>
                     </tr>
                     {{/each}}
@@ -258,7 +257,7 @@
     <footer>
         <section>
             <h4>{{lang.phone}}</h4>
-            <a href="tel:{{location.phone_number_html}}" target="_blank">{{location.phone_number_text}}</a>
+            <a href="tel:{{format location.phone_number}}" target="_blank">{{location.phone_number}}</a>
         </section>
 
         <section>
@@ -276,7 +275,7 @@
         </section>
 
         <section id="social-media-container">
-            {{#each location.social_medias}}
+            {{#each location.social_media}}
             <a href="{{this.url}}" target="_blank">
                 <img src="{{this.icon}}" data-source="{{this.source}}" alt="{{this.name}}" />
             </a>

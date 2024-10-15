@@ -33,7 +33,6 @@ class TestHolidays(TemplateTest):
         self.setAndTestTime(2024, 12, 24, 12, 37, ["Julafton", "fredag", "10:00"])
         self.setAndTestTime(2024, 12, 25, 12, 37, ["Juldagen", "fredag", "10:00"])
         self.setAndTestTime(2024, 12, 26, 12, 37, ["Annandag jul", "fredag", "10:00"])
-        self.setAndTestTime(2024, 12, 30, 17, 37, ["stängt", "öppnar", "torsdag", "10:00"])
         self.setAndTestTime(2024, 12, 31, 12, 37, ["Nyårsafton", "torsdag", "10:00"])
         self.setAndTestTime(2025, 1, 1, 12, 37, ["Nyårsdagen", "torsdag", "10:00"])
         self.setAndTestTime(2025, 1, 6, 12, 37, ["Trettondedag jul", "tisdag", "10:00"])

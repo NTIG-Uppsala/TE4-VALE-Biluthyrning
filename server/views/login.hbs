@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="{{lang.lang}}">
+
+<head>
+   <meta name="robots" content="noindex, nofollow" />
+   <meta name="googlebot" content="noindex, nofollow" />
+
+   <noscript>
+      <meta http-equiv="refresh" content="0;url=/noscript">
+   </noscript>
+
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <link rel="stylesheet" href="../scss/admin-pages.scss">
+
+   <title>{{lang.login}}</title>
+
+   <script src="js/call-backend.js"></script>
+   <script defer src="js/login.js"></script>
+</head>
+
+<body class="login-page-body">
+   <main>
+      <h1>NTB Admin Login</h1>
+
+      {{!-- The password input for the admin page --}}
+      <form>
+         <input type="password" placeholder="{{lang.password}}">
+
+         <button type="submit">{{lang.submit}}</button>
+      </form>
+   </main>
+</body>
+
+</html>

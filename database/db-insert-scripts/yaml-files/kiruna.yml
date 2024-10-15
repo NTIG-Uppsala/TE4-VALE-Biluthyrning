@@ -1,0 +1,215 @@
+location_info:
+  folder: "kiruna"
+  key: "kiruna"
+  zip_code: "981 39"
+  address: "Fjällgatan 32H"
+  location: "Kiruna"
+  city: "Kiruna"
+  phone_number: "+46 63-055 55 55"
+  mail: "info@ntbhyr.se"
+  vat_on_car: 1.25
+languages:
+  - language_name: "Svenska"
+    language_code: "sv"
+  - language_name: "English"
+    language_code: "en"
+  - language_name: "Suomi"
+    language_code: "fi"
+closed_dates:
+    - holiday: "new_years_day"
+      date_name: "january_1"
+      hours: "closed"
+      date_code: "0001"
+    - holiday: "epiphany"
+      date_name: "january_6"
+      hours: "closed"
+      date_code: "0006"
+    - holiday: "labour_day"
+      date_name: "may_1"
+      hours: "closed"
+      date_code: "0401"
+    - holiday: "national_day"
+      date_name: "june_6"
+      hours: "closed"
+      date_code: "0506"
+    - holiday: "christmas_eve"
+      date_name: "december_24"
+      hours: "closed"
+      date_code: "1124"
+    - holiday: "christmas_day"
+      date_name: "december_25"
+      hours: "closed"
+      date_code: "1125"
+    - holiday: "boxing_day"
+      date_name: "december_26"
+      hours: "closed"
+      date_code: "1126"
+    - holiday: "new_years_eve"
+      date_name: "december_31"
+      hours: "closed"
+      date_code: "1131"
+zip_codes:
+    - zip_code: "98138"
+      price: "199 kr"
+    - zip_code: "98140"
+      price: "199 kr"
+    - zip_code: "98141"
+      price: "199 kr"
+    - zip_code: "98144"
+      price: "299 kr"
+    - zip_code: "98146"
+      price: "299 kr"
+    - zip_code: "98147"
+      price: "299 kr"
+open_hours:
+    - day: "monday"
+      hours: "10:00 - 16:00"
+      from_hour: 10
+      to_hour: 16
+      from_minute: 0
+      to_minute: 0
+      index: 1
+    - day: "tuesday"
+      hours: "10:00 - 16:00"
+      from_hour: 10
+      to_hour: 16
+      from_minute: 0
+      to_minute: 0
+      index: 2
+    - day: "wednesday"
+      hours: "10:00 - 16:00"
+      from_hour: 10
+      to_hour: 16
+      from_minute: 0
+      to_minute: 0
+      index: 3
+    - day: "thursday"
+      hours: "10:00 - 16:00"
+      from_hour: 10
+      to_hour: 16
+      from_minute: 0
+      to_minute: 0
+      index: 4
+    - day: "friday"
+      hours: "10:00 - 16:00"
+      from_hour: 10
+      to_hour: 16
+      from_minute: 0
+      to_minute: 0
+      index: 5
+    - day: "saturday"
+      hours: "11:00 - 15:00"
+      from_hour: 11
+      to_hour: 15
+      from_minute: 0
+      to_minute: 0
+      index: 6
+    - day: "sunday"
+      hours: "closed"
+      from_hour: null # null means closed
+      to_hour: null # null means closed
+      from_minute: null # null means closed
+      to_minute: null # null means closed
+      index: 0
+special_open_hours:
+    - month: 6
+      open_hours:
+          - day: "monday"
+            hours: "12:00 - 16:00"
+            from_hour: 12
+            to_hour: 16
+            from_minute: 0
+            to_minute: 0
+            index: 1
+          - day: "tuesday"
+            hours: "12:00 - 16:00"
+            from_hour: 12
+            to_hour: 16
+            from_minute: 0
+            to_minute: 0
+            index: 2
+          - day: "wednesday"
+            hours: "12:00 - 15:00"
+            from_hour: 12
+            to_hour: 15
+            from_minute: 0
+            to_minute: 0
+            index: 3
+          - day: "thursday"
+            hours: "12:00 - 16:00"
+            from_hour: 12
+            to_hour: 16
+            from_minute: 0
+            to_minute: 0
+            index: 4
+          - day: "friday"
+            hours: "12:00 - 16:00"
+            from_hour: 12
+            to_hour: 16
+            from_minute: 0
+            to_minute: 0
+            index: 5
+          - day: "saturday"
+            hours: "12:00 - 15:00"
+            from_hour: 12
+            to_hour: 15
+            from_minute: 0
+            to_minute: 0
+            index: 6
+          - day: "sunday"
+            hours: "closed"
+            from_hour: null # null means closed
+            to_hour: null # null means closed
+            from_minute: null # null means closed
+            to_minute: null # null means closed
+            index: 0
+social_media:
+    - name: "Facebook"
+      url: "https://www.facebook.com/ntiuppsala"
+      icon: "assets/icons/icons8-facebook-material-outlined/icons8-facebook-192.png"
+      source: "https://icons8.com/icon/85330/facebook"
+    - name: "Instagram"
+      url: "https://www.instagram.com/ntiuppsala"
+      icon: "assets/icons/icons8-instagram-material-outlined/icons8-instagram-192.png"
+      source: "https://icons8.com/icon/85342/instagram"
+    - name: "X/Twitter"
+      url: "https://www.x.com/ntiuppsala"
+      icon: "assets/icons/icons8-twitterx-material-outlined/icons8-twitterx-192.png"
+      source: "https://icons8.com/icon/AsTsQrvtZVNv/twitterx"
+Cars:
+    - name: "Audi A6"
+      year: "2011"
+      price: 800
+    - name: "Audi S3"
+      year: "2015"
+      price: 450
+    - name: "Cadillac Escalade"
+      year: "1999"
+      price: 500
+    - name: "Kia Carens"
+      year: "2022"
+      price: 400
+    - name: "Kia Soul"
+      year: "2020"
+      price: 400
+    - name: "Mitsubishi Outlander"
+      year: "2018"
+      price: 450
+    - name: "Renault Kadjar"
+      year: "2020"
+      price: 250
+    - name: "Subaru Outback"
+      year: "2020"
+      price: 300
+    - name: "Volvo XC40"
+      year: "2018"
+      price: 800
+    - name: "VW Polo"
+      year: "2022"
+      price: 300
+locations:
+    - name: "Luleå"
+      code: "lulea"
+    - name: "Kiruna"
+      code: "kiruna"
+ 

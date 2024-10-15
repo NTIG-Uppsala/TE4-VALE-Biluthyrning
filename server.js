@@ -3,11 +3,26 @@ const path = require("path");
 const handlebars = require("express-handlebars");
 const dotenv = require("dotenv");
 const session = require("express-session");
+const bcrypt = require("bcryptjs");
+const fs = require("fs");
 
 // Import custom helpers
 const handlebarsHelpers = require("./helpers/handlebars");
 const expressHelpers = require("./helpers/express");
 const dataHelpers = require("./helpers/data");
+
+// Create logs folder if it doesn't exist
+const logsFolder = path.join(__dirname, "logs");
+
+if (!fs.existsSync(logsFolder)) {
+    fs.mkdirSync(logsFolder);
+}
+
+// Create a log file for the server using Date object to create a unique name
+const logStream = 
+    fs.createWriteStream(path.join(logsFolder, `server-${new Date().toISOString().replace(/:/g, "-")}.log`), 
+    { flags: "a" }
+);
 
 // Create an Express application
 const app = express();
@@ -49,6 +64,47 @@ app.get("/", (req, res) => {
     expressHelpers.renderPage(req, res, data, "index");
 });
 
+// 404 page
+app.get("/404", (req, res) => {
+    const data = {
+        lang: dataHelpers.getLanguage(req),
+    };
+    expressHelpers.renderPage(req, res, data, "404");
+});
+
+// Admin panel page, redirects to login page if not logged in
+app.get("/admin", (req, res) => {
+    if (!req.session.isLoggedIn) {
+        res.redirect("/login");
+        return;
+    }
+    const data = {
+        lang: dataHelpers.getLanguage(req),
+    };
+    expressHelpers.renderPage(req, res, data, "admin");
+});
+
+// Login page, redirects to admin page if already logged in
+app.get("/login", (req, res) => {
+    if (req.session.isLoggedIn) {
+        res.redirect("/admin");
+        return;
+    }
+    const data = {
+        lang: dataHelpers.getLanguage(req),
+    };
+    expressHelpers.renderPage(req, res, data, "login");
+});
+
+// Noscript (JavaScript disabled) page
+// Redirect from certain pages where JavaScript is strictly required if JavaScript is disabled
+app.get("/noscript", (req, res) => {
+    const data = {
+        lang: dataHelpers.getLanguage(req),
+    };
+    expressHelpers.renderPage(req, res, data, "noscript");
+});
+
 // Change page language
 app.post("/POST/language", (req, res) => {
     const { language, route } = req.body;
@@ -56,6 +112,7 @@ app.post("/POST/language", (req, res) => {
     req.session.save((err) => {
         if (err) {
             console.error(err);
+            logStream.write(`${new Date().toISOString()} - ${err}\n`);
         }
     });
     res.redirect(`/${route}`);
@@ -68,9 +125,17 @@ app.post("/POST/location", (req, res) => {
     req.session.save((err) => {
         if (err) {
             console.error(err);
+            logStream.write(`${new Date().toISOString()} - ${err}\n`);
         }
     });
     res.redirect(`/${route}`);
+});
+
+// Login route
+app.post("/POST/login", async (req, res) => {
+    console.log("Login route");
+    const { password } = req.body;
+    console.log(password);
 });
 
 // Client requests for the location data
@@ -87,9 +152,9 @@ app.get("/GET/language", (req, res) => {
     res.json(data);
 });
 
-// Default route for requests that don't match any other routes. It currently redirects to the home page.
+// Default route for requests that don't match any other routes. It currently redirects to the 404 page.
 app.use((req, res) => {
-    res.redirect("/");
+    res.redirect("/404");
 });
 
 // Start the server

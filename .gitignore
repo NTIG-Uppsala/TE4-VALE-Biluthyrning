@@ -5,4 +5,7 @@ notes.txt
 .env
 env
 todo
+prisma/migrations/0_init/migration.sql
+/prisma/seeds
 migration.sql
+logs/

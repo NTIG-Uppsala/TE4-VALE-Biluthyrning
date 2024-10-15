@@ -28,10 +28,10 @@
 
 -   [Python 3.12.5](https://www.python.org/downloads/release/python-3125/)
 
--   Node.js v20.18.0
+-   [Node.js](https://nodejs.org/en/download/prebuilt-installer) v20.18.0
 
 -   Handlebars v8.0.1
 
 ---
 
-[Back to README](/README.md)
+[Back to README.](/README.md)

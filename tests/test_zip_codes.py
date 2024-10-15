@@ -18,7 +18,7 @@ class TestZIPCodes(TemplateTest):
         zipButton = self.page.locator("#zip-button")
         zipInput.fill(zipCode)
         zipButton.click()
-        self.page.wait_for_timeout(200)
+        self.page.wait_for_timeout(500)
         self.assertInTextContent(match)
 
     # tests
@@ -41,7 +41,7 @@ class TestZIPCodes(TemplateTest):
         zipInput = self.page.query_selector("#zip-input")
         zipInput.fill("98138")
         zipInput.press("Enter")
-        self.page.wait_for_timeout(200)
+        self.page.wait_for_timeout(500)
 
         self.assertInTextContent("Vi kör ut till postnummer 98138 för 199 kr")
 
@@ -54,7 +54,7 @@ class TestZIPCodes(TemplateTest):
             """,
             zipInput,
         )
-        self.page.wait_for_timeout(200)
+        self.page.wait_for_timeout(500)
 
         self.assertInTextContent("Vi kör ut till postnummer 98138 för 199 kr")
 

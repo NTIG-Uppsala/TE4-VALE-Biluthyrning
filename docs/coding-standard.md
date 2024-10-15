@@ -122,4 +122,4 @@ var myVar = "newValue";
 
 ---
 
-[Back to README](/README.md)
+[Back to README.](/README.md)
