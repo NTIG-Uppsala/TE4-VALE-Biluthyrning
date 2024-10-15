@@ -149,7 +149,7 @@ app.get("/login", (req, res) => {
         res.redirect("/admin");
         return;
     }
-    
+
     const data = {
         lang: dataHelpers.getLanguage(req),
     };
@@ -234,7 +234,7 @@ app.get("/GET/language", async (req, res) => {
     res.json(data);
 });
 
-// Change location_info
+// Change info in the database
 app.post("/POST/set-data", (req, res) => {
     const { location_info } = req.body;
 
@@ -255,6 +255,7 @@ app.post("/POST/set-data", (req, res) => {
     }
 });
 
+// Log out route
 app.post("/POST/logout", (req, res) => {
     console.log("User logged out");
     req.session.isLoggedIn = false;
