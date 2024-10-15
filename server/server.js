@@ -4,6 +4,9 @@ const handlebars = require("express-handlebars");
 const dotenv = require("dotenv");
 const session = require("express-session");
 const mysql = require("mysql2")
+const bcrypt = require("bcryptjs");
+const fs = require("fs");
+const sass = require("sass");
 
 // Import custom helpers
 const handlebarsHelpers = require("./scripts/handlebars");
@@ -102,6 +105,59 @@ app.get("/", async (req, res) => {
         debugTime: req.query.debugKey === process.env.DEBUG_KEY ? req.query.debugTime : null,
     };
     expressHelpers.renderPage(req, res, data, "index");
+});
+
+// 404 page
+app.get("/404", (req, res) => {
+    const data = {
+        lang: dataHelpers.getLanguage(req),
+    };
+    expressHelpers.renderPage(req, res, data, "404");
+});
+
+// Admin panel page, redirects to login page if not logged in
+app.get("/admin", (req, res) => {
+    if (!req.session.isLoggedIn) {
+        res.redirect("/login");
+        return;
+    }
+    const data = {
+        lang: dataHelpers.getLanguage(req),
+    };
+    expressHelpers.renderPage(req, res, data, "admin");
+});
+
+// Login page, redirects to admin page if already logged in
+app.get("/login", (req, res) => {
+    if (req.session.isLoggedIn) {
+        res.redirect("/admin");
+        return;
+    }
+    const data = {
+        lang: dataHelpers.getLanguage(req),
+    };
+    expressHelpers.renderPage(req, res, data, "login");
+});
+
+// Noscript (JavaScript disabled) page
+// Redirect from certain pages where JavaScript is strictly required if JavaScript is disabled
+app.get("/noscript", (req, res) => {
+    const data = {
+        lang: dataHelpers.getLanguage(req),
+    };
+    expressHelpers.renderPage(req, res, data, "noscript");
+});
+
+// Route for SCSS requests and compiling to CSS
+app.get("/scss/:file", (req, res) => {
+    const file = req.params.file;
+    const scssFile = fs.readFileSync(path.join(__dirname, "scss", file), "utf8");
+    const result = sass.compileString(scssFile, {
+        sourceMap: true,
+        loadPaths: [path.join(__dirname, "scss")],
+    });
+    res.setHeader("Content-Type", "text/css");
+    res.send(result.css);
 });
 
 // Change page language
