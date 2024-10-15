@@ -2,10 +2,10 @@ CREATE TABLE `open_hours`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `day` VARCHAR(10) NOT NULL,
     `hours` VARCHAR(15) NOT NULL,
-    `from_hour` BIGINT COMMENT 'null in this field and the 3 below means closed',
-    `to_hour` BIGINT,
-    `from_minute` BIGINT,
-    `to_minute` BIGINT,
+    `from_hour` BIGINT NOT NULL COMMENT 'null in this field and the 3 below means closed',
+    `to_hour` BIGINT NOT NULL,
+    `from_minute` BIGINT NOT NULL,
+    `to_minute` BIGINT NOT NULL,
     `index` INT NOT NULL COMMENT 'this is the code for the weekday ( sunday = 0, saturday=6)'
 );
 CREATE TABLE `languages`(
@@ -28,8 +28,13 @@ CREATE TABLE `location_info`(
     `address` VARCHAR(50) NOT NULL,
     `location` VARCHAR(50) NOT NULL,
     `city` VARCHAR(50) NOT NULL,
-    `phone_number` VARCHAR(50) NOT NULL,
+    `phone_number` VARCHAR(15) NOT NULL,
     `mail` VARCHAR(50) NOT NULL
+);
+CREATE TABLE `locations`(
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(20) NOT NULL,
+    `code` VARCHAR(20) NOT NULL
 );
 CREATE TABLE `zip_codes`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -41,10 +46,10 @@ CREATE TABLE `special_open_hours`(
     `month` INT NOT NULL COMMENT 'month is an int of the data (6 = June)',
     `day` VARCHAR(10) NOT NULL,
     `hours` VARCHAR(15) NOT NULL,
-    `from_hour` BIGINT COMMENT 'null in this field and the 3 below means closed',
-    `to_hour` BIGINT,
-    `from_minute` BIGINT,
-    `to_minute` BIGINT,
+    `from_hour` BIGINT NOT NULL COMMENT 'null in this field and the 3 below means closed',
+    `to_hour` BIGINT NOT NULL,
+    `from_minute` BIGINT NOT NULL,
+    `to_minute` BIGINT NOT NULL,
     `index` BIGINT NOT NULL COMMENT 'this is the code for the weekday ( sunday = 0, saturday=6)'
 );
 CREATE TABLE `closed_dates`(
