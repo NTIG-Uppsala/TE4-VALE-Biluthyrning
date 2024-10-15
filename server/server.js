@@ -220,21 +220,16 @@ app.get("/GET/language", async (req, res) => {
     res.json(data);
 });
 
-// Default route for requests that don't match any other routes. It currently redirects to the 404 page.
-app.use((req, res) => {
-    res.redirect("/");
-});
-
 // Change location_info
 app.post("/POST/set-data", (req, res) => {
     const { location_info } = req.body;
 
     const keys = Object.keys(location_info);
     const values = Object.values(location_info);
-
+    
     for (let index = 0; index < keys.length; index++) {
         const updateQuery = "UPDATE location_info SET ?? = ? WHERE ?? = ?";
-
+        
         dbKiruna.query(updateQuery, [keys[index], values[index], keys[index], values[index]], (err, result) => {
             if (err) {
                 console.error("Error executing query:", err.stack);
@@ -255,6 +250,11 @@ app.post("/POST/logout", (req, res) => {
         }
     });
     res.redirect("/");
+});
+
+// Default route for requests that don't match any other routes. It currently redirects to the 404 page.
+app.use((req, res) => {
+    res.redirect("/404");
 });
 
 // Start the server
