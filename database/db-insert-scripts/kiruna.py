@@ -184,6 +184,22 @@ def insertCars(data):
             cursor.execute(insertQuery, (item['name'], item['year'], item['price']))
             print(f"Car {item['name']} from year {item['year']} added")
     connection.commit()
+    
+def insertLocations(data):
+    selectQuery = "SELECT COUNT(*) FROM locations WHERE name = %s"
+    insertQuery = """
+    INSERT INTO locations (name, code)
+    VALUES (%s, %s)
+    """
+    for item in data:
+        cursor.execute(selectQuery, (item['name'],))
+        result = cursor.fetchone()
+        if result[0] > 0:
+            print(f"Location {item['code']} already exists")
+        else:
+            cursor.execute(insertQuery, (item['name'], item['code']))
+            print(f"Location {item['code']} added")
+    connection.commit()
 
 # Directory containing the YAML files (same directory as the Python script)
 localesDir = os.path.dirname(__file__)
@@ -206,6 +222,7 @@ insertOpenHours(data['open_hours'])
 insertSpecialOpenHours(data['special_open_hours'])
 insertSocialMedia(data['social_media'])
 insertCars(data['Cars'])
+insertLocations(data['locations'])
 
 # Log a message indicating that the current YAML file has been processed
 logging.info(f"Processed {yamlFile}")

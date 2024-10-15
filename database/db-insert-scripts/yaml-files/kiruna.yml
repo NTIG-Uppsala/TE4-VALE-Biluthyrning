@@ -207,3 +207,9 @@ Cars:
     - name: "VW Polo"
       year: "2022"
       price: 300
+locations:
+    - name: "Luleå"
+      code: "lulea"
+    - name: "Kiruna"
+      code: "kiruna"
+ 
