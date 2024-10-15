@@ -30,7 +30,7 @@ const submitForm = async (event) => {
         });
 
         if (response.ok) {
-            // Handle success (e.g., redirect or show success message)
+            // Success message
             let alertString = "Updated: \n\n";
             for (const key in updatedData) {
                 alertString += ` - ${key}: ${data.locationData[key]} -> ${updatedData[key]}\n\n`;

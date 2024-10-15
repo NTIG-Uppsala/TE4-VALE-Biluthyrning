@@ -243,7 +243,6 @@
 
             <table class="closed-dates-table">
                 <tbody>
-                    {{log location.closed_dates}}
                     {{#each (sort location.closed_dates debugTime)}}
                     <tr>
                         <td>{{translate @root.lang this.date_name}}</td>
