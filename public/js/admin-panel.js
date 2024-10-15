@@ -26,7 +26,7 @@ const submitForm = async (event) => {
             headers: {
                 "Content-Type": "application/json",
                 // Pass CSRF token as a header for security
-                "CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                // "CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
             },
             body: JSON.stringify(updatedData),
         });
@@ -52,3 +52,11 @@ const submitForm = async (event) => {
 document.querySelectorAll("form>button[type='submit']").forEach((button) => {
     button.addEventListener("click", submitForm);
 });
+
+const logOut = async (redirectTo = "/") => {
+    const response = await fetch("/POST/logout", { method: "POST" });
+
+    if (response.ok) {
+        window.location.href = redirectTo;
+    }
+};

@@ -237,13 +237,24 @@ app.post("/POST/set-data", (req, res) => {
 
         dbKiruna.query(updateQuery, [keys[index], values[index], keys[index], values[index]], (err, result) => {
             if (err) {
-                console.error('Error executing query:', err.stack);
-                res.status(500).send('Error executing query');
+                console.error("Error executing query:", err.stack);
+                res.status(500).send("Error executing query");
                 return;
             }
-            res.status(200).send('Data updated');
+            res.status(200).send("Data updated");
         });
     }
+});
+
+app.post("/POST/logout", (req, res) => {
+    req.session.isLoggedIn = false;
+    req.session.save((error) => {
+        if (error) {
+            console.error(error);
+            logStream.write(`${new Date().toISOString()} - ${error}\n`);
+        }
+    });
+    res.redirect("/");
 });
 
 // Start the server
