@@ -3,6 +3,7 @@ const path = require("path");
 const handlebars = require("express-handlebars");
 const dotenv = require("dotenv");
 const session = require("express-session");
+const mysql = require("mysql2")
 
 // Import custom helpers
 const handlebarsHelpers = require("./scripts/handlebars");
@@ -37,6 +38,55 @@ app.use(
         saveUninitialized: false,
     })
 );
+
+// Database connection
+const dbKiruna = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_KIRUNA,
+    port: process.env.DB_PORT,
+});
+
+const dbLulea = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_LULEA,
+    port: process.env.DB_PORT,
+});
+
+const dbLanguages = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_LANGUAGES,
+    port: process.env.DB_PORT,
+});
+
+dbKiruna.connect((err) => {
+    if (err) {
+        console.error("Error connecting to database: ", err);
+        return;
+    }
+    console.log("Connected to database");
+});
+
+dbLulea.connect((err) => {
+    if (err) {
+        console.error("Error connecting to database: ", err);
+        return;
+    }
+    console.log("Connected to database");
+});
+
+dbLanguages.connect((err) => {
+    if (err) {
+        console.error("Error connecting to database: ", err);
+        return;
+    }
+    console.log("Connected to database");
+});
 
 // Routes
 // Index / Home page
