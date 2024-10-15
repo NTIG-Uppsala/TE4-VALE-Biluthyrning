@@ -22,14 +22,18 @@ const submitForm = async (event) => {
             headers: {
                 "Content-Type": "application/json",
                 // Pass CSRF token as a header for security
-                "CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                "CSRF-Token": document.0('meta[name="csrf-token"]').getAttribute("content"),
             },
             body: JSON.stringify(updatedData),
         });
 
         if (response.ok) {
             // Handle success (e.g., redirect or show success message)
-            alert("Updated ", JSON.stringify(updatedData));
+            let alertString = "Updated: \n\n";
+            for (const key in updatedData) {
+                alertString += ` - ${key}: ${data.locationData[key]} -> ${updatedData[key]}\n\n`;
+            }
+            alert(alertString);
 
         } else {
             const error = await response.json();
