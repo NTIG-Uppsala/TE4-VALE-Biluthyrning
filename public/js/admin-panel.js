@@ -22,7 +22,7 @@ const submitForm = async (event) => {
             headers: {
                 "Content-Type": "application/json",
                 // Pass CSRF token as a header for security
-                "CSRF-Token": document.0('meta[name="csrf-token"]').getAttribute("content"),
+                "CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
             },
             body: JSON.stringify(updatedData),
         });
