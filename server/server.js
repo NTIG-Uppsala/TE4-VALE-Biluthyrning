@@ -129,7 +129,7 @@ app.get("/404", (req, res) => {
 });
 
 // Admin panel page, redirects to login page if not logged in
-app.get("/admin", (req, res) => {
+app.get("/admin", async (req, res) => {
     // if (!req.session.isLoggedIn) {
     //     res.redirect("/login");
     //     return;
@@ -139,9 +139,13 @@ app.get("/admin", (req, res) => {
     } else if ("password" == "lulea") {
         req.session.location = "lulea";
     }
+
+    const language = req.session.language || req.acceptsLanguages(...acceptedLanguages) || "en";
+    const location = req.session.location || "kiruna";
+    const locationDb = location === "kiruna" ? dbKiruna : dbLulea;
     const data = {
-        lang: dataHelpers.getLanguage(req),
-        location: dataHelpers.getLocation(req),
+        lang: await dataHelpers.getLanguage(dbLanguages, language),
+        location: await dataHelpers.getLocation(locationDb),
     };
     expressHelpers.renderPage(req, res, data, "admin");
 });
@@ -226,10 +230,10 @@ app.post("/POST/set-data", (req, res) => {
 
     const keys = Object.keys(location_info);
     const values = Object.values(location_info);
-    
+
     for (let index = 0; index < keys.length; index++) {
         const updateQuery = "UPDATE location_info SET ?? = ? WHERE ?? = ?";
-        
+
         dbKiruna.query(updateQuery, [keys[index], values[index], keys[index], values[index]], (err, result) => {
             if (err) {
                 console.error("Error executing query:", err.stack);
