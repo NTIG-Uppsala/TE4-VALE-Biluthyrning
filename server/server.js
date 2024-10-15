@@ -117,12 +117,18 @@ app.get("/404", (req, res) => {
 
 // Admin panel page, redirects to login page if not logged in
 app.get("/admin", (req, res) => {
-    // if (!req.session.isLoggedIn) {
-    //     res.redirect("/login");
-    //     return;
-    // }
+    if (!req.session.isLoggedIn) {
+        res.redirect("/login");
+        return;
+    }
+    if ("password" == "kiruna") {
+        req.session.location = "kiruna";
+    } else if ("password" == "lulea") {
+        req.session.location = "lulea";
+    }
     const data = {
         lang: dataHelpers.getLanguage(req),
+        location: dataHelpers.getLocation(req),
     };
     expressHelpers.renderPage(req, res, data, "admin");
 });
@@ -201,7 +207,12 @@ app.get("/GET/language", async (req, res) => {
     res.json(data);
 });
 
-// Default route for requests that don't match any other routes. It currently redirects to the home page.
+// Post, change data
+app.post("/POST/set-data", (req, res) => {
+    console.log("Post, change data");
+});
+
+// Default route for requests that don't match any other routes. It currently redirects to the 404 page.
 app.use((req, res) => {
     res.redirect("/");
 });

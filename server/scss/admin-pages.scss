@@ -26,6 +26,7 @@ form>button {
 
     &:hover {
         background-color: #0055bb;
+        cursor: pointer;
     }
 }
 
@@ -79,6 +80,10 @@ form button {
         padding: 0.5rem;
 
         .info-bubble {
+            &>h2 {
+                padding: 0 0 0.5rem 0.5rem;
+            }
+
             padding: 0.5rem;
 
             border: 0.01rem solid black;
