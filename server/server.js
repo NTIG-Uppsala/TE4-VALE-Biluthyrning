@@ -13,6 +13,19 @@ const handlebarsHelpers = require("./scripts/handlebars");
 const expressHelpers = require("./scripts/expressHelpers");
 const dataHelpers = require("./scripts/dataHandler");
 
+// Create logs folder if it doesn't exist
+const logsFolder = path.join(__dirname, "logs");
+
+if (!fs.existsSync(logsFolder)) {
+    fs.mkdirSync(logsFolder);
+}
+
+// Create a log file for the server using Date object to create a unique name
+const logStream =
+    fs.createWriteStream(path.join(logsFolder, `server-${new Date().toISOString().replace(/:/g, "-")}.log`),
+        { flags: "a" }
+    );
+
 // Create an Express application
 const app = express();
 
@@ -210,6 +223,27 @@ app.get("/GET/language", async (req, res) => {
 // Default route for requests that don't match any other routes. It currently redirects to the 404 page.
 app.use((req, res) => {
     res.redirect("/");
+});
+
+// Change location_info
+app.post("/POST/set-data", (req, res) => {
+    const { location_info } = req.body;
+
+    const keys = Object.keys(location_info);
+    const values = Object.values(location_info);
+
+    for (let index = 0; index < keys.length; index++) {
+        const updateQuery = "UPDATE location_info SET ?? = ? WHERE ?? = ?";
+
+        dbKiruna.query(updateQuery, [keys[index], values[index], keys[index], values[index]], (err, result) => {
+            if (err) {
+                console.error('Error executing query:', err.stack);
+                res.status(500).send('Error executing query');
+                return;
+            }
+            res.status(200).send('Data updated');
+        });
+    }
 });
 
 // Start the server
