@@ -51,11 +51,11 @@ Below are the diagrams for each schema:
 
 To create all the empty tables for the **Translation** schema, you can either import the SQL file below into Workbench or simply copy and paste the code:
 
-- [Translation SQL](../sql/Translation.sql)
+- [Translation SQL](../database/sql/Translation.sql)
 
 To create the tables for either the **Lulea** or **Kiruna** schemas (they share the same structure), follow the same steps with the file below:
 
-- [Kiruna and Lulea SQL](../sql/Kiruna_and_Lulea.sql)
+- [Kiruna and Lulea SQL](../database/sql/Kiruna_and_Lulea.sql)
 
 ## Insert Data into Schemas
 
@@ -79,13 +79,13 @@ pip install pyyaml python-dotenv mysql-connector-python
 _*Download the .env file by clicking on the hyperlink and place the file in the root folder of the project. Also make sure it is named ".env" and not "env"._
 
 - **Schemas:**
-  - [Kiruna Schema](../db-insert-scripts/kiruna.py)
-  - [Lulea Schema](../db-insert-scripts/lulea.py)
+  - [Kiruna Schema](../database/db-insert-scripts/kiruna.py)
+  - [Lulea Schema](../database/db-insert-scripts/lulea.py)
 
 - **Translation Schema:**
-  - [Translation Keys Table](../db-insert-scripts/translation-keys.py)
-  - [Languages Table](../db-insert-scripts/languages.py)
-  - [Translations Table](../db-insert-scripts/translations.py)
+  - [Translation Keys Table](../database/db-insert-scripts/translation-keys.py)
+  - [Languages Table](../database/db-insert-scripts/languages.py)
+  - [Translations Table](../database/db-insert-scripts/translations.py)
 
 **Note:** If you want to add new data, edit the corresponding YAML file, ensuring the structure is maintained. If you decide to create a new YAML file you need to edit which file the python script is reading by editing the `yamlFile` variable.
 
