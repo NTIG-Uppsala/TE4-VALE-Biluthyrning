@@ -16,14 +16,12 @@ const order = (items, language, key) => {
 
 // Sort the holidays by moving the ones after the current date to the beginning of the array
 const sort = (holidays, debugTime) => {
-
     // When testing, the current time can be set to a specific time
     const now = debugTime ? new Date(parseInt(debugTime)) : new Date();
 
     const dateString = `${now.getMonth().toString().padStart(2, "0")}${now.getDate().toString().padStart(2, "0")}`;
-    const datesBefore = holidays.filter((day) => day.date < dateString);
-    const datesAfter = holidays.filter((day) => day.date >= dateString);
-
+    const datesBefore = holidays.filter((day) => day.date_code < dateString);
+    const datesAfter = holidays.filter((day) => day.date_code >= dateString);
     return datesAfter.concat(datesBefore);
 };
 
@@ -37,7 +35,7 @@ const merge = (dayObjects, differingOpeningHours, lang, debugTime) => {
     const monthsWithDifferingOpeningHours = differingOpeningHours.map((element) => element.month);
     if (monthsWithDifferingOpeningHours.includes(now.getMonth())) {
         openDays = differingOpeningHours.find((element) => element.month === now.getMonth()).open_hours;
-    } else {
+    } else {    
         openDays = dayObjects;
     }
 

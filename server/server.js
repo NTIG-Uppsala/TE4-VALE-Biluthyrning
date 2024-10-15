@@ -69,7 +69,7 @@ dbKiruna.connect((err) => {
         console.error("Error connecting to database: ", err);
         return;
     }
-    console.log("Connected to database");
+    console.log("Connected to Kiruna database");
 });
 
 dbLulea.connect((err) => {
@@ -77,7 +77,7 @@ dbLulea.connect((err) => {
         console.error("Error connecting to database: ", err);
         return;
     }
-    console.log("Connected to database");
+    console.log("Connected to Luleå database");
 });
 
 dbLanguages.connect((err) => {
@@ -85,7 +85,7 @@ dbLanguages.connect((err) => {
         console.error("Error connecting to database: ", err);
         return;
     }
-    console.log("Connected to database");
+    console.log("Connected to Languages database");
 });
 
 const acceptedLanguages = ["sv", "en", "fi"];
@@ -139,6 +139,7 @@ app.get("/GET/location", async (req, res) => {
 
 // Client requests for the language data
 app.get("/GET/language", async (req, res) => {
+    const language = req.session.language || req.acceptsLanguages(...acceptedLanguages) || "en";
     const data = await dataHelpers.getLanguage(dbLanguages, language);
     res.setHeader("Content-Type", "application/json");
     res.json(data);
