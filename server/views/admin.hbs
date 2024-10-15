@@ -24,9 +24,9 @@
    <header>
       <h1>NTB {{location.location}} - {{lang.admin_panel_header}}</h1>
 
-      <a href="" onclick="logOut('/')">{{lang.admin_back_to_index}}</a>
+      <button class="log-out-button" data-href="/">{{lang.admin_back_to_index}}</button>
 
-      <a href="" onclick="logOut('/login')">{{lang.admin_log_out}}</a>
+      <button class="log-out-button" data-href="/login">{{lang.admin_log_out}}</button>
    </header>
 
    <main>
@@ -56,7 +56,7 @@
 
          <form>
             <label for="phone-number">{{lang.phone}}</label>
-            <input id="phone-number" type="text" placeholder="{{location.phone_number_html}}" value="{{location.phone_number_html}}" data-key="phone_number_html">
+            <input id="phone-number" type="text" placeholder="{{location.phone_number_text}}" value="{{location.phone_number_text}}" data-key="phone_number_text">
 
             <label for="email">{{lang.email}}</label>
             <input id="email" type="text" placeholder="{{location.mail}}" , value="{{location.mail}}" data-key="mail">

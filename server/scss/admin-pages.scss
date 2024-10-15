@@ -70,6 +70,23 @@ form button {
         &>h1 {
             font-size: 1.5rem;
         }
+
+        &>button {
+            appearance: none;
+            border: none;
+            background: none;
+            background-image: none;
+
+            text-decoration: underline;
+
+            font-size: 1rem;
+            color: #0066cc;
+
+            &:hover {
+                cursor: pointer;
+                color: #0055bb;
+            }
+        }
     }
 
     &>main {

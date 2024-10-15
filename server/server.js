@@ -140,12 +140,9 @@ app.get("/admin", async (req, res) => {
         req.session.location = "lulea";
     }
 
-    const language = req.session.language || req.acceptsLanguages(...acceptedLanguages) || "en";
-    const location = req.session.location || "kiruna";
-    const locationDb = location === "kiruna" ? dbKiruna : dbLulea;
     const data = {
-        lang: await dataHelpers.getLanguage(dbLanguages, language),
-        location: await dataHelpers.getLocation(locationDb),
+        lang: dataHelpers.getLanguage(req),
+        location: dataHelpers.getLocation(req),
     };
     expressHelpers.renderPage(req, res, data, "admin");
 });
@@ -246,6 +243,7 @@ app.post("/POST/set-data", (req, res) => {
 });
 
 app.post("/POST/logout", (req, res) => {
+    console.log("User logged out");
     req.session.isLoggedIn = false;
     req.session.save((error) => {
         if (error) {
@@ -253,7 +251,7 @@ app.post("/POST/logout", (req, res) => {
             logStream.write(`${new Date().toISOString()} - ${error}\n`);
         }
     });
-    res.redirect("/");
+    res.status(200).send("Logged out");
 });
 
 // Default route for requests that don't match any other routes. It currently redirects to the 404 page.

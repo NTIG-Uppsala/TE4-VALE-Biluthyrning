@@ -49,14 +49,27 @@ const submitForm = async (event) => {
     }
 };
 
+// Add event listener to all submit buttons
 document.querySelectorAll("form>button[type='submit']").forEach((button) => {
     button.addEventListener("click", submitForm);
 });
 
-const logOut = async (redirectTo = "/") => {
-    const response = await fetch("/POST/logout", { method: "POST" });
-
-    if (response.ok) {
-        window.location.href = redirectTo;
-    }
+// Log out
+const logOut = async () => {
+    return fetch("/POST/logout", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({}),
+    });
 };
+
+// Add event listener to log out buttons
+document.querySelectorAll(".log-out-button").forEach((button) => {
+    button.addEventListener("click", () => {
+        logOut().then(() => {
+            window.location.href = button.dataset.href;
+        });
+    });
+});
