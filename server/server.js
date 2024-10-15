@@ -130,14 +130,9 @@ app.get("/404", (req, res) => {
 
 // Admin panel page, redirects to login page if not logged in
 app.get("/admin", async (req, res) => {
-    // if (!req.session.isLoggedIn) {
-    //     res.redirect("/login");
-    //     return;
-    // }
-    if ("password" == "kiruna") {
-        req.session.location = "kiruna";
-    } else if ("password" == "lulea") {
-        req.session.location = "lulea";
+    if (!req.session.isLoggedIn) {
+        res.redirect("/login");
+        return;
     }
 
     const data = {
@@ -150,9 +145,11 @@ app.get("/admin", async (req, res) => {
 // Login page, redirects to admin page if already logged in
 app.get("/login", (req, res) => {
     if (req.session.isLoggedIn) {
+        req.session.location = req.session.isLoggedIn;
         res.redirect("/admin");
         return;
     }
+    
     const data = {
         lang: dataHelpers.getLanguage(req),
     };
@@ -202,6 +199,22 @@ app.post("/POST/location", (req, res) => {
         }
     });
     res.redirect(`/${route}`);
+});
+
+// Login route
+app.post("/POST/login", async (req, res) => {
+    const { password } = req.body;
+
+    if (password === process.env.KIRUNA_PASSWORD) {
+        req.session.isLoggedIn = "kiruna";
+        req.session.location = "kiruna";
+        res.redirect("/admin");
+
+    } else if (password === process.env.LULEA_PASSWORD) {
+        req.session.isLoggedIn = "lulea";
+        req.session.location = "lulea";
+        res.redirect("/admin");
+    }
 });
 
 // Client requests for the location data

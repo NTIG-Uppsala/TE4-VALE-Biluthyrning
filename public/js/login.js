@@ -1,7 +1,7 @@
 const login = async (event) => {
-    const data = await fetchData();
-
     event.preventDefault(); // Prevent traditional form submission
+    
+    const data = await fetchData();
 
     const password = document.querySelector("input[type='password']").value;
 
@@ -10,8 +10,6 @@ const login = async (event) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                // Pass CSRF token as a header for security
-                "CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
             },
             body: JSON.stringify({ password }),
         });
