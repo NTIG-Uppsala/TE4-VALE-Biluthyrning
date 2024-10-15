@@ -14,7 +14,11 @@ const submitForm = async (event) => {
         .forEach((input) => {
             updatedData[input.dataset.key] = input.value;
         });
-    console.log(updatedData);
+
+    if (Object.keys(updatedData).length === 0) {
+        alert("No data changed");
+        return;
+    }
 
     try {
         const response = await fetch("/POST/set-data", {
