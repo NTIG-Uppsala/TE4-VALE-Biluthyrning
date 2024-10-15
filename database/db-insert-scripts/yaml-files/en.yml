@@ -1,5 +1,4 @@
 # English localization file for the index page
-
 lang: "en"
 folder: "en"
 ntb: "NTB"
@@ -29,7 +28,7 @@ car: "Car"
 year_model: "Year model"
 price: "Price"
 sort_ascending: "Sort ascending"
-sort_decending: "Sort descending"
+sort_descending: "Sort descending"
 delivery_description: "We deliver to certain zip codes, check if we deliver to you"
 zip_code: "Zip code"
 # Add translations for zip code output here
@@ -62,5 +61,20 @@ closed_now: "We are closed today <br> We open again on ${next_open_day} at ${tim
 no_zip_code: "You must enter a zip code in the box"
 zip_code_not_correct_length: "The zip code must be five digits long"
 does_not_deliver: "We do not deliver to zip code ${zip_code}"
-delivers: "We deliver to zip code ${zip_code} for ${price} kr"
+delivers: "We deliver to zip code ${zip_code} for ${price} SEK"
 en: true
+capitalize_weekdays: true
+submit: "Submit"
+currency: "SEK"
+social_media: "Social media"
+login_page_client_error: "Failed to log in, please try again"
+login_page_server_error: "Server error, please try again later"
+password: "Password"
+admin_panel_header: "Admin panel"
+admin_contact_info: "Contact information"
+admin_update_button: "Update"
+admin_back_to_index: "Back to home page"
+admin_location_info: "Address"
+admin_address_city: "City"
+admin_city: "City"
+admin_log_out: "Log out"

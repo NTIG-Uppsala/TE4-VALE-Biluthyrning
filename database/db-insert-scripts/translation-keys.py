@@ -8,7 +8,7 @@ import os
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Load environment variables from .env file located one directory back
-envPath = os.path.join(os.path.dirname(__file__), '..', '.env')
+envPath = os.path.join(os.path.dirname(__file__), '..','..', '.env')
 load_dotenv(envPath)
 
 # Load YAML file

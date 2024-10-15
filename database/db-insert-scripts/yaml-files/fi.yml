@@ -1,5 +1,4 @@
 # Finnish localization file for the index page
-
 lang: "fi"
 folder: "fi"
 ntb: "NTB"
@@ -29,7 +28,7 @@ car: "Auto"
 year_model: "Vuosimalli"
 price: "Hinta"
 sort_ascending: "Lajittele nousevasti"
-sort_decending: "Lajittele laskevasti"
+sort_descending: "Lajittele laskevasti"
 delivery_description: "Toimitamme tiettyihin postinumeroihin, tarkista toimitammeko sinun alueellesi"
 zip_code: "Postinumero"
 # Add translations for zip code output here
@@ -62,5 +61,20 @@ closed_now: "Olemme suljettu tänään <br> Avaamme uudelleen ${next_open_day} k
 no_zip_code: "Sinun täytyy syöttää postinumero laatikkoon"
 zip_code_not_correct_length: "Postinumeron täytyy olla viisi numeroa pitkä"
 does_not_deliver: "Emme toimita postinumeroon ${zip_code}"
-delivers: "Toimitamme postinumeroon ${zip_code} hintaan ${price} kr"
+delivers: "Toimitamme postinumeroon ${zip_code} hintaan ${price} SEK"
 fi: true
+capitalize_weekdays: false
+submit: "Lähetä"
+currency: "SEK"
+social_media: "Sosiaalinen media"
+login_page_client_error: "Kirjautuminen epäonnistui, yritä uudelleen"
+login_page_server_error: "Palvelinvirhe, yritä myöhemmin uudelleen"
+password: "Salasana"
+admin_panel_header: "Ylläpitopaneeli"
+admin_contact_info: "Yhteystiedot"
+admin_update_button: "Päivitä"
+admin_back_to_index: "Takaisin etusivulle"
+admin_location_info: "Osoite"
+admin_address_city: "Kaupunki"
+admin_city: "Kaupunki"
+admin_log_out: "Kirjaudu ulos"

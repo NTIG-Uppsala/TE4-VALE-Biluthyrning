@@ -5,7 +5,7 @@ import logging
 import os
 
 # Load environment variables from .env file located one directory back
-envPath = os.path.join(os.path.dirname(__file__), '..', '.env')
+envPath = os.path.join(os.path.dirname(__file__), '..','..', '.env')
 load_dotenv(envPath)
 
 # load yaml files
@@ -48,7 +48,7 @@ def insertTranslation(translationKeyId, languageId, translation):
     cursor.execute("SELECT * FROM translations WHERE `translation_key_id` = %s AND `language_id` = %s", (translationKeyId, languageId))
     result = cursor.fetchone()
     if result:
-        print("Translation already exists")
+        print("Translation already exists", result)
         return
     
     # If the key does not exist, insert it into the translations table

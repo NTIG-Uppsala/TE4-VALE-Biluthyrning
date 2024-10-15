@@ -1,5 +1,4 @@
 # Swedish localization file for the index page
-
 lang: "sv"
 folder: "se"
 ntb: "NTB"
@@ -29,7 +28,7 @@ car: "Bil"
 year_model: "Årsmodell"
 price: "Pris"
 sort_ascending: "Sortera stigande"
-sort_decending: "Sortera fallande"
+sort_descending: "Sortera fallande"
 delivery_description: "Vi kör ut till vissa postnummer, kolla om vi kör ut till dig"
 zip_code: "Postnummer"
 # Add translations for zip code output here
@@ -64,3 +63,18 @@ zip_code_not_correct_length: "Postnumret måste vara fem siffror långt"
 does_not_deliver: "Vi kör inte ut till postnummer ${zip_code}"
 delivers: "Vi kör ut till postnummer ${zip_code} för ${price} kr"
 se: true
+capitalize_weekdays: false
+submit: "Skicka"
+currency: "kr"
+social_media: "Sociala medier"
+login_page_client_error: "Misslyckades att logga in, försök igen"
+login_page_server_error: "Serverfel, försök igen senare"
+password: "Lösenord"
+admin_panel_header: "Adminpanel"
+admin_contact_info: "Kontaktinformation"
+admin_update_button: "Uppdatera"
+admin_back_to_index: "Tillbaka till startsidan"
+admin_location_info: "Adress"
+admin_address_city: "Ort"
+admin_city: "Stad"
+admin_log_out: "Logga ut"
