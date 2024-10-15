@@ -67,3 +67,6 @@ capitalize_weekdays: false
 submit: "Skicka"
 currency: "kr"
 social_media: "Sociala medier"
+login_page_client_error: "Misslyckades att logga in, försök igen"
+login_page_server_error: "Serverfel, försök igen senare"
+password: "Lösenord"

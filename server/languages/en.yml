@@ -67,3 +67,6 @@ capitalize_weekdays: true
 submit: "Submit"
 currency: "SEK"
 social_media: "Social media"
+login_page_client_error: "Failed to log in, please try again"
+login_page_server_error: "Server error, please try again later"
+password: "Password"

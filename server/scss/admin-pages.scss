@@ -1,0 +1,44 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+    font-family: sans-serif;
+}
+
+.login-page-body {
+    width: 100dvw;
+    max-width: 100%;
+
+    &>main {
+        width: 100%;
+        padding-top: 20dvh;
+
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        row-gap: 1rem;
+
+        &>form * {
+            padding: 0.5rem;
+            
+            border: none;
+            appearance: none;
+
+            border-radius: 0.4rem;
+            border: 0.01rem solid #0066cc;
+        }
+
+        &>form>button {
+
+            font-weight: bold;
+
+            color: white;
+            background-color: #0066cc;
+
+            &:hover {
+                background-color: #0055bb;
+            }
+        }
+    }
+}

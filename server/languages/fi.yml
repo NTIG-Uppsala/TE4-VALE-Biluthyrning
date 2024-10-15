@@ -68,3 +68,6 @@ capitalize_weekdays: false
 submit: "Lähetä"
 currency: "SEK"
 social_media: "Sosiaalinen media"
+login_page_client_error: "Kirjautuminen epäonnistui, yritä uudelleen"
+login_page_server_error: "Palvelinvirhe, yritä myöhemmin uudelleen"
+password: "Salasana"

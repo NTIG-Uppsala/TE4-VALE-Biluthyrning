@@ -1,4 +1,6 @@
 const login = async (event) => {
+    const data = await fetchData();
+
     event.preventDefault(); // Prevent traditional form submission
 
     const password = document.querySelector("input[type='password']").value;
@@ -20,11 +22,11 @@ const login = async (event) => {
         } else {
             // Handle error (e.g., incorrect password)
             const error = await response.json();
-            alert(error.message || "Login failed");
+            alert(error.message || data.languageData["login_page_client_error"]);
         }
     } catch (error) {
         console.error("Login error:", error);
-        alert("An error occurred. Please try again later.");
+        alert(data.languageData["login_page_server_error"]);
     }
 };
 
