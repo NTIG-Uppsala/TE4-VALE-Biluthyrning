@@ -51,13 +51,13 @@ closed_dates:
     date_code: "1131"
 
 zip_codes:
-  - zip_code: "961 93"
+  - zip_code: "96193"
     price: "199 kr"
-  - zip_code: "961 94"
+  - zip_code: "96194"
     price: "199 kr"
-  - zip_code: "961 90"
+  - zip_code: "96190"
     price: "199 kr"
-  - zip_code: "961 91"
+  - zip_code: "96191"
     price: "199 kr"
 
 open_hours:
